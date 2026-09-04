@@ -1,0 +1,29 @@
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+/out-*/
+
+# misc
+.DS_Store
+*.pem
+
+# Claude Code (système local, non versionné)
+CLAUDE.md
+
+# debug
+npm-debug.log*
+
+# env files
+.env*
+.dev.vars
+.dev.vars.*
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# État local de wrangler
+.wrangler/

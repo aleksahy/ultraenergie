@@ -1,0 +1,595 @@
+/* ─────────────────────────────────────────────────────
+   Ultra Énergie — jetons de design et styles globaux
+   ─────────────────────────────────────────────────────
+
+   ⚠️ TOUTE COULEUR DU SITE EST DÉCLARÉE ICI, ET NULLE PART AILLEURS. Les composants et les
+   SVG n'écrivent jamais un hexadécimal : ils appellent une variable, ou héritent de
+   `currentColor`. Une couleur codée en dur dans un composant survit à un changement de
+   charte sans rien signaler, et on la retrouve des mois plus tard. */
+
+:root {
+  /* Encre et gris */
+  --encre: #141414;
+  --texte: #3A3A38;
+  --texte-2: #6B6B68;
+  --texte-3: #8A8A86;
+  --texte-4: #9A9A96;
+  --ligne: #EEEDE9;
+  --survol: #F7F7F5;
+  --blanc: #FFFFFF;
+
+  /* L'accent, tranché : un seul vert, aucune variante. */
+  --accent: #4C8C2B;
+  /* ⚠️ LE TEXTE POSÉ SUR L'ACCENT EST BLANC. Le handoff posait l'encre `#141414` sur les
+     fonds d'accent : sur ce vert, le contraste tombe sous le seuil lisible. Tout ce qui
+     s'écrit sur `--accent` prend `--sur-accent`, jamais `--encre`. */
+  --sur-accent: #FFFFFF;
+
+  --voile: rgba(20, 20, 20, 0.5);
+  --voile-menu: rgba(20, 20, 20, 0.28);
+  --ombre-menu: 0 16px 32px rgba(20, 20, 20, 0.08);
+  --ombre-panneau: -8px 0 30px rgba(20, 20, 20, 0.18);
+
+  --font-sans: var(--font-satoshi), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --largeur: 1320px;
+  /* La gouttière du site. Elle vaut 20px sous 900px (cf. la requête média en bas de
+     fichier) : TOUS les conteneurs l'emploient, donc une seule ligne réaligne la page
+     entière sur le même bord gauche. */
+  --gouttiere: 32px;
+
+  /* ⚠️ LA HAUTEUR EXACTE DE L'EN-TÊTE MOBILE : 14 de marge + 40 de bouton + 14 + 1 de
+     bordure. Le panneau du menu s'y ancre en `position: fixed`. Une valeur approchée
+     laisse une fente par laquelle on voit défiler la page entre l'en-tête et le panneau,
+     ou recouvre le bas de l'en-tête. `.entete-inner` porte le `min-height` correspondant :
+     les deux se tiennent, ne toucher à l'un qu'en touchant à l'autre. */
+  --header-h: 69px;
+  /* La bande de page laissée à gauche du panneau mobile. Étroite exprès : elle signale un
+     panneau posé sur la page, sans laisser lire un mot de ce qu'il y a dessous. */
+  --bande-menu: 32px;
+
+  --espace-section: 96px;
+  /* L'espace au-dessus du bloc « Veille CEE », qui est aussi celui qui le sépare de la
+     FAQ : la section Ressources annule son `padding-bottom`, la FAQ reprend cette même
+     variable en `padding-top`. Une seule valeur, deux usages, impossible de les désaccorder. */
+  --espace-veille: 136px;
+
+  --rayon-carte: 20px;
+  --rayon-modale: 24px;
+  --rayon-champ: 12px;
+  --pied-tete-h: 28px;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; }
+
+html {
+  /* Les ancres (#travaux, #partenaires…) doivent s'arrêter SOUS l'en-tête collant, sinon
+     le titre visé se cale derrière lui. */
+  scroll-padding-top: 96px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--blanc);
+  color: var(--encre);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1, h2 { font-weight: 400; margin: 0; }
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; font-size: inherit; color: inherit; border: none; background: none; padding: 0; cursor: pointer; }
+input, select, textarea { font-family: inherit; font-size: inherit; color: inherit; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+.wm-point { color: var(--accent); }
+.accentue { color: var(--accent); }
+
+.surtitre {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ── Boutons pilule ──────────────────────────────────────────────── */
+
+.pilule {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 16px 26px;
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+.pilule:hover { opacity: 0.88; }
+.pilule:active { opacity: 0.75; }
+.pilule-encre { background: var(--encre); color: var(--blanc); }
+.pilule-accent { background: var(--accent); color: var(--sur-accent); }
+.pilule-blanc { background: var(--blanc); color: var(--encre); }
+
+/* ── En-tête ─────────────────────────────────────────────────────── */
+
+.entete {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  background: var(--blanc);
+  border-bottom: 1px solid var(--ligne);
+}
+.entete-inner {
+  max-width: var(--largeur);
+  margin: 0 auto;
+  padding: 16px var(--gouttiere);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.entete-wordmark { font-size: 22px; font-weight: 700; white-space: nowrap; }
+.entete-droite { display: flex; align-items: center; gap: 18px; }
+.entete-tel { font-size: 14px; font-weight: 500; white-space: nowrap; }
+.entete-tel:hover { color: var(--accent); }
+.entete-droite .pilule { padding: 12px 20px; font-size: 14px; }
+
+/* ── Nav desktop (déroulants en CSS pur) ─────────────────────────── */
+
+.nav-desktop { display: flex; align-items: center; gap: 4px; }
+.nav-lien {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 14px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.nav-lien:hover { color: var(--accent); }
+.nav-groupe { position: relative; display: inline-flex; align-items: center; }
+.nav-chevron { opacity: 0.6; transition: transform 0.16s ease, opacity 0.16s ease; }
+.nav-groupe:hover .nav-chevron,
+.nav-groupe:focus-within .nav-chevron { transform: rotate(180deg); opacity: 1; }
+
+.nav-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 240px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--blanc);
+  border: 1px solid var(--ligne);
+  border-radius: 14px;
+  box-shadow: var(--ombre-menu);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s ease;
+  z-index: 95;
+}
+.nav-groupe:hover .nav-menu,
+.nav-groupe:focus-within .nav-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.nav-menu-item {
+  padding: 9px 14px;
+  border-radius: 9px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.nav-menu-item:hover { background: var(--survol); color: var(--accent); }
+
+/* ── Menu mobile ─────────────────────────────────────────────────── */
+
+.menu-mobile { display: none; }
+.burger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-right: -8px;
+  color: var(--encre);
+  position: relative;
+  z-index: 3;
+}
+.menu-scrim {
+  position: fixed;
+  top: var(--header-h);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 80;
+  background: var(--voile-menu);
+  cursor: default;
+}
+.menu-panneau {
+  position: fixed;
+  top: var(--header-h);
+  left: var(--bande-menu);
+  right: 0;
+  bottom: 0;
+  z-index: 81;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background: var(--blanc);
+  box-shadow: var(--ombre-panneau);
+  padding: 6px var(--gouttiere) 28px;
+}
+.menu-lien {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 16px 0;
+  font-size: 17px;
+  font-weight: 500;
+  text-align: left;
+  border-bottom: 1px solid var(--ligne);
+}
+.menu-chevron { color: var(--texte-3); flex-shrink: 0; transition: transform 0.2s ease, color 0.15s ease; }
+.menu-groupe.est-deplie .menu-chevron { transform: rotate(180deg); color: var(--encre); }
+.menu-sous { display: flex; flex-direction: column; padding: 4px 0 10px 12px; }
+.menu-sous-lien { padding: 11px 0; font-size: 15px; color: var(--texte-2); }
+.menu-actions { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+
+/* ── Héros ───────────────────────────────────────────────────────── */
+
+.hero {
+  max-width: var(--largeur);
+  margin: 0 auto;
+  padding: 64px var(--gouttiere) 88px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 56px;
+  align-items: center;
+}
+.hero-texte { flex: 1 1 460px; min-width: 320px; }
+.hero-texte .surtitre { margin-bottom: 18px; }
+.hero h1 { font-size: clamp(32px, 5.2vw, 52px); line-height: 1.08; margin: 0 0 24px; }
+.hero-p { font-size: 17px; line-height: 1.6; color: var(--texte-2); max-width: 480px; margin-bottom: 32px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+
+.hero-illustration { flex: 1 1 420px; min-width: 280px; position: relative; }
+.hero-svg { position: relative; z-index: 1; display: block; width: 100%; max-width: 420px; margin: 0 auto; }
+.hero-halo { position: absolute; z-index: 0; border-radius: 50%; background: var(--accent); }
+.hero-halo-1 { width: 220px; height: 220px; opacity: 0.35; filter: blur(40px); top: -30px; right: -20px; }
+.hero-halo-2 { width: 180px; height: 180px; opacity: 0.25; filter: blur(36px); bottom: -20px; left: -10px; }
+
+/* ── Sections ────────────────────────────────────────────────────── */
+
+.section {
+  max-width: var(--largeur);
+  margin: 0 auto;
+  padding: 40px var(--gouttiere) var(--espace-section);
+}
+.tete-section { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+.tete-section-large { max-width: 680px; }
+.tete-section .surtitre { margin-bottom: 14px; }
+.tete-section h2 { font-size: clamp(26px, 3.6vw, 36px); line-height: 1.2; }
+
+/* ── Qui êtes-vous ───────────────────────────────────────────────── */
+
+.profils { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+.carte-profil {
+  flex: 1 1 220px;
+  min-width: 220px;
+  max-width: 260px;
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon-carte);
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+  transition: border-color 0.15s ease;
+}
+.carte-profil:hover { border-color: var(--accent); }
+.carte-profil-titre { font-size: 18px; font-weight: 700; }
+.carte-profil-desc { font-size: 14px; line-height: 1.55; color: var(--texte-2); font-weight: 400; }
+
+/* ── Comment ça marche ───────────────────────────────────────────── */
+
+.etapes { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; }
+.etape { flex: 1 1 240px; min-width: 220px; max-width: 280px; }
+.ico-etape { display: block; width: 44px; height: 44px; color: var(--encre); margin-bottom: 20px; }
+.etape-delai {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.etape-titre { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+.etape-desc { font-size: 14px; line-height: 1.6; color: var(--texte-2); }
+
+/* ── Travaux éligibles ───────────────────────────────────────────── */
+
+.travaux { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 44px 32px; }
+.travail { display: block; transition: opacity 0.15s ease; }
+.travail:hover { opacity: 0.72; }
+.ico-travaux { display: block; width: 40px; height: 40px; color: var(--accent); margin-bottom: 18px; }
+.travail-titre { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.travail-desc { font-size: 13px; line-height: 1.55; color: var(--texte-2); }
+
+/* ── Comparatif ──────────────────────────────────────────────────── */
+
+.comparatif { display: flex; flex-wrap: wrap; gap: 24px; }
+.colonne-comparatif {
+  flex: 1 1 280px;
+  min-width: 260px;
+  padding: 28px 24px;
+  border-radius: var(--rayon-carte);
+  border: 1px solid var(--ligne);
+}
+.colonne-comparatif.est-mise-en-avant { border: 2px solid var(--accent); }
+.colonne-titre { font-size: 17px; font-weight: 700; margin-bottom: 16px; }
+.colonne-points { list-style: none; margin: 0; padding: 0; }
+.colonne-points li {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--texte);
+}
+.puce { color: var(--texte-3); flex: none; }
+.est-mise-en-avant .puce { color: var(--accent); }
+
+/* ── Partenaires ─────────────────────────────────────────────────── */
+
+.partenaires { display: flex; flex-wrap: wrap; gap: 24px; }
+.carte-partenaire {
+  flex: 1 1 380px;
+  min-width: 300px;
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon-carte);
+  padding: 32px;
+}
+.carte-partenaire-titre { font-size: 18px; font-weight: 700; margin-bottom: 14px; }
+.carte-partenaire-desc { font-size: 14px; line-height: 1.6; color: var(--texte-2); margin-bottom: 20px; }
+.carte-partenaire .pilule { padding: 13px 20px; font-size: 14px; }
+
+/* ── Ressources ──────────────────────────────────────────────────── */
+
+/* Le `padding-bottom` de la section est repris par la FAQ : cf. `--espace-veille`. */
+.section-ressources { padding-bottom: 0; }
+.articles { display: flex; flex-wrap: wrap; gap: 20px; }
+.article { flex: 1 1 300px; min-width: 260px; }
+.article-photo { border-radius: var(--rayon-carte); overflow: hidden; margin-bottom: 14px; }
+.article-photo img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.article-tag {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.article-titre { font-size: 16px; font-weight: 600; line-height: 1.4; }
+.article:hover .article-titre { color: var(--accent); }
+
+.veille {
+  margin-top: var(--espace-veille);
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon-carte);
+  padding: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.veille-titre { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+.veille-desc { font-size: 14px; color: var(--texte-2); }
+.veille-merci { font-size: 14px; font-weight: 500; color: var(--accent); }
+.veille-form { display: flex; gap: 10px; }
+.veille-champ {
+  border: 1px solid var(--ligne);
+  border-radius: 999px;
+  padding: 13px 18px;
+  font-size: 14px;
+  min-width: 220px;
+  background: var(--blanc);
+}
+.veille-champ:focus-visible { outline-offset: 0; border-radius: 999px; }
+.veille-bouton { padding: 13px 22px; font-size: 14px; }
+
+/* ── FAQ ─────────────────────────────────────────────────────────── */
+
+.section-faq { max-width: 900px; padding-top: var(--espace-veille); }
+.faq-item { border-bottom: 1px solid var(--ligne); }
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 0;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 600;
+}
+.faq-question:hover { color: var(--accent); }
+.faq-signe { color: var(--accent); font-size: 20px; flex: none; }
+.faq-reponse { padding-bottom: 22px; font-size: 14px; line-height: 1.65; color: var(--texte-2); max-width: 760px; }
+
+/* ── Appel final ─────────────────────────────────────────────────── */
+
+.appel-final { background: var(--accent); padding: 72px var(--gouttiere); text-align: center; }
+.appel-final h2 {
+  font-size: clamp(26px, 3.6vw, 36px);
+  line-height: 1.2;
+  color: var(--sur-accent);
+  max-width: 640px;
+  margin: 0 auto 28px;
+}
+.appel-final-actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+.appel-final .pilule { padding: 16px 28px; }
+
+/* ── Pied de page ────────────────────────────────────────────────── */
+
+.pied-inner {
+  max-width: var(--largeur);
+  margin: 0 auto;
+  padding: 64px var(--gouttiere) 40px;
+  display: grid;
+  grid-template-columns: minmax(240px, 1.5fr) minmax(150px, 0.8fr) minmax(190px, 0.9fr) auto;
+  gap: 40px;
+  align-items: start;
+}
+/* ⚠️ MÊME HAUTEUR DE LIGNE POUR LE WORDMARK ET LES TITRES DE COLONNE. Ils commencent au
+   même bord haut, mais 20px gras et 13px capitales n'occupent pas la même bande : sans
+   cette hauteur commune, « Hubs » et « Légal » flottent au-dessus de « Ultra Énergie » et
+   la première ligne du pied paraît de travers. */
+.pied-wordmark { display: block; font-size: 20px; font-weight: 700; line-height: var(--pied-tete-h); margin-bottom: 16px; }
+.pied-titre {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--texte-4);
+  line-height: var(--pied-tete-h);
+  margin-bottom: 16px;
+}
+.pied-coordonnees {
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--texte-2);
+}
+.pied-coordonnees a:hover { color: var(--accent); }
+.pied-liens { display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+.pied-liens a:hover { color: var(--accent); }
+/* Le logo officiel du dispositif : à droite du pied, aligné en haut sur la colonne de gauche. */
+.pied-cee { justify-self: end; align-self: start; width: 170px; height: auto; }
+.pied-bas {
+  max-width: var(--largeur);
+  margin: 0 auto;
+  padding: 0 var(--gouttiere) 32px;
+  font-size: 12px;
+  color: var(--texte-4);
+}
+
+/* ── Modales ─────────────────────────────────────────────────────── */
+
+.modale-voile {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: var(--voile);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+.modale {
+  background: var(--blanc);
+  border-radius: var(--rayon-modale);
+  padding: 36px;
+  max-width: 420px;
+  width: 100%;
+}
+.modale:focus { outline: none; }
+.modale-etroite { max-width: 380px; }
+.modale-titre { font-size: 22px; font-weight: 700; }
+.modale-soustitre { font-size: 14px; color: var(--texte-2); margin-top: 6px; }
+.modale-titre + .modale-form,
+.modale-titre + .modale-merci,
+.modale-soustitre + .modale-form,
+.modale-soustitre + .modale-merci { margin-top: 24px; }
+.modale-form { display: flex; flex-direction: column; gap: 14px; }
+.modale-merci { font-size: 14px; line-height: 1.6; color: var(--accent); font-weight: 500; }
+.champ {
+  width: 100%;
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon-champ);
+  padding: 13px 14px;
+  font-size: 14px;
+  background: var(--blanc);
+}
+select.champ { appearance: auto; }
+.modale-envoi { margin-top: 6px; padding: 15px; }
+.modale-fermer { margin-top: 16px; color: var(--texte-4); font-size: 13px; }
+.modale-fermer:hover { color: var(--encre); }
+
+/* ── Sous 900px ──────────────────────────────────────────────────────
+   Un seul point de rupture, comme le handoff. La gouttière et les espaces verticaux sont
+   redéfinis sur `:root` : tous les conteneurs les lisent, donc TOUT se réaligne sur le même
+   bord gauche d'un coup, y compris les cartes de profil et les étapes, qui perdent ici leur
+   centrage et leur largeur maximale. */
+@media (max-width: 899px) {
+  :root {
+    --gouttiere: 20px;
+    --espace-section: 64px;
+    --espace-veille: 96px;
+  }
+
+  html { scroll-padding-top: calc(var(--header-h) + 12px); }
+
+  /* ⚠️ `min-height` + marges = `--header-h`, à l'unité près (cf. `:root`). */
+  .entete-inner { min-height: 68px; padding: 14px var(--gouttiere); gap: 12px; }
+  .entete-wordmark { font-size: 20px; }
+  .nav-desktop, .entete-droite { display: none; }
+  .menu-mobile { display: block; }
+
+  .hero { padding: 40px var(--gouttiere) 56px; gap: 32px; }
+  /* ⛔ L'illustration ne paraît que sur PC. */
+  .hero-illustration { display: none; }
+  .hero-p { font-size: 16px; }
+
+  .section { padding: 32px var(--gouttiere) var(--espace-section); }
+  .tete-section, .tete-section-large { text-align: left; margin-left: 0; margin-right: 0; max-width: 100%; margin-bottom: 32px; }
+
+  .profils, .etapes, .comparatif, .partenaires, .articles { justify-content: flex-start; }
+  .carte-profil, .etape, .colonne-comparatif, .carte-partenaire, .article {
+    flex: 1 1 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .etapes { gap: 32px; }
+  .travaux { gap: 32px 24px; }
+
+  .veille { flex-direction: column; align-items: stretch; padding: 24px; }
+  /* Le champ et le bouton tiennent sur une seule ligne : le champ prend la place restante,
+     le bouton garde la sienne. `min-width: 0` est ce qui autorise le champ à rétrécir,
+     sans lui un `<input>` refuse de descendre sous sa taille intrinsèque. */
+  .veille-form { flex-wrap: nowrap; }
+  .veille-champ { flex: 1 1 auto; min-width: 0; }
+  .veille-bouton { flex: 0 0 auto; }
+
+  .appel-final { padding: 56px var(--gouttiere); text-align: left; }
+  .appel-final h2 { margin-left: 0; }
+  .appel-final-actions { justify-content: flex-start; }
+
+  .pied-inner { grid-template-columns: 1fr; gap: 32px; padding-top: 48px; }
+  .pied-cee { justify-self: start; width: 130px; }
+
+  .modale { padding: 28px 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

@@ -1,0 +1,19 @@
+# Les fichiers de `/_next/static/` portent TOUS une empreinte du contenu dans leur nom :
+# les bundles JS/CSS (`chunks/4bd1b696-…js`), et aussi les photos importées comme modules
+# (`media/guide.a1b2c3d4.jpg`), ce que fait ce site pour ses trois images d'articles.
+# Un contenu modifié produit un nom différent, donc personne ne peut rester bloqué sur une
+# ancienne version : c'est cette garantie, et elle seule, qui autorise `immutable`.
+#
+# ⚠️ Ne jamais étendre ce bloc à un chemin dont les noms sont stables. Un navigateur qui a
+# mis un fichier `immutable` en cache ne le redemande pas, et aucune purge Cloudflare ne
+# le rattrape.
+#
+# Le défaut de Cloudflare Pages est `max-age=14400, must-revalidate` : quatre heures, puis
+# un aller-retour de revalidation par fichier et par visite.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

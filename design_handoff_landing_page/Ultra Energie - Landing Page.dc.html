@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:#FFFFFF;color:#141414;}
+*{box-sizing:border-box;}
+a{color:#141414;text-decoration:none;}
+a:hover{color:{{ accent }};}
+input,textarea{font-family:'Satoshi',sans-serif;}
+</style>
+</helmet>
+
+<div style="font-family:'Satoshi',sans-serif;color:#141414;overflow-x:hidden;">
+
+<!-- HEADER -->
+<div style="position:sticky;top:0;z-index:90;background:#FFFFFF;border-bottom:1px solid #EEEDE9;">
+  <div style="max-width:1320px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+    <div style="font-size:22px;font-weight:700;white-space:nowrap;">Ultra&nbsp;Énergie<span style="color:{{ accent }};">.</span></div>
+
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <sc-for list="{{ navItems }}" as="navi" hint-placeholder-count="3">
+          <div style="position:relative;padding:10px 14px;cursor:pointer;" onMouseEnter="{{ navi.onEnter }}" onMouseLeave="{{ navi.onLeave }}">
+            <div style="font-size:15px;font-weight:500;color:#141414;">{{ navi.label }}</div>
+            <sc-if value="{{ navi.isOpen }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;top:100%;left:0;background:#FFFFFF;border:1px solid #EEEDE9;border-radius:14px;padding:10px;min-width:240px;box-shadow:0 16px 32px rgba(20,20,20,0.08);">
+                <sc-for list="{{ navi.items }}" as="sub" hint-placeholder-count="4">
+                  <div style="padding:9px 14px;font-size:14px;color:#141414;border-radius:9px;" style-hover="background:#F7F7F5;">{{ sub }}</div>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+        <a href="#partenaires" style="padding:10px 14px;font-size:15px;font-weight:500;">Partenaires</a>
+        <a href="#contact" style="padding:10px 14px;font-size:15px;font-weight:500;">Contact</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:18px;">
+        <div style="font-size:14px;font-weight:500;color:#141414;white-space:nowrap;">01 84 60 00 00</div>
+        <button onClick="{{ openLead }}" style="display:flex;align-items:center;gap:8px;background:{{ accent }};color:#141414;border:none;border-radius:999px;padding:12px 20px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;">Estimer ma prime <span>→</span></button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <button onClick="{{ openLead }}" style="background:{{ accent }};color:#141414;border:none;border-radius:999px;padding:10px 16px;font-size:14px;font-weight:700;cursor:pointer;">Estimer</button>
+        <button onClick="{{ toggleMobileMenu }}" aria-label="Menu" style="background:none;border:none;padding:8px;cursor:pointer;display:flex;flex-direction:column;gap:4px;">
+          <span style="width:22px;height:2px;background:#141414;display:block;"></span>
+          <span style="width:22px;height:2px;background:#141414;display:block;"></span>
+          <span style="width:22px;height:2px;background:#141414;display:block;"></span>
+        </button>
+      </div>
+    </sc-if>
+  </div>
+</div>
+
+<!-- MOBILE MENU OVERLAY -->
+<sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;background:#FFFFFF;z-index:200;overflow-y:auto;padding:20px 24px 40px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;">
+      <div style="font-size:22px;font-weight:700;">Ultra&nbsp;Énergie<span style="color:{{ accent }};">.</span></div>
+      <button onClick="{{ toggleMobileMenu }}" aria-label="Fermer" style="background:none;border:none;font-size:28px;line-height:1;cursor:pointer;color:#141414;padding:8px;">×</button>
+    </div>
+    <sc-for list="{{ mobileNavItems }}" as="mnav" hint-placeholder-count="3">
+      <div style="border-bottom:1px solid #EEEDE9;">
+        <button onClick="{{ mnav.toggle }}" style="width:100%;background:none;border:none;padding:18px 4px;display:flex;align-items:center;justify-content:space-between;font-size:17px;font-weight:500;cursor:pointer;color:#141414;">
+          <span>{{ mnav.label }}</span><span>{{ mnav.chevron }}</span>
+        </button>
+        <sc-if value="{{ mnav.isOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:0 4px 18px;display:flex;flex-direction:column;gap:14px;">
+            <sc-for list="{{ mnav.items }}" as="msub" hint-placeholder-count="4">
+              <div style="font-size:15px;color:#6B6B68;">{{ msub }}</div>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </sc-for>
+    <a href="#partenaires" style="display:block;padding:18px 4px;font-size:17px;font-weight:500;border-bottom:1px solid #EEEDE9;color:#141414;">Partenaires</a>
+    <a href="#contact" style="display:block;padding:18px 4px;font-size:17px;font-weight:500;border-bottom:1px solid #EEEDE9;color:#141414;">Contact</a>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-top:28px;">
+      <button onClick="{{ openLead }}" style="background:#141414;color:#FFFFFF;border:none;border-radius:999px;padding:16px 22px;font-size:15px;font-weight:700;cursor:pointer;">Estimer ma prime →</button>
+      <button onClick="{{ openCallback }}" style="background:{{ accent }};color:#141414;border:none;border-radius:999px;padding:16px 22px;font-size:15px;font-weight:700;cursor:pointer;">Être rappelé →</button>
+      <div style="text-align:center;font-size:15px;font-weight:600;margin-top:6px;">01 84 60 00 00</div>
+    </div>
+  </div>
+</sc-if>
+
+<!-- HERO -->
+<div style="max-width:1320px;margin:0 auto;padding:64px 32px 88px;display:flex;flex-wrap:wrap;gap:56px;align-items:center;">
+  <div style="flex:1 1 460px;min-width:320px;">
+    <div style="font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:{{ accent }};margin-bottom:18px;">Mandataire CEE indépendant</div>
+    <h1 style="font-size:52px;line-height:1.08;font-weight:400;margin:0 0 24px;">Financez vos travaux d'économies d'énergie avec la meilleure <span style="color:{{ accent }};">prime CEE</span></h1>
+    <p style="font-size:17px;line-height:1.6;color:#6B6B68;max-width:480px;margin:0 0 32px;">Nous mettons plusieurs obligés en concurrence pour valoriser vos kWh cumac au meilleur niveau — sans jamais porter l'obligation, installer, ni vendre le moindre équipement.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;margin-bottom:24px;">
+      <button onClick="{{ openLead }}" style="background:#141414;color:#FFFFFF;border:none;border-radius:999px;padding:16px 26px;font-size:15px;font-weight:700;cursor:pointer;">Estimer ma prime →</button>
+      <button onClick="{{ openCallback }}" style="background:{{ accent }};color:#141414;border:none;border-radius:999px;padding:16px 26px;font-size:15px;font-weight:700;cursor:pointer;">Être rappelé →</button>
+    </div>
+    <div style="font-size:13px;color:#8A8A86;">Sans engagement · Réponse sous 48h · Étude prise en charge par les obligés</div>
+  </div>
+  <div style="flex:1 1 420px;min-width:280px;position:relative;">
+    <div style="position:absolute;width:220px;height:220px;background:{{ accent }};opacity:0.35;filter:blur(40px);border-radius:50%;top:-30px;right:-20px;z-index:0;"></div>
+    <div style="position:absolute;width:180px;height:180px;background:{{ accent }};opacity:0.25;filter:blur(36px);border-radius:50%;bottom:-20px;left:-10px;z-index:0;"></div>
+    <div style="position:relative;z-index:1;width:100%;max-width:{{ heroIllustrationMaxWidth }};margin:0 auto;" data-om-raster>{{ heroIllustration }}</div>
+  </div>
+</div>
+
+<!-- QUI ETES-VOUS -->
+<div style="max-width:1320px;margin:0 auto;padding:40px 32px 96px;">
+  <div style="text-align:center;max-width:640px;margin:0 auto 48px;">
+    <div style="font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:{{ accent }};margin-bottom:14px;">Votre profil</div>
+    <h2 style="font-size:36px;font-weight:400;margin:0;">Qui êtes-vous ?</h2>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:center;">
+    <sc-for list="{{ profiles }}" as="p" hint-placeholder-count="5">
+      <a href="#estimer" style="flex:1 1 220px;min-width:220px;max-width:260px;border:1px solid #EEEDE9;border-radius:20px;padding:28px 22px;display:flex;flex-direction:column;gap:12px;cursor:pointer;" style-hover="border-color:{{ accent }};">
+        <div style="font-size:18px;font-weight:700;color:#141414;">{{ p.title }}</div>
+        <div style="font-size:14px;line-height:1.55;color:#6B6B68;">{{ p.desc }}</div>
+      </a>
+    </sc-for>
+  </div>
+</div>
+
+<!-- COMMENT CA MARCHE -->
+<div style="max-width:1320px;margin:0 auto;padding:40px 32px 96px;">
+  <div style="text-align:center;max-width:640px;margin:0 auto 56px;">
+    <div style="font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:{{ accent }};margin-bottom:14px;">Démarches</div>
+    <h2 style="font-size:36px;font-weight:400;margin:0;">Comment obtenir votre <span style="color:{{ accent }};">prime CEE</span> ?</h2>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:40px;justify-content:center;">
+    <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+      <div style="flex:1 1 240px;min-width:220px;max-width:280px;">
+        <div style="width:44px;height:44px;margin-bottom:20px;" data-om-raster>{{ s.icon }}</div>
+        <div style="font-size:12px;font-weight:700;color:{{ accent }};letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;">{{ s.delay }}</div>
+        <div style="font-size:18px;font-weight:700;margin-bottom:10px;">{{ s.title }}</div>
+        <div style="font-size:14px;line-height:1.6;color:#6B6B68;">{{ s.desc }}</div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+
+<!-- TRAVAUX ELIGIBLES -->
+<div style="max-width:1320px;margin:0 auto;padding:40px 32px 96px;">
+  <div style="text-align:center;max-width:640px;margin:0 auto 48px;">
+    <div style="font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:{{ accent }};margin-bottom:14px;">Fiches CEE</div>
+    <h2 style="font-size:36px;font-weight:400;margin:0;">Travaux éligibles aux <span style="color:{{ accent }};">CEE</span></h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:44px 32px;">
+    <sc-for list="{{ travaux }}" as="t" hint-placeholder-count="8">
+      <a href="#fiches" style="text-decoration:none;color:#141414;display:block;" style-hover="opacity:0.72;">
+        <div style="width:40px;height:40px;margin-bottom:18px;" data-om-raster>{{ t.icon }}</div>
+        <div style="font-size:16px;font-weight:700;margin-bottom:6px;">{{ t.title }}</div>
+        <div style="font-size:13px;line-height:1.55;color:#6B6B68;">{{ t.desc }}</div>
+      </a>
+    </sc-for>
+  </div>
+</div>
+
+<!-- COMPARATIF -->
+<div style="max-width:1320px;margin:0 auto;padding:40px 32px 96px;">
+  <div style="text-align:center;max-width:680px;margin:0 auto 48px;">
+    <div style="font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:{{ accent }};margin-bottom:14px;">Indépendance</div>
+    <h2 style="font-size:36px;font-weight:400;margin:0;">Mandataire indépendant, délégataire ou installateur-mandataire ?</h2>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:24px;">
+    <sc-for list="{{ comparison }}" as="c" hint-placeholder-count="3">
+      <div style="flex:1 1 280px;min-width:260px;padding:28px 24px;border-radius:20px;border:{{ c.border }};background:{{ c.bg }};">
+        <div style="font-size:17px;font-weight:700;margin-bottom:16px;">{{ c.title }}</div>
+        <sc-for list="{{ c.bullets }}" as="b" hint-placeholder-count="3">
+          <div style="display:flex;gap:10px;margin-bottom:10px;font-size:14px;line-height:1.5;color:#3A3A38;"><span style="color:{{ c.accentColor }};">—</span><span>{{ b }}</span></div>
+        </sc-for>
+        <div style="margin-top:18px;padding-top:14px;border-top:1px solid #EEEDE9;font-size:13px;color:#8A8A86;">{{ c.example }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="font-size:12px;color:#9A9A96;margin-top:16px;">*Exemple chiffré illustratif, à titre pédagogique — les montants réels dépendent de chaque opération et des fiches applicables.</div>
+</div>
+
+<!-- PARTENAIRES -->
+<div id="partenaires" style="max-width:1320px;margin:0 auto;padding:40px 32px 96px;">
+  <div style="text-align:center;max-width:640px;margin:0 auto 48px;">
+    <div style="font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:{{ accent }};margin-bottom:14px;">Partenaires</div>
+    <h2 style="font-size:36px;font-weight:400;margin:0;">Valorisez vos chantiers, sans effort réglementaire</h2>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:24px;">
+    <div style="flex:1 1 380px;min-width:300px;border:1px solid #EEEDE9;border-radius:20px;padding:32px;">
+      <div style="font-size:18px;font-weight:700;margin-bottom:14px;">Installateurs &amp; artisans RGE</div>
+      <div style="font-size:14px;line-height:1.6;color:#6B6B68;margin-bottom:20px;">Contrat de valorisation clair, contrôle de conformité avant dépôt du dossier, paiement sous 30 jours après validation.</div>
+      <button onClick="{{ openPartner }}" style="background:{{ accent }};color:#141414;border:none;border-radius:999px;padding:13px 20px;font-size:14px;font-weight:700;cursor:pointer;">Devenir partenaire →</button>
+    </div>
+    <div style="flex:1 1 380px;min-width:300px;border:1px solid #EEEDE9;border-radius:20px;padding:32px;">
+      <div style="font-size:18px;font-weight:700;margin-bottom:14px;">Apporteurs d'affaires</div>
+      <div style="font-size:14px;line-height:1.6;color:#6B6B68;margin-bottom:20px;">Syndics, bureaux d'études, courtiers en énergie, distributeurs : commission sur chaque dossier abouti, aucun montage réglementaire à votre charge.</div>
+      <button onClick="{{ openPartner }}" style="background:{{ accent }};color:#141414;border:none;border-radius:999px;padding:13px 20px;font-size:14px;font-weight:700;cursor:pointer;">Devenir partenaire →</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESSOURCES -->
+<div style="max-width:1320px;margin:0 auto;padding:40px 32px 96px;">
+  <div style="text-align:center;max-width:640px;margin:0 auto 48px;">
+    <div style="font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:{{ accent }};margin-bottom:14px;">Ressources</div>
+    <h2 style="font-size:36px;font-weight:400;margin:0;">Comprendre le dispositif CEE</h2>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:20px;margin-bottom:48px;">
+    <sc-for list="{{ articles }}" as="art" hint-placeholder-count="3">
+      <a href="#blog" style="flex:1 1 300px;min-width:260px;text-decoration:none;color:#141414;">
+        <div style="border-radius:20px;overflow:hidden;margin-bottom:14px;">
+          <image-slot id="{{ art.id }}" shape="rect" style="width:100%;height:160px;" placeholder="Photo article — {{ art.tag }}"></image-slot>
+        </div>
+        <div style="font-size:12px;font-weight:700;color:{{ accent }};letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;">{{ art.tag }}</div>
+        <div style="font-size:16px;font-weight:600;line-height:1.4;">{{ art.title }}</div>
+      </a>
+    </sc-for>
+  </div>
+  <div style="border:1px solid #EEEDE9;border-radius:20px;padding:32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;">
+    <div>
+      <div style="font-size:17px;font-weight:700;margin-bottom:6px;">Veille CEE</div>
+      <div style="font-size:14px;color:#6B6B68;">L'actualité réglementaire CEE, une fois par mois.</div>
+    </div>
+    <form onSubmit="{{ noop }}" style="display:flex;gap:10px;flex-wrap:wrap;">
+      <input type="email" required="" placeholder="Votre email" style="border:1px solid #EEEDE9;border-radius:999px;padding:13px 18px;font-size:14px;min-width:220px;"/>
+      <button type="submit" style="background:#141414;color:#FFFFFF;border:none;border-radius:999px;padding:13px 22px;font-size:14px;font-weight:700;cursor:pointer;">S'inscrire</button>
+    </form>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div style="max-width:900px;margin:0 auto;padding:40px 32px 96px;">
+  <div style="text-align:center;margin-bottom:48px;">
+    <div style="font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:{{ accent }};margin-bottom:14px;">Questions fréquentes</div>
+    <h2 style="font-size:36px;font-weight:400;margin:0;">FAQ</h2>
+  </div>
+  <sc-for list="{{ faq }}" as="f" hint-placeholder-count="6">
+    <div style="border-bottom:1px solid #EEEDE9;">
+      <button onClick="{{ f.toggle }}" style="width:100%;background:none;border:none;padding:20px 4px;display:flex;align-items:center;justify-content:space-between;text-align:left;font-size:16px;font-weight:600;cursor:pointer;color:#141414;">
+        <span>{{ f.q }}</span><span style="color:{{ accent }};font-size:20px;flex:none;margin-left:16px;">{{ f.chevron }}</span>
+      </button>
+      <sc-if value="{{ f.isOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:0 4px 22px;font-size:14px;line-height:1.65;color:#6B6B68;max-width:760px;">{{ f.a }}</div>
+      </sc-if>
+    </div>
+  </sc-for>
+</div>
+
+<!-- CTA FINAL -->
+<div style="background:{{ accent }};padding:72px 32px;text-align:center;">
+  <h2 style="font-size:36px;font-weight:400;color:#141414;margin:0 0 28px;max-width:640px;margin-left:auto;margin-right:auto;">Prêt à financer vos travaux au meilleur niveau de prime ?</h2>
+  <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
+    <button onClick="{{ openLead }}" style="background:#141414;color:#FFFFFF;border:none;border-radius:999px;padding:16px 28px;font-size:15px;font-weight:700;cursor:pointer;">Estimer ma prime →</button>
+    <button onClick="{{ openPartner }}" style="background:#FFFFFF;color:#141414;border:none;border-radius:999px;padding:16px 28px;font-size:15px;font-weight:700;cursor:pointer;">Devenir partenaire →</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div id="contact" style="max-width:1320px;margin:0 auto;padding:64px 32px 40px;display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;">
+  <div style="flex:1 1 260px;min-width:220px;">
+    <div style="font-size:20px;font-weight:700;margin-bottom:14px;">Ultra&nbsp;Énergie<span style="color:{{ accent }};">.</span></div>
+    <div style="font-size:14px;color:#6B6B68;line-height:1.7;">12 rue de la Convention<br/>75015 Paris<br/>contact@ultraenergie.fr<br/>01 84 60 00 00</div>
+  </div>
+  <div style="flex:1 1 160px;min-width:160px;">
+    <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:16px;color:#9A9A96;">Hubs</div>
+    <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;color:#141414;">
+      <a href="#pourqui">Pour qui</a><a href="#fiches">Fiches CEE</a><a href="#blog">Blog</a><a href="#glossaire">Glossaire</a><a href="#partenaires">Partenaires</a>
+    </div>
+  </div>
+  <div style="flex:1 1 160px;min-width:160px;">
+    <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:16px;color:#9A9A96;">Légal</div>
+    <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;color:#141414;">
+      <a href="#mentions">Mentions légales</a><a href="#confidentialite">Politique de confidentialité</a>
+    </div>
+  </div>
+</div>
+<div style="max-width:1320px;margin:0 auto;padding:0 32px 32px;font-size:12px;color:#9A9A96;">© 2026 Ultra Énergie — Mandataire CEE indépendant.</div>
+
+<!-- MODALS -->
+<sc-if value="{{ leadOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;background:rgba(20,20,20,0.5);z-index:300;display:flex;align-items:center;justify-content:center;padding:20px;" onClick="{{ closeModals }}">
+    <div style="background:#FFFFFF;border-radius:24px;padding:36px;max-width:420px;width:100%;" onClick="{{ stopClick }}">
+      <div style="font-size:22px;font-weight:700;margin-bottom:6px;">Estimer ma prime CEE</div>
+      <div style="font-size:14px;color:#6B6B68;margin-bottom:24px;">Réponse sous 48h, sans engagement.</div>
+      <form onSubmit="{{ noop }}" style="display:flex;flex-direction:column;gap:14px;">
+        <select style="border:1px solid #EEEDE9;border-radius:12px;padding:13px 14px;font-size:14px;">
+          <option>Je suis maître d'ouvrage</option><option>Je suis installateur / artisan</option><option>Je suis apporteur d'affaires</option>
+        </select>
+        <input placeholder="Type de travaux" style="border:1px solid #EEEDE9;border-radius:12px;padding:13px 14px;font-size:14px;"/>
+        <input placeholder="Localisation" style="border:1px solid #EEEDE9;border-radius:12px;padding:13px 14px;font-size:14px;"/>
+        <input type="email" placeholder="Email" style="border:1px solid #EEEDE9;border-radius:12px;padding:13px 14px;font-size:14px;"/>
+        <input type="tel" placeholder="Téléphone" style="border:1px solid #EEEDE9;border-radius:12px;padding:13px 14px;font-size:14px;"/>
+        <button type="submit" style="background:{{ accent }};color:#141414;border:none;border-radius:999px;padding:15px;font-size:15px;font-weight:700;cursor:pointer;margin-top:6px;">Envoyer ma demande →</button>
+      </form>
+      <button onClick="{{ closeModals }}" style="background:none;border:none;color:#9A9A96;font-size:13px;margin-top:16px;cursor:pointer;">Fermer</button>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ callbackOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;background:rgba(20,20,20,0.5);z-index:300;display:flex;align-items:center;justify-content:center;padding:20px;" onClick="{{ closeModals }}">
+    <div style="background:#FFFFFF;border-radius:24px;padding:36px;max-width:380px;width:100%;" onClick="{{ stopClick }}">
+      <div style="font-size:22px;font-weight:700;margin-bottom:24px;">Être rappelé</div>
+      <form onSubmit="{{ noop }}" style="display:flex;flex-direction:column;gap:14px;">
+        <input placeholder="Nom" style="border:1px solid #EEEDE9;border-radius:12px;padding:13px 14px;font-size:14px;"/>
+        <input type="tel" placeholder="Téléphone" style="border:1px solid #EEEDE9;border-radius:12px;padding:13px 14px;font-size:14px;"/>
+        <button type="submit" style="background:{{ accent }};color:#141414;border:none;border-radius:999px;padding:15px;font-size:15px;font-weight:700;cursor:pointer;margin-top:6px;">Demander à être rappelé →</button>
+      </form>
+      <button onClick="{{ closeModals }}" style="background:none;border:none;color:#9A9A96;font-size:13px;margin-top:16px;cursor:pointer;">Fermer</button>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ partnerOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;background:rgba(20,20,20,0.5);z-index:300;display:flex;align-items:center;justify-content:center;padding:20px;" onClick="{{ closeModals }}">
+    <div style="background:#FFFFFF;border-radius:24px;padding:36px;max-width:420px;width:100%;" onClick="{{ stopClick }}">
+      <div style="font-size:22px;font-weight:700;margin-bottom:6px;">Devenir partenaire</div>
+      <div style="font-size:14px;color:#6B6B68;margin-bottom:24px;">Installateur RGE ou apporteur d'affaires — nous vous recontactons sous 48h.</div>
+      <form onSubmit="{{ noop }}" style="display:flex;flex-direction:column;gap:14px;">
+        <select style="border:1px solid #EEEDE9;border-radius:12px;padding:13px 14px;font-size:14px;">
+          <option>Installateur / artisan RGE</option><option>Apporteur d'affaires</option>
+        </select>
+        <input placeholder="Société" style="border:1px solid #EEEDE9;border-radius:12px;padding:13px 14px;font-size:14px;"/>
+        <input type="email" placeholder="Email" style="border:1px solid #EEEDE9;border-radius:12px;padding:13px 14px;font-size:14px;"/>
+        <input type="tel" placeholder="Téléphone" style="border:1px solid #EEEDE9;border-radius:12px;padding:13px 14px;font-size:14px;"/>
+        <button type="submit" style="background:{{ accent }};color:#141414;border:none;border-radius:999px;padding:15px;font-size:15px;font-weight:700;cursor:pointer;margin-top:6px;">Envoyer →</button>
+      </form>
+      <button onClick="{{ closeModals }}" style="background:none;border:none;color:#9A9A96;font-size:13px;margin-top:16px;cursor:pointer;">Fermer</button>
+    </div>
+  </div>
+</sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#FF6B4A&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#FF6B4A&quot;,&quot;#4C8C2B&quot;,&quot;#1E6FD9&quot;,&quot;#3454D1&quot;]}}">
+const ICON_SEARCH = '<svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="19" cy="19" r="12" stroke="#141414" stroke-width="1.6"/><line x1="28" y1="28" x2="38" y2="38" stroke="#141414" stroke-width="1.6" stroke-linecap="round"/></svg>';
+const ICON_DOC = '<svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="9" y="5" width="26" height="34" rx="2" stroke="#141414" stroke-width="1.6"/><line x1="15" y1="15" x2="29" y2="15" stroke="#141414" stroke-width="1.6"/><line x1="15" y1="22" x2="29" y2="22" stroke="#141414" stroke-width="1.6"/><path d="M15 30 L19 34 L29 24" stroke="#141414" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const ICON_EXCHANGE = '<svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 16h22" stroke="#141414" stroke-width="1.6" stroke-linecap="round"/><path d="M25 10l6 6-6 6" stroke="#141414" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M35 28H13" stroke="#141414" stroke-width="1.6" stroke-linecap="round"/><path d="M19 22l-6 6 6 6" stroke="#141414" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const ICON_CHECK = '<svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="12" width="32" height="20" rx="3" stroke="#141414" stroke-width="1.6"/><circle cx="22" cy="22" r="5" stroke="#141414" stroke-width="1.6"/></svg>';
+
+class Component extends DCLogic {
+  state = {
+    isMobile: false,
+    openDropdown: null,
+    mobileMenuOpen: false,
+    mobileAccordionOpen: null,
+    faqOpenIndex: null,
+    leadOpen: false,
+    callbackOpen: false,
+    partnerOpen: false,
+  };
+
+  componentDidMount() {
+    this.onResize = () => this.setState({ isMobile: window.innerWidth < 900 });
+    this.onResize();
+    window.addEventListener('resize', this.onResize);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+  }
+
+  renderVals() {
+    const accent = this.props.accent ?? '#FF6B4A';
+    const ink = '#1E1E1C';
+
+    const heroIllustration = `<svg viewBox="0 0 400 320" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+      <path d="M78 118 L188 178" stroke="${accent}" stroke-width="3" stroke-linecap="round"/>
+      <path d="M330 100 L216 178" stroke="${accent}" stroke-width="3" stroke-linecap="round"/>
+      <path d="M204 58 L200 172" stroke="${accent}" stroke-width="3" stroke-linecap="round"/>
+      <path d="M188 178 L196 168 L202 180" fill="${accent}"/>
+      <path d="M216 178 L206 172 L212 184" fill="${accent}"/>
+      <path d="M200 172 L192 176 L208 180" fill="${accent}"/>
+      <polygon points="150,178 200,132 250,178" fill="${ink}"/>
+      <rect x="150" y="178" width="100" height="112" fill="${ink}"/>
+      <rect x="164" y="196" width="20" height="20" fill="#FFFFFF"/>
+      <rect x="216" y="196" width="20" height="20" fill="#FFFFFF"/>
+      <rect x="188" y="238" width="24" height="52" fill="#FFFFFF"/>
+      <circle cx="68" cy="96" r="30" fill="#FFFFFF" stroke="${ink}" stroke-width="2.5"/>
+      <path d="M70 82 L60 98 L68 98 L64 112 L78 94 L69 94 Z" fill="${accent}"/>
+      <circle cx="340" cy="78" r="30" fill="#FFFFFF" stroke="${ink}" stroke-width="2.5"/>
+      <path d="M342 64 L332 80 L340 80 L336 94 L350 76 L341 76 Z" fill="${accent}"/>
+      <circle cx="204" cy="34" r="26" fill="#FFFFFF" stroke="${ink}" stroke-width="2.5"/>
+      <path d="M206 22 L198 36 L204 36 L200 48 L212 32 L205 32 Z" fill="${accent}"/>
+    </svg>`;
+
+    const icon = (paths) => `<svg viewBox="0 0 24 24" fill="none" stroke="${accent}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">${paths}</svg>`;
+    const ICON_LAYERS = icon('<path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M2 13l10 5 10-5"/><path d="M2 17.5l10 5 10-5"/>');
+    const ICON_FAN = icon('<circle cx="12" cy="12" r="1.5"/><path d="M12 10.5c-1-2-3.5-4-5.5-3-1.5.8-1.5 3 .5 4"/><path d="M13.5 12c2-1 4-3.5 3-5.5-.8-1.5-3-1.5-4 .5"/><path d="M12 13.5c1 2 3.5 4 5.5 3 1.5-.8 1.5-3-.5-4"/><path d="M10.5 12c-2 1-4 3.5-3 5.5.8 1.5 3 1.5 4-.5"/>');
+    const ICON_FLAME = icon('<path d="M9 18c-2-1-3-3-3-5 0-3 2-4 2-7 0 0 4 2 4 6 1-1 1-2.5 1-3.5 2 1.5 3 4 3 6.5 0 3-2.5 5-5 5s-4-1-2-2Z"/>');
+    const ICON_GAUGE = icon('<circle cx="12" cy="13" r="7"/><path d="M12 13l3-3"/><path d="M8 4h8"/>');
+    const ICON_PIPE = icon('<path d="M4 8h16"/><path d="M4 8v8"/><path d="M20 8v8"/><path d="M4 12h4M12 12h4M20 12h0"/><path d="M4 16h16"/>');
+    const ICON_BULB = icon('<path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3 11c.6.5 1 1.2 1 2h4c0-.8.4-1.5 1-2a6 6 0 0 0-3-11Z"/>');
+    const ICON_GEAR = icon('<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M4.2 7.8l2.6 1.5M17.2 14.7l2.6 1.5M3 12h3M18 12h3M4.2 16.2l2.6-1.5M17.2 9.3l2.6-1.5M7.8 4.2l1.5 2.6M14.7 17.2l1.5 2.6"/>');
+    const ICON_RECOVER = icon('<path d="M4 12a8 8 0 0 1 14-5.3L20 8"/><path d="M20 4v4h-4"/><path d="M20 12a8 8 0 0 1-14 5.3L4 16"/><path d="M4 20v-4h4"/>');
+
+
+    const navConfig = [
+      { key: 'pourqui', label: 'Pour qui', items: ['Copropriétés & bailleurs', 'Entreprises & tertiaire', 'Industrie', 'Collectivités', 'Installateurs & artisans'] },
+      { key: 'fiches', label: 'Fiches CEE', items: ['Résidentiel', 'Tertiaire', 'Industrie', 'Agriculture', 'Réseaux', 'Transport'] },
+      { key: 'ressources', label: 'Ressources', items: ['Blog', 'Glossaire', 'Newsletter'] },
+    ];
+
+    const navItems = navConfig.map(n => ({
+      ...n,
+      isOpen: this.state.openDropdown === n.key,
+      onEnter: () => this.setState({ openDropdown: n.key }),
+      onLeave: () => this.setState({ openDropdown: null }),
+    }));
+
+    const mobileNavItems = navConfig.map(n => ({
+      ...n,
+      isOpen: this.state.mobileAccordionOpen === n.key,
+      chevron: this.state.mobileAccordionOpen === n.key ? '−' : '+',
+      toggle: () => this.setState(s => ({ mobileAccordionOpen: s.mobileAccordionOpen === n.key ? null : n.key })),
+    }));
+
+    const profiles = [
+      { title: 'Copropriétés & bailleurs', desc: "Chaufferie collective, isolation des parties communes, cumul avec MaPrimeRénov' Copro." },
+      { title: 'Entreprises & tertiaire', desc: 'GTB, CVC, isolation de toiture, mise en conformité décret tertiaire.' },
+      { title: 'Industrie', desc: 'Récupération de chaleur, variateurs de vitesse, air comprimé, opérations spécifiques.' },
+      { title: 'Collectivités', desc: 'Bâtiments publics, éclairage public, réseaux de chaleur.' },
+      { title: 'Installateurs & artisans', desc: 'Valorisez vos chantiers, dossiers conformes, paiement rapide.' },
+    ];
+
+    const steps = [
+      { icon: ICON_SEARCH, delay: '24 à 48h', title: "Étude d'éligibilité et estimation", desc: 'Nous analysons vos travaux et transmettons une estimation de prime basée sur les fiches d\'opérations standardisées en vigueur.' },
+      { icon: ICON_DOC, delay: 'Avant le devis', title: 'Engagement de prime signé avant le devis', desc: "L'engagement doit impérativement précéder la signature du devis, conformément au rôle actif et incitatif du dispositif CEE." },
+      { icon: ICON_EXCHANGE, delay: '1 à 2 semaines', title: 'Consultation des obligés et contrat de valorisation', desc: 'Plusieurs obligés sont mis en concurrence pour retenir la meilleure valorisation, puis le contrat correspondant est signé.' },
+      { icon: ICON_CHECK, delay: 'Après travaux', title: 'Travaux, contrôle, dépôt et versement', desc: 'Une fois les travaux réalisés, nous contrôlons la conformité du dossier, le déposons au PNCEE et suivons le versement.' },
+    ];
+
+    const travaux = [
+      { id: 't1', icon: ICON_LAYERS, title: 'Isolation', desc: 'Combles, toiture-terrasse, parties communes.' },
+      { id: 't2', icon: ICON_FAN, title: 'Pompe à chaleur collective', desc: 'Remplacement de générateur en habitat collectif ou tertiaire.' },
+      { id: 't3', icon: ICON_FLAME, title: 'Chaudière et réseau de chaleur', desc: 'Chaudière biomasse, raccordement à un réseau de chaleur.' },
+      { id: 't4', icon: ICON_GAUGE, title: 'GTB', desc: 'Gestion technique du bâtiment et pilotage énergétique.' },
+      { id: 't5', icon: ICON_PIPE, title: 'Calorifugeage', desc: 'Isolation des réseaux de fluides et de vapeur.' },
+      { id: 't6', icon: ICON_BULB, title: 'Éclairage LED', desc: "Remplacement d'éclairage en tertiaire et industrie." },
+      { id: 't7', icon: ICON_GEAR, title: 'Moteurs et variateurs', desc: 'Variateurs de vitesse, moteurs à haut rendement.' },
+      { id: 't8', icon: ICON_RECOVER, title: 'Récupération de chaleur', desc: 'Valorisation de chaleur fatale industrielle.' },
+    ];
+
+    const comparisonBase = [
+      { title: 'Mandataire indépendant — Ultra Énergie', bullets: ['Consulte plusieurs obligés en concurrence', "Ne porte aucune obligation ni équipement", 'Valorisation optimisée pour le maître d\'ouvrage'], example: 'Exemple illustratif : chaufferie collective, prime obtenue 18 400 €*', highlight: true },
+      { title: 'Délégataire d\'un seul obligé', bullets: ['Lié contractuellement à un obligé unique', 'Prime fixée par cet obligé seul', 'Pas de mise en concurrence possible'], example: 'Exemple illustratif : même opération, prime proposée 14 200 €*', highlight: false },
+      { title: 'Installateur-mandataire', bullets: ['Porte lui-même les CEE en plus des travaux', 'Fixe seul le niveau de la prime', "Risque de conflit d'intérêt sur le prix"], example: 'Exemple illustratif : même opération, prime proposée 13 800 €*', highlight: false },
+    ];
+    const comparison = comparisonBase.map(c => ({
+      ...c,
+      border: c.highlight ? `2px solid ${accent}` : '1px solid #EEEDE9',
+      bg: c.highlight ? '#FFFFFF' : '#FFFFFF',
+      accentColor: c.highlight ? accent : '#B9B9B5',
+    }));
+
+    const articles = [
+      { id: 'a1', tag: 'Actualité réglementaire', title: "Fiches d'opérations standardisées : ce qui change" },
+      { id: 'a2', tag: 'Guide', title: 'Comprendre la fiche CEE BAT-TH-116' },
+      { id: 'a3', tag: 'Conseil métier', title: 'Bien préparer son dossier CEE en 5 points' },
+    ];
+
+    const faqBase = [
+      { q: 'Dans quel ordre dois-je signer les documents ?', a: "L'engagement de prime doit être signé avant le devis de travaux, conformément au rôle actif et incitatif du dispositif CEE. Signer le devis avant l'engagement rend l'opération inéligible." },
+      { q: 'Quel est le délai de versement de la prime ?', a: 'Une fois les travaux terminés et le dossier déposé, le versement intervient après contrôle de conformité et signature du contrat de valorisation avec l\'obligé retenu.' },
+      { q: 'La prime CEE est-elle imposable ?', a: "Pour la majorité des particuliers, la prime CEE n'est pas imposable. Pour les entreprises, le traitement comptable dépend de votre situation — vérifiez ce point avec votre expert-comptable." },
+      { q: "Puis-je cumuler la prime CEE avec MaPrimeRénov' Copro et d'autres aides ?", a: "Oui, dans la plupart des cas la prime CEE se cumule avec MaPrimeRénov' Copro et d'autres aides, sous réserve du respect des plafonds d'aides publiques applicables." },
+      { q: 'Mon installateur valorise déjà les CEE, puis-je passer par un mandataire ?', a: 'Oui. En passant par un mandataire indépendant, plusieurs obligés sont mis en concurrence pour votre dossier, ce qui permet souvent une valorisation plus élevée.' },
+      { q: 'Je suis artisan, comment et quand suis-je payé ?', a: 'Après signature du contrat de valorisation et contrôle de conformité de votre dossier, vous êtes payé selon les délais prévus dans votre contrat partenaire, une fois le dossier déposé.' },
+    ];
+    const faq = faqBase.map((f, i) => ({
+      ...f,
+      isOpen: this.state.faqOpenIndex === i,
+      chevron: this.state.faqOpenIndex === i ? '−' : '+',
+      toggle: () => this.setState(s => ({ faqOpenIndex: s.faqOpenIndex === i ? null : i })),
+    }));
+
+    return {
+      accent,
+      heroIllustration,
+      heroIllustrationMaxWidth: this.state.isMobile ? '260px' : '420px',
+      isMobile: this.state.isMobile,
+      isDesktop: !this.state.isMobile,
+      navItems, mobileNavItems, profiles, steps, travaux, comparison, articles, faq,
+      mobileMenuOpen: this.state.mobileMenuOpen,
+      toggleMobileMenu: () => this.setState(s => ({ mobileMenuOpen: !s.mobileMenuOpen })),
+      leadOpen: this.state.leadOpen,
+      callbackOpen: this.state.callbackOpen,
+      partnerOpen: this.state.partnerOpen,
+      openLead: () => this.setState({ leadOpen: true, mobileMenuOpen: false }),
+      openCallback: () => this.setState({ callbackOpen: true, mobileMenuOpen: false }),
+      openPartner: () => this.setState({ partnerOpen: true, mobileMenuOpen: false }),
+      closeModals: () => this.setState({ leadOpen: false, callbackOpen: false, partnerOpen: false }),
+      stopClick: (e) => e.stopPropagation(),
+      noop: (e) => e.preventDefault(),
+    };
+  }
+}
+
+</script>
+</body>
+</html>
