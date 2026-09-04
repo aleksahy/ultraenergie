@@ -231,6 +231,16 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
   overflow-y: auto;
   background: var(--blanc);
   box-shadow: var(--ombre-panneau);
+  /* ⚠️ L'OMBRE EST ROGNÉE EN HAUT, ET C'EST INDISPENSABLE. `.entete` est `position: sticky`
+     avec un `z-index`, donc elle ouvre son PROPRE contexte d'empilement ; le panneau étant
+     son descendant, son ombre se peint par-dessus le fond de l'en-tête quel que soit le
+     `z-index` qu'on lui donne. Avec un flou de 30px, elle remontait sur les 15 derniers
+     pixels de l'en-tête et y posait un voile gris pleine largeur : on aurait dit que
+     l'en-tête projetait une ombre, ou que le panneau s'en détachait.
+     `inset()` rogne au ras de la boîte en haut, à droite et en bas, et laisse 40px à
+     gauche — la seule direction où cette ombre sert à quelque chose, celle de la bande
+     de page restée visible. */
+  clip-path: inset(0 0 0 -40px);
   padding: 6px var(--gouttiere) 28px;
 }
 .menu-lien {
