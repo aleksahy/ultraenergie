@@ -25,6 +25,11 @@
      s'écrit sur `--accent` prend `--sur-accent`, jamais `--encre`. */
   --sur-accent: #FFFFFF;
 
+  /* Le bandeau d'abrogation, seul endroit du site qui avertit. Un orange sourd : il doit
+     se voir sans concurrencer le vert d'accent, qui reste la couleur de l'action. */
+  --alerte: #C2751A;
+  --alerte-fond: #FDF6EC;
+
   --voile: rgba(20, 20, 20, 0.5);
   --ombre-menu: 0 16px 32px rgba(20, 20, 20, 0.08);
 
@@ -665,6 +670,150 @@ select.champ { appearance: auto; }
 }
 .ancres a:hover { border-color: var(--accent); color: var(--accent); }
 
+
+/* ── Page de fiche CEE ───────────────────────────────────────────────
+   Le gabarit rend de six à douze sections selon la matière disponible ; les styles ci-dessous
+   n'en supposent aucune. */
+
+.bandeau-abrogation {
+  margin-bottom: 24px;
+  padding: 14px 18px;
+  border: 1px solid var(--alerte);
+  border-left: 4px solid var(--alerte);
+  border-radius: var(--rayon-champ);
+  background: var(--alerte-fond);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--encre);
+}
+
+/* L'encadré de synthèse : les quatre chiffres qu'on vient chercher en premier. */
+.synthese {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1px;
+  margin: 32px 0 0;
+  padding: 0;
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon-carte);
+  background: var(--ligne);
+  overflow: hidden;
+}
+.synthese-case { background: var(--blanc); padding: 20px 22px; }
+.synthese-case dt {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--texte-3);
+  margin-bottom: 8px;
+}
+.synthese-case dd { margin: 0; font-size: 17px; font-weight: 700; line-height: 1.35; }
+.synthese-case-forte dd { color: var(--accent); font-size: 20px; }
+.synthese-unite { display: block; font-size: 13px; font-weight: 400; color: var(--texte-2); margin-top: 4px; }
+.synthese-case dt .lien-terme { color: inherit; text-decoration: underline; text-decoration-color: var(--ligne); }
+
+/* Grilles officielles */
+.grilles { display: flex; flex-direction: column; gap: 20px; }
+.grille-variante { display: flex; flex-direction: column; gap: 14px; }
+.grille-titre { font-size: 16px; font-weight: 700; margin: 0; }
+.grille-condition { color: var(--texte-3); font-weight: 500; }
+.grille-sous-titre { font-size: 14px; font-weight: 700; margin: 0 0 10px; }
+.grille-formule { font-size: 16px; line-height: 1.6; color: var(--texte); }
+.grille-formule strong { color: var(--accent); }
+.grille-unite { color: var(--texte-3); }
+.grille-notes {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--texte-3);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ⚠️ LE TABLEAU DÉFILE DANS SON PROPRE CADRE, jamais en poussant la page. Une grille à cinq
+   colonnes sur un téléphone de 390px déborde forcément ; sans ce cadre, c'est le corps du
+   document qui se met à défiler de côté, et tout le site paraît cassé. */
+.tableau-cadre { overflow-x: auto; border: 1px solid var(--ligne); border-radius: var(--rayon-champ); }
+.tableau { border-collapse: collapse; width: 100%; font-size: 14px; }
+.tableau caption { caption-side: bottom; }
+.tableau th, .tableau td { padding: 11px 14px; text-align: left; white-space: nowrap; }
+.tableau thead th {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--texte-3);
+  background: var(--survol);
+  border-bottom: 1px solid var(--ligne);
+}
+.tableau tbody th { font-weight: 500; white-space: normal; }
+.tableau tbody td { font-variant-numeric: tabular-nums; }
+.tableau tbody tr + tr th, .tableau tbody tr + tr td { border-top: 1px solid var(--ligne); }
+.tableau-legende { padding: 10px 14px; font-size: 12px; color: var(--texte-3); text-align: left; }
+
+/* Simulateur */
+.simulateur {
+  margin-top: 8px;
+  padding: 24px;
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon-carte);
+  background: var(--survol);
+}
+.simulateur-titre { font-size: 16px; font-weight: 700; margin: 0 0 18px; }
+.simulateur-champs { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+.simulateur-champ { display: flex; flex-direction: column; gap: 6px; }
+.simulateur-label { font-size: 13px; font-weight: 500; color: var(--texte-2); }
+.simulateur-nombre { display: flex; align-items: center; gap: 8px; }
+.simulateur-nombre .champ { flex: 1 1 auto; min-width: 0; }
+.simulateur-unite { font-size: 13px; color: var(--texte-3); white-space: nowrap; }
+.simulateur-resultat { display: block; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--ligne); }
+.simulateur-attente { font-size: 14px; color: var(--texte-3); }
+.simulateur-kwh { font-size: 15px; color: var(--texte-2); }
+.simulateur-kwh strong { font-size: 26px; color: var(--encre); }
+.simulateur-euros { font-size: 15px; color: var(--texte-2); margin-top: 4px; }
+.simulateur-euros strong { font-size: 20px; color: var(--accent); }
+.simulateur-avertissement { margin-top: 12px; font-size: 12px; line-height: 1.55; color: var(--texte-3); }
+
+/* Documents */
+.documents { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.document {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 14px 16px;
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon-champ);
+}
+a.document:hover { border-color: var(--accent); }
+a.document .document-nom { color: var(--encre); }
+a.document:hover .document-nom { color: var(--accent); }
+.document-nom { font-size: 15px; font-weight: 700; }
+.document-meta { font-size: 13px; color: var(--texte-3); }
+.document-note { font-size: 13px; color: var(--texte-4); font-style: italic; }
+.document-absent { background: var(--survol); }
+
+/* Listes de conditions et de justificatifs */
+.conditions { margin: 0; display: flex; flex-direction: column; gap: 16px; }
+.conditions dt { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.conditions dd { margin: 0; font-size: 15px; line-height: 1.65; color: var(--texte-2); }
+.liste-puces { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.6; color: var(--texte-2); }
+
+.volumes { margin-top: 8px; }
+.page-texte-gris { color: var(--texte-3); font-size: 14px; }
+
+/* Lien contextuel vers le glossaire : souligné discrètement, il se voit dans une phrase sans
+   la trouer comme le ferait un lien en couleur d'accent. */
+.lien-terme {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 3px;
+}
+.lien-terme:hover { color: var(--accent); }
+
 /* ── Sous 900px ──────────────────────────────────────────────────────
    Un seul point de rupture, comme le handoff. La gouttière et les espaces verticaux sont
    redéfinis sur `:root` : tous les conteneurs les lisent, donc TOUT se réaligne sur le même
@@ -724,6 +873,11 @@ select.champ { appearance: auto; }
   .page-section { margin-top: 36px; }
   .liste-liens-colonnes { grid-template-columns: 1fr; }
   .pied-titre-suivant { margin-top: 24px; }
+
+  .synthese { grid-template-columns: 1fr 1fr; }
+  .synthese-case { padding: 16px; }
+  .simulateur { padding: 18px; }
+  .simulateur-champs { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {

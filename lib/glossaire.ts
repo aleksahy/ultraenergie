@@ -18,6 +18,12 @@ export const TERMES: Terme[] = [
   { slug: 'operation-specifique', terme: 'Opération spécifique', resume: "L'opération qui ne relève d'aucune fiche standardisée et se calcule au cas par cas." },
   { slug: 'role-actif-et-incitatif', terme: 'Rôle actif et incitatif', resume: "L'exigence qui impose que l'engagement de prime précède la signature du devis." },
   { slug: 'pncee', terme: 'PNCEE', resume: "Le Pôle national des certificats d'économies d'énergie, qui instruit et délivre les certificats." },
+  /* Ces trois termes sont cités en corps de texte sur chaque page de fiche : ils doivent
+     exister avant que les liens contextuels ne les pointent, sinon le contrôle de liens
+     de fin de build refuse le build. */
+  { slug: 'zone-climatique', terme: 'Zone climatique', resume: "Le découpage H1, H2, H3 du territoire qui module le forfait de nombreuses fiches." },
+  { slug: 'coup-de-pouce', terme: 'Coup de pouce', resume: "La bonification qui majore la prime de certaines opérations, sous conditions." },
+  { slug: 'duree-de-vie-conventionnelle', terme: 'Durée de vie conventionnelle', resume: "La durée retenue par la fiche pour calculer les kWh cumac, indépendante de la durée réelle de l'équipement." },
 ];
 
 export function termeParSlug(slug: string): Terme | undefined {

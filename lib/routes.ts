@@ -1,6 +1,6 @@
 import { SECTEURS } from './secteurs';
 import { PUBLICS, PARTENAIRES } from './publics';
-import { FICHES, slugFiche } from './fiches';
+import { FICHES_EN_LIGNE, slugFiche } from './fiches';
 import { TERMES } from './glossaire';
 import { ARTICLES } from './blog';
 
@@ -73,7 +73,9 @@ export const TOUTES_LES_ROUTES: string[] = [
   ...PARTENAIRES.map((p) => url.partenaire(p.slug)),
   url.fichesCee,
   ...SECTEURS.map((s) => url.hubFiches(s.slug)),
-  ...FICHES.map((f) => url.fiche(f.secteur, f.code)),
+  // ⚠️ `FICHES_EN_LIGNE`, pas `FICHES` : une fiche dont la date d'abrogation est passée
+  // n'a plus de page, et `scripts/verifie-routes.mjs` écrit sa 301 vers le hub du secteur.
+  ...FICHES_EN_LIGNE.map((f) => url.fiche(f.secteur, f.code)),
   url.comprendreLesCee,
   ...TERMES.map((t) => url.terme(t.slug)),
   url.blog,

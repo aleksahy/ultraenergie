@@ -98,10 +98,87 @@ Pas de niveau sous-secteur : les usages sont des sections à ancres dans le hub.
 Le lien entre une page secteur et son hub est réciproque, **sous deux ancres différentes** :
 sous la même, les deux pages se disputent la même requête.
 
+## Le gabarit de fiche CEE
+
+Un seul fichier rend toutes les pages `/fiches-cee/{secteur}/{code}/` :
+[`app/fiches-cee/[secteur]/[code]/page.tsx`](app/fiches-cee/%5Bsecteur%5D/%5Bcode%5D/page.tsx).
+Une ligne de `lib/fiches.ts` = une page.
+
+### Le nombre de sections suit la matière
+
+Douze sections possibles, six toujours présentes (synthèse, montant, documents, durée de vie,
+opérations complémentaires, appel à l'action). Les six autres ne sont rendues que si la donnée
+existe. Vérifié sur l'amorce :
+
+| Fiche | Sections |
+| --- | --- |
+| IND-UT-102 (complète) | 12 |
+| BAR-EN-101 | 11 |
+| BAT-TH-116 | 10 |
+| AGRI-TH-104, TRA-EQ-101, RES-CH-104 | 6 |
+
+⛔ Jamais de texte générique pour atteindre un volume : une section « Conditions d'éligibilité »
+qui dirait « nous consulter » sur cent pages coûterait la crédibilité des cent autres.
+
+### Le champ `calcul`
+
+Cinq formes, un type discriminant dans [`lib/calcul.ts`](lib/calcul.ts) : `forfait`,
+`correspondance`, `croisement`, `produit_tables`, `variantes` (qui enveloppe l'une des quatre
+autres). Ajouter une sixième forme casse la compilation partout où il faut la traiter.
+
+Chaque forme est rendue deux fois :
+
+1. **la grille officielle**, avec ses notes de bas de tableau, côté serveur, sans JavaScript ;
+2. **le simulateur**, un champ par dimension, qui donne les kWh cumac puis les euros.
+
+⚠️ Les deux passent par la même fonction `evalue()`. Un calcul réécrit dans le simulateur
+finirait par annoncer un montant différent de celui que la grille juste au-dessus laisse
+calculer à la main.
+
+Les libellés des champs viennent de `champs(calcul)`, donc de la Partie A : la même liste sert
+au simulateur et à la section « Justificatifs ».
+
+Le taux de conversion est un réglage de site, déclaré une seule fois
+(`TAUX_EURO_PAR_KWH_CUMAC` dans [`lib/site.ts`](lib/site.ts)). 🚨 C'est une valeur d'amorce,
+à raccorder à une vraie source avant d'annoncer un euro à qui que ce soit.
+
+### Abrogation
+
+`dateAbrogation` non atteinte : la page reste en ligne avec un bandeau d'avertissement.
+Date passée : **au build suivant**, la fiche sort du registre, sa page n'est plus générée, et
+une 301 vers le hub de son secteur est écrite dans `out/_redirects`.
+
+Le site étant statique, personne n'évalue une date au moment du clic : la bascule ne peut se
+faire qu'au build. Le pont entre les données TypeScript et le script de fin de build est la
+route `app/redirections-fiches.txt/route.ts`, dont le fichier est fusionné puis **supprimé**
+de `out/`. Chemin vérifié de bout en bout en avançant une date d'abrogation.
+
+### Cas limites couverts
+
+- plusieurs durées de vie conditionnelles (RES-CH-104, BAT-TH-116) ;
+- intitulé de plus de 100 caractères : le `<title>` prend `titreCourt`, le H1 l'intitulé
+  officiel (BAT-TH-116), et un contrôle refuse un `titreCourt` de plus de 60 caractères ;
+- absence de `volumeEngage` : le bloc disparaît, on n'affiche pas 0 — un `volumeEngage: []`
+  casse le build, l'absence se dit en omettant le champ ;
+- deux versions en vigueur à des dates différentes : la section Téléchargement n'affiche que
+  celle applicable aujourd'hui, l'historique montre « Remplacée » et « À venir » ;
+- fiche sans Partie A (BAT-EQ-127) ou sans PDF principal (RES-CH-106) : le document est listé
+  sans être lié, jamais un lien mort.
+
+### Maillage de la fiche
+
+Six liens, jumelles d'abord (trois au plus), voisines pour compléter, répartis sur deux
+sections : « À ne pas confondre avec » et « Opérations complémentaires ». Ancre au format
+`{CODE} — {intitulé}`. Le fil d'Ariane porte le lien vers le hub. Liens contextuels vers le
+glossaire pour kWh cumac, zone climatique, Coup de pouce et durée de vie conventionnelle.
+
+L'appel à l'action ouvre la demande d'estimation en **transmettant le code de la fiche**, et
+ne pointe jamais vers `/contact`.
+
 ## 🚨 Le catalogue de fiches est une amorce
 
-Les codes et intitulés de `lib/fiches.ts` **n'ont pas été vérifiés** contre la liste en
-vigueur. Et c'est urgent, parce que **le slug est le code** : corriger un code après mise en
+Les codes, intitulés, versions, dates, barèmes et URL de documents de `lib/fiches.ts` et
+`lib/calculs-seed.ts` **n'ont pas été vérifiés** contre la liste en vigueur. Et c'est urgent, parce que **le slug est le code** : corriger un code après mise en
 ligne, c'est changer une URL censée être stable à vie. Remplacer cette amorce par le
 catalogue réel avant la première indexation.
 

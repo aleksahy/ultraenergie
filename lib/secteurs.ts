@@ -4,21 +4,24 @@
  *   /fiches-cee/{secteur}    le hub catalogue, adressé à qui cherche une fiche
  * Les deux se lient l'une l'autre (cf. le maillage dans README.md).
  *
- * ⛔ PAS DE NIVEAU SOUS-SECTEUR, ni en URL ni en page. Les usages ne sont que des sections
+ * ⛔ PAS DE NIVEAU SOUS-SECTEUR, ni en URL ni en page. Les familles ne sont que des sections
  * à ancres dans le hub, jamais des pages.
  */
 export interface Secteur {
   slug: string;
   label: string;
-  /** Les usages du hub catalogue, dans l'ordre des sections à ancres. */
-  usages: { id: string; label: string }[];
+  /**
+   * Les familles d'opérations du secteur, dans l'ordre des sections à ancres du hub.
+   * `famille` est aussi le champ que porte chaque fiche (cf. lib/fiches.ts).
+   */
+  familles: { id: string; label: string }[];
 }
 
 export const SECTEURS: Secteur[] = [
   {
     slug: 'agriculture',
     label: 'Agriculture',
-    usages: [
+    familles: [
       { id: 'froid', label: 'Froid et récupération de chaleur' },
       { id: 'batiment', label: 'Bâtiment agricole' },
       { id: 'utilites', label: 'Utilités' },
@@ -27,7 +30,7 @@ export const SECTEURS: Secteur[] = [
   {
     slug: 'industrie',
     label: 'Industrie',
-    usages: [
+    familles: [
       { id: 'utilites', label: 'Utilités et moteurs' },
       { id: 'reseaux', label: 'Réseaux et calorifugeage' },
       { id: 'batiment', label: 'Bâtiment industriel' },
@@ -36,7 +39,7 @@ export const SECTEURS: Secteur[] = [
   {
     slug: 'reseau',
     label: 'Réseau',
-    usages: [
+    familles: [
       { id: 'chaleur', label: 'Réseaux de chaleur' },
       { id: 'eclairage', label: 'Éclairage extérieur' },
     ],
@@ -44,7 +47,7 @@ export const SECTEURS: Secteur[] = [
   {
     slug: 'residentiel',
     label: 'Résidentiel',
-    usages: [
+    familles: [
       { id: 'enveloppe', label: 'Enveloppe' },
       { id: 'chauffage', label: 'Chauffage et eau chaude' },
     ],
@@ -52,7 +55,7 @@ export const SECTEURS: Secteur[] = [
   {
     slug: 'tertiaire',
     label: 'Tertiaire',
-    usages: [
+    familles: [
       { id: 'enveloppe', label: 'Enveloppe' },
       { id: 'chauffage', label: 'Chauffage et eau chaude' },
       { id: 'pilotage', label: 'Pilotage et GTB' },
@@ -62,7 +65,7 @@ export const SECTEURS: Secteur[] = [
   {
     slug: 'transport',
     label: 'Transport',
-    usages: [
+    familles: [
       { id: 'vehicules', label: 'Véhicules' },
       { id: 'froid', label: 'Froid embarqué' },
       { id: 'exploitation', label: 'Exploitation' },
@@ -74,4 +77,9 @@ export const SLUGS_SECTEURS = SECTEURS.map((s) => s.slug);
 
 export function secteurParSlug(slug: string): Secteur | undefined {
   return SECTEURS.find((s) => s.slug === slug);
+}
+
+/** Le libellé d'affichage d'une famille, depuis le slug de secteur et l'identifiant. */
+export function familleLabel(slugSecteur: string, id: string): string {
+  return secteurParSlug(slugSecteur)?.familles.find((f) => f.id === id)?.label ?? id;
 }

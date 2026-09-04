@@ -28,7 +28,7 @@ export default function PageSecteur({ secteur }: { secteur: Secteur }) {
       <Section titre="Les fiches CEE du secteur">
         <p className="page-texte">
           {fiches.length} fiches d&apos;opérations standardisées sont recensées pour ce secteur,
-          réparties en {secteur.usages.length} usages.
+          réparties en {secteur.familles.length} familles d’opérations.
         </p>
         <p className="page-texte">
           <Link className="lien-appuye" href={url.hubFiches(secteur.slug)}>

@@ -5,7 +5,8 @@ import type { ReactNode } from 'react';
 
 export type Modale = 'estimation' | 'rappel' | 'partenaire';
 
-const ContexteModales = createContext<(m: Modale) => void>(() => {});
+/** Le second argument transporte le contexte d'ouverture, par exemple le code d'une fiche. */
+const ContexteModales = createContext<(m: Modale, contexte?: string) => void>(() => {});
 
 export function useModales() {
   return useContext(ContexteModales);
@@ -23,7 +24,8 @@ export function useModales() {
  */
 export default function ProviderModales({ children }: { children: ReactNode }) {
   const [ouverte, setOuverte] = useState<Modale | null>(null);
-  const ouvrir = useCallback((m: Modale) => setOuverte(m), []);
+  const [contexte, setContexte] = useState<string | undefined>();
+  const ouvrir = useCallback((m: Modale, c?: string) => { setContexte(c); setOuverte(m); }, []);
   const fermer = useCallback(() => setOuverte(null), []);
 
   useEffect(() => {
@@ -47,7 +49,9 @@ export default function ProviderModales({ children }: { children: ReactNode }) {
             <option>Installateur / artisan</option>
             <option>Apporteur d'affaires</option>
           </select>
-          <input className="champ" name="travaux" placeholder="Type de travaux" required />
+          {/* Le CTA d'une page de fiche transmet son code : la demande arrive en disant de
+              quelle opération elle parle, au lieu de faire retaper ce que la page affichait. */}
+          <input className="champ" name="travaux" placeholder="Type de travaux" defaultValue={contexte ?? ''} required />
           <input className="champ" name="localisation" placeholder="Localisation" required />
           <input className="champ" type="email" name="email" placeholder="Email" required />
           <input className="champ" type="tel" name="telephone" placeholder="Téléphone" required />
@@ -135,15 +139,17 @@ function Modale({
 
 /** Un bouton de la page qui ouvre une modale. */
 export function BoutonModale({
-  modale, className, children,
+  modale, className, contexte, children,
 }: {
   modale: Modale;
   className?: string;
+  /** Transmis à la modale : le code de la fiche depuis laquelle on part, par exemple. */
+  contexte?: string;
   children: ReactNode;
 }) {
   const ouvrir = useModales();
   return (
-    <button type="button" className={className} onClick={() => ouvrir(modale)}>
+    <button type="button" className={className} onClick={() => ouvrir(modale, contexte)}>
       {children}
     </button>
   );

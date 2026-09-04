@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import Page, { Section } from '@/components/Page';
 import ListeLiens from '@/components/ListeLiens';
 import { SECTEURS, secteurParSlug } from '@/lib/secteurs';
-import { fichesParUsage, fichesDuSecteur } from '@/lib/fiches';
+import { fichesParFamille, fichesDuSecteur, ancreFiche } from '@/lib/fiches';
 import { url } from '@/lib/routes';
 
 export function generateStaticParams() {
@@ -33,7 +33,7 @@ export default async function HubSecteur({ params }: { params: Promise<{ secteur
   const secteur = secteurParSlug(slug);
   if (!secteur) notFound();
 
-  const groupes = fichesParUsage(slug);
+  const groupes = fichesParFamille(slug);
   const autres = SECTEURS.filter((s) => s.slug !== slug);
 
   return (
@@ -43,20 +43,19 @@ export default async function HubSecteur({ params }: { params: Promise<{ secteur
       chapo={`Les ${fichesDuSecteur(slug).length} fiches d'opérations standardisées du secteur ${secteur.label.toLowerCase()}.`}
     >
       {groupes.length > 1 && (
-        <nav className="ancres" aria-label="Les usages de ce secteur">
+        <nav className="ancres" aria-label="Les familles d’opérations de ce secteur">
           {groupes.map((g) => <a key={g.id} href={`#${g.id}`}>{g.label}</a>)}
         </nav>
       )}
 
       {groupes.map((g) => (
         <Section key={g.id} id={g.id} titre={g.label}>
-          {/* ⚠️ L'ANCRE DU LIEN PORTE L'INTITULÉ, JAMAIS LE CODE. Le code est dans l'URL et
-              dans le fil d'Ariane, où il situe ; une ancre doit annoncer ce qu'on va lire. */}
+          {/* L'ancre porte le code ET l'intitulé (cf. `ancreFiche`) : le code situe,
+              l'intitulé annonce, et un lien a besoin des deux. */}
           <ListeLiens
             liens={g.fiches.map((f) => ({
               href: url.fiche(f.secteur, f.code),
-              label: f.intitule,
-              note: f.code,
+              label: ancreFiche(f),
             }))}
           />
         </Section>
