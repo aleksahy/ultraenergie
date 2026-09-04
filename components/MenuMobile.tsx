@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { NAV, estGroupe } from '@/lib/nav';
+import { url } from '@/lib/routes';
 import { useModales } from './Modales';
 
 /**
@@ -10,14 +12,13 @@ import { useModales } from './Modales';
  * ⚠️ L'EN-TÊTE RESTE VISIBLE ET N'EST PAS REDOUBLÉ DANS LE PANNEAU. Le panneau est
  * `position: fixed` ancré à `top: var(--header-h)`, exactement la hauteur de l'en-tête
  * collant : les deux sont jointifs quelle que soit la position de défilement, et aucun
- * morceau de page ne peut apparaître entre eux. Un overlay plein écran (`inset: 0`)
- * recouvrirait l'en-tête et obligerait à le redessiner à l'intérieur.
+ * morceau de page ne peut apparaître entre eux.
  *
- * ⚠️ LA BANDE LAISSÉE À GAUCHE EST ÉTROITE (`--bande-menu`) : elle dit qu'on est dans un
- * panneau par-dessus la page, sans laisser lire quoi que ce soit à côté.
+ * ⚠️ Les groupes sans URL sont des `<button>` d'accordéon, jamais des liens : même règle
+ * qu'en desktop (cf. lib/nav.ts).
  *
  * ⛔ PAS DE BOUTON « ESTIMER » à gauche des trois traits : le burger est seul dans
- * l'en-tête mobile, les deux appels à l'action vivent en pied de panneau.
+ * l'en-tête mobile.
  */
 export default function MenuMobile() {
   const [ouvert, setOuvert] = useState(false);
@@ -66,7 +67,7 @@ export default function MenuMobile() {
       {ouvert && (
         <>
           <button type="button" className="menu-scrim" aria-label="Fermer le menu" onClick={fermer} />
-          <nav className="menu-panneau">
+          <nav className="menu-panneau" aria-label="Navigation principale">
             {NAV.map((noeud) => {
               if (estGroupe(noeud)) {
                 const deplie = groupesOuverts.includes(noeud.label);
@@ -85,10 +86,10 @@ export default function MenuMobile() {
                     </button>
                     {deplie && (
                       <div className="menu-sous">
-                        {noeud.enfants.map((enfant, i) => (
-                          <a key={`${enfant.label}-${i}`} href={enfant.href} className="menu-sous-lien" onClick={fermer}>
+                        {noeud.enfants.map((enfant) => (
+                          <Link key={enfant.href} href={enfant.href} className="menu-sous-lien" onClick={fermer}>
                             {enfant.label}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     )}
@@ -96,11 +97,15 @@ export default function MenuMobile() {
                 );
               }
               return (
-                <a key={noeud.href} href={noeud.href} className="menu-lien" onClick={fermer}>
+                <Link key={noeud.href} href={noeud.href} className="menu-lien" onClick={fermer}>
                   {noeud.label}
-                </a>
+                </Link>
               );
             })}
+
+            {/* /contact est hors menu en desktop (c'est le bouton de l'en-tête) ; sur
+                téléphone il rejoint la liste, faute d'une place à droite où le poser. */}
+            <Link href={url.contact} className="menu-lien" onClick={fermer}>Contact</Link>
 
             <div className="menu-actions">
               <button

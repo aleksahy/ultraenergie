@@ -62,15 +62,18 @@ export const ETAPES = [
   },
 ] as const;
 
+/* `secteur` est le slug du hub catalogue vers lequel l'entrée pointe : depuis le passage à
+   une vraie arborescence, ces huit blocs sont des portes d'entrée dans /fiches-cee/, plus des
+   ancres qui retombaient sur la page d'accueil. */
 export const TRAVAUX = [
-  { icone: 'couches', titre: 'Isolation', desc: 'Combles, toiture-terrasse, parties communes.' },
-  { icone: 'helice', titre: 'Pompe à chaleur collective', desc: 'Remplacement de générateur en habitat collectif ou tertiaire.' },
-  { icone: 'flamme', titre: 'Chaudière et réseau de chaleur', desc: 'Chaudière biomasse, raccordement à un réseau de chaleur.' },
-  { icone: 'jauge', titre: 'GTB', desc: 'Gestion technique du bâtiment et pilotage énergétique.' },
-  { icone: 'tuyau', titre: 'Calorifugeage', desc: 'Isolation des réseaux de fluides et de vapeur.' },
-  { icone: 'ampoule', titre: 'Éclairage LED', desc: "Remplacement d'éclairage en tertiaire et industrie." },
-  { icone: 'engrenage', titre: 'Moteurs et variateurs', desc: 'Variateurs de vitesse, moteurs à haut rendement.' },
-  { icone: 'recuperation', titre: 'Récupération de chaleur', desc: 'Valorisation de chaleur fatale industrielle.' },
+  { icone: 'couches', titre: 'Isolation', desc: 'Combles, toiture-terrasse, parties communes.', secteur: 'residentiel' },
+  { icone: 'helice', titre: 'Pompe à chaleur collective', desc: 'Remplacement de générateur en habitat collectif ou tertiaire.', secteur: 'tertiaire' },
+  { icone: 'flamme', titre: 'Chaudière et réseau de chaleur', desc: 'Chaudière biomasse, raccordement à un réseau de chaleur.', secteur: 'reseau' },
+  { icone: 'jauge', titre: 'GTB', desc: 'Gestion technique du bâtiment et pilotage énergétique.', secteur: 'tertiaire' },
+  { icone: 'tuyau', titre: 'Calorifugeage', desc: 'Isolation des réseaux de fluides et de vapeur.', secteur: 'industrie' },
+  { icone: 'ampoule', titre: 'Éclairage LED', desc: "Remplacement d'éclairage en tertiaire et industrie.", secteur: 'tertiaire' },
+  { icone: 'engrenage', titre: 'Moteurs et variateurs', desc: 'Variateurs de vitesse, moteurs à haut rendement.', secteur: 'industrie' },
+  { icone: 'recuperation', titre: 'Récupération de chaleur', desc: 'Valorisation de chaleur fatale industrielle.', secteur: 'industrie' },
 ] as const;
 
 export const COMPARATIF = [

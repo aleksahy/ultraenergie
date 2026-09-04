@@ -1,8 +1,9 @@
+import Link from 'next/link';
 import LienAccueil from './LienAccueil';
 import Wordmark from './Wordmark';
 import NavDesktop from './NavDesktop';
 import MenuMobile from './MenuMobile';
-import { BoutonModale } from './Modales';
+import { url } from '@/lib/routes';
 import { COORDONNEES } from '@/lib/contenu';
 
 export default function EnTete() {
@@ -15,11 +16,12 @@ export default function EnTete() {
 
         <NavDesktop />
 
+        {/* ⚠️ /contact est un BOUTON, hors des six entrées du menu. C'est une destination
+            d'action, pas une rubrique : la ranger dans un déroulant la met au même rang
+            qu'une page secteur. */}
         <div className="entete-droite">
           <a className="entete-tel" href={`tel:${COORDONNEES.telephoneLien}`}>{COORDONNEES.telephone}</a>
-          <BoutonModale modale="estimation" className="pilule pilule-accent">
-            Estimer ma prime →
-          </BoutonModale>
+          <Link href={url.contact} className="pilule pilule-accent">Contact →</Link>
         </div>
 
         <MenuMobile />

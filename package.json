@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "images": "node scripts/derive-photos.mjs"
+    "images": "node scripts/derive-photos.mjs",
+    "postbuild": "node scripts/verifie-routes.mjs",
+    "check:routes": "node scripts/verifie-routes.mjs"
   },
   "dependencies": {
     "next": "16.2.4",

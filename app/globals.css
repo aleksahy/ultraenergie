@@ -457,8 +457,8 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
   margin: 0 auto;
   padding: 64px var(--gouttiere) 40px;
   display: grid;
-  grid-template-columns: minmax(240px, 1.5fr) minmax(150px, 0.8fr) minmax(190px, 0.9fr) auto;
-  gap: 40px;
+  grid-template-columns: minmax(210px, 1.3fr) minmax(150px, 0.85fr) minmax(120px, 0.7fr) minmax(170px, 0.95fr) auto;
+  gap: 40px 32px;
   align-items: start;
 }
 /* ⚠️ MÊME HAUTEUR DE LIGNE POUR LE WORDMARK ET LES TITRES DE COLONNE. Ils commencent au
@@ -484,6 +484,9 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
   color: var(--texte-2);
 }
 .pied-coordonnees a:hover { color: var(--accent); }
+/* Une colonne peut porter deux rubriques : la seconde se décolle de la liste du dessus,
+   sans jamais bouger la PREMIÈRE ligne du pied, qui est alignée sur le wordmark. */
+.pied-titre-suivant { margin-top: 28px; }
 .pied-liens { display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
 .pied-liens a:hover { color: var(--accent); }
 /* Le logo officiel du dispositif : à droite du pied, aligné en haut sur la colonne de gauche. */
@@ -539,6 +542,109 @@ select.champ { appearance: auto; }
 .modale-fermer { margin-top: 16px; color: var(--texte-4); font-size: 13px; }
 .modale-fermer:hover { color: var(--encre); }
 
+
+/* ── Pages intérieures ───────────────────────────────────────────────
+   Coquilles d'architecture : le contenu et le design viennent ensuite. Ce qui compte ici,
+   c'est que le fil d'Ariane, les titres et les blocs de maillage soient en place. */
+
+/* ⚠️ LE CONTENEUR PREND LA LARGEUR DU SITE, ET C'EST LE CONTENU QUI EST BRIDÉ. Centrer une
+   colonne de 860px décalait chaque page intérieure d'environ 230px vers la droite : le fil
+   d'Ariane et le titre ne tombaient plus sur la même gouttière que le wordmark de l'en-tête
+   ni que le pied de page, et le décalage se voyait au défilement. La mesure de lecture est
+   tenue par la largeur maximale des enfants, pas par un centrage du bloc. */
+.page {
+  max-width: var(--largeur);
+  margin: 0 auto;
+  padding: 32px var(--gouttiere) var(--espace-section);
+}
+.page > * { max-width: 940px; }
+.page-titre { font-size: clamp(30px, 4.4vw, 44px); line-height: 1.12; margin: 0 0 18px; }
+.page-chapo { font-size: 17px; line-height: 1.6; color: var(--texte-2); max-width: 640px; }
+.page-texte { font-size: 15px; line-height: 1.65; color: var(--texte-2); margin-bottom: 12px; }
+.page-section { margin-top: 48px; }
+.page-section-titre { font-size: 20px; font-weight: 700; margin: 0 0 18px; }
+.page-coordonnees {
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--texte-2);
+}
+.page-coordonnees a:hover { color: var(--accent); }
+
+/* Le bandeau qui dit qu'une page est une coquille. Il disparaîtra page par page, à mesure
+   qu'elles se remplissent ; tant qu'il est là, il vaut mieux qu'il se voie. */
+.page-chantier {
+  margin-top: 28px;
+  padding: 14px 18px;
+  border: 1px dashed var(--ligne);
+  border-radius: var(--rayon-champ);
+  font-size: 13px;
+  color: var(--texte-3);
+}
+
+.fiche-code {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+/* ── Fil d'Ariane ────────────────────────────────────────────────── */
+
+.fil-ariane { margin-bottom: 24px; }
+.fil-ariane ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  font-size: 13px;
+  color: var(--texte-3);
+}
+/* Le séparateur est en CSS, jamais dans le texte : il ne doit pas être lu par une synthèse
+   vocale ni recopié par un moteur qui reprend le fil. */
+.fil-ariane li + li::before { content: '/'; margin-right: 10px; color: var(--texte-4); }
+.fil-ariane a { color: var(--texte-2); }
+.fil-ariane a:hover { color: var(--accent); }
+.fil-ariane [aria-current='page'] { color: var(--encre); font-weight: 500; }
+
+/* ── Listes de liens (maillage) ──────────────────────────────────── */
+
+.liste-liens { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.liste-liens-colonnes { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2px 24px; }
+.liste-liens a {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px 14px;
+  margin-left: -14px;
+  border-radius: var(--rayon-champ);
+}
+.liste-liens a:hover { background: var(--survol); }
+.liste-liens-label { font-size: 15px; font-weight: 500; }
+.liste-liens a:hover .liste-liens-label { color: var(--accent); }
+.liste-liens-note { font-size: 13px; line-height: 1.5; color: var(--texte-3); }
+
+.lien-appuye { font-size: 15px; font-weight: 700; color: var(--accent); }
+.lien-appuye:hover { text-decoration: underline; }
+
+/* Les ancres d'usage d'un hub catalogue : des raccourcis vers ses sections, pas des pages. */
+.ancres { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.ancres a {
+  padding: 8px 14px;
+  border: 1px solid var(--ligne);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.ancres a:hover { border-color: var(--accent); color: var(--accent); }
+
 /* ── Sous 900px ──────────────────────────────────────────────────────
    Un seul point de rupture, comme le handoff. La gouttière et les espaces verticaux sont
    redéfinis sur `:root` : tous les conteneurs les lisent, donc TOUT se réaligne sur le même
@@ -592,6 +698,11 @@ select.champ { appearance: auto; }
   .pied-cee { justify-self: start; width: 130px; }
 
   .modale { padding: 28px 24px; }
+
+  .page { padding: 24px var(--gouttiere) var(--espace-section); }
+  .page-section { margin-top: 36px; }
+  .liste-liens-colonnes { grid-template-columns: 1fr; }
+  .pied-titre-suivant { margin-top: 24px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

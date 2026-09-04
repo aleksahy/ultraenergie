@@ -1,32 +1,30 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import Wordmark from './Wordmark';
 import { COORDONNEES } from '@/lib/contenu';
+import { SECTEURS } from '@/lib/secteurs';
+import { PUBLICS, PARTENAIRES } from '@/lib/publics';
+import { url } from '@/lib/routes';
 import logoCee from '@/cee.png';
 
-const HUBS = [
-  { label: 'Pour qui', href: '#profils' },
-  { label: 'Fiches CEE', href: '#travaux' },
-  { label: 'Blog', href: '#ressources' },
-  { label: 'Glossaire', href: '#ressources' },
-  { label: 'Partenaires', href: '#partenaires' },
-];
+/* ⚠️ TOUS LES LIENS VIENNENT DU REGISTRE (`lib/routes.ts`), aucun n'est écrit à la main.
+   La règle du projet est qu'aucun lien du menu ou du pied ne pointe vers une 404, et le
+   contrôle de fin de build la vérifie sur le HTML produit — il ne peut le faire que si les
+   URL sortent toutes du même endroit.
 
-const LEGAL = [
-  { label: 'Mentions légales', href: '#mentions' },
-  { label: 'Politique de confidentialité', href: '#confidentialite' },
-];
-
+   ⛔ PAS DE « MENTIONS LÉGALES » NI DE « POLITIQUE DE CONFIDENTIALITÉ » ICI. Ces pages
+   n'existent pas dans l'architecture : les lier ferait exactement les 404 que la règle
+   interdit. Elles reviendront le jour où les routes existeront. */
 export default function PiedDePage() {
   const annee = new Date().getFullYear();
 
   return (
-    <footer id="contact" className="pied">
+    <footer className="pied">
       <div className="pied-inner">
         <div className="pied-col">
-          {/* ⚠️ Le wordmark et les titres « Hubs » / « Légal » partagent `--pied-tete-h` en
-              hauteur de ligne. Sans ça, 20px gras et 13px capitales commencent au même
-              bord haut mais ne s'alignent pas à l'œil : les deux titres flottent au-dessus
-              du wordmark, et la première ligne du pied paraît de travers. */}
+          {/* ⚠️ Le wordmark et les titres de colonne partagent `--pied-tete-h` en hauteur de
+              ligne : sans ça, 20px gras et 13px capitales commencent au même bord haut mais
+              ne s'alignent pas à l'œil. */}
           <Wordmark className="pied-wordmark" />
           <address className="pied-coordonnees">
             {COORDONNEES.adresse.map((ligne) => <span key={ligne}>{ligne}</span>)}
@@ -36,22 +34,40 @@ export default function PiedDePage() {
         </div>
 
         <div className="pied-col">
-          <div className="pied-titre">Hubs</div>
+          <div className="pied-titre">Pour qui</div>
           <div className="pied-liens">
-            {HUBS.map((l) => <a key={l.label} href={l.href}>{l.label}</a>)}
+            {PUBLICS.map((p) => <Link key={p.slug} href={url.public(p.slug)}>{p.label}</Link>)}
+          </div>
+          <div className="pied-titre pied-titre-suivant">Partenaires</div>
+          <div className="pied-liens">
+            {PARTENAIRES.map((p) => <Link key={p.slug} href={url.partenaire(p.slug)}>{p.label}</Link>)}
           </div>
         </div>
 
         <div className="pied-col">
-          <div className="pied-titre">Légal</div>
+          <div className="pied-titre">Secteurs</div>
           <div className="pied-liens">
-            {LEGAL.map((l) => <a key={l.label} href={l.href}>{l.label}</a>)}
+            {SECTEURS.map((s) => <Link key={s.slug} href={url.secteur(s.slug)}>{s.label}</Link>)}
           </div>
         </div>
 
-        {/* Le logo officiel du dispositif. `align-self: start` l'aligne en haut sur la
-            colonne de gauche ; la grille le pose à droite. */}
-        <Image src={logoCee} alt="Certificats d'économies d'énergie" className="pied-cee" priority={false} />
+        <div className="pied-col">
+          <div className="pied-titre">Ressources</div>
+          <div className="pied-liens">
+            <Link href={url.fichesCee}>Fiches CEE</Link>
+            <Link href={url.comprendreLesCee}>Comprendre les CEE</Link>
+            <Link href={url.blog}>Blog</Link>
+          </div>
+          <div className="pied-titre pied-titre-suivant">Ultra Énergie</div>
+          <div className="pied-liens">
+            <Link href={url.quiSommesNous}>Qui sommes-nous</Link>
+            <Link href={url.contact}>Contact</Link>
+          </div>
+        </div>
+
+        {/* Le logo officiel du dispositif : à droite du pied, aligné en haut sur la
+            colonne de gauche. */}
+        <Image src={logoCee} alt="Certificats d'économies d'énergie" className="pied-cee" />
       </div>
 
       <div className="pied-bas">© {annee} Ultra Énergie, mandataire CEE indépendant.</div>

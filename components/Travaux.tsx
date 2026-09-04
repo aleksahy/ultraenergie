@@ -1,6 +1,8 @@
+import Link from 'next/link';
 import TeteSection from './TeteSection';
 import { IconeTravaux } from './Icones';
 import { TRAVAUX } from '@/lib/contenu';
+import { url } from '@/lib/routes';
 
 export default function Travaux() {
   return (
@@ -10,11 +12,11 @@ export default function Travaux() {
       </TeteSection>
       <div className="travaux">
         {TRAVAUX.map((t) => (
-          <a key={t.titre} href="#travaux" className="travail">
+          <Link key={t.titre} href={url.hubFiches(t.secteur)} className="travail">
             <IconeTravaux nom={t.icone} />
             <div className="travail-titre">{t.titre}</div>
             <div className="travail-desc">{t.desc}</div>
-          </a>
+          </Link>
         ))}
       </div>
     </section>
