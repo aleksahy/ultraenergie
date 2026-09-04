@@ -57,6 +57,7 @@ export default function PiedDePage() {
             <Link href={url.fichesCee}>Fiches CEE</Link>
             <Link href={url.comprendreLesCee}>Comprendre les CEE</Link>
             <Link href={url.blog}>Blog</Link>
+            <Link href={url.veilleCee}>Veille CEE</Link>
           </div>
           <div className="pied-titre pied-titre-suivant">Ultra Énergie</div>
           <div className="pied-liens">

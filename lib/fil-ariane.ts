@@ -65,12 +65,19 @@ export function filAriane(chemin: string): Miette[] {
   return derniereSansLien(miettes);
 }
 
+const PAGES_FIXES: Record<string, string> = {
+  'qui-sommes-nous': 'Qui sommes-nous',
+  contact: 'Contact',
+  'veille-cee': 'Veille CEE',
+};
+
 function libellePremierNiveau(slug: string): string {
   return (
     SECTEURS.find((s) => s.slug === slug)?.label ??
     PUBLICS.find((p) => p.slug === slug)?.label ??
     PARTENAIRES.find((p) => p.slug === slug)?.label ??
-    (slug === 'qui-sommes-nous' ? 'Qui sommes-nous' : slug === 'contact' ? 'Contact' : slug)
+    PAGES_FIXES[slug] ??
+    slug
   );
 }
 

@@ -21,6 +21,7 @@ export const url = {
   accueil: '/',
   quiSommesNous: '/qui-sommes-nous/',
   contact: '/contact/',
+  veilleCee: '/veille-cee/',
 
   /** Page « Pour qui » (premier niveau). */
   public: (slug: string) => `/${slug}/`,
@@ -52,6 +53,7 @@ export const url = {
 export const PREMIER_NIVEAU: { slug: string; role: string }[] = [
   { slug: 'qui-sommes-nous', role: 'page fixe' },
   { slug: 'contact', role: 'page fixe' },
+  { slug: 'veille-cee', role: 'page fixe' },
   ...PUBLICS.map((p) => ({ slug: p.slug, role: 'page « pour qui »' })),
   ...SECTEURS.map((s) => ({ slug: s.slug, role: 'page secteur (segment dynamique)' })),
   ...PARTENAIRES.map((p) => ({ slug: p.slug, role: 'page partenaire' })),
@@ -65,6 +67,7 @@ export const TOUTES_LES_ROUTES: string[] = [
   url.accueil,
   url.quiSommesNous,
   url.contact,
+  url.veilleCee,
   ...PUBLICS.map((p) => url.public(p.slug)),
   ...SECTEURS.map((s) => url.secteur(s.slug)),
   ...PARTENAIRES.map((p) => url.partenaire(p.slug)),

@@ -12,8 +12,17 @@ import { url } from './routes';
  * contrôle de liens signalerait en 404. C'est pour ça que `GroupeNav` ne porte pas le champ :
  * le déclencheur est rendu en `<button>`, pas en `<a>`.
  *
- * « Fiches CEE » et « Ressources » suivent la même forme : leurs pages index sont la
- * première entrée de leur sous-menu, pas le libellé lui-même.
+ * « Ressources » suit la même forme : ses pages index sont ses entrées, le libellé lui-même
+ * n'en est pas une.
+ *
+ * ⛔ LES SIX HUBS `/fiches-cee/{secteur}` NE SONT PLUS DANS LE MENU. « Fiches CEE » y est une
+ * entrée parmi les ressources, pas un bloc à part : lister ses six hubs en dessous en
+ * referait un, et poserait sous « Ressources » six libellés de secteur que « Secteurs »
+ * affiche déjà à l'identique.
+ * Ils restent atteignables, et pas d'un seul chemin : l'index /fiches-cee/ les liste tous,
+ * chaque hub pointe les cinq autres, chaque page secteur pointe le sien, et les huit blocs
+ * « Travaux éligibles » de l'accueil y mènent directement. Le contrôle d'orphelines de
+ * `scripts/verifie-routes.mjs` refuse le build si l'un d'eux se retrouvait sans lien entrant.
  */
 export interface LienNav {
   label: string;
@@ -32,6 +41,7 @@ export function estGroupe(noeud: NoeudNav): noeud is GroupeNav {
 }
 
 export const NAV: NoeudNav[] = [
+  { label: 'Qui sommes-nous', href: url.quiSommesNous },
   {
     label: 'Pour qui',
     enfants: PUBLICS.map((p) => ({ label: p.label, href: url.public(p.slug) })),
@@ -41,22 +51,16 @@ export const NAV: NoeudNav[] = [
     enfants: SECTEURS.map((s) => ({ label: s.label, href: url.secteur(s.slug) })),
   },
   {
-    label: 'Fiches CEE',
-    enfants: [
-      { label: 'Toutes les fiches CEE', href: url.fichesCee },
-      ...SECTEURS.map((s) => ({ label: s.label, href: url.hubFiches(s.slug) })),
-    ],
-  },
-  {
     label: 'Ressources',
     enfants: [
+      { label: 'Fiches CEE', href: url.fichesCee },
       { label: 'Comprendre les CEE', href: url.comprendreLesCee },
       { label: 'Blog', href: url.blog },
+      { label: 'Veille CEE', href: url.veilleCee },
     ],
   },
   {
     label: 'Partenaires',
     enfants: PARTENAIRES.map((p) => ({ label: p.label, href: url.partenaire(p.slug) })),
   },
-  { label: 'Qui sommes-nous', href: url.quiSommesNous },
 ];

@@ -1,7 +1,7 @@
 /**
  * Contrôle de fin de build, et écriture des redirections.
  *
- * Il tient les quatre garde-fous que l'architecture demande et qu'aucun type ne peut vérifier :
+ * Il tient les garde-fous que l'architecture demande et qu'aucun type ne peut vérifier :
  *
  *   1. Le sitemap et le contenu de `out/` disent la même chose, DANS LES DEUX SENS. Une page
  *      générée sans être déclarée, c'est une page d'archive ou de média apparue toute seule ;
@@ -71,6 +71,9 @@ for (const route of generees) {
 
 const fichiersPresents = new Set(tous.map((f) => `/${relative(OUT, f).split('\\').join('/')}`));
 
+/** Pour chaque route, les pages qui la lient. Sert au contrôle d'orphelines, plus bas. */
+const liensEntrants = new Map([...generees].map((r) => [r, new Set()]));
+
 for (const page of html) {
   const source = await readFile(page, 'utf8');
   const depuis = `/${relative(OUT, page).split('\\').join('/')}`;
@@ -94,8 +97,26 @@ for (const page of html) {
       erreurs.push(`${depuis} → lien non minuscule : ${chemin}`);
       continue;
     }
-    if (!generees.has(chemin)) erreurs.push(`${depuis} → lien vers une page inexistante : ${chemin}`);
+    if (!generees.has(chemin)) {
+      erreurs.push(`${depuis} → lien vers une page inexistante : ${chemin}`);
+      continue;
+    }
+
+    // Un lien d'une page vers elle-même ne la sort pas de l'isolement.
+    const routeDepuis = depuis.replace(/index\.html$/, '');
+    if (routeDepuis !== chemin) liensEntrants.get(chemin).add(routeDepuis);
   }
+}
+
+/* ── Les pages orphelines ─────────────────────────────────────────────────
+   Une page qu'aucune autre ne lie n'existe que dans le sitemap. Le contrôle vaut surtout
+   quand on RETIRE des liens : sortir les six hubs `/fiches-cee/{secteur}` du menu était sans
+   risque parce que quatre autres chemins y mènent, mais rien ne le disait — c'est ce que ce
+   contrôle vérifie, à chaque build, au lieu de le supposer. */
+
+for (const [route, sources] of liensEntrants) {
+  if (route === '/') continue; // la racine n'a pas à être liée pour être atteinte
+  if (sources.size === 0) erreurs.push(`Page orpheline, aucune autre page ne la lie : ${route}`);
 }
 
 /* ── Les redirections ─────────────────────────────────────────────────────── */
@@ -133,5 +154,6 @@ if (erreurs.length) {
 
 console.log(
   `✓ ${generees.size} pages, sitemap et out/ concordants, ` +
-  `aucun lien interne mort, ${regles.length} redirections écrites dans out/_redirects.`,
+  `aucun lien interne mort, aucune page orpheline, ` +
+  `${regles.length} redirections écrites dans out/_redirects.`,
 );

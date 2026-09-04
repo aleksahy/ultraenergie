@@ -392,8 +392,13 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 .article-titre { font-size: 16px; font-weight: 600; line-height: 1.4; }
 .article:hover .article-titre { color: var(--accent); }
 
+/* ⚠️ `--espace-veille` NE S'APPLIQUE QUE SUR L'ACCUEIL. C'est l'espace qui sépare le bloc de
+   la FAQ, et il n'a de sens que dans la section Ressources de la page d'accueil. Porté par
+   `.veille` lui-même, il posait 136px de vide sous le chapô de la page /veille-cee/, où le
+   bloc suit directement le texte qui l'annonce. */
+.section-ressources .veille { margin-top: var(--espace-veille); }
 .veille {
-  margin-top: var(--espace-veille);
+  margin-top: 28px;
   border: 1px solid var(--ligne);
   border-radius: var(--rayon-carte);
   padding: 32px;

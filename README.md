@@ -21,12 +21,13 @@ npm run images   # dérivées web des photos (cf. ci-dessous)
 
 ## Architecture
 
-68 pages, toutes statiques. La source unique des URL est `lib/routes.ts` ; rien n'écrit une
+69 pages, toutes statiques. La source unique des URL est `lib/routes.ts` ; rien n'écrit une
 URL à la main.
 
 ```
 /                                    accueil
 /qui-sommes-nous  /contact           pages fixes
+/veille-cee                          la newsletter
 /{public}                            4 pages « Pour qui »
 /{secteur}                           6 pages secteur commerciales
 /{partenaire}                        3 pages « Partenaires »
@@ -50,10 +51,26 @@ nommée comme une page fixe deviendrait inatteignable en silence. C'est `PREMIER
 
 ### Navigation
 
-Six entrées. **« Pour qui », « Secteurs » et « Partenaires » n'ont pas d'URL** : ce sont des
-libellés de menu. Le type `GroupeNav` ne porte pas de champ `href`, et le déclencheur est
-rendu en `<button>` — un groupe ne peut donc pas être lié par accident. `/contact` est un
-bouton, hors des six entrées.
+Cinq entrées, dans cet ordre :
+
+| Entrée | Sous-menu |
+| --- | --- |
+| Qui sommes-nous | *(lien direct)* |
+| Pour qui ▾ | les 4 pages « Pour qui » |
+| Secteurs ▾ | les 6 pages secteur |
+| Ressources ▾ | Fiches CEE · Comprendre les CEE · Blog · Veille CEE |
+| Partenaires ▾ | Obligés · Installateurs · Apporteurs d'affaires |
+
+`/contact` est un bouton, hors des cinq entrées.
+
+**« Pour qui », « Secteurs » et « Partenaires » n'ont pas d'URL** : ce sont des libellés de
+menu. Le type `GroupeNav` ne porte pas de champ `href`, et le déclencheur est rendu en
+`<button>` — un groupe ne peut donc pas être lié par accident.
+
+⛔ Les six hubs `/fiches-cee/{secteur}` ne sont pas dans le menu : « Fiches CEE » y est une
+entrée parmi les ressources, pas un bloc. Ils restent atteignables par quatre chemins
+(l'index, les hubs voisins, les pages secteur, les blocs « Travaux éligibles » de l'accueil),
+et le contrôle d'orphelines le vérifie à chaque build plutôt que de le supposer.
 
 ### Fils d'Ariane
 
@@ -92,14 +109,15 @@ Même statut pour `lib/glossaire.ts` et `lib/blog.ts`.
 
 ## Contrôles au build
 
-`npm run build` lance `scripts/verifie-routes.mjs` (script `postbuild`), qui tient quatre
+`npm run build` lance `scripts/verifie-routes.mjs` (script `postbuild`), qui tient ses
 garde-fous sur le HTML **produit**, pas sur les sources :
 
 1. le sitemap et `out/` disent la même chose, **dans les deux sens** — une page apparue sans
    être déclarée (archive, média, auteur) casse le build, une entrée de sitemap sans page aussi ;
 2. aucun lien interne ne pointe vers une page inexistante ;
 3. toutes les URL sont sous leur forme canonique, minuscules et barre finale comprises ;
-4. `out/_redirects` est écrit à partir du sitemap : la forme sans barre part en 301.
+4. aucune page n'est orpheline : chacune est liée par au moins une autre ;
+5. `out/_redirects` est écrit à partir du sitemap : la forme sans barre part en 301.
 
 S'y ajoutent des contrôles qui s'exécutent à l'import, donc au build : unicité des codes de
 fiches, symétrie de la relation « jumelle », usages déclarés, collisions de premier niveau.

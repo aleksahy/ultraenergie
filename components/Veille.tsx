@@ -10,15 +10,19 @@ import { useState } from 'react';
  * reprend la même variable en `padding-top`. Écrire un `margin-top` au jugé ici et un
  * `padding` ailleurs, c'est se condamner à les désaccorder au premier ajustement.
  */
-export default function Veille() {
+export default function Veille({ entete = true }: { entete?: boolean } = {}) {
   const [inscrit, setInscrit] = useState(false);
 
   return (
     <div id="veille" className="veille">
-      <div className="veille-texte">
-        <div className="veille-titre">Veille CEE</div>
-        <div className="veille-desc">L'actualité réglementaire CEE, une fois par mois.</div>
-      </div>
+      {/* La page dédiée porte déjà « Veille CEE » en H1 : elle passe `entete={false}` plutôt
+          que de répéter le titre à deux lignes d'intervalle. */}
+      {entete && (
+        <div className="veille-texte">
+          <div className="veille-titre">Veille CEE</div>
+          <div className="veille-desc">L'actualité réglementaire CEE, une fois par mois.</div>
+        </div>
+      )}
       {inscrit ? (
         <p className="veille-merci">Merci, votre inscription est enregistrée.</p>
       ) : (
