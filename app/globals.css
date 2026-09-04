@@ -560,7 +560,7 @@ select.champ { appearance: auto; }
 .page {
   max-width: var(--largeur);
   margin: 0 auto;
-  padding: 32px var(--gouttiere) var(--espace-section);
+  padding: 40px var(--gouttiere) var(--espace-section);
 }
 .page > * { max-width: 940px; }
 .page-titre { font-size: clamp(30px, 4.4vw, 44px); line-height: 1.12; margin: 0 0 18px; }
@@ -600,24 +600,39 @@ select.champ { appearance: auto; }
 
 /* ── Fil d'Ariane ────────────────────────────────────────────────── */
 
-.fil-ariane { margin-bottom: 24px; }
-.fil-ariane ol {
+/* Une bande pleine largeur, jointive à l'en-tête. Posé dans le flux au-dessus du titre, le
+   fil flottait entre deux blocs blancs sans appartenir à rien ; adossé à l'en-tête, il se lit
+   comme ce qu'il est, la position courante dans le site. Le fond et le filet le tiennent, la
+   gouttière commune l'aligne sur le wordmark. */
+.fil-ariane { background: var(--survol); border-bottom: 1px solid var(--ligne); }
+.fil-ariane-inner {
+  max-width: var(--largeur);
+  margin: 0 auto;
+  padding: 13px var(--gouttiere);
   list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 6px 10px;
+  gap: 4px 0;
   font-size: 13px;
-  color: var(--texte-3);
 }
-/* Le séparateur est en CSS, jamais dans le texte : il ne doit pas être lu par une synthèse
-   vocale ni recopié par un moteur qui reprend le fil. */
-.fil-ariane li + li::before { content: '/'; margin-right: 10px; color: var(--texte-4); }
-.fil-ariane a { color: var(--texte-2); }
+.fil-ariane li { display: inline-flex; align-items: center; }
+/* Le chevron est tracé en bordures, pas écrit en caractère : il ne doit pas être lu par une
+   synthèse vocale ni recopié par un moteur qui reprend le fil, et il reste net à toute
+   taille sans dépendre du dessin d'un glyphe dans la police. */
+.fil-ariane li + li::before {
+  content: '';
+  flex: none;
+  width: 5px;
+  height: 5px;
+  margin: 0 12px;
+  border-top: 1.5px solid var(--texte-4);
+  border-right: 1.5px solid var(--texte-4);
+  transform: rotate(45deg);
+}
+.fil-ariane a { color: var(--texte-2); font-weight: 500; }
 .fil-ariane a:hover { color: var(--accent); }
-.fil-ariane [aria-current='page'] { color: var(--encre); font-weight: 500; }
+.fil-ariane [aria-current='page'] { color: var(--encre); font-weight: 700; }
 
 /* ── Listes de liens (maillage) ──────────────────────────────────── */
 
@@ -704,7 +719,8 @@ select.champ { appearance: auto; }
 
   .modale { padding: 28px 24px; }
 
-  .page { padding: 24px var(--gouttiere) var(--espace-section); }
+  .page { padding: 28px var(--gouttiere) var(--espace-section); }
+  .fil-ariane-inner { padding: 11px var(--gouttiere); }
   .page-section { margin-top: 36px; }
   .liste-liens-colonnes { grid-template-columns: 1fr; }
   .pied-titre-suivant { margin-top: 24px; }

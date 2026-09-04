@@ -31,7 +31,10 @@ export default function FilAriane({ chemin }: { chemin: string }) {
   return (
     <nav className="fil-ariane" aria-label="Fil d'Ariane">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(balisage) }} />
-      <ol>
+      {/* La bande fait toute la largeur, le contenu reste sur la gouttière du site : c'est ce
+          qui la rattache visuellement à l'en-tête au lieu de la faire flotter au-dessus du
+          titre. */}
+      <ol className="fil-ariane-inner">
         {miettes.map((m) => (
           <li key={m.label}>
             {m.href ? <Link href={m.href}>{m.label}</Link> : <span aria-current="page">{m.label}</span>}

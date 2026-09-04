@@ -37,28 +37,30 @@ export default async function PageFiche({ params }: { params: Promise<{ secteur:
   const liees = fichesLiees(fiche.code);
 
   return (
-    <main className="page">
+    <>
       <FilAriane chemin={url.fiche(fiche.secteur, fiche.code)} />
-      <div className="fiche-code">{fiche.code}</div>
-      <h1 className="page-titre">{fiche.intitule}</h1>
-      <p className="page-chapo">
-        Fiche d&apos;opération standardisée du secteur {secteur?.label.toLowerCase()}.
-      </p>
+      <main className="page">
+        <div className="fiche-code">{fiche.code}</div>
+        <h1 className="page-titre">{fiche.intitule}</h1>
+        <p className="page-chapo">
+          Fiche d&apos;opération standardisée du secteur {secteur?.label.toLowerCase()}.
+        </p>
 
-      <AChantier>
-        Contenu de fiche à rédiger : conditions d&apos;éligibilité, forfait de kWh cumac,
-        pièces du dossier.
-      </AChantier>
+        <AChantier>
+          Contenu de fiche à rédiger : conditions d&apos;éligibilité, forfait de kWh cumac,
+          pièces du dossier.
+        </AChantier>
 
-      <Section titre="Fiches liées">
-        <ListeLiens
-          liens={liees.map((f) => ({
+        <Section titre="Fiches liées">
+          <ListeLiens
+            liens={liees.map((f) => ({
             href: url.fiche(f.secteur, f.code),
             label: f.intitule,
             note: `${f.code} · ${secteurParSlug(f.secteur)?.label}`,
           }))}
         />
-      </Section>
-    </main>
+        </Section>
+      </main>
+    </>
   );
 }

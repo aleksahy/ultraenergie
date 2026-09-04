@@ -17,12 +17,17 @@ export default function Page({
   children?: ReactNode;
 }) {
   return (
-    <main className="page">
+    <>
+      {/* ⚠️ HORS DU `<main>`, et c'est ce qui permet à la bande d'aller d'un bord à l'autre :
+          `.page` est un conteneur à largeur maximale et à gouttières, tout ce qu'il contient
+          s'y trouve borné. */}
       <FilAriane chemin={chemin} />
-      <h1 className="page-titre">{titre}</h1>
-      {chapo && <p className="page-chapo">{chapo}</p>}
-      {children}
-    </main>
+      <main className="page">
+        <h1 className="page-titre">{titre}</h1>
+        {chapo && <p className="page-chapo">{chapo}</p>}
+        {children}
+      </main>
+    </>
   );
 }
 
