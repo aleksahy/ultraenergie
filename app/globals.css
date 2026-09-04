@@ -26,7 +26,6 @@
   --sur-accent: #FFFFFF;
 
   --voile: rgba(20, 20, 20, 0.5);
-  --voile-menu: rgba(20, 20, 20, 0.28);
   --ombre-menu: 0 16px 32px rgba(20, 20, 20, 0.08);
   --ombre-panneau: -8px 0 30px rgba(20, 20, 20, 0.18);
 
@@ -209,6 +208,10 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
   position: relative;
   z-index: 3;
 }
+/* ⚠️ TRANSPARENT, ET IL DOIT LE RESTER. Ce bouton n'a plus rien à montrer depuis que le
+   voile gris est parti : il ne sert qu'à fermer le menu au clic hors du panneau. Le
+   supprimer casserait ce geste, que personne ne pense à décrire mais que tout le monde
+   fait. La séparation d'avec la page est portée par la seule ombre du panneau. */
 .menu-scrim {
   position: fixed;
   top: var(--header-h);
@@ -216,7 +219,7 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
   right: 0;
   bottom: 0;
   z-index: 80;
-  background: var(--voile-menu);
+  background: none;
   cursor: default;
 }
 .menu-panneau {
