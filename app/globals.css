@@ -756,6 +756,11 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
   color: var(--encre);
 }
 
+.synthese-titre { font-size: 20px; font-weight: 700; margin: 40px 0 0; }
+/* Le titre colle à l'encadré qu'il annonce : la marge haute de `.synthese` disparaît quand
+   elle suit son titre, sinon les deux flottent séparément. */
+.synthese-titre + .synthese { margin-top: 14px; }
+
 /* L'encadré de synthèse : ce qu'on vient chercher en premier, en lignes plutôt qu'en cases.
    Les lignes sont de longueurs très inégales (« 30 ans » contre « 1 700 kWh cumac/m² en zone
    H1 ») : en cases de largeur égale, la moitié respirait dans le vide et l'autre passait à la
@@ -793,7 +798,7 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
 /* Grilles officielles */
 .grilles { display: flex; flex-direction: column; gap: 20px; }
 .grille-variante { display: flex; flex-direction: column; gap: 14px; }
-.grille-titre { font-size: 16px; font-weight: 700; margin: 0; }
+.grille-titre { font-size: 15px; font-weight: 700; margin: 0; }
 .grille-condition { color: var(--texte-3); font-weight: 500; }
 .grille-sous-titre { font-size: 14px; font-weight: 700; margin: 0 0 10px; }
 .grille-formule { font-size: 16px; line-height: 1.6; color: var(--texte); }

@@ -48,7 +48,9 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
 
         {fiche.denomination && <p className="page-chapo">{fiche.denomination}</p>}
 
-        {/* 1 — Encadré de synthèse */}
+        {/* 1 — Encadré de synthèse. Le titre en fait une section repérable dans le plan de
+            la page, au même titre que les douze H2 qui suivent. */}
+        <h2 className="synthese-titre">La fiche en bref</h2>
         <FicheSynthese fiche={fiche} />
 
         {/* 2 — Montant, puis le CTA */}
