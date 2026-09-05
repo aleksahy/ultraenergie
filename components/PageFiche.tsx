@@ -5,7 +5,7 @@ import ListeLiens from '@/components/ListeLiens';
 import GrilleCalcul from '@/components/GrilleCalcul';
 import FicheSynthese from '@/components/FicheSynthese';
 import FicheRail, { FicheSources } from '@/components/FicheRail';
-import { DocumentsEnVigueur, HistoriqueVersions } from '@/components/FicheDocuments';
+import { HistoriqueVersions } from '@/components/FicheDocuments';
 import Terme from '@/components/Terme';
 import { BoutonModale } from '@/components/Modales';
 import { secteurParSlug } from '@/lib/secteurs';
@@ -154,16 +154,11 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
     contenu: <HistoriqueVersions fiche={fiche} />,
   });
 
-  /* Le téléchargement reste APRÈS le CTA : c'est une sortie. L'ancre de l'encadré y mène en
-     un clic, et le défilement traverse l'appel à l'action au passage. */
-  if (fiche.documents.length > 0) {
-    sections.push({
-      id: 'documents',
-      titre: `Télécharger la fiche ${fiche.code} et ses annexes`,
-      court: 'Téléchargement',
-      contenu: <DocumentsEnVigueur fiche={fiche} />,
-    });
-  }
+  /* ⛔ PAS DE SECTION TÉLÉCHARGEMENT POUR L'INSTANT (retirée le 05/09/2026). Les documents
+     restent dans le modèle et alimentent la section « Versions » ainsi que la date de mise à
+     jour : c'est la SECTION qui est retirée, pas la donnée. Le jour où elle revient, elle
+     reprend sa place après l'appel à l'action — c'est une sortie, elle ne doit pas le
+     précéder — et l'encadré de synthèse retrouve son ancre vers elle. */
 
   if (jumelles.length > 0) {
     sections.push({

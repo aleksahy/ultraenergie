@@ -857,14 +857,6 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
 .synthese-ligne dd { margin: 0; font-size: 16px; line-height: 1.45; }
 .synthese-ligne dd strong { font-weight: 700; }
 .synthese-precision { color: var(--texte-2); font-weight: 400; }
-.synthese-ancre {
-  display: inline-block;
-  margin-top: 18px;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--accent);
-}
-.synthese-ancre:hover { text-decoration: underline; text-underline-offset: 3px; }
 .synthese-ligne dt .lien-terme { color: inherit; text-decoration-color: var(--ligne); }
 
 /* Grilles officielles */
@@ -934,24 +926,6 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
 .simulateur-euros { font-size: 15px; color: var(--texte-2); margin-top: 4px; }
 .simulateur-euros strong { font-size: 20px; color: var(--accent); }
 .simulateur-avertissement { max-width: 760px; margin-top: 12px; font-size: 12px; line-height: 1.55; color: var(--texte-3); }
-
-/* Documents */
-.documents { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-.document {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  padding: 14px 16px;
-  border: 1px solid var(--ligne);
-  border-radius: var(--rayon-champ);
-}
-a.document:hover { border-color: var(--accent); }
-a.document .document-nom { color: var(--encre); }
-a.document:hover .document-nom { color: var(--accent); }
-.document-nom { font-size: 15px; font-weight: 700; }
-.document-meta { font-size: 13px; color: var(--texte-3); }
-.document-note { font-size: 13px; color: var(--texte-4); font-style: italic; }
-.document-absent { background: var(--survol); }
 
 /* Listes de conditions et de justificatifs */
 .conditions { margin: 0; display: flex; flex-direction: column; gap: 16px; }

@@ -156,20 +156,23 @@ Rendu aujourd'hui pour **BAR-EN-101**, la seule fiche dont le détail est import
 
 ### L'ordre des sections est un ordre d'intention
 
-1. Encadré de synthèse · 2. **Montant, puis le CTA** · 3. Bénéficiaires · 4. Conditions ·
-5. Justificatifs · 6. Durée de vie · 7. Coup de pouce · 8. Versions ·
-9. **Téléchargement** · 10. Jumelles · 11. Complémentaires · 12. CTA de clôture
+1. La fiche en bref · 2. Montant · 3. Bénéficiaires · 4. Conditions · 5. Justificatifs ·
+6. Durée de vie · 7. Coup de pouce · 8. Versions · 9. Jumelles · 10. Complémentaires ·
+11. CTA de clôture
 
 - La section 2 dit **le barème, et rien d'autre**. Ni exemple chiffré ni appel à l'action
   sous la grille : le calcul appartient au simulateur, et l'appel à l'action est porté par la
   bande latérale, visible tout du long. Trois blocs empilés sous le tableau repoussaient les
   conditions d'éligibilité hors de l'écran, alors que ce sont elles qu'on lit juste après un
   montant.
-- Le téléchargement est **en bas** : c'est une sortie. Le remonter, c'est faire partir le
-  visiteur avec un PDF au lieu d'une demande. L'ancre « Télécharger la fiche ↓ » de l'encadré
-  y mène en un clic.
+⛔ **Pas de section Téléchargement pour l'instant** (retirée le 05/09/2026). Les documents
+restent dans le modèle et alimentent la section « Versions » ainsi que la date de mise à jour :
+c'est la section qui est retirée, pas la donnée. Le jour où elle revient, elle reprend sa place
+**après** l'appel à l'action — c'est une sortie, elle ne doit pas le précéder — et l'encadré de
+synthèse retrouve son ancre vers elle.
 
-⛔ Ne pas remonter la section 9 pour « rendre les documents plus accessibles ».
+⚠️ La numérotation des sections vient de leur rang dans la liste : retirer une section
+renumérote le corps et le sommaire d'un coup, sans qu'on ait à y toucher.
 
 ### La bande latérale
 

@@ -58,10 +58,6 @@ export default function FicheSynthese({ fiche }: { fiche: Fiche }) {
 
       </dl>
 
-      {/* ⚠️ L'ANCRE MÈNE À LA SECTION, JAMAIS AU FICHIER. Un lien direct vers le PDF fait
-          sortir du site avant le CTA ; l'ancre fait défiler la page, qui traverse le montant
-          et l'appel à l'action au passage. */}
-      <a className="synthese-ancre" href="#documents">Télécharger la fiche ↓</a>
     </div>
   );
 }
