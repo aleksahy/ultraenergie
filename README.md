@@ -82,10 +82,39 @@ et le balisage sortent de la même source.
 ### Slugs
 
 Le slug d'une fiche est **son code, jamais son intitulé**, et il est stable à vie.
-Les ancres des liens vers une fiche portent l'inverse : l'intitulé, jamais le code. Un fil
-d'Ariane situe, un lien annonce.
+Les ancres des liens vers une fiche portent le code ET l'intitulé : le code situe, l'intitulé
+annonce, et un lien a besoin des deux. Le fil d'Ariane, lui, n'affiche que le code.
 
-Pas de niveau sous-secteur : les usages sont des sections à ancres dans le hub.
+Pas de niveau sous-secteur : les familles sont des sections à ancres dans le hub.
+
+### Les familles se lisent dans le code
+
+⚠️ **Une fiche n'a pas de champ `famille`.** Sa famille est le deuxième segment de son code
+officiel : BAR-**EN**-101 relève de l'enveloppe, IND-**UT**-102 des utilités. Le tableau de
+[`lib/familles.ts`](lib/familles.ts) ne fait que donner un libellé à chaque segment, et dire
+dans quels secteurs il existe.
+
+| Libellé | Segment | Secteurs |
+| --- | --- | --- |
+| Thermique | TH | agriculture, résidentiel, tertiaire |
+| Équipement | EQ | agriculture, résidentiel, tertiaire, transport |
+| Enveloppe | EN | résidentiel, tertiaire, industrie |
+| Service | SE | agriculture, résidentiel, tertiaire, transport |
+| Utilités | UT | agriculture, industrie |
+| Bâtiment | BA | industrie |
+| Chaleur | CH | réseau |
+| Éclairage | EC | réseau |
+
+⛔ Ne jamais redonner à une fiche une famille écrite à la main. Une liste tenue à côté finit
+par contredire les codes : c'est ce qui était arrivé, avec BAT-EQ-127 rangé dans « Éclairage »
+alors que son segment dit EQ.
+
+Deux contrôles au build, éprouvés en falsifiant un code :
+
+- segment inconnu (`IND-ZZ-110`) → le build s'arrête ;
+- segment réel mais impossible dans ce secteur (`IND-TH-110`, la famille thermique n'existe
+  pas en industrie) → le build s'arrête aussi. C'est exactement à quoi ressemble une ligne
+  mal recopiée depuis le catalogue officiel : elle se compile et s'affiche sans broncher.
 
 ### Maillage
 

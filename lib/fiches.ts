@@ -1,4 +1,5 @@
 import { SECTEURS, secteurParSlug } from './secteurs';
+import { famillesDuSecteur, segmentDe, verifieFamille, FAMILLES } from './familles';
 import type { Calcul } from './calcul';
 import * as C from './calculs-seed';
 
@@ -65,8 +66,6 @@ export interface Fiche {
   /** Le code officiel, en majuscules. Le slug d'URL en est la version minuscule. */
   code: string;
   secteur: string;
-  /** Identifiant de famille : la section à ancre du hub qui accueille la fiche. */
-  famille: string;
   /** Le libellé officiel complet. Sert au H1, quelle que soit sa longueur. */
   intitule: string;
   /** Libellé édité, 60 caractères au plus, pour le <title>. */
@@ -135,7 +134,6 @@ export const FICHES: Fiche[] = [
   fiche({
     code: 'AGRI-TH-102',
     secteur: 'agriculture',
-    famille: 'froid',
     intitule: "Système de récupération de chaleur sur un groupe de production de froid",
     titreCourt: 'Récupération de chaleur sur groupe de froid',
     version: 'A45-2',
@@ -159,25 +157,25 @@ export const FICHES: Fiche[] = [
     ],
   }),
   fiche({
-    code: 'AGRI-TH-104', secteur: 'agriculture', famille: 'froid',
+    code: 'AGRI-TH-104', secteur: 'agriculture',
     intitule: 'Pré-refroidisseur laitier', titreCourt: 'Pré-refroidisseur laitier',
     version: 'A22-1', dateApplication: '2023-01-01', zoneApplication: 'metropole',
     dureeVie: [{ valeurAnnees: 12 }], calcul: C.AGRI_TH_104, jumelles: [],
   }),
   fiche({
-    code: 'AGRI-EQ-102', secteur: 'agriculture', famille: 'froid',
+    code: 'AGRI-EQ-102', secteur: 'agriculture',
     intitule: 'Système de régulation sur un groupe de froid', titreCourt: 'Régulation sur groupe de froid',
     version: 'A31-1', dateApplication: '2023-07-01', zoneApplication: 'metropole_et_dom',
     dureeVie: [{ valeurAnnees: 10 }], calcul: C.AGRI_EQ_102, jumelles: [],
   }),
   fiche({
-    code: 'AGRI-TH-108', secteur: 'agriculture', famille: 'batiment',
+    code: 'AGRI-TH-108', secteur: 'agriculture',
     intitule: "Isolation thermique des parois d'un bâtiment d'élevage", titreCourt: "Isolation d'un bâtiment d'élevage",
     version: 'A18-2', dateApplication: '2022-10-01', zoneApplication: 'metropole',
     dureeVie: [{ valeurAnnees: 25 }], calcul: C.AGRI_TH_108, jumelles: [],
   }),
   fiche({
-    code: 'AGRI-UT-103', secteur: 'agriculture', famille: 'utilites',
+    code: 'AGRI-UT-103', secteur: 'agriculture',
     intitule: 'Variateur de vitesse sur pompe de nettoyage', titreCourt: 'Variateur sur pompe de nettoyage',
     version: 'A29-1', dateApplication: '2024-01-01', zoneApplication: 'metropole_et_dom',
     dureeVie: [{ valeurAnnees: 10 }], calcul: C.AGRI_UT_103, jumelles: ['IND-UT-102'],
@@ -187,7 +185,6 @@ export const FICHES: Fiche[] = [
   fiche({
     code: 'IND-UT-102',
     secteur: 'industrie',
-    famille: 'utilites',
     intitule: "Système de variation électronique de vitesse sur un moteur asynchrone",
     titreCourt: 'Variation de vitesse sur moteur asynchrone',
     version: 'A73-3',
@@ -224,33 +221,33 @@ export const FICHES: Fiche[] = [
     ],
   }),
   fiche({
-    code: 'IND-UT-117', secteur: 'industrie', famille: 'utilites',
+    code: 'IND-UT-117', secteur: 'industrie',
     intitule: "Système de récupération de chaleur sur un compresseur d'air",
     titreCourt: 'Récupération de chaleur sur compresseur',
     version: 'A54-2', dateApplication: '2024-07-01', zoneApplication: 'metropole_et_dom',
     dureeVie: [{ valeurAnnees: 15 }], calcul: C.IND_UT_117, jumelles: [],
   }),
   fiche({
-    code: 'IND-UT-121', secteur: 'industrie', famille: 'utilites',
+    code: 'IND-UT-121', secteur: 'industrie',
     intitule: 'Moto-variateur synchrone à aimants permanents', titreCourt: 'Moto-variateur à aimants permanents',
     version: 'A44-1', dateApplication: '2023-04-01', zoneApplication: 'metropole_et_dom',
     dureeVie: [{ valeurAnnees: 10 }], calcul: C.IND_UT_121, jumelles: [],
   }),
   fiche({
-    code: 'IND-UT-134', secteur: 'industrie', famille: 'utilites',
+    code: 'IND-UT-134', secteur: 'industrie',
     intitule: 'Système de récupération de chaleur sur un groupe de production de froid',
     titreCourt: 'Récupération de chaleur sur groupe de froid',
     version: 'A46-1', dateApplication: '2024-04-01', zoneApplication: 'metropole_et_dom',
     dureeVie: [{ valeurAnnees: 12 }], calcul: C.IND_UT_134, jumelles: ['AGRI-TH-102'],
   }),
   fiche({
-    code: 'IND-BA-112', secteur: 'industrie', famille: 'reseaux',
+    code: 'IND-BA-112', secteur: 'industrie',
     intitule: "Isolation de points singuliers d'un réseau", titreCourt: 'Isolation de points singuliers',
     version: 'A38-2', dateApplication: '2023-10-01', zoneApplication: 'metropole_et_dom',
     dureeVie: [{ valeurAnnees: 10 }], calcul: C.IND_BA_112, jumelles: ['BAT-TH-155'],
   }),
   fiche({
-    code: 'IND-BA-110', secteur: 'industrie', famille: 'batiment',
+    code: 'IND-BA-110', secteur: 'industrie',
     intitule: "Déstratificateur ou brasseur d'air", titreCourt: "Déstratificateur ou brasseur d'air",
     version: 'A25-1', dateApplication: '2022-07-01', zoneApplication: 'metropole',
     dureeVie: [{ valeurAnnees: 12 }], calcul: C.IND_BA_110, jumelles: [],
@@ -258,13 +255,13 @@ export const FICHES: Fiche[] = [
 
   /* ── Réseau ───────────────────────────────────────────────────────────── */
   fiche({
-    code: 'RES-CH-103', secteur: 'reseau', famille: 'chaleur',
+    code: 'RES-CH-103', secteur: 'reseau',
     intitule: "Réhabilitation d'un poste de livraison de chaleur", titreCourt: 'Réhabilitation de poste de livraison',
     version: 'A33-1', dateApplication: '2023-04-01', zoneApplication: 'metropole',
     dureeVie: [{ valeurAnnees: 20 }], calcul: C.RES_CH_103, jumelles: [],
   }),
   fiche({
-    code: 'RES-CH-104', secteur: 'reseau', famille: 'chaleur',
+    code: 'RES-CH-104', secteur: 'reseau',
     intitule: "Passage d'un réseau de chaleur en basse température", titreCourt: 'Réseau de chaleur en basse température',
     version: 'A28-2', dateApplication: '2024-01-01', zoneApplication: 'metropole',
     // Deux durées de vie conditionnelles : le gabarit doit rendre une liste, pas une valeur.
@@ -275,7 +272,7 @@ export const FICHES: Fiche[] = [
     calcul: C.RES_CH_104, jumelles: [],
   }),
   fiche({
-    code: 'RES-CH-106', secteur: 'reseau', famille: 'chaleur',
+    code: 'RES-CH-106', secteur: 'reseau',
     intitule: "Optimisation d'un réseau de chaleur existant", titreCourt: "Optimisation d'un réseau de chaleur",
     version: 'A21-1', dateApplication: '2022-10-01', zoneApplication: 'metropole',
     dureeVie: [{ valeurAnnees: 15 }], calcul: C.RES_CH_106, jumelles: [],
@@ -283,13 +280,13 @@ export const FICHES: Fiche[] = [
     fichePdf: false,
   }),
   fiche({
-    code: 'RES-EC-104', secteur: 'reseau', famille: 'eclairage',
+    code: 'RES-EC-104', secteur: 'reseau',
     intitule: "Rénovation d'un éclairage extérieur", titreCourt: "Rénovation d'un éclairage extérieur",
     version: 'A41-2', dateApplication: '2024-01-01', zoneApplication: 'metropole_et_dom',
     dureeVie: [{ valeurAnnees: 20 }], calcul: C.RES_EC_104, jumelles: ['BAT-EQ-127'],
   }),
   fiche({
-    code: 'RES-EC-107', secteur: 'reseau', famille: 'eclairage',
+    code: 'RES-EC-107', secteur: 'reseau',
     intitule: 'Régulation de tension en éclairage extérieur', titreCourt: 'Régulation de tension en éclairage',
     version: 'A19-1', dateApplication: '2022-04-01', zoneApplication: 'metropole',
     dureeVie: [{ valeurAnnees: 15 }], calcul: C.RES_EC_107, jumelles: [],
@@ -299,7 +296,6 @@ export const FICHES: Fiche[] = [
   fiche({
     code: 'BAR-EN-101',
     secteur: 'residentiel',
-    famille: 'enveloppe',
     intitule: 'Isolation de combles ou de toitures',
     titreCourt: 'Isolation de combles ou de toitures',
     version: 'A64-4',
@@ -331,13 +327,13 @@ export const FICHES: Fiche[] = [
     ],
   }),
   fiche({
-    code: 'BAR-EN-102', secteur: 'residentiel', famille: 'enveloppe',
+    code: 'BAR-EN-102', secteur: 'residentiel',
     intitule: 'Isolation des murs', titreCourt: 'Isolation des murs',
     version: 'A52-3', dateApplication: '2024-10-01', zoneApplication: 'metropole',
     dureeVie: [{ valeurAnnees: 25 }], calcul: C.BAR_EN_102, jumelles: ['BAT-EN-102'],
   }),
   fiche({
-    code: 'BAR-TH-171', secteur: 'residentiel', famille: 'chauffage',
+    code: 'BAR-TH-171', secteur: 'residentiel',
     intitule: 'Pompe à chaleur de type air/eau', titreCourt: 'Pompe à chaleur air/eau',
     version: 'A57-2', dateApplication: '2025-01-01', zoneApplication: 'metropole',
     dureeVie: [{ valeurAnnees: 17 }], calcul: C.BAR_TH_171, jumelles: [],
@@ -347,13 +343,13 @@ export const FICHES: Fiche[] = [
     },
   }),
   fiche({
-    code: 'BAR-TH-113', secteur: 'residentiel', famille: 'chauffage',
+    code: 'BAR-TH-113', secteur: 'residentiel',
     intitule: 'Chaudière biomasse individuelle', titreCourt: 'Chaudière biomasse individuelle',
     version: 'A48-2', dateApplication: '2024-07-01', zoneApplication: 'metropole',
     dureeVie: [{ valeurAnnees: 17 }], calcul: C.BAR_TH_113, jumelles: [],
   }),
   fiche({
-    code: 'BAR-TH-160', secteur: 'residentiel', famille: 'chauffage',
+    code: 'BAR-TH-160', secteur: 'residentiel',
     intitule: "Isolation d'un réseau hydraulique de chauffage", titreCourt: 'Isolation de réseau hydraulique',
     version: 'A35-2', dateApplication: '2023-10-01', zoneApplication: 'metropole',
     dureeVie: [{ valeurAnnees: 12 }], calcul: C.BAR_TH_160, jumelles: ['BAT-TH-155'],
@@ -361,19 +357,19 @@ export const FICHES: Fiche[] = [
 
   /* ── Tertiaire ────────────────────────────────────────────────────────── */
   fiche({
-    code: 'BAT-EN-101', secteur: 'tertiaire', famille: 'enveloppe',
+    code: 'BAT-EN-101', secteur: 'tertiaire',
     intitule: 'Isolation de combles ou de toitures', titreCourt: 'Isolation de combles ou de toitures',
     version: 'A59-3', dateApplication: '2025-01-01', zoneApplication: 'metropole',
     dureeVie: [{ valeurAnnees: 25 }], calcul: C.BAT_EN_101, jumelles: ['BAR-EN-101'],
   }),
   fiche({
-    code: 'BAT-EN-102', secteur: 'tertiaire', famille: 'enveloppe',
+    code: 'BAT-EN-102', secteur: 'tertiaire',
     intitule: 'Isolation des murs', titreCourt: 'Isolation des murs',
     version: 'A47-2', dateApplication: '2024-10-01', zoneApplication: 'metropole',
     dureeVie: [{ valeurAnnees: 25 }], calcul: C.BAT_EN_102, jumelles: ['BAR-EN-102'],
   }),
   fiche({
-    code: 'BAT-TH-102', secteur: 'tertiaire', famille: 'chauffage',
+    code: 'BAT-TH-102', secteur: 'tertiaire',
     intitule: 'Chaudière collective à haute performance énergétique', titreCourt: 'Chaudière collective HPE',
     version: 'A40-2', dateApplication: '2024-04-01', zoneApplication: 'metropole',
     dureeVie: [{ valeurAnnees: 20 }], calcul: C.BAT_TH_102, jumelles: [],
@@ -382,7 +378,7 @@ export const FICHES: Fiche[] = [
     dateAbrogation: '2027-06-30',
   }),
   fiche({
-    code: 'BAT-TH-155', secteur: 'tertiaire', famille: 'chauffage',
+    code: 'BAT-TH-155', secteur: 'tertiaire',
     intitule: "Isolation de points singuliers d'un réseau", titreCourt: 'Isolation de points singuliers',
     version: 'A37-2', dateApplication: '2023-10-01', zoneApplication: 'metropole_et_dom',
     dureeVie: [{ valeurAnnees: 10 }], calcul: C.BAT_TH_155, jumelles: ['IND-BA-112', 'BAR-TH-160'],
@@ -390,7 +386,6 @@ export const FICHES: Fiche[] = [
   fiche({
     code: 'BAT-TH-116',
     secteur: 'tertiaire',
-    famille: 'pilotage',
     // Intitulé long : le <title> prend `titreCourt`, le H1 garde l'officiel.
     intitule:
       "Système de gestion technique du bâtiment pour le pilotage de l'éclairage, du chauffage, de la ventilation et de la production d'eau chaude sanitaire",
@@ -429,7 +424,7 @@ export const FICHES: Fiche[] = [
     ],
   }),
   fiche({
-    code: 'BAT-EQ-127', secteur: 'tertiaire', famille: 'eclairage',
+    code: 'BAT-EQ-127', secteur: 'tertiaire',
     intitule: "Luminaire d'éclairage général à modules LED", titreCourt: 'Luminaire à modules LED',
     version: 'A50-3', dateApplication: '2024-10-01', zoneApplication: 'metropole_et_dom',
     dureeVie: [{ valeurAnnees: 12 }], calcul: C.BAT_EQ_127, jumelles: ['RES-EC-104'],
@@ -439,31 +434,31 @@ export const FICHES: Fiche[] = [
 
   /* ── Transport ────────────────────────────────────────────────────────── */
   fiche({
-    code: 'TRA-EQ-101', secteur: 'transport', famille: 'froid',
+    code: 'TRA-EQ-101', secteur: 'transport',
     intitule: 'Unité de transport frigorifique', titreCourt: 'Unité de transport frigorifique',
     version: 'A42-2', dateApplication: '2024-04-01', zoneApplication: 'metropole',
     dureeVie: [{ valeurAnnees: 8 }], calcul: C.TRA_EQ_101, jumelles: [],
   }),
   fiche({
-    code: 'TRA-EQ-117', secteur: 'transport', famille: 'froid',
+    code: 'TRA-EQ-117', secteur: 'transport',
     intitule: 'Groupe frigorifique autonome', titreCourt: 'Groupe frigorifique autonome',
     version: 'A26-1', dateApplication: '2023-01-01', zoneApplication: 'metropole',
     dureeVie: [{ valeurAnnees: 8 }], calcul: C.TRA_EQ_117, jumelles: [],
   }),
   fiche({
-    code: 'TRA-EQ-114', secteur: 'transport', famille: 'vehicules',
+    code: 'TRA-EQ-114', secteur: 'transport',
     intitule: 'Pneus à basse résistance au roulement', titreCourt: 'Pneus à basse résistance',
     version: 'A30-2', dateApplication: '2023-07-01', zoneApplication: 'metropole',
     dureeVie: [{ valeurAnnees: 3 }], calcul: C.TRA_EQ_114, jumelles: [],
   }),
   fiche({
-    code: 'TRA-SE-101', secteur: 'transport', famille: 'exploitation',
+    code: 'TRA-SE-101', secteur: 'transport',
     intitule: "Formation d'un chauffeur à la conduite économe", titreCourt: 'Formation à la conduite économe',
     version: 'A23-1', dateApplication: '2022-10-01', zoneApplication: 'metropole',
     dureeVie: [{ valeurAnnees: 3 }], calcul: C.TRA_SE_101, jumelles: [],
   }),
   fiche({
-    code: 'TRA-EQ-124', secteur: 'transport', famille: 'exploitation',
+    code: 'TRA-EQ-124', secteur: 'transport',
     intitule: 'Télématique embarquée', titreCourt: 'Télématique embarquée',
     version: 'A20-1', dateApplication: '2022-07-01', zoneApplication: 'metropole',
     dureeVie: [{ valeurAnnees: 5 }], calcul: C.TRA_EQ_124, jumelles: [],
@@ -516,12 +511,17 @@ export function fichesDuSecteur(slugSecteur: string): Fiche[] {
   return FICHES_EN_LIGNE.filter((f) => f.secteur === slugSecteur);
 }
 
-/** Les fiches d'un secteur, groupées par famille, dans l'ordre des sections du hub. */
+/**
+ * Les fiches d'un secteur, groupées par famille, dans l'ordre du tableau des familles.
+ *
+ * ⚠️ Les groupes sont DÉDUITS des codes présents, pas d'une liste de sections déclarée : un
+ * hub ne peut donc pas afficher une section vide, ni oublier une famille dont il a des
+ * fiches. `famillesDuSecteur` ne sert qu'à fixer l'ordre.
+ */
 export function fichesParFamille(slugSecteur: string) {
-  const secteur = secteurParSlug(slugSecteur);
-  if (!secteur) return [];
-  return secteur.familles
-    .map((fam) => ({ ...fam, fiches: fichesDuSecteur(slugSecteur).filter((f) => f.famille === fam.id) }))
+  const fiches = fichesDuSecteur(slugSecteur);
+  return famillesDuSecteur(slugSecteur)
+    .map((fam) => ({ ...fam, id: fam.slug, fiches: fiches.filter((f) => segmentDe(f.code) === fam.segment) }))
     .filter((fam) => fam.fiches.length > 0);
 }
 
@@ -566,8 +566,9 @@ export function voisinesDe(f: Fiche): Fiche[] {
   if (f.voisines) {
     return f.voisines.map(ficheParCode).filter((x): x is Fiche => Boolean(x) && !estAbrogee(x!));
   }
+  const segment = segmentDe(f.code);
   return FICHES_EN_LIGNE.filter(
-    (x) => x.code !== f.code && x.secteur === f.secteur && x.famille === f.famille && !f.jumelles.includes(x.code),
+    (x) => x.code !== f.code && x.secteur === f.secteur && segmentDe(x.code) === segment && !f.jumelles.includes(x.code),
   );
 }
 
@@ -596,7 +597,7 @@ export function fichesLiees(code: string, combien = 6): Fiche[] {
   ajoute(depart.jumelles.map(ficheParCode).filter((f): f is Fiche => Boolean(f) && !estAbrogee(f!)), 3);
   ajoute(voisinesDe(depart));
   ajoute(FICHES_EN_LIGNE.filter((f) => f.secteur === depart.secteur));
-  ajoute(FICHES_EN_LIGNE.filter((f) => f.famille === depart.famille));
+  ajoute(FICHES_EN_LIGNE.filter((f) => segmentDe(f.code) === segmentDe(depart.code)));
 
   return retenues;
 }
@@ -625,11 +626,11 @@ function verifieCoherence() {
       throw new Error(`Fiche ${f.code} : volumeEngage vide — l'absence se dit en omettant le champ`);
     }
 
-    const secteur = secteurParSlug(f.secteur);
-    if (!secteur) throw new Error(`Fiche ${f.code} : secteur inconnu « ${f.secteur} »`);
-    if (!secteur.familles.some((fam) => fam.id === f.famille)) {
-      throw new Error(`Fiche ${f.code} : famille « ${f.famille} » absente du secteur ${f.secteur}`);
-    }
+    if (!secteurParSlug(f.secteur)) throw new Error(`Fiche ${f.code} : secteur inconnu « ${f.secteur} »`);
+    // La famille se lit dans le code, et le tableau dit dans quels secteurs elle existe :
+    // `IND-TH-101` se compilerait et s'afficherait, alors que la famille thermique n'existe
+    // pas en industrie. C'est exactement à quoi ressemble une ligne mal recopiée.
+    verifieFamille(f.code, f.secteur);
   }
 
   // La relation jumelle est symétrique : sans ça, une fiche apparaît dans le bloc de l'autre
@@ -649,6 +650,16 @@ function verifieCoherence() {
 
   for (const s of SECTEURS) {
     if (fichesDuSecteur(s.slug).length === 0) throw new Error(`Secteur sans aucune fiche en ligne : ${s.slug}`);
+  }
+
+  // Un segment déclaré pour un secteur qui n'a aucune fiche de cette famille n'est pas une
+  // faute : le catalogue est partiel. L'inverse en serait une, et `verifieFamille` la couvre.
+  for (const fam of FAMILLES) {
+    for (const secteur of fam.secteurs) {
+      if (!secteurParSlug(secteur)) {
+        throw new Error(`Famille ${fam.segment} : secteur inconnu « ${secteur} » dans lib/familles.ts`);
+      }
+    }
   }
 }
 verifieCoherence();

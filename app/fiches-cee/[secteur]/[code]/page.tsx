@@ -10,7 +10,8 @@ import FicheSynthese from '@/components/FicheSynthese';
 import { DocumentsEnVigueur, HistoriqueVersions } from '@/components/FicheDocuments';
 import Terme from '@/components/Terme';
 import { BoutonModale } from '@/components/Modales';
-import { secteurParSlug, familleLabel } from '@/lib/secteurs';
+import { secteurParSlug } from '@/lib/secteurs';
+import { familleLabel } from '@/lib/familles';
 import {
   FICHES_EN_LIGNE, LIBELLE_ZONE, ancreFiche, aUnHistorique, ficheParCode, fichesLiees,
   slugFiche,
@@ -87,7 +88,7 @@ export default async function PageFiche({ params }: { params: Promise<{ secteur:
 
         <RetourParent chemin={url.fiche(fiche.secteur, fiche.code)} />
         <div className="fiche-code">
-          {familleLabel(fiche.secteur, fiche.famille)} · {secteur.label}
+          {familleLabel(fiche.code)} · {secteur.label}
         </div>
         <h1 className="page-titre">{fiche.code} — {fiche.intitule}</h1>
 
@@ -262,7 +263,7 @@ export default async function PageFiche({ params }: { params: Promise<{ secteur:
               liens={complementaires.map((f) => ({
                 href: url.fiche(f.secteur, f.code),
                 label: ancreFiche(f),
-                note: familleLabel(f.secteur, f.famille),
+                note: familleLabel(f.code),
               }))}
             />
           </Section>

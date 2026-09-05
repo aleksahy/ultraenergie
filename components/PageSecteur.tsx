@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Page, { Section, AChantier } from './Page';
 import ListeLiens from './ListeLiens';
 import { type Secteur } from '@/lib/secteurs';
-import { fichesDuSecteur } from '@/lib/fiches';
+import { fichesDuSecteur, fichesParFamille } from '@/lib/fiches';
 import { url } from '@/lib/routes';
 
 /**
@@ -16,6 +16,8 @@ import { url } from '@/lib/routes';
  */
 export default function PageSecteur({ secteur }: { secteur: Secteur }) {
   const fiches = fichesDuSecteur(secteur.slug);
+  // Les familles réellement représentées, déduites des codes : pas un nombre déclaré.
+  const familles = fichesParFamille(secteur.slug);
 
   return (
     <Page
@@ -28,7 +30,7 @@ export default function PageSecteur({ secteur }: { secteur: Secteur }) {
       <Section titre="Les fiches CEE du secteur">
         <p className="page-texte">
           {fiches.length} fiches d&apos;opérations standardisées sont recensées pour ce secteur,
-          réparties en {secteur.familles.length} familles d’opérations.
+          réparties en {familles.length} familles d’opérations.
         </p>
         <p className="page-texte">
           <Link className="lien-appuye" href={url.hubFiches(secteur.slug)}>
