@@ -63,12 +63,20 @@ export default function SimulateurPage() {
           La fiche {code} n’a pas encore de barème importé. Choisissez une fiche ci-dessous.
         </p>
       )}
+      <p className="page-texte">
+        Choisissez la fiche d’opération qui correspond à vos travaux : le montant est calculé
+        à partir de son barème officiel.
+      </p>
       <ListeLiens
         liens={FICHES_EN_LIGNE.map((f) => ({
           href: `${url.simulateur}?fiche=${f.code.toLowerCase()}`,
           label: ancreFiche(f.code),
         }))}
       />
+      <p className="page-texte page-texte-gris">
+        Les barèmes s’ajoutent fiche par fiche. Si la vôtre n’est pas encore là, le catalogue
+        complet est dans <Link className="lien-terme" href={url.fichesCee}>les fiches CEE</Link>.
+      </p>
     </>
   );
 }

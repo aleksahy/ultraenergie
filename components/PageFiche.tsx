@@ -5,7 +5,7 @@ import RetourParent from '@/components/RetourParent';
 import ListeLiens from '@/components/ListeLiens';
 import GrilleCalcul from '@/components/GrilleCalcul';
 import FicheSynthese from '@/components/FicheSynthese';
-import FicheRail from '@/components/FicheRail';
+import FicheRail, { FicheSources } from '@/components/FicheRail';
 import { DocumentsEnVigueur, HistoriqueVersions } from '@/components/FicheDocuments';
 import Terme from '@/components/Terme';
 import { BoutonModale } from '@/components/Modales';
@@ -234,9 +234,13 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
                 {s.contenu}
               </Section>
             ))}
+
+            {/* La bande disparaît sous 1120px, mais la provenance des chiffres ne peut pas
+                disparaître avec elle : elle revient ici, en pied de colonne. */}
+            <FicheSources fiche={fiche} enPied />
           </div>
 
-          <FicheRail code={fiche.code} sections={sections} />
+          <FicheRail fiche={fiche} sections={sections} />
         </div>
       </main>
     </>

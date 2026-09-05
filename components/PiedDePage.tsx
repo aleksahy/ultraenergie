@@ -55,6 +55,7 @@ export default function PiedDePage() {
           <div className="pied-titre">Ressources</div>
           <div className="pied-liens">
             <Link href={url.fichesCee}>Fiches CEE</Link>
+            <Link href={url.simulateur}>Simulateur de prime</Link>
             <Link href={url.comprendreLesCee}>Comprendre les CEE</Link>
             <Link href={url.blog}>Blog</Link>
             <Link href={url.veilleCee}>Veille CEE</Link>

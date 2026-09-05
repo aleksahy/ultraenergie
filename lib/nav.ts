@@ -54,6 +54,7 @@ export const NAV: NoeudNav[] = [
     label: 'Ressources',
     enfants: [
       { label: 'Fiches CEE', href: url.fichesCee },
+      { label: 'Simulateur de prime', href: url.simulateur },
       { label: 'Comprendre les CEE', href: url.comprendreLesCee },
       { label: 'Blog', href: url.blog },
       { label: 'Veille CEE', href: url.veilleCee },

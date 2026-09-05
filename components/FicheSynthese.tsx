@@ -1,6 +1,6 @@
 import Terme from './Terme';
 import type { Fiche } from '@/lib/fiches';
-import { LIBELLE_ZONE, dateMajDe } from '@/lib/fiches';
+import { LIBELLE_ZONE } from '@/lib/fiches';
 import { familleLabel } from '@/lib/familles';
 import { secteurParSlug } from '@/lib/secteurs';
 import { montantVitrine } from '@/lib/calcul';
@@ -16,7 +16,6 @@ import { dateFr, dateCourte } from '@/lib/dates';
 export default function FicheSynthese({ fiche }: { fiche: Fiche }) {
   const secteur = secteurParSlug(fiche.secteur);
   const montant = montantVitrine(fiche.calcul);
-  const maj = dateMajDe(fiche);
 
   return (
     <div className="synthese">
@@ -57,7 +56,6 @@ export default function FicheSynthese({ fiche }: { fiche: Fiche }) {
           <Ligne terme="Zone d’application">{LIBELLE_ZONE[fiche.zoneApplication]}</Ligne>
         )}
 
-        {maj && <Ligne terme="Mise à jour">{dateFr(maj)}</Ligne>}
       </dl>
 
       {/* ⚠️ L'ANCRE MÈNE À LA SECTION, JAMAIS AU FICHIER. Un lien direct vers le PDF fait
