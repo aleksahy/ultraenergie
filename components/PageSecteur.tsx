@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Page, { Section, AChantier } from './Page';
 import ListeLiens from './ListeLiens';
 import { type Secteur } from '@/lib/secteurs';
-import { fichesDuSecteur, fichesParFamille } from '@/lib/fiches';
+import { catalogueDuSecteur, catalogueParFamille } from '@/lib/fiches';
 import { url } from '@/lib/routes';
 
 /**
@@ -15,9 +15,9 @@ import { url } from '@/lib/routes';
  * en face, elle annonce l'accompagnement.
  */
 export default function PageSecteur({ secteur }: { secteur: Secteur }) {
-  const fiches = fichesDuSecteur(secteur.slug);
+  const fiches = catalogueDuSecteur(secteur.slug);
   // Les familles réellement représentées, déduites des codes : pas un nombre déclaré.
-  const familles = fichesParFamille(secteur.slug);
+  const familles = catalogueParFamille(secteur.slug);
 
   return (
     <Page

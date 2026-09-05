@@ -1,52 +1,78 @@
 import Terme from './Terme';
 import type { Fiche } from '@/lib/fiches';
-import { LIBELLE_ZONE } from '@/lib/fiches';
-import { montantType } from '@/lib/calcul';
-import { nombreFr } from '@/lib/site';
-import { dateFr } from '@/lib/dates';
+import { LIBELLE_ZONE, dateMajDe } from '@/lib/fiches';
+import { familleLabel } from '@/lib/familles';
+import { secteurParSlug } from '@/lib/secteurs';
+import { montantVitrine } from '@/lib/calcul';
+import { nombreFr, decimalFr } from '@/lib/site';
+import { dateFr, dateCourte } from '@/lib/dates';
 
 /**
- * L'encadré de synthèse : les quatre chiffres qu'on vient chercher en premier.
+ * L'encadré de synthèse : ce qu'on vient chercher en premier, et l'ancre vers les documents.
  *
- * ⛔ LE MONTANT EST UNE FOURCHETTE, JAMAIS UNE MOYENNE. Une moyenne sur une grille climatique
- * ne correspond à aucune opération réelle, et c'est exactement le nombre qui se retrouve cité
- * hors contexte. Quand la fiche n'a qu'un forfait, la fourchette se referme d'elle-même sur
- * une valeur unique.
+ * ⛔ CHAQUE LIGNE TIENT À SA DONNÉE. Pas de ligne vide, pas de zéro, pas de tiret de
+ * remplacement : une ligne « Volume engagé — » n'apprend rien et fait douter du reste.
  */
 export default function FicheSynthese({ fiche }: { fiche: Fiche }) {
-  const { min, max, unite } = montantType(fiche.calcul);
+  const secteur = secteurParSlug(fiche.secteur);
+  const montant = montantVitrine(fiche.calcul);
+  const maj = dateMajDe(fiche);
 
   return (
-    <dl className="synthese">
-      <div className="synthese-case synthese-case-forte">
-        <dt>Montant</dt>
-        <dd>
-          {min === max ? nombreFr.format(min) : `${nombreFr.format(min)} à ${nombreFr.format(max)}`}
-          <span className="synthese-unite">{unite}</span>
-        </dd>
-      </div>
+    <div className="synthese">
+      <dl className="synthese-liste">
+        <Ligne terme="Secteur">
+          {secteur?.label} — {familleLabel(fiche.code)}
+        </Ligne>
 
-      <div className="synthese-case">
-        <dt><Terme slug="duree-de-vie-conventionnelle">Durée de vie</Terme></dt>
-        <dd>
+        <Ligne terme="Montant">
+          <strong>{nombreFr.format(montant.valeur)} {montant.unite}</strong>
+          {/* ⚠️ La condition fait partie du montant, pas d'une note : « 1 700 kWh cumac/m² »
+              sans « en zone H1 » se lit comme une promesse valable partout. */}
+          {montant.condition && <span className="synthese-precision"> en {montant.condition}</span>}
+        </Ligne>
+
+        <Ligne terme={<Terme slug="duree-de-vie-conventionnelle">Durée de vie</Terme>}>
           {fiche.dureeVie.length === 1
             ? `${fiche.dureeVie[0].valeurAnnees} ans`
-            : `${Math.min(...fiche.dureeVie.map((d) => d.valeurAnnees))} à ${Math.max(...fiche.dureeVie.map((d) => d.valeurAnnees))} ans`}
-        </dd>
-      </div>
+            : fiche.dureeVie.map((d) => `${d.valeurAnnees} ans (${d.condition})`).join(', ')}
+        </Ligne>
 
-      <div className="synthese-case">
-        <dt>Zone d’application</dt>
-        <dd>{LIBELLE_ZONE[fiche.zoneApplication]}</dd>
-      </div>
+        <Ligne terme="Version">
+          {fiche.version}, applicable depuis le {dateCourte(fiche.dateApplication)}
+        </Ligne>
 
-      <div className="synthese-case">
-        <dt>Version</dt>
-        <dd>
-          {fiche.version}
-          <span className="synthese-unite">depuis le {dateFr(fiche.dateApplication)}</span>
-        </dd>
-      </div>
-    </dl>
+        {/* Date future : c'est une date limite d'engagement, pas une alerte. */}
+        {fiche.dateAbrogation && (
+          <Ligne terme="Engageable jusqu’au">{dateFr(fiche.dateAbrogation)}</Ligne>
+        )}
+
+        {fiche.volumeEngage && (
+          <Ligne terme="Volume engagé">
+            {decimalFr.format(fiche.volumeEngage.twhCumac)} TWh cumac depuis {fiche.volumeEngage.depuis}
+          </Ligne>
+        )}
+
+        {fiche.zoneApplication !== 'metropole' && (
+          <Ligne terme="Zone d’application">{LIBELLE_ZONE[fiche.zoneApplication]}</Ligne>
+        )}
+
+        {maj && <Ligne terme="Mise à jour">{dateFr(maj)}</Ligne>}
+      </dl>
+
+      {/* ⚠️ L'ANCRE MÈNE À LA SECTION, JAMAIS AU FICHIER. Un lien direct vers le PDF fait
+          sortir du site avant le CTA ; l'ancre fait défiler la page, qui traverse le montant
+          et l'appel à l'action au passage. */}
+      <a className="synthese-ancre" href="#documents">Télécharger la fiche ↓</a>
+    </div>
+  );
+}
+
+function Ligne({ terme, children }: { terme: React.ReactNode; children: React.ReactNode }) {
+  return (
+    <div className="synthese-ligne">
+      <dt>{terme}</dt>
+      <dd>{children}</dd>
+    </div>
   );
 }

@@ -8,6 +8,8 @@
 
 # misc
 .DS_Store
+# Verrou créé par Excel quand le classeur est ouvert
+data/~$*
 *.pem
 
 # Claude Code (système local, non versionné)

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Page, { Section } from '@/components/Page';
 import ListeLiens from '@/components/ListeLiens';
 import { SECTEURS } from '@/lib/secteurs';
-import { fichesDuSecteur, FICHES } from '@/lib/fiches';
+import { catalogueDuSecteur, CATALOGUE, catalogueParFamille } from '@/lib/fiches';
 import { url } from '@/lib/routes';
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export default function IndexFiches() {
     <Page
       chemin={url.fichesCee}
       titre="Fiches CEE"
-      chapo={`Les ${FICHES.length} fiches d'opérations standardisées que nous valorisons, classées par secteur.`}
+      chapo={`Les ${CATALOGUE.length} fiches d'opérations standardisées que nous valorisons, classées par secteur.`}
     >
       <Section titre="Par secteur">
         {/* Six secteurs, deux lignes de trois : ils forment un ensemble, pas une liste. */}
@@ -24,7 +24,7 @@ export default function IndexFiches() {
           liens={SECTEURS.map((s) => ({
             href: url.hubFiches(s.slug),
             label: s.label,
-            note: `${fichesDuSecteur(s.slug).length} fiches`,
+            note: `${catalogueDuSecteur(s.slug).length} fiches · ${catalogueParFamille(s.slug).length} familles`,
           }))}
         />
       </Section>

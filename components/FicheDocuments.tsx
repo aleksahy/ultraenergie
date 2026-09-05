@@ -8,8 +8,8 @@ import { dateFr } from '@/lib/dates';
  * ⛔ UNE SEULE VERSION PAR NATURE. Plusieurs versions d'une même Partie A côte à côte, c'est
  * un dossier déposé avec la mauvaise. L'historique a sa propre section.
  *
- * ⚠️ Un document sans URL est LISTÉ SANS ÊTRE LIÉ : deux fiches du catalogue n'ont pas leur
- * Partie A ou leur fiche principale en ligne, et un lien mort serait pire que la mention.
+ * ⚠️ Un document sans URL est LISTÉ SANS ÊTRE LIÉ. Un lien mort serait pire que la mention :
+ * le visiteur sait au moins quel document chercher, et le nom exact de sa version.
  */
 export function DocumentsEnVigueur({ fiche }: { fiche: Fiche }) {
   const documents = documentsEnVigueur(fiche);
@@ -31,7 +31,9 @@ function LigneDocument({ doc }: { doc: DocumentFiche }) {
       <span className="document document-absent">
         <span className="document-nom">{libelle}</span>
         <span className="document-meta">{meta}</span>
-        <span className="document-note">Document non publié en ligne à ce jour.</span>
+        {/* ⚠️ On dit ce qu'on sait — que le lien manque — et non que le document n'existe
+            pas : la fiche officielle est publiée, c'est notre référence qui est incomplète. */}
+        <span className="document-note">Lien du document à renseigner.</span>
       </span>
     );
   }

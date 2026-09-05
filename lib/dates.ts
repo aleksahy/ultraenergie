@@ -13,6 +13,12 @@ export function dateFr(iso: string): string {
   return date.getUTCDate() === 1 ? rendu.replace(/^1 /, '1er ') : rendu;
 }
 
+/** Une date ISO en jj/mm/aaaa, pour les mentions de version. */
+export function dateCourte(iso: string): string {
+  const [a, m, j] = iso.split('-');
+  return `${j}/${m}/${a}`;
+}
+
 /** L'année courante, pour les titres de page. */
 export function anneeCourante(): number {
   return new Date().getFullYear();

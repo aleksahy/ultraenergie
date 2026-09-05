@@ -707,6 +707,39 @@ select.champ { appearance: auto; }
 .ancres a:hover { border-color: var(--accent); color: var(--accent); }
 
 
+/* ── Liste des fiches d'un hub ───────────────────────────────────────
+   Vingt-cinq codes sous une même famille : des cartes pleine taille feraient une page qu'on
+   parcourt au défilement plutôt qu'à l'œil. Entrées compactes, en colonnes. */
+.fiches-liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2px 20px;
+}
+.fiche-entree {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  margin-left: -12px;
+  border-radius: var(--rayon-champ);
+}
+a.fiche-entree:hover { background: var(--survol); }
+a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
+.fiche-entree-code { font-size: 14px; font-weight: 700; letter-spacing: 0.01em; }
+.fiche-entree-titre { font-size: 13px; line-height: 1.45; color: var(--texte-2); }
+/* Sans page publiée, l'entrée reste lisible mais ne se donne pas l'air cliquable. */
+.fiche-entree-inerte .fiche-entree-code { color: var(--texte-2); font-weight: 500; }
+
+.ancres-compte {
+  margin-left: 6px;
+  font-variant-numeric: tabular-nums;
+  color: var(--texte-4);
+}
+.ancres a:hover .ancres-compte { color: var(--accent); }
+
 /* ── Page de fiche CEE ───────────────────────────────────────────────
    Le gabarit rend de six à douze sections selon la matière disponible ; les styles ci-dessous
    n'en supposent aucune. */
@@ -723,31 +756,39 @@ select.champ { appearance: auto; }
   color: var(--encre);
 }
 
-/* L'encadré de synthèse : les quatre chiffres qu'on vient chercher en premier. */
+/* L'encadré de synthèse : ce qu'on vient chercher en premier, en lignes plutôt qu'en cases.
+   Les lignes sont de longueurs très inégales (« 30 ans » contre « 1 700 kWh cumac/m² en zone
+   H1 ») : en cases de largeur égale, la moitié respirait dans le vide et l'autre passait à la
+   ligne. */
 .synthese {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1px;
   margin: 32px 0 0;
-  padding: 0;
+  padding: 4px 26px 22px;
   border: 1px solid var(--ligne);
   border-radius: var(--rayon-carte);
-  background: var(--ligne);
-  overflow: hidden;
+  background: var(--survol);
+  max-width: 760px;
 }
-.synthese-case { background: var(--blanc); padding: 20px 22px; }
-.synthese-case dt {
-  font-size: 12px;
+.synthese-liste { margin: 0; }
+.synthese-ligne {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--ligne);
+}
+.synthese-ligne dt { font-size: 13px; font-weight: 500; color: var(--texte-3); padding-top: 2px; }
+.synthese-ligne dd { margin: 0; font-size: 16px; line-height: 1.45; }
+.synthese-ligne dd strong { font-weight: 700; }
+.synthese-precision { color: var(--texte-2); font-weight: 400; }
+.synthese-ancre {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--texte-3);
-  margin-bottom: 8px;
+  color: var(--accent);
 }
-.synthese-case dd { margin: 0; font-size: 17px; font-weight: 700; line-height: 1.35; }
-.synthese-case-forte dd { color: var(--accent); font-size: 20px; }
-.synthese-unite { display: block; font-size: 13px; font-weight: 400; color: var(--texte-2); margin-top: 4px; }
-.synthese-case dt .lien-terme { color: inherit; text-decoration: underline; text-decoration-color: var(--ligne); }
+.synthese-ancre:hover { text-decoration: underline; text-underline-offset: 3px; }
+.synthese-ligne dt .lien-terme { color: inherit; text-decoration-color: var(--ligne); }
 
 /* Grilles officielles */
 .grilles { display: flex; flex-direction: column; gap: 20px; }
@@ -790,6 +831,28 @@ select.champ { appearance: auto; }
 .tableau tbody td { font-variant-numeric: tabular-nums; }
 .tableau tbody tr + tr th, .tableau tbody tr + tr td { border-top: 1px solid var(--ligne); }
 .tableau-legende { padding: 10px 14px; font-size: 12px; color: var(--texte-3); text-align: left; }
+
+/* L'exemple chiffré, sous la grille : c'est lui qu'on lit avant le tableau. */
+.exemple {
+  max-width: 760px;
+  padding: 16px 18px;
+  border-left: 3px solid var(--accent);
+  background: var(--survol);
+  border-radius: 0 var(--rayon-champ) var(--rayon-champ) 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.exemple-etiquette {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.mention { max-width: 760px; font-size: 13px; color: var(--texte-3); }
+.page-section .pilule { margin-top: 4px; }
 
 /* Simulateur */
 .simulateur {
@@ -916,8 +979,8 @@ a.document:hover .document-nom { color: var(--accent); }
   .liste-liens-auto, .liste-liens-trois { grid-template-columns: 1fr; }
   .pied-titre-suivant { margin-top: 24px; }
 
-  .synthese { grid-template-columns: 1fr 1fr; }
-  .synthese-case { padding: 16px; }
+  .synthese { padding: 2px 18px 18px; }
+  .synthese-ligne { grid-template-columns: 1fr; gap: 2px; padding: 12px 0; }
   .simulateur { padding: 18px; }
   .simulateur-champs { grid-template-columns: 1fr; }
 }

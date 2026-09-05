@@ -58,6 +58,8 @@ export interface CalculCroisement extends Base {
   grille: Record<string, number>;
   /** Certaines grilles donnent un montant au m², au kW… qu'il reste à multiplier. */
   multiplicateur?: { libelle: string; unite: string };
+  /** En-tête de la colonne des montants, quand la fiche officielle le formule autrement. */
+  libelleMontant?: string;
 }
 
 /** Deux grilles multipliées entre elles. */
@@ -189,7 +191,7 @@ function montant(calcul: Calcul, saisie: Saisie): number | null {
   }
 }
 
-/* ── Montant type, pour l'encadré de synthèse ──────────────────────────── */
+/* ── Montant en vitrine et exemple chiffré ─────────────────────────────── */
 
 /** Toutes les valeurs qu'une forme de calcul peut produire, à multiplicateur près. */
 function valeurs(calcul: Calcul): number[] {
@@ -202,26 +204,107 @@ function valeurs(calcul: Calcul): number[] {
   }
 }
 
+export interface MontantVitrine {
+  valeur: number;
+  unite: string;
+  /** La combinaison qui produit ce montant : « en zone H1 ». Absente s'il n'y en a qu'un. */
+  condition?: string;
+}
+
 /**
- * Le montant annoncé dans l'encadré de synthèse. Une fourchette quand la fiche en couvre une,
- * un forfait unitaire quand elle n'en a qu'un.
+ * Le montant de l'encadré de synthèse : la valeur la plus élevée du barème, ET la condition
+ * qui la produit.
  *
- * ⛔ Jamais un montant moyen : une moyenne sur une grille climatique ne correspond à aucune
- * opération réelle, et c'est le genre de nombre qu'on retrouve cité comme une promesse.
+ * ⛔ JAMAIS UNE MOYENNE. Une moyenne sur une grille climatique ne correspond à aucune
+ * opération réelle, et c'est le nombre qu'on retrouve cité de travers.
+ * ⚠️ ET JAMAIS LA VALEUR SEULE : « 1 700 kWh cumac/m² » sans « en zone H1 » se lit comme une
+ * promesse valable partout. La condition fait partie du montant, pas de la note de bas de page.
  */
-export function montantType(calcul: Calcul): { min: number; max: number; unite: string } {
-  const v = valeurs(calcul).filter((n) => Number.isFinite(n));
-  const min = Math.min(...v);
-  const max = Math.max(...v);
-  return { min, max, unite: uniteMontant(calcul) };
+export function montantVitrine(calcul: Calcul): MontantVitrine {
+  const unite = uniteMontant(calcul);
+  const toutes = valeurs(calcul);
+  const max = Math.max(...toutes);
+
+  if (toutes.length === 1) return { valeur: max, unite };
+  return { valeur: max, unite, condition: conditionDuMax(calcul, max) };
+}
+
+/** Le libellé de la combinaison qui atteint le montant maximal. */
+function conditionDuMax(calcul: Calcul, max: number): string | undefined {
+  if (calcul.type === 'variantes') {
+    for (const cas of calcul.cas) {
+      if (valeurs(cas.calcul).includes(max)) {
+        const interne = conditionDuMax(cas.calcul, max);
+        return interne ? `${cas.libelle}, ${interne}` : cas.libelle;
+      }
+    }
+    return undefined;
+  }
+  if (calcul.type === 'correspondance') {
+    return calcul.entrees.find((e) => e.montant === max)?.libelle;
+  }
+  if (calcul.type === 'croisement') {
+    const cle = Object.keys(calcul.grille).find((k) => calcul.grille[k] === max);
+    if (!cle) return undefined;
+    // Chaque valeur est précédée du nom de sa dimension : « zone climatique H1 » plutôt que
+    // « H1 », qui ne veut rien dire hors du tableau qu'on vient de quitter.
+    return cle
+      .split(SEPARATEUR)
+      .map((valeur, i) => `${calcul.dimensions[i].nom.toLowerCase()} ${valeur}`)
+      .join(', ');
+  }
+  if (calcul.type === 'produit_tables') {
+    const table = calcul.tables[0];
+    return Object.keys(table.valeurs).find((k) => table.valeurs[k] === max);
+  }
+  return undefined;
+}
+
+export interface Exemple {
+  /** La saisie complète, décrite en clair : « 100 m² en zone H1 ». */
+  hypothese: string;
+  kwhCumac: number;
+}
+
+/**
+ * L'exemple chiffré rendu sous la grille : une saisie plausible, et son résultat.
+ *
+ * ⚠️ IL PASSE PAR `evalue()`, comme le simulateur. Un exemple calculé à la main dans le
+ * gabarit finirait par contredire la grille imprimée juste au-dessus.
+ */
+export function exemple(calcul: Calcul, quantiteType = 100): Exemple | null {
+  const saisie: Saisie = {};
+  let quantite = '';
+  const choix: string[] = [];
+
+  for (const champ of champs(calcul)) {
+    if (champ.nature === 'nombre') {
+      saisie[champ.id] = String(quantiteType);
+      quantite = `${quantiteType} ${champ.unite ?? ''}`.trim();
+    } else {
+      // La première valeur de chaque liste : c'est celle du haut de la grille officielle,
+      // donc celle que le lecteur a sous les yeux en lisant l'exemple.
+      const valeur = champ.valeurs?.[0];
+      if (!valeur) return null;
+      saisie[champ.id] = valeur;
+      choix.push(`${champ.libelle.toLowerCase()} ${valeur}`);
+    }
+  }
+
+  const { kwhCumac } = evalue(calcul, saisie);
+  if (kwhCumac === null) return null;
+
+  const liste = choix.join(', ');
+  const hypothese = quantite && liste ? `${quantite} en ${liste}` : quantite || liste;
+  return { hypothese, kwhCumac };
 }
 
 /** Ce à quoi le montant se rapporte : « kWh cumac », « kWh cumac / m² »… */
 export function uniteMontant(calcul: Calcul): string {
   if (calcul.type === 'variantes') return uniteMontant(calcul.cas[0].calcul);
-  if (calcul.type === 'forfait') return `${calcul.unite} / ${calcul.variableUnite}`;
+  if (calcul.type === 'forfait') return `${calcul.unite}/${calcul.variableUnite}`;
   if (calcul.type === 'croisement' && calcul.multiplicateur) {
-    return `kWh cumac / ${calcul.multiplicateur.unite}`;
+    return `kWh cumac/${calcul.multiplicateur.unite}`;
   }
   return 'kWh cumac';
 }

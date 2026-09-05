@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import type { Calcul, Saisie } from '@/lib/calcul';
 import { champs, evalue } from '@/lib/calcul';
-import { TAUX_EURO_PAR_KWH_CUMAC, nombreFr, euroFr } from '@/lib/site';
+import { dateFr } from '@/lib/dates';
+import { TAUX_CEE, enEuros, nombreFr, euroFr } from '@/lib/site';
 
 /**
  * Le simulateur de prime d'une fiche : un champ par dimension du barème, le montant en kWh
@@ -76,12 +77,11 @@ export default function Simulateur({ calcul, code }: { calcul: Calcul; code: str
               <strong>{nombreFr.format(kwhCumac)}</strong> kWh cumac
             </div>
             <div className="simulateur-euros">
-              soit environ <strong>{euroFr.format(kwhCumac * TAUX_EURO_PAR_KWH_CUMAC)}</strong> de prime
+              soit environ <strong>{euroFr.format(enEuros(kwhCumac))}</strong> de prime
             </div>
             <p className="simulateur-avertissement">
-              Estimation indicative pour la fiche {code}, au taux de{' '}
-              {TAUX_EURO_PAR_KWH_CUMAC.toLocaleString('fr-FR', { minimumFractionDigits: 4 })} € par kWh cumac.
-              Le montant réel dépend de la valorisation obtenue auprès des obligés consultés.
+              Montant indicatif pour la fiche {code}, sur la base de {TAUX_CEE.euroParMwhCumac} €/MWh
+              cumac relevés le {dateFr(TAUX_CEE.releveLe)}, et sous réserve de validation du dossier.
             </p>
           </>
         )}

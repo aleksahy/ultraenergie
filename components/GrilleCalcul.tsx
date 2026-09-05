@@ -124,7 +124,8 @@ function Matrice({
 }
 
 function uniteColonne(calcul: CalculCroisement): string {
-  return calcul.multiplicateur ? `kWh cumac / ${calcul.multiplicateur.unite}` : 'kWh cumac';
+  if (calcul.libelleMontant) return calcul.libelleMontant;
+  return calcul.multiplicateur ? `kWh cumac/${calcul.multiplicateur.unite}` : 'kWh cumac';
 }
 
 /* Le tableau déborde sur un téléphone : il défile DANS son propre cadre, jamais en poussant

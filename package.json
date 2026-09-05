@@ -9,7 +9,8 @@
     "lint": "eslint",
     "images": "node scripts/derive-photos.mjs",
     "postbuild": "node scripts/verifie-routes.mjs",
-    "check:routes": "node scripts/verifie-routes.mjs"
+    "check:routes": "node scripts/verifie-routes.mjs",
+    "fiches": "python3 scripts/importe-fiches.py"
   },
   "dependencies": {
     "next": "16.2.4",
