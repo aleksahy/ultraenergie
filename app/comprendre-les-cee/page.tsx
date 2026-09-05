@@ -17,7 +17,7 @@ export default function IndexGlossaire() {
       chapo="Les mots du dispositif, expliqués un par un."
     >
       <Section titre="Le glossaire">
-        <ListeLiens liens={TERMES.map((t) => ({ href: url.terme(t.slug), label: t.terme, note: t.resume }))} colonnes={false} />
+        <ListeLiens liens={TERMES.map((t) => ({ href: url.terme(t.slug), label: t.terme, note: t.resume }))} colonnes={1} />
       </Section>
 
       <Section titre="Pour aller plus loin">

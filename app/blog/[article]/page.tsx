@@ -30,7 +30,7 @@ export default async function PageArticle({ params }: { params: Promise<{ articl
       <AChantier>Article à rédiger.</AChantier>
 
       <Section titre="Les autres articles">
-        <ListeLiens liens={autres.map((a) => ({ href: url.article(a.slug), label: a.titre, note: a.tag }))} colonnes={false} />
+        <ListeLiens liens={autres.map((a) => ({ href: url.article(a.slug), label: a.titre, note: a.tag }))} colonnes={1} />
       </Section>
     </Page>
   );

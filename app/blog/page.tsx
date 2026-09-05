@@ -17,7 +17,7 @@ export default function IndexBlog() {
   return (
     <Page chemin={url.blog} titre="Blog" chapo="Actualité réglementaire, guides et conseils métier.">
       <Section titre="Les articles">
-        <ListeLiens liens={tries.map((a) => ({ href: url.article(a.slug), label: a.titre, note: a.tag }))} colonnes={false} />
+        <ListeLiens liens={tries.map((a) => ({ href: url.article(a.slug), label: a.titre, note: a.tag }))} colonnes={1} />
       </Section>
     </Page>
   );

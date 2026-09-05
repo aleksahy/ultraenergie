@@ -557,20 +557,36 @@ select.champ { appearance: auto; }
    Coquilles d'architecture : le contenu et le design viennent ensuite. Ce qui compte ici,
    c'est que le fil d'Ariane, les titres et les blocs de maillage soient en place. */
 
-/* ⚠️ LE CONTENEUR PREND LA LARGEUR DU SITE, ET C'EST LE CONTENU QUI EST BRIDÉ. Centrer une
-   colonne de 860px décalait chaque page intérieure d'environ 230px vers la droite : le fil
-   d'Ariane et le titre ne tombaient plus sur la même gouttière que le wordmark de l'en-tête
-   ni que le pied de page, et le décalage se voyait au défilement. La mesure de lecture est
-   tenue par la largeur maximale des enfants, pas par un centrage du bloc. */
+/* ⚠️ LA PAGE PREND TOUTE LA LARGEUR DU SITE, ET SEULE LA PROSE EST BRIDÉE. Un plafond posé
+   sur TOUS les enfants (`.page > *`) réservait un tiers de l'écran au vide sur les grands
+   moniteurs : les grilles de liens et les tableaux, qui ont de quoi remplir, s'arrêtaient à
+   la mesure d'un paragraphe. C'est aux blocs de texte, et à eux seuls, de garder une longueur
+   de ligne lisible. */
 .page {
   max-width: var(--largeur);
   margin: 0 auto;
-  padding: 40px var(--gouttiere) var(--espace-section);
+  padding: 32px var(--gouttiere) var(--espace-section);
 }
-.page > * { max-width: 940px; }
-.page-titre { font-size: clamp(30px, 4.4vw, 44px); line-height: 1.12; margin: 0 0 18px; }
-.page-chapo { font-size: 17px; line-height: 1.6; color: var(--texte-2); max-width: 640px; }
-.page-texte { font-size: 15px; line-height: 1.65; color: var(--texte-2); margin-bottom: 12px; }
+.page-titre { font-size: clamp(34px, 5vw, 56px); line-height: 1.06; letter-spacing: -0.015em; margin: 0 0 16px; }
+/* L'intitulé officiel d'une fiche peut faire trois lignes : à 56px il occuperait l'écran. */
+.page-fiche .page-titre { font-size: clamp(28px, 3.4vw, 40px); line-height: 1.14; }
+.page-chapo { font-size: 18px; line-height: 1.6; color: var(--texte-2); max-width: 760px; }
+.page-texte { font-size: 15px; line-height: 1.65; color: var(--texte-2); max-width: 760px; margin-bottom: 12px; }
+
+/* Le retour vers le parent : sous le fil d'Ariane, avant le titre. Le fil situe en petit
+   caractère, ce lien-ci est un geste — même destination, deux rôles. */
+.retour {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 22px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.retour:hover { text-decoration: underline; text-underline-offset: 3px; }
+.retour svg { transition: transform 0.15s ease; }
+.retour:hover svg { transform: translateX(-3px); }
 .page-section { margin-top: 48px; }
 .page-section-titre { font-size: 20px; font-weight: 700; margin: 0 0 18px; }
 .page-coordonnees {
@@ -586,6 +602,7 @@ select.champ { appearance: auto; }
 /* Le bandeau qui dit qu'une page est une coquille. Il disparaîtra page par page, à mesure
    qu'elles se remplissent ; tant qu'il est là, il vaut mieux qu'il se voie. */
 .page-chantier {
+  max-width: 760px;
   margin-top: 28px;
   padding: 14px 18px;
   border: 1px dashed var(--ligne);
@@ -605,21 +622,20 @@ select.champ { appearance: auto; }
 
 /* ── Fil d'Ariane ────────────────────────────────────────────────── */
 
-/* Une bande pleine largeur, jointive à l'en-tête. Posé dans le flux au-dessus du titre, le
-   fil flottait entre deux blocs blancs sans appartenir à rien ; adossé à l'en-tête, il se lit
-   comme ce qu'il est, la position courante dans le site. Le fond et le filet le tiennent, la
-   gouttière commune l'aligne sur le wordmark. */
+/* Une bande pleine largeur, jointive à l'en-tête, et volontairement mince : le fil est un
+   repère, pas un élément de mise en page. Le retour vers le parent, lui, est un geste : il a
+   sa place sous le titre, en taille cliquable (cf. `.retour`). */
 .fil-ariane { background: var(--survol); border-bottom: 1px solid var(--ligne); }
 .fil-ariane-inner {
   max-width: var(--largeur);
   margin: 0 auto;
-  padding: 13px var(--gouttiere);
+  padding: 7px var(--gouttiere);
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 4px 0;
-  font-size: 13px;
+  gap: 2px 0;
+  font-size: 12px;
 }
 .fil-ariane li { display: inline-flex; align-items: center; }
 /* Le chevron est tracé en bordures, pas écrit en caractère : il ne doit pas être lu par une
@@ -628,31 +644,51 @@ select.champ { appearance: auto; }
 .fil-ariane li + li::before {
   content: '';
   flex: none;
-  width: 5px;
-  height: 5px;
-  margin: 0 12px;
+  width: 4px;
+  height: 4px;
+  margin: 0 10px;
   border-top: 1.5px solid var(--texte-4);
   border-right: 1.5px solid var(--texte-4);
   transform: rotate(45deg);
 }
-.fil-ariane a { color: var(--texte-2); font-weight: 500; }
+.fil-ariane a { color: var(--texte-3); font-weight: 500; }
 .fil-ariane a:hover { color: var(--accent); }
-.fil-ariane [aria-current='page'] { color: var(--encre); font-weight: 700; }
+.fil-ariane [aria-current='page'] { color: var(--texte); font-weight: 700; }
 
 /* ── Listes de liens (maillage) ──────────────────────────────────── */
 
-.liste-liens { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
-.liste-liens-colonnes { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2px 24px; }
+/* Des cartes, et non une liste de liens serrée : elles occupent la largeur disponible au
+   lieu de laisser l'écran vide à droite, et donnent à chaque destination une surface qu'on
+   vise sans effort. La flèche dit que le lien mène ailleurs. */
+.liste-liens { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.liste-liens-auto { grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); }
+.liste-liens-trois { grid-template-columns: repeat(3, 1fr); }
 .liste-liens a {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  padding: 12px 14px;
-  margin-left: -14px;
-  border-radius: var(--rayon-champ);
+  gap: 8px;
+  height: 100%;
+  padding: 22px 46px 22px 22px;
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon-carte);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
 }
-.liste-liens a:hover { background: var(--survol); }
-.liste-liens-label { font-size: 15px; font-weight: 500; }
+.liste-liens a::after {
+  content: '';
+  position: absolute;
+  top: 24px;
+  right: 22px;
+  width: 8px;
+  height: 8px;
+  border-top: 1.6px solid var(--texte-4);
+  border-right: 1.6px solid var(--texte-4);
+  transform: rotate(45deg);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.liste-liens a:hover { border-color: var(--accent); background: var(--survol); }
+.liste-liens a:hover::after { border-color: var(--accent); transform: rotate(45deg) translate(2px, -2px); }
+.liste-liens-label { font-size: 16px; font-weight: 700; line-height: 1.35; }
 .liste-liens a:hover .liste-liens-label { color: var(--accent); }
 .liste-liens-note { font-size: 13px; line-height: 1.5; color: var(--texte-3); }
 
@@ -660,7 +696,7 @@ select.champ { appearance: auto; }
 .lien-appuye:hover { text-decoration: underline; }
 
 /* Les ancres d'usage d'un hub catalogue : des raccourcis vers ses sections, pas des pages. */
-.ancres { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.ancres { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
 .ancres a {
   padding: 8px 14px;
   border: 1px solid var(--ligne);
@@ -724,6 +760,7 @@ select.champ { appearance: auto; }
 .grille-unite { color: var(--texte-3); }
 .grille-notes {
   margin: 0;
+  max-width: 760px;
   padding-left: 18px;
   font-size: 13px;
   line-height: 1.6;
@@ -775,7 +812,7 @@ select.champ { appearance: auto; }
 .simulateur-kwh strong { font-size: 26px; color: var(--encre); }
 .simulateur-euros { font-size: 15px; color: var(--texte-2); margin-top: 4px; }
 .simulateur-euros strong { font-size: 20px; color: var(--accent); }
-.simulateur-avertissement { margin-top: 12px; font-size: 12px; line-height: 1.55; color: var(--texte-3); }
+.simulateur-avertissement { max-width: 760px; margin-top: 12px; font-size: 12px; line-height: 1.55; color: var(--texte-3); }
 
 /* Documents */
 .documents { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
@@ -798,8 +835,8 @@ a.document:hover .document-nom { color: var(--accent); }
 /* Listes de conditions et de justificatifs */
 .conditions { margin: 0; display: flex; flex-direction: column; gap: 16px; }
 .conditions dt { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
-.conditions dd { margin: 0; font-size: 15px; line-height: 1.65; color: var(--texte-2); }
-.liste-puces { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.6; color: var(--texte-2); }
+.conditions dd { margin: 0; max-width: 760px; font-size: 15px; line-height: 1.65; color: var(--texte-2); }
+.liste-puces { margin: 0; max-width: 760px; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.6; color: var(--texte-2); }
 
 .volumes { margin-top: 8px; }
 .page-texte-gris { color: var(--texte-3); font-size: 14px; }
@@ -819,6 +856,10 @@ a.document:hover .document-nom { color: var(--accent); }
    redéfinis sur `:root` : tous les conteneurs les lisent, donc TOUT se réaligne sur le même
    bord gauche d'un coup, y compris les cartes de profil et les étapes, qui perdent ici leur
    centrage et leur largeur maximale. */
+@media (min-width: 900px) and (max-width: 1120px) {
+  .liste-liens-trois { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (max-width: 899px) {
   :root {
     --gouttiere: 20px;
@@ -869,9 +910,10 @@ a.document:hover .document-nom { color: var(--accent); }
   .modale { padding: 28px 24px; }
 
   .page { padding: 28px var(--gouttiere) var(--espace-section); }
-  .fil-ariane-inner { padding: 11px var(--gouttiere); }
+  .retour { margin-bottom: 18px; }
+  .fil-ariane-inner { padding: 7px var(--gouttiere); }
   .page-section { margin-top: 36px; }
-  .liste-liens-colonnes { grid-template-columns: 1fr; }
+  .liste-liens-auto, .liste-liens-trois { grid-template-columns: 1fr; }
   .pied-titre-suivant { margin-top: 24px; }
 
   .synthese { grid-template-columns: 1fr 1fr; }

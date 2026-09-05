@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Section } from '@/components/Page';
 import FilAriane from '@/components/FilAriane';
+import RetourParent from '@/components/RetourParent';
 import ListeLiens from '@/components/ListeLiens';
 import GrilleCalcul from '@/components/GrilleCalcul';
 import Simulateur from '@/components/Simulateur';
@@ -84,6 +85,7 @@ export default async function PageFiche({ params }: { params: Promise<{ secteur:
           </p>
         )}
 
+        <RetourParent chemin={url.fiche(fiche.secteur, fiche.code)} />
         <div className="fiche-code">
           {familleLabel(fiche.secteur, fiche.famille)} · {secteur.label}
         </div>
@@ -248,7 +250,7 @@ export default async function PageFiche({ params }: { params: Promise<{ secteur:
                 label: ancreFiche(f),
                 note: secteurParSlug(f.secteur)?.label,
               }))}
-              colonnes={false}
+              colonnes={1}
             />
           </Section>
         )}

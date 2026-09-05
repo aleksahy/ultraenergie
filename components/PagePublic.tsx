@@ -14,7 +14,7 @@ export default function PagePublic({ slug, label }: { slug: string; label: strin
       <AChantier>Page à rédiger. L&apos;ossature et le maillage sont posés.</AChantier>
 
       <Section titre="Les secteurs concernés">
-        <ListeLiens liens={SECTEURS.map((s) => ({ href: url.secteur(s.slug), label: s.label }))} />
+        <ListeLiens colonnes={3} liens={SECTEURS.map((s) => ({ href: url.secteur(s.slug), label: s.label }))} />
       </Section>
 
       <Section titre="Pour aller plus loin">

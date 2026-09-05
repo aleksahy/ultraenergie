@@ -18,7 +18,9 @@ export default function IndexFiches() {
       chapo={`Les ${FICHES.length} fiches d'opérations standardisées que nous valorisons, classées par secteur.`}
     >
       <Section titre="Par secteur">
+        {/* Six secteurs, deux lignes de trois : ils forment un ensemble, pas une liste. */}
         <ListeLiens
+          colonnes={3}
           liens={SECTEURS.map((s) => ({
             href: url.hubFiches(s.slug),
             label: s.label,

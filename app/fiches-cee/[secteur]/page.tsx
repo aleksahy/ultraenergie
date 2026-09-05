@@ -70,7 +70,7 @@ export default async function HubSecteur({ params }: { params: Promise<{ secteur
       </Section>
 
       <Section titre="Les autres secteurs">
-        <ListeLiens liens={autres.map((s) => ({ href: url.hubFiches(s.slug), label: `Fiches CEE ${s.label}` }))} />
+        <ListeLiens colonnes={3} liens={autres.map((s) => ({ href: url.hubFiches(s.slug), label: `Fiches CEE ${s.label}` }))} />
       </Section>
     </Page>
   );
