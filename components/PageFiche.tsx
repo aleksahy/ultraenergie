@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Section } from '@/components/Page';
 import FilAriane from '@/components/FilAriane';
 import RetourParent from '@/components/RetourParent';
@@ -11,10 +10,8 @@ import Terme from '@/components/Terme';
 import { BoutonModale } from '@/components/Modales';
 import { secteurParSlug } from '@/lib/secteurs';
 import { ancreFiche, aUnePage, fichesLiees, intituleDe, type Fiche } from '@/lib/fiches';
-import { exemple } from '@/lib/calcul';
 import { url } from '@/lib/routes';
-import { dateFr, dateCourte, anneeCourante } from '@/lib/dates';
-import { nombreFr, euroFr, enEuros, TAUX_CEE } from '@/lib/site';
+import { dateCourte, anneeCourante } from '@/lib/dates';
 
 /**
  * Le gabarit des pages de fiche : douze sections, rendues seulement si leur donnée existe.
@@ -36,7 +33,6 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
   const jumelles = fiche.jumelles.slice(0, 3);
   const complementaires = fiche.voisines ?? liees.filter((f) => !fiche.jumelles.includes(f.code)).map((f) => f.code);
 
-  const chiffre = exemple(fiche.calcul);
 
   /* ⚠️ UNE SEULE LISTE POUR LE RENDU ET LE SOMMAIRE. Le nombre de sections varie de six à
      douze selon la matière : une table des matières construite à part finirait par annoncer
@@ -62,21 +58,12 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
 
           <GrilleCalcul calcul={fiche.calcul} />
 
-          {chiffre && (
-            <p className="exemple">
-              <span className="exemple-etiquette">Exemple</span>
-              {chiffre.hypothese} → <strong>{nombreFr.format(chiffre.kwhCumac)} kWh cumac</strong>,
-              soit environ <strong>{euroFr.format(enEuros(chiffre.kwhCumac))}</strong> sur la base
-              de {TAUX_CEE.euroParMwhCumac} €/MWh cumac relevés le {dateFr(TAUX_CEE.releveLe)}.
-            </p>
-          )}
-
+          {/* ⛔ NI EXEMPLE CHIFFRÉ NI APPEL À L'ACTION SOUS LA GRILLE. La section dit le
+              barème, et rien d'autre : le calcul appartient au simulateur, et l'appel à
+              l'action est porté par la bande latérale, qui reste visible tout du long. Trois
+              blocs empilés sous le tableau repoussaient les conditions d'éligibilité hors de
+              l'écran, alors que ce sont elles qu'on lit juste après un montant. */}
           <p className="mention">Montant indicatif, sous réserve de validation du dossier.</p>
-
-          {/* ⚠️ LE PIC D'INTENTION EST ICI, pas en bas de page. */}
-          <Link className="pilule pilule-accent" href={`${url.simulateur}?fiche=${fiche.code.toLowerCase()}`}>
-            Estimer précisément ma prime →
-          </Link>
         </>
       ),
     },

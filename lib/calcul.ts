@@ -191,7 +191,7 @@ function montant(calcul: Calcul, saisie: Saisie): number | null {
   }
 }
 
-/* ── Montant en vitrine et exemple chiffré ─────────────────────────────── */
+/* ── Montant en vitrine ────────────────────────────────────────────────── */
 
 /** Toutes les valeurs qu'une forme de calcul peut produire, à multiplicateur près. */
 function valeurs(calcul: Calcul): number[] {
@@ -258,45 +258,6 @@ function conditionDuMax(calcul: Calcul, max: number): string | undefined {
     return Object.keys(table.valeurs).find((k) => table.valeurs[k] === max);
   }
   return undefined;
-}
-
-export interface Exemple {
-  /** La saisie complète, décrite en clair : « 100 m² en zone H1 ». */
-  hypothese: string;
-  kwhCumac: number;
-}
-
-/**
- * L'exemple chiffré rendu sous la grille : une saisie plausible, et son résultat.
- *
- * ⚠️ IL PASSE PAR `evalue()`, comme le simulateur. Un exemple calculé à la main dans le
- * gabarit finirait par contredire la grille imprimée juste au-dessus.
- */
-export function exemple(calcul: Calcul, quantiteType = 100): Exemple | null {
-  const saisie: Saisie = {};
-  let quantite = '';
-  const choix: string[] = [];
-
-  for (const champ of champs(calcul)) {
-    if (champ.nature === 'nombre') {
-      saisie[champ.id] = String(quantiteType);
-      quantite = `${quantiteType} ${champ.unite ?? ''}`.trim();
-    } else {
-      // La première valeur de chaque liste : c'est celle du haut de la grille officielle,
-      // donc celle que le lecteur a sous les yeux en lisant l'exemple.
-      const valeur = champ.valeurs?.[0];
-      if (!valeur) return null;
-      saisie[champ.id] = valeur;
-      choix.push(`${champ.libelle.toLowerCase()} ${valeur}`);
-    }
-  }
-
-  const { kwhCumac } = evalue(calcul, saisie);
-  if (kwhCumac === null) return null;
-
-  const liste = choix.join(', ');
-  const hypothese = quantite && liste ? `${quantite} en ${liste}` : quantite || liste;
-  return { hypothese, kwhCumac };
 }
 
 /** Ce à quoi le montant se rapporte : « kWh cumac », « kWh cumac / m² »… */

@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { BoutonModale } from './Modales';
 import type { SectionFiche } from './PageFiche';
-import { LIBELLE_NATURE, dateMajDe, documentsEnVigueur, type Fiche } from '@/lib/fiches';
+import { dateMajDe, type Fiche } from '@/lib/fiches';
+import { organismesDe } from '@/lib/sources';
 import { url } from '@/lib/routes';
 import { dateFr } from '@/lib/dates';
 
@@ -61,22 +62,25 @@ export default function FicheRail({ fiche, sections }: { fiche: Fiche; sections:
  */
 export function FicheSources({ fiche, enPied = false }: { fiche: Fiche; enPied?: boolean }) {
   const maj = dateMajDe(fiche);
-  const documents = documentsEnVigueur(fiche);
+  const organismes = organismesDe(fiche);
 
   return (
     <div className={enPied ? 'sources-pied' : 'rail-bloc rail-bloc-sources'}>
       <div className="rail-surtitre">Sources</div>
-      <ul className="rail-sources">
-        {documents.map((d) => (
-          <li key={`${d.nature}-${d.version}`}>
-            {LIBELLE_NATURE[d.nature]}, version {d.version}, applicable depuis le {dateFr(d.dateEffet)}.
-          </li>
+      {/* ⛔ PLUS DE LISTE DE DOCUMENTS ICI. Les versions et leurs dates sont déjà dans
+          l'encadré de synthèse et dans la section « Versions » : les répéter allongeait le
+          bloc sans rien apprendre, et noyait la mention qui compte, celle du dessous. */}
+      <p className="rail-organismes">
+        {organismes.map((o, i) => (
+          <span key={o.nom}>
+            {i > 0 && <span aria-hidden="true"> · </span>}
+            <a href={o.url} target="_blank" rel="noopener noreferrer">{o.nom}</a>
+          </span>
         ))}
-      </ul>
-      {maj && <p className="rail-maj">Page mise à jour le {dateFr(maj)}.</p>}
+      </p>
+      {maj && <p className="rail-maj">Mise à jour le {dateFr(maj)}.</p>}
       <p className="rail-avertissement">
-        Informations données à titre indicatif, à partir des fiches d’opérations standardisées
-        publiées. Elles ne remplacent pas les textes officiels, qui font seuls foi.
+        Informations indicatives ; les textes officiels font seuls foi.
       </p>
     </div>
   );

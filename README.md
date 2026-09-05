@@ -160,13 +160,32 @@ Rendu aujourd'hui pour **BAR-EN-101**, la seule fiche dont le détail est import
 5. Justificatifs · 6. Durée de vie · 7. Coup de pouce · 8. Versions ·
 9. **Téléchargement** · 10. Jumelles · 11. Complémentaires · 12. CTA de clôture
 
-- Le CTA est **juste sous le montant** : c'est le pic d'intention, le moment où quelqu'un
-  vient de voir ce que ça rapporte.
+- La section 2 dit **le barème, et rien d'autre**. Ni exemple chiffré ni appel à l'action
+  sous la grille : le calcul appartient au simulateur, et l'appel à l'action est porté par la
+  bande latérale, visible tout du long. Trois blocs empilés sous le tableau repoussaient les
+  conditions d'éligibilité hors de l'écran, alors que ce sont elles qu'on lit juste après un
+  montant.
 - Le téléchargement est **en bas** : c'est une sortie. Le remonter, c'est faire partir le
   visiteur avec un PDF au lieu d'une demande. L'ancre « Télécharger la fiche ↓ » de l'encadré
-  y mène en un clic, et le défilement traverse le CTA au passage.
+  y mène en un clic.
 
 ⛔ Ne pas remonter la section 9 pour « rendre les documents plus accessibles ».
+
+### La bande latérale
+
+Trois blocs : appel à l'action en accent, sommaire, sources. Collée sous l'en-tête, masquée
+sous 1120px.
+
+⚠️ **Le sommaire et les sections sortent de la même liste.** Une table des matières écrite à
+part annoncerait tôt ou tard une section absente — le nombre de sections varie de six à douze.
+
+⚠️ **Les organismes cités suivent le contenu** (`lib/sources.ts`) : le registre n'apparaît que
+sur les fiches dont on affiche un volume engagé. Une source citée pour une donnée absente est
+une source fausse. Le PNCEE et l'ATEE n'y figurent pas : ils instruisent et documentent, ils
+ne sont la provenance d'aucun chiffre de la page.
+
+⚠️ La mention de sources **revient en pied de colonne** quand la bande disparaît : masquer de
+la navigation est une chose, masquer la provenance en serait une autre.
 
 ### Les deux titres couvrent deux vocabulaires
 
@@ -182,10 +201,6 @@ pleins communs aux deux — **non bloquant**, la fiche fournie en partage un («
 
 Cinq formes de calcul (`lib/calcul.ts`), rendues génériquement : forfait, correspondance,
 croisement à n dimensions, produit de tables, variantes conditionnelles.
-
-L'exemple chiffré sous la grille passe par la **même** fonction `evalue()` que le simulateur.
-Un exemple calculé à la main dans le gabarit finirait par contredire la grille imprimée
-au-dessus.
 
 Le cours est un paramètre unique du site, **daté** (`TAUX_CEE` dans `lib/site.ts`) : un prix de
 marché sans date ne veut rien dire. 🚨 Valeur à raccorder à une source réelle.
