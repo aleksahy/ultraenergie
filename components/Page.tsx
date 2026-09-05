@@ -35,17 +35,29 @@ export default function Page({
   );
 }
 
-/** Une section de page, avec un titre et une ancre facultative. */
+/**
+ * Une section de page, avec un titre et une ancre facultative.
+ *
+ * `numero` numérote le titre quand la page tient un sommaire : le repère visuel relie la
+ * section à sa ligne dans la bande latérale. Il est décoratif — `aria-hidden` — parce qu'une
+ * synthèse vocale qui lit « zéro trois Conditions d'éligibilité » n'apprend rien de plus.
+ */
 export function Section({
-  titre, id, children,
+  titre, id, numero, children,
 }: {
   titre: string;
   id?: string;
+  numero?: number;
   children: ReactNode;
 }) {
   return (
     <section className="page-section" id={id}>
-      <h2 className="page-section-titre">{titre}</h2>
+      <h2 className="page-section-titre">
+        {numero !== undefined && (
+          <span className="page-section-numero" aria-hidden="true">{String(numero).padStart(2, '0')}</span>
+        )}
+        {titre}
+      </h2>
       {children}
     </section>
   );

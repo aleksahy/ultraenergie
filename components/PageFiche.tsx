@@ -5,6 +5,7 @@ import RetourParent from '@/components/RetourParent';
 import ListeLiens from '@/components/ListeLiens';
 import GrilleCalcul from '@/components/GrilleCalcul';
 import FicheSynthese from '@/components/FicheSynthese';
+import FicheRail from '@/components/FicheRail';
 import { DocumentsEnVigueur, HistoriqueVersions } from '@/components/FicheDocuments';
 import Terme from '@/components/Terme';
 import { BoutonModale } from '@/components/Modales';
@@ -36,25 +37,24 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
   const complementaires = fiche.voisines ?? liees.filter((f) => !fiche.jumelles.includes(f.code)).map((f) => f.code);
 
   const chiffre = exemple(fiche.calcul);
-  const documents = fiche.documents.length > 0;
 
-  return (
-    <>
-      <FilAriane chemin={url.fiche(fiche.secteur, fiche.code)} />
-
-      <main className="page page-fiche">
-        <RetourParent chemin={url.fiche(fiche.secteur, fiche.code)} />
-        <h1 className="page-titre">{fiche.code} — {fiche.h1Edite}</h1>
-
-        {fiche.denomination && <p className="page-chapo">{fiche.denomination}</p>}
-
-        {/* 1 — Encadré de synthèse. Le titre en fait une section repérable dans le plan de
-            la page, au même titre que les douze H2 qui suivent. */}
-        <h2 className="synthese-titre">La fiche en bref</h2>
-        <FicheSynthese fiche={fiche} />
-
-        {/* 2 — Montant, puis le CTA */}
-        <Section titre={`Quel montant de prime pour ${fiche.code} ?`} id="montant">
+  /* ⚠️ UNE SEULE LISTE POUR LE RENDU ET LE SOMMAIRE. Le nombre de sections varie de six à
+     douze selon la matière : une table des matières construite à part finirait par annoncer
+     une section absente, ou par en oublier une. `court` est le libellé de la bande latérale,
+     où « Quel montant de prime pour BAR-EN-101 ? » ne tiendrait pas. */
+  const sections: SectionFiche[] = [
+    {
+      id: 'bref',
+      titre: 'La fiche en bref',
+      court: 'La fiche en bref',
+      contenu: <FicheSynthese fiche={fiche} />,
+    },
+    {
+      id: 'montant',
+      titre: `Quel montant de prime pour ${fiche.code} ?`,
+      court: 'Montant de la prime',
+      contenu: (
+        <>
           <p className="page-texte">
             Le barème donne le forfait en <Terme slug="kwh-cumac">kWh cumac</Terme> retenu par la
             fiche{estParZone(fiche) && <> selon la <Terme slug="zone-climatique">zone climatique</Terme></>}.
@@ -71,115 +71,185 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
             </p>
           )}
 
-          <p className="mention">
-            Montant indicatif, sous réserve de validation du dossier.
-          </p>
+          <p className="mention">Montant indicatif, sous réserve de validation du dossier.</p>
 
           {/* ⚠️ LE PIC D'INTENTION EST ICI, pas en bas de page. */}
           <Link className="pilule pilule-accent" href={`${url.simulateur}?fiche=${fiche.code.toLowerCase()}`}>
             Estimer précisément ma prime →
           </Link>
-        </Section>
+        </>
+      ),
+    },
+  ];
 
-        {/* 3 — §1, conditionnelle */}
-        {fiche.secteurApplication && (
-          <Section titre="Qui peut en bénéficier ?" id="beneficiaires">
-            <p className="page-texte">{fiche.secteurApplication}</p>
-          </Section>
-        )}
+  if (fiche.secteurApplication) {
+    sections.push({
+      id: 'beneficiaires',
+      titre: 'Qui peut en bénéficier ?',
+      court: 'Bénéficiaires',
+      contenu: <p className="page-texte">{fiche.secteurApplication}</p>,
+    });
+  }
 
-        {/* 4 — §3, conditionnelle */}
-        {fiche.conditions && (
-          <Section titre="Conditions d’éligibilité" id="conditions">
-            <dl className="conditions">
-              {fiche.conditions.map((c) => (
-                <div key={c.titre}>
-                  <dt>{c.titre}</dt>
-                  <dd>{c.texte}</dd>
-                </div>
-              ))}
-            </dl>
-          </Section>
-        )}
+  if (fiche.conditions) {
+    sections.push({
+      id: 'conditions',
+      titre: 'Conditions d’éligibilité',
+      court: 'Conditions d’éligibilité',
+      contenu: (
+        <dl className="conditions">
+          {fiche.conditions.map((c) => (
+            <div key={c.titre}>
+              <dt>{c.titre}</dt>
+              <dd>{c.texte}</dd>
+            </div>
+          ))}
+        </dl>
+      ),
+    });
+  }
 
-        {/* 5 — Justificatifs, conditionnelle */}
-        {fiche.justificatifs && (
-          <Section titre="Justificatifs et attestation sur l’honneur" id="justificatifs">
-            <p className="page-texte">La preuve de réalisation mentionne :</p>
-            <ul className="liste-puces">
-              {fiche.justificatifs.map((j) => <li key={j}>{j}</li>)}
-            </ul>
-          </Section>
-        )}
+  if (fiche.justificatifs) {
+    sections.push({
+      id: 'justificatifs',
+      titre: 'Justificatifs et attestation sur l’honneur',
+      court: 'Justificatifs',
+      contenu: (
+        <>
+          <p className="page-texte">La preuve de réalisation mentionne :</p>
+          <ul className="liste-puces">
+            {fiche.justificatifs.map((j) => <li key={j}>{j}</li>)}
+          </ul>
+        </>
+      ),
+    });
+  }
 
-        {/* 6 — Durée de vie */}
-        <Section titre="Durée de vie conventionnelle" id="duree-de-vie">
-          {fiche.dureeVie.length === 1 ? (
-            <p className="page-texte">
-              La <Terme slug="duree-de-vie-conventionnelle">durée de vie conventionnelle</Terme>{' '}
-              retenue par la fiche {fiche.code} est de <strong>{fiche.dureeVie[0].valeurAnnees} ans</strong>.
-            </p>
-          ) : (
-            <dl className="conditions">
-              {fiche.dureeVie.map((d) => (
-                <div key={d.condition}>
-                  <dt>{d.valeurAnnees} ans</dt>
-                  <dd>{d.condition}</dd>
-                </div>
-              ))}
-            </dl>
-          )}
-        </Section>
+  sections.push({
+    id: 'duree-de-vie',
+    titre: 'Durée de vie conventionnelle',
+    court: 'Durée de vie',
+    contenu: fiche.dureeVie.length === 1 ? (
+      <p className="page-texte">
+        La <Terme slug="duree-de-vie-conventionnelle">durée de vie conventionnelle</Terme>{' '}
+        retenue par la fiche {fiche.code} est de <strong>{fiche.dureeVie[0].valeurAnnees} ans</strong>.
+      </p>
+    ) : (
+      <dl className="conditions">
+        {fiche.dureeVie.map((d) => (
+          <div key={d.condition}>
+            <dt>{d.valeurAnnees} ans</dt>
+            <dd>{d.condition}</dd>
+          </div>
+        ))}
+      </dl>
+    ),
+  });
 
-        {/* 7 — Coup de pouce, conditionnelle */}
-        {fiche.coupDePouce && (
-          <Section titre={`${fiche.code} et le Coup de pouce`} id="coup-de-pouce">
-            <p className="page-texte"><strong>{fiche.coupDePouce.nom}</strong></p>
-            <p className="page-texte">{fiche.coupDePouce.texte}</p>
-          </Section>
-        )}
+  if (fiche.coupDePouce) {
+    sections.push({
+      id: 'coup-de-pouce',
+      titre: `${fiche.code} et le Coup de pouce`,
+      court: 'Coup de pouce',
+      contenu: (
+        <>
+          <p className="page-texte"><strong>{fiche.coupDePouce.nom}</strong></p>
+          <p className="page-texte">{fiche.coupDePouce.texte}</p>
+        </>
+      ),
+    });
+  }
 
-        {/* 8 — Versions */}
-        <Section titre="Versions et dates d’application" id="versions">
-          <HistoriqueVersions fiche={fiche} />
-        </Section>
+  sections.push({
+    id: 'versions',
+    titre: 'Versions et dates d’application',
+    court: 'Versions',
+    contenu: <HistoriqueVersions fiche={fiche} />,
+  });
 
-        {/* 9 — Téléchargement. Une sortie : elle reste après le CTA. */}
-        {documents && (
-          <Section titre={`Télécharger la fiche ${fiche.code} et ses annexes`} id="documents">
-            <DocumentsEnVigueur fiche={fiche} />
-          </Section>
-        )}
+  /* Le téléchargement reste APRÈS le CTA : c'est une sortie. L'ancre de l'encadré y mène en
+     un clic, et le défilement traverse l'appel à l'action au passage. */
+  if (fiche.documents.length > 0) {
+    sections.push({
+      id: 'documents',
+      titre: `Télécharger la fiche ${fiche.code} et ses annexes`,
+      court: 'Téléchargement',
+      contenu: <DocumentsEnVigueur fiche={fiche} />,
+    });
+  }
 
-        {/* 10 — Jumelles, conditionnelle. Le titre porte les codes : « à ne pas confondre »
-            sans dire avec quoi n'apprend rien à qui parcourt les intertitres. */}
-        {jumelles.length > 0 && (
-          <Section titre={`À ne pas confondre avec ${jumelles.join(', ')}`} id="jumelles">
-            {fiche.noteJumelles && <p className="page-texte">{fiche.noteJumelles}</p>}
-            <ListeFichesLiees codes={jumelles} />
-          </Section>
-        )}
+  if (jumelles.length > 0) {
+    sections.push({
+      id: 'jumelles',
+      titre: `À ne pas confondre avec ${jumelles.join(', ')}`,
+      court: 'À ne pas confondre',
+      contenu: (
+        <>
+          {fiche.noteJumelles && <p className="page-texte">{fiche.noteJumelles}</p>}
+          <ListeFichesLiees codes={jumelles} />
+        </>
+      ),
+    });
+  }
 
-        {/* 11 — Voisines */}
-        {complementaires.length > 0 && (
-          <Section titre={`Opérations complémentaires en ${secteur.label.toLowerCase()}`} id="complementaires">
-            <ListeFichesLiees codes={complementaires} />
-          </Section>
-        )}
+  if (complementaires.length > 0) {
+    sections.push({
+      id: 'complementaires',
+      titre: `Opérations complémentaires en ${secteur.label.toLowerCase()}`,
+      court: 'Opérations complémentaires',
+      contenu: <ListeFichesLiees codes={complementaires} />,
+    });
+  }
 
-        {/* 12 — Appel à l'action de clôture. Le code part avec la demande. */}
-        <Section titre={`Faire valoriser une opération ${fiche.code}`} id="valoriser">
-          <p className="page-texte">
-            Nous mettons plusieurs obligés en concurrence sur votre dossier et vous
-            transmettons l’engagement de prime avant la signature du devis.
-          </p>
-          <BoutonModale modale="estimation" contexte={`Fiche ${fiche.code}`} className="pilule pilule-accent">
-            Faire valoriser {fiche.code} →
-          </BoutonModale>
-        </Section>
+  sections.push({
+    id: 'valoriser',
+    titre: `Faire valoriser une opération ${fiche.code}`,
+    court: 'Faire valoriser',
+    contenu: (
+      <>
+        <p className="page-texte">
+          Nous mettons plusieurs obligés en concurrence sur votre dossier et vous transmettons
+          l’engagement de prime avant la signature du devis.
+        </p>
+        <BoutonModale modale="estimation" contexte={`Fiche ${fiche.code}`} className="pilule pilule-accent">
+          Faire valoriser {fiche.code} →
+        </BoutonModale>
+      </>
+    ),
+  });
+
+  return (
+    <>
+      <FilAriane chemin={url.fiche(fiche.secteur, fiche.code)} />
+
+      <main className="page page-fiche">
+        <RetourParent chemin={url.fiche(fiche.secteur, fiche.code)} />
+        <h1 className="page-titre">{fiche.code} — {fiche.h1Edite}</h1>
+        {fiche.denomination && <p className="page-chapo">{fiche.denomination}</p>}
+
+        <div className="fiche-corps">
+          <div className="fiche-colonne">
+            {sections.map((s, i) => (
+              <Section key={s.id} id={s.id} titre={s.titre} numero={i + 1}>
+                {s.contenu}
+              </Section>
+            ))}
+          </div>
+
+          <FicheRail code={fiche.code} sections={sections} />
+        </div>
       </main>
     </>
   );
+}
+
+/** Une section de page de fiche : rendue dans le corps, listée dans la bande latérale. */
+export interface SectionFiche {
+  id: string;
+  titre: string;
+  /** Libellé court, pour le sommaire de la bande latérale. */
+  court: string;
+  contenu: React.ReactNode;
 }
 
 /**

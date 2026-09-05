@@ -707,6 +707,53 @@ select.champ { appearance: auto; }
 .ancres a:hover { border-color: var(--accent); color: var(--accent); }
 
 
+/* ── Page de fiche : corps et bande latérale ─────────────────────────
+   Deux colonnes au-delà de 1120px, la bande collée en haut pendant le défilement. */
+
+.fiche-corps { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 56px; align-items: start; }
+.fiche-colonne { min-width: 0; }
+.fiche-rail {
+  position: sticky;
+  /* En-tête collant (~74px) plus une respiration : la bande s'arrête juste dessous. */
+  top: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.rail-bloc { border: 1px solid var(--ligne); border-radius: var(--rayon-carte); padding: 20px; }
+.rail-surtitre {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--texte-4);
+  margin-bottom: 12px;
+}
+.rail-bloc-action { background: var(--encre); border-color: var(--encre); }
+.rail-bloc-action .rail-surtitre { color: var(--blanc); opacity: 0.55; }
+.rail-accroche { font-size: 14px; line-height: 1.5; color: var(--blanc); margin-bottom: 16px; }
+.rail-pilule { width: 100%; padding: 12px 16px; font-size: 14px; }
+.rail-pilule + .rail-pilule { margin-top: 8px; }
+
+.rail-sommaire { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.rail-sommaire a {
+  display: flex;
+  gap: 10px;
+  padding: 7px 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--texte-2);
+}
+.rail-sommaire a:hover { color: var(--accent); }
+.rail-numero { font-variant-numeric: tabular-nums; color: var(--texte-4); flex: none; }
+.rail-sommaire a:hover .rail-numero { color: var(--accent); }
+
+/* Le numéro relie la section à sa ligne du sommaire. */
+.page-section-numero { color: var(--texte-4); font-variant-numeric: tabular-nums; margin-right: 12px; }
+
+/* La première section suit le chapô : elle n'a pas besoin de la marge qui sépare les autres. */
+.page-fiche .page-section:first-child { margin-top: 32px; }
+
 /* ── Liste des fiches d'un hub ───────────────────────────────────────
    Vingt-cinq codes sous une même famille : des cartes pleine taille feraient une page qu'on
    parcourt au défilement plutôt qu'à l'œil. Entrées compactes, en colonnes. */
@@ -756,17 +803,12 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
   color: var(--encre);
 }
 
-.synthese-titre { font-size: 20px; font-weight: 700; margin: 40px 0 0; }
-/* Le titre colle à l'encadré qu'il annonce : la marge haute de `.synthese` disparaît quand
-   elle suit son titre, sinon les deux flottent séparément. */
-.synthese-titre + .synthese { margin-top: 14px; }
-
 /* L'encadré de synthèse : ce qu'on vient chercher en premier, en lignes plutôt qu'en cases.
    Les lignes sont de longueurs très inégales (« 30 ans » contre « 1 700 kWh cumac/m² en zone
    H1 ») : en cases de largeur égale, la moitié respirait dans le vide et l'autre passait à la
    ligne. */
 .synthese {
-  margin: 32px 0 0;
+  margin: 0;
   padding: 4px 26px 22px;
   border: 1px solid var(--ligne);
   border-radius: var(--rayon-carte);
@@ -924,6 +966,11 @@ a.document:hover .document-nom { color: var(--accent); }
    redéfinis sur `:root` : tous les conteneurs les lisent, donc TOUT se réaligne sur le même
    bord gauche d'un coup, y compris les cartes de profil et les étapes, qui perdent ici leur
    centrage et leur largeur maximale. */
+@media (max-width: 1119px) {
+  .fiche-corps { grid-template-columns: 1fr; }
+  .fiche-rail { display: none; }
+}
+
 @media (min-width: 900px) and (max-width: 1120px) {
   .liste-liens-trois { grid-template-columns: repeat(2, 1fr); }
 }
