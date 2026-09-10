@@ -17,3 +17,16 @@
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
+
+# Les adresses `*.pages.dev` ne doivent JAMAIS être indexées : ce sont des adresses de
+# recette, et le même contenu sera servi sur ultraenergie.fr. Sans cet en-tête, Google
+# indexerait le pages.dev avant même que le vrai domaine existe, puis le garderait en
+# doublon. Cloudflare pose `noindex` de lui-même sur les preview deployments (branches
+# autres que `main`), mais PAS sur `<projet>.pages.dev`, qui est la production du projet.
+# `:project` et `:version` sont des jokers Cloudflare, à laisser tels quels.
+# Le domaine ultraenergie.fr n'est pas concerné : il reste indexable sans rien retoucher.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
