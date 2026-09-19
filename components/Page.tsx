@@ -9,11 +9,13 @@ import FilAriane from './FilAriane';
  * refaire les URL.
  */
 export default function Page({
-  chemin, titre, chapo, children,
+  chemin, titre, chapo, surtitre, children,
 }: {
   chemin: string;
   titre: string;
   chapo?: string;
+  /** Le libellé en capitales au-dessus du titre (« Syndics et copropriétés »). */
+  surtitre?: string;
   children?: ReactNode;
 }) {
   return (
@@ -25,6 +27,7 @@ export default function Page({
       <main className="page">
         {/* Pas de lien « Retour à … » sous le fil d'Ariane (retiré le 19/09/2026) : le fil
             lie déjà chaque parent, le lien répétait sa dernière miette en plus gros. */}
+        {surtitre && <div className="surtitre page-surtitre">{surtitre}</div>}
         <h1 className="page-titre">{titre}</h1>
         {chapo && <p className="page-chapo">{chapo}</p>}
         {children}

@@ -127,6 +127,21 @@ Deux contrôles au build, éprouvés en falsifiant un code :
 | Fiche | son hub (par le fil d'Ariane) · 6 liens : jumelles d'abord, voisines d'usage ensuite |
 
 
+## Les pages « Pour qui » et « Partenaires »
+
+Sept pages argumentaires, un gabarit : `components/PageArgumentaire.tsx`, alimenté par
+`lib/argumentaires.ts` (un objet par slug). Ordre de lecture : introduction en deux colonnes
+avec un schéma SVG (`components/Schemas.tsx`, un dessin par page, deux tons, `currentColor`
+et `.schema-accent`), arguments (icônes `IconeArgument`), étapes (`ListeEtapes`, partagé avec
+l'accueil), encadré de la règle à ne pas manquer, fiches clés (codes du catalogue, liées si
+elles ont une page, refusées au build si le code n'existe pas), FAQ (`ListeFaq`, partagé
+avec l'accueil), appel à l'action en accent, liens vers les pages sœurs.
+
+⛔ **Aucune promesse chiffrée dans ces pages** : ni délai de paiement, ni taux de prime, ni
+« montant garanti ». Rien ne les documente à ce jour. Ce qui est affirmé du dispositif vient
+des textes ; ce qui est affirmé de l'offre est ce qu'un mandataire indépendant fait par
+construction (mise en concurrence, montage et dépôt, aucune obligation portée).
+
 ## Le catalogue
 
 216 fiches, importées du tableur fourni, et leur détail importé des PDF officiels :

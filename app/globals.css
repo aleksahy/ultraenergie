@@ -909,6 +909,53 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
 .mention { max-width: 760px; font-size: 13px; color: var(--texte-3); }
 .page-section .pilule { margin-top: 4px; }
 
+/* ── Pages argumentaires (« Pour qui », « Partenaires ») ─────────────── */
+
+.page-surtitre { margin-bottom: 14px; }
+/* L'intro en deux colonnes : la prose à gauche, le schéma à droite, comme le héros. */
+.argu-intro { display: flex; flex-wrap: wrap; gap: 48px 64px; align-items: center; margin-top: 8px; }
+.argu-prose { flex: 1 1 440px; min-width: 300px; }
+.argu-prose .page-texte { font-size: 16px; }
+.argu-schema { flex: 1 1 360px; min-width: 280px; max-width: 460px; }
+.schema { display: block; width: 100%; height: auto; color: var(--encre); }
+.schema-accent { stroke: var(--accent); }
+.schema-accent[fill='currentColor'] { fill: var(--accent); }
+.schema-texte { font-family: inherit; font-size: 12px; font-weight: 500; fill: var(--texte-2); stroke: none; }
+.schema-texte-accent { fill: var(--accent); font-weight: 700; }
+
+.arguments { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+.argument { border: 1px solid var(--ligne); border-radius: var(--rayon-carte); padding: 26px 24px; }
+.ico-argument { display: block; width: 36px; height: 36px; color: var(--accent); margin-bottom: 16px; }
+.argument-titre { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.argument-texte { font-size: 14px; line-height: 1.6; color: var(--texte-2); }
+
+/* La règle à ne pas manquer : un encadré à bord d'accent, pas un bandeau d'alerte. */
+.regle {
+  margin-top: 48px;
+  padding: 24px 28px;
+  border-left: 4px solid var(--accent);
+  background: var(--survol);
+  border-radius: 0 var(--rayon-champ) var(--rayon-champ) 0;
+  max-width: 760px;
+}
+.regle-titre { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.regle-texte { font-size: 15px; line-height: 1.65; color: var(--texte-2); }
+
+/* L'appel à l'action de la page, dans la couleur d'accent, texte blanc. */
+.appel-page {
+  margin-top: 56px;
+  padding: 48px 32px;
+  background: var(--accent);
+  color: var(--sur-accent);
+  border-radius: var(--rayon-carte);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+.appel-page h2 { font-size: clamp(22px, 3vw, 30px); line-height: 1.2; font-weight: 400; margin: 0; max-width: 640px; }
+
 /* Simulateur */
 .simulateur {
   margin-top: 8px;

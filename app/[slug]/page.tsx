@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PUBLICS, PARTENAIRES } from '@/lib/publics';
+import { argumentaireDe } from '@/lib/argumentaires';
 import PagePublic from '@/components/PagePublic';
 import PagePartenaire from '@/components/PagePartenaire';
 
@@ -38,7 +39,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const cible = resoudre(slug);
   if (!cible) return {};
-  return { title: `${cible.label} | Ultra Énergie` };
+  // Le <title> et la description viennent de l'argumentaire, pas du libellé de menu :
+  // « La prime CEE pour les travaux de copropriété » dit plus que « Syndics & copropriétés ».
+  const a = argumentaireDe(slug);
+  return {
+    title: `${a?.titre ?? cible.label} | Ultra Énergie`,
+    description: a?.chapo,
+  };
 }
 
 export default async function PagePremierNiveau({ params }: { params: Promise<{ slug: string }> }) {
