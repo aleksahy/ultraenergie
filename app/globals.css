@@ -969,7 +969,8 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
 /* ── Gabarit « Partenaires » ─────────────────────────────────────── */
 
 /* Les profils : des étiquettes sur fond doux, avec un « Pour » en tête, pas des filtres. */
-.pastilles { list-style: none; margin: 0 0 8px; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pastilles { margin: 0 0 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pastilles-liste { list-style: none; margin: 0; padding: 0; display: contents; }
 .pastilles-label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texte-3); margin-right: 4px; }
 .pastille { padding: 6px 12px; background: var(--survol); border-radius: 999px; font-size: 13px; font-weight: 500; color: var(--texte-2); }
 
@@ -1108,7 +1109,9 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
   .colonnes-prose .page-texte:first-child { grid-row: auto; }
   /* La bande sort des gouttières : le dessin gagne 40px, et ses libellés 11px restent lisibles. */
   .bande-schema { grid-template-columns: 1fr; margin-left: calc(-1 * var(--gouttiere)); margin-right: calc(-1 * var(--gouttiere)); border-radius: 0; padding: 24px 8px; }
-  .bande-schema-legende { padding: 0 8px; }
+  .bande-schema-legende { padding: 0 12px; }
+  .bande-schema .schema { justify-self: stretch; max-width: none; }
+  .page .etape { flex: 1 1 100%; }
   :root {
     --gouttiere: 20px;
     --espace-section: 64px;

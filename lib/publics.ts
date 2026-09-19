@@ -10,5 +10,5 @@ export const PUBLICS = [
 export const PARTENAIRES = [
   { slug: 'obliges', label: 'Obligés' },
   { slug: 'installateurs', label: 'Installateurs' },
-  { slug: 'apporteurs-affaires', label: "Apporteurs d'affaires" },
+  { slug: 'apporteurs-affaires', label: 'Apporteurs d’affaires' },
 ];

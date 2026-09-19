@@ -236,7 +236,6 @@ function Chronologie() {
       <path d="M129 244l12 12M141 244l-12 12" className="schema-accent" strokeWidth={2} />
       <T x={135} y={230} petit>Devis signé</T>
       <T x={220} y={230} petit>Engagement</T>
-      <T x={220} y={288}>Dans cet ordre, l’opération est inéligible</T>
     </svg>
   );
 }
@@ -248,8 +247,7 @@ function Reseau() {
     { x: 64, y: 218, l: 'Mainteneur' }, { x: 376, y: 218, l: 'Distributeur' },
   ];
   return (
-    <svg viewBox="0 0 440 300" className="schema" aria-hidden="true" {...COMMUN}>
-      <Defs />
+    <svg viewBox="0 0 440 250" className="schema" aria-hidden="true" {...COMMUN}>
       {noeuds.map((n) => {
         const dx = 220 - n.x, dy = 140 - n.y, d = Math.hypot(dx, dy);
         const x1 = n.x + (dx / d) * 48, y1 = n.y + (dy / d) * 48;
@@ -265,9 +263,6 @@ function Reseau() {
       <circle cx="220" cy="140" r="44" className="schema-accent" strokeWidth={2.2} />
       <T x={220} y={136} accent>Projet</T>
       <T x={220} y={152} accent>signalé</T>
-      <path d="M220 184 V228" className="schema-accent" markerEnd="url(#pointe)" />
-      <rect x="120" y="240" width="200" height="40" rx="20" />
-      <T x={220} y={265}>Prime au client, commission à vous</T>
     </svg>
   );
 }

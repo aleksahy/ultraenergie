@@ -4,7 +4,7 @@
  * ⚠️ TOUT CE QUI EST AFFIRMÉ ICI DOIT ÊTRE VRAI DU DISPOSITIF OU DE L'OFFRE D'ULTRA ÉNERGIE.
  * Pas de délai de paiement chiffré, pas de taux de prime, pas de « montant garanti » : ces
  * promesses engagent, et rien ne les documente à ce jour. Ce qui est dit du dispositif
- * (rôle actif, éligibles, bonification précarité, cumul) vient des textes ; ce qui est dit de
+ * (rôle actif, éligibles, part précarité, cumul) vient des textes ; ce qui est dit de
  * l'offre est ce qu'un mandataire indépendant fait par construction : mettre plusieurs
  * acheteurs en concurrence, monter et déposer le dossier, ne porter aucune obligation.
  *
@@ -70,7 +70,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
       'Isolation, chaufferie, réseau de chaleur, ventilation : les travaux votés en assemblée générale ouvrent droit à une prime que nous faisons chiffrer par plusieurs acheteurs.',
     intro: [
       'Ces travaux génèrent des économies d’énergie certifiables. Elles ont une valeur pour les vendeurs d’énergie soumis à obligation, les obligés, et leurs délégataires : en échange, ils versent une prime à la copropriété. C’est la prime CEE.',
-      'Le montant dépend de l’opération, de la surface ou de la puissance, et de l’acheteur retenu. Ultra Énergie consulte plusieurs obligés sur chaque dossier et retient l’offre la plus favorable pour la copropriété. Nous ne sommes liés à aucun fournisseur.',
+      'Le montant dépend de l’opération, de la surface ou de la puissance, et de l’acheteur retenu. Ultra Énergie consulte plusieurs obligés sur chaque dossier et retient l’offre la plus favorable pour la copropriété. Nous ne sommes liés à aucun obligé.',
       'Pour le syndic, cela se traduit par une ligne de recette dans le plan de financement, avant le vote, et par un dossier que nous montons et déposons.',
     ],
     schema: 'copropriete',
@@ -142,7 +142,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
     },
     faq: [
       { q: 'Nous sommes éligibles. Pourquoi ne pas valoriser nous-mêmes ?', r: 'Vous le pouvez. Valoriser soi-même suppose un compte sur le registre, d’atteindre le seuil de volume par dossier ou de se regrouper, une équipe pour monter les dossiers dans les délais et une capacité à négocier avec plusieurs acheteurs. Nous apportons tout cela, et notre rémunération porte sur les dossiers aboutis.' },
-      { q: 'Comment la précarité énergétique est-elle justifiée ?', r: 'Par l’occupation du logement : un ménage est en situation de précarité énergétique quand ses revenus sont sous les plafonds de l’Anah, catégorie « très modestes ». Pour un parc social, le conventionnement du logement ou sa gestion par un organisme HLM suffit, et le volume précarité est compté au prorata fixé pour le département. Nous précisons les pièces au cas par cas.' },
+      { q: 'Comment la précarité énergétique est-elle justifiée ?', r: 'Par l’occupation du logement : un ménage est en situation de précarité énergétique quand ses revenus sont sous les plafonds de ressources fixés par arrêté, alignés sur ceux de l’Anah. Pour un parc social, le conventionnement du logement ou sa gestion par un organisme HLM suffit, et le volume précarité est compté au prorata fixé pour le département. Nous précisons les pièces au cas par cas.' },
       { q: 'Peut-on traiter une rénovation globale plutôt qu’opération par opération ?', r: 'Oui, la fiche de rénovation globale d’un bâtiment résidentiel collectif s’applique quand le gain énergétique atteint le seuil requis, avec une étude préalable. Nous comparons les deux voies sur votre programme.' },
       { q: 'Les CEE sont-ils cumulables avec les autres financements ?', r: 'Avec la plupart des prêts et subventions, oui, sous réserve des règles de cumul propres à chaque dispositif. Nous vous signalons les cas où un autre financeur valorise lui-même les CEE.' },
     ],
@@ -167,7 +167,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
       'Les subventions d’investissement se cumulent, sous réserve des règles de chaque financeur.',
     ],
     arguments: [
-      { icone: 'balance', titre: 'La concurrence entre acheteurs', texte: 'Un mandataire indépendant n’est lié à aucun fournisseur d’énergie. Chaque opération est proposée à plusieurs acheteurs, et vous recevez la meilleure offre.' },
+      { icone: 'balance', titre: 'La concurrence entre acheteurs', texte: 'Un mandataire indépendant n’est lié à aucun obligé. Chaque opération est proposée à plusieurs acheteurs, et vous recevez la meilleure offre.' },
       { icone: 'mairie', titre: 'Le bâti public, bien couvert', texte: 'Tertiaire, réseaux, éclairage extérieur : les fiches couvrent la majorité des travaux d’une collectivité, et nous savons lesquelles s’appliquent à chaque projet.' },
       { icone: 'dossier', titre: 'Un dossier calé sur la commande publique', texte: 'Programmation, consultation, signature : nous entrons dès la programmation et suivons le calendrier de votre marché, bâtiment par bâtiment. Vos pièces de marché restent les vôtres.' },
       { icone: 'bouclier', titre: 'La conformité avant le dépôt', texte: 'Chaque pièce est vérifiée avant le dépôt au PNCEE. Un dossier refusé après travaux est une recette perdue pour la collectivité.' },
@@ -239,7 +239,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
 
   obliges: {
     slug: 'obliges',
-    surtitre: 'Obligés et délégataires',
+    surtitre: 'Obligés & délégataires',
     titre: 'Du volume qui passe le contrôle',
     chapo:
       'Ultra Énergie apporte aux obligés et aux délégataires des opérations qualifiées en résidentiel collectif, tertiaire et industrie, avec des dossiers complets, vérifiés avant dépôt.',
@@ -372,7 +372,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
     arguments: [
       { icone: 'euro', titre: 'Une commission par dossier abouti', texte: 'Le contrat de partenariat fixe la commission. Elle est due quand les certificats sont délivrés, sur chaque opération que vous avez apportée.' },
       { icone: 'eclair', titre: 'Un signalement suffit', texte: 'Un projet, un contact, une date prévisionnelle. Nous prenons le relais et vous tenons informé de l’avancement.' },
-      { icone: 'poignee', titre: 'Votre client mieux servi', texte: 'La mise en concurrence des acheteurs donne à votre client une meilleure offre que celle d’un fournisseur unique. Vous lui apportez une recette, pas un vendeur.' },
+      { icone: 'poignee', titre: 'Votre client mieux servi', texte: 'La mise en concurrence des acheteurs donne à votre client une meilleure offre que celle d’un acheteur unique. Vous lui apportez une recette, pas un vendeur.' },
       { icone: 'bouclier', titre: 'Le montage réglementaire est chez nous', texte: 'Le rôle actif, les pièces, le dépôt et les contrôles sont de notre côté. Vous n’avez aucun dossier à monter ; si votre client vous mandate pour signer l’attestation, nous la préparons avec vous.' },
     ],
     etapes: [

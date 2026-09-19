@@ -74,7 +74,7 @@ export default function PagePourQui({ argumentaire: a, chemin, autres }: {
       </Section>
 
       <Section titre="Dans quel ordre">
-        <ol className="chrono">
+        <ol className="chrono" role="list">
           {a.etapes.map((e, i) => (
             <li key={e.titre} className="chrono-etape">
               <div className="chrono-marge">

@@ -34,10 +34,12 @@ export default function PagePartenaire({ slug }: { slug: string; label: string }
   return (
     <Page chemin={url.partenaire(slug)} titre={a.titre} chapo={a.chapo} surtitre={a.surtitre}>
       {a.profils && (
-        <ul className="pastilles" aria-label="À qui s’adresse cette page">
-          <li className="pastilles-label">Pour</li>
-          {a.profils.map((p) => <li key={p} className="pastille">{p}</li>)}
-        </ul>
+        <div className="pastilles">
+          <span className="pastilles-label" id="pastilles-label">Pour</span>
+          <ul className="pastilles-liste" role="list" aria-labelledby="pastilles-label">
+            {a.profils.map((p) => <li key={p} className="pastille">{p}</li>)}
+          </ul>
+        </div>
       )}
 
       <div className="colonnes-prose">
