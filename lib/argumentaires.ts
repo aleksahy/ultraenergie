@@ -21,20 +21,42 @@ export interface Argumentaire {
   chapo: string;
   /** Deux ou trois paragraphes d'introduction, à gauche du schéma. */
   intro: string[];
-  schema: 'copropriete' | 'parc' | 'collectivite' | 'site' | 'flux' | 'chronologie' | 'reseau';
+  schema: 'copropriete' | 'parc' | 'commande-publique' | 'site' | 'entonnoir' | 'chronologie' | 'reseau';
   arguments: { icone: string; titre: string; texte: string }[];
+  /**
+   * Gabarit « Pour qui » : les trois lignes de légende du schéma de financement (travaux,
+   * prime CEE, autres aides). Pas de chiffres : le schéma montre des parts, pas des montants.
+   */
+  financement?: string[];
+  /** Gabarit « Partenaires » : à qui la page s'adresse, en pastilles sous le titre. */
+  profils?: string[];
+  /** Gabarit « Partenaires » : ce que vous faites, ce que nous faisons. */
+  partage?: { vous: string[]; nous: string[] };
+  /** Gabarit « Partenaires » : la phrase-clé du schéma, en HTML dans la bande (le SVG est aria-hidden). */
+  schemaLegende?: string;
   etapes: { icone: string; delai: string; titre: string; desc: string }[];
   /** La règle à ne pas manquer, dans un encadré. */
   regle: { titre: string; texte: string };
   fichesCles?: { titre: string; codes: string[] };
   faq: { q: string; r: string }[];
-  appel: { titre: string; bouton: string; modale: Modale };
+  appel: { titre: string; bouton: string; modale: Modale; note?: string };
 }
 
+/* Pour un bénéficiaire qui n'est pas éligible (copropriété, entreprise) : sans rôle actif
+   antérieur, il n'y a pas de prime, point. */
 const REGLE_ENGAGEMENT = {
   titre: 'L’engagement de prime précède le devis',
   texte:
-    'Le rôle actif et incitatif du dispositif impose que l’offre de prime soit formalisée avant la signature du devis. Un devis signé avant l’engagement rend l’opération inéligible, quelle que soit la qualité des travaux. Parlez-nous du projet dès qu’il est à l’étude.',
+    'Le rôle actif et incitatif du dispositif impose que l’offre de prime soit formalisée avant la signature du devis ou du bon de commande. Un devis signé avant l’engagement rend l’opération inéligible, quelle que soit la qualité des travaux. Parlez-nous du projet dès qu’il est à l’étude.',
+};
+
+/* Pour un éligible (bailleur social, collectivité) : la voie de la prime se ferme de la même
+   façon, mais le dépôt en son nom reste possible, sans rôle actif à prouver. Dire « perdu »
+   à un éligible est faux, et prive Ultra Énergie d'un argument. */
+const REGLE_ENGAGEMENT_ELIGIBLE = {
+  titre: 'L’engagement de prime précède la signature',
+  texte:
+    'Le rôle actif et incitatif impose que l’offre de prime d’un acheteur soit formalisée avant la signature du marché, du bon de commande ou du devis. Un devis signé avant l’engagement ferme la voie de la prime ; il reste alors le dépôt en votre nom, comme éligible, que nous pouvons préparer sous mandat. Parlez-nous du projet dès qu’il est à l’étude.',
 };
 
 export const ARGUMENTAIRES: Record<string, Argumentaire> = {
@@ -42,21 +64,26 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
 
   'syndics-coproprietes': {
     slug: 'syndics-coproprietes',
-    surtitre: 'Syndics et copropriétés',
+    surtitre: 'Syndics & copropriétés',
     titre: 'La prime CEE pour les travaux de copropriété',
     chapo:
-      'Isolation, chaufferie, réseau de chaleur, ventilation : les travaux votés en assemblée générale ouvrent droit à une prime que nous mettons en concurrence pour vous.',
+      'Isolation, chaufferie, réseau de chaleur, ventilation : les travaux votés en assemblée générale ouvrent droit à une prime que nous faisons chiffrer par plusieurs acheteurs.',
     intro: [
-      'Une copropriété qui isole ses combles, remplace sa chaufferie ou se raccorde à un réseau de chaleur génère des certificats d’économies d’énergie. Ces certificats ont une valeur, et ce sont les fournisseurs d’énergie qui l’achètent : c’est la prime CEE.',
+      'Ces travaux génèrent des économies d’énergie certifiables. Elles ont une valeur pour les vendeurs d’énergie soumis à obligation, les obligés, et leurs délégataires : en échange, ils versent une prime à la copropriété. C’est la prime CEE.',
       'Le montant dépend de l’opération, de la surface ou de la puissance, et de l’acheteur retenu. Ultra Énergie consulte plusieurs obligés sur chaque dossier et retient l’offre la plus favorable pour la copropriété. Nous ne sommes liés à aucun fournisseur.',
       'Pour le syndic, cela se traduit par une ligne de recette dans le plan de financement, avant le vote, et par un dossier que nous montons et déposons.',
     ],
     schema: 'copropriete',
+    financement: [
+      'Le coût des travaux est voté en assemblée générale, sur devis.',
+      'La prime CEE vient en déduction : son montant est proposé avant le vote, par l’engagement, sur la base du devis.',
+      'MaPrimeRénov’ Copropriété et les autres aides se cumulent, dans les plafonds applicables, sauf pour les copropriétés fragiles, dont les CEE vont à l’Anah.',
+    ],
     arguments: [
       { icone: 'balance', titre: 'Plusieurs acheteurs en concurrence', texte: 'Chaque dossier est proposé à plusieurs obligés et délégataires. La copropriété reçoit la meilleure offre, pas celle d’un partenaire unique.' },
-      { icone: 'calendrier', titre: 'Une prime connue avant l’assemblée', texte: 'L’engagement de prime est transmis avant le vote des travaux : le montant figure dans la résolution, à côté du devis et des autres aides.' },
+      { icone: 'calendrier', titre: 'Une prime proposée avant l’assemblée', texte: 'L’engagement de prime est transmis avant le vote des travaux : le montant proposé figure dans la résolution, à côté du devis et des autres aides.' },
       { icone: 'dossier', titre: 'Le dossier monté et déposé', texte: 'Attestation sur l’honneur, pièces de l’installateur, preuve du rôle actif : nous rassemblons, vérifions et déposons. Le syndic signe, il ne compile pas.' },
-      { icone: 'cumul', titre: 'Cumulable avec MaPrimeRénov’ Copropriété', texte: 'Par geste, la prime CEE se cumule avec MaPrimeRénov’ Copropriété dans la limite des plafonds d’aides publiques. Nous vous disons ce qui reste cumulable sur votre projet.' },
+      { icone: 'cumul', titre: 'Cumulable avec MaPrimeRénov’ Copropriété', texte: 'MaPrimeRénov’ Copropriété se cumule avec la prime CEE, y compris le Coup de pouce rénovation performante d’un bâtiment collectif, dans la limite d’écrêtement des aides. Cas à part : les copropriétés fragiles ou en difficulté, dont les CEE sont valorisés par l’Anah. Nous vous disons ce qui reste cumulable sur votre projet.' },
     ],
     etapes: [
       { icone: 'loupe', delai: 'À l’étude', titre: 'Vous nous décrivez le projet', desc: 'Audit, devis en cours ou simple intention : nous identifions les fiches d’opérations concernées et estimons le volume de certificats.' },
@@ -72,8 +99,8 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
     faq: [
       { q: 'Faut-il que la copropriété avance la prime ?', r: 'Non. La prime est versée après travaux et dépôt du dossier, selon les termes de l’engagement. Elle vient en déduction du coût total dans le plan de financement, mais les appels de fonds restent ceux votés en assemblée.' },
       { q: 'À quel moment faut-il vous contacter ?', r: 'Dès que le projet est à l’étude, et en tout cas avant la signature du devis. L’idéal est de disposer de l’engagement de prime avant l’assemblée qui vote les travaux, pour que le montant figure dans la résolution.' },
-      { q: 'Un installateur nous propose déjà une prime. Pourquoi passer par vous ?', r: 'Un installateur qui valorise lui-même les CEE est lié à un acheteur et fixe seul le niveau de prime. Nous mettons plusieurs acheteurs en concurrence sur le même dossier, et l’installateur reste celui que vous avez choisi.' },
-      { q: 'Les travaux doivent-ils être réalisés par une entreprise RGE ?', r: 'Pour la plupart des opérations en résidentiel, oui : la fiche l’exige, et l’attestation sur l’honneur le mentionne. Nous vérifions la qualification avant l’engagement.' },
+      { q: 'Un installateur nous propose déjà une prime. Pourquoi passer par vous ?', r: 'Un installateur qui valorise lui-même les CEE est généralement lié à un seul acheteur, dont il répercute l’offre. Nous mettons plusieurs acheteurs en concurrence sur le même dossier, et l’installateur reste celui que vous avez choisi.' },
+      { q: 'Les travaux doivent-ils être réalisés par une entreprise RGE ?', r: 'Pour la plupart des opérations en résidentiel, oui : les textes du dispositif l’exigent, et l’attestation sur l’honneur le mentionne. Nous vérifions la qualification avant l’engagement.' },
       { q: 'Que se passe-t-il si le dossier est refusé ?', r: 'Le refus au contrôle ou à l’instruction annule la délivrance des certificats. C’est pour cela que nous vérifions chaque pièce avant le dépôt, et que nous n’engageons que sur des opérations conformes à la fiche.' },
     ],
     appel: { titre: 'Un projet de travaux en copropriété ?', bouton: 'Estimer la prime de la copropriété →', modale: 'estimation' },
@@ -84,33 +111,38 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
     surtitre: 'Bailleurs sociaux',
     titre: 'Valoriser les CEE d’un parc de logements sociaux',
     chapo:
-      'Réhabilitation, remplacement de chaufferies, rénovation globale : un parc social produit des volumes de certificats importants, bonifiés au titre de la précarité énergétique.',
+      'Réhabilitation, remplacement de chaufferies, rénovation globale : un parc social produit des volumes de certificats importants, en grande partie comptés au titre de l’obligation précarité énergétique.',
     intro: [
       'Les bailleurs sociaux sont éligibles au dispositif : ils peuvent détenir et vendre eux-mêmes leurs certificats. Beaucoup préfèrent confier la valorisation à un tiers, pour ne pas immobiliser une équipe sur le montage des dossiers et sur la vente au meilleur prix.',
       'C’est ce que fait Ultra Énergie : nous identifions les opérations éligibles dans votre programme de travaux, consultons plusieurs acheteurs, montons les dossiers et déposons. Vous gardez la maîtrise d’ouvrage et vos entreprises.',
-      'Les opérations réalisées au bénéfice de ménages modestes relèvent de l’obligation « précarité énergétique », qui bonifie les volumes. Sur un parc social, c’est la règle plus que l’exception.',
+      'Les opérations réalisées au bénéfice de ménages en situation de précarité énergétique relèvent de l’obligation spécifique « précarité » des obligés. Sur un parc social, une part importante du volume, fixée par département, est comptée à ce titre, et ces certificats sont généralement recherchés par les acheteurs.',
     ],
     schema: 'parc',
+    financement: [
+      'Le programme de travaux est financé par le bailleur, ses prêts et ses subventions.',
+      'La prime CEE s’ajoute, opération par opération, avec la part précarité comptée selon le département.',
+      'Les autres financeurs sont vérifiés : certains valorisent eux-mêmes les CEE.',
+    ],
     arguments: [
       { icone: 'balance', titre: 'La meilleure offre sur chaque programme', texte: 'Un programme de réhabilitation est un volume qui intéresse les acheteurs. Nous le mettons en concurrence, opération par opération ou en lot.' },
-      { icone: 'etoile', titre: 'La bonification précarité comptée', texte: 'Les logements occupés par des ménages modestes ouvrent droit à des certificats précarité, mieux valorisés. Nous les identifions et les justifions dans le dossier.' },
+      { icone: 'etoile', titre: 'La part précarité comptée', texte: 'Les logements sociaux ouvrent droit, pour une part fixée par département, à des certificats précarité, que les acheteurs valorisent généralement mieux. Nous les identifions et les justifions dans le dossier.' },
       { icone: 'dossier', titre: 'Un dossier par opération, une seule interface', texte: 'Attestations, factures, preuves de qualification, feuilles de calcul : nous tenons la liste des pièces et relançons les entreprises. Vous avez un interlocuteur.' },
-      { icone: 'bouclier', titre: 'Le contrôle avant le dépôt', texte: 'Les contrôles du PNCEE portent sur un échantillon de chaque dossier. Nous vérifions les pièces avant de déposer, parce qu’un refus après travaux ne se rattrape pas.' },
+      { icone: 'bouclier', titre: 'Le contrôle avant le dépôt', texte: 'Avant le dépôt, un organisme accrédité contrôle un échantillon des opérations du dossier ; après délivrance, le PNCEE peut vérifier n’importe laquelle. Nous vérifions les pièces avant de déposer, parce qu’un refus après travaux ne se rattrape pas.' },
     ],
     etapes: [
       { icone: 'loupe', delai: 'Programmation', titre: 'Revue du programme de travaux', desc: 'Nous lisons votre plan pluriannuel et identifions, opération par opération, les fiches applicables et les volumes attendus.' },
-      { icone: 'echange', delai: 'Avant engagement', titre: 'Consultation et engagement', desc: 'Les acheteurs sont consultés, l’engagement de prime est signé avant les ordres de service ou les devis.' },
+      { icone: 'echange', delai: 'Avant engagement', titre: 'Consultation et engagement', desc: 'Les acheteurs sont consultés, l’engagement de prime est signé avant le marché, le bon de commande ou le devis.' },
       { icone: 'document', delai: 'Chantier', titre: 'Collecte des pièces', desc: 'Nous suivons les entreprises pour obtenir attestations, factures et justificatifs, à mesure que les opérations s’achèvent.' },
-      { icone: 'controle', delai: 'Livraison', titre: 'Dépôt et versement', desc: 'Dépôt au PNCEE dans les délais, suivi de l’instruction et versement au bailleur.' },
+      { icone: 'controle', delai: 'Livraison', titre: 'Dépôt et versement', desc: 'Dépôt au PNCEE dans les douze mois de l’achèvement, suivi de l’instruction et versement au bailleur.' },
     ],
-    regle: REGLE_ENGAGEMENT,
+    regle: REGLE_ENGAGEMENT_ELIGIBLE,
     fichesCles: {
       titre: 'Les opérations les plus courantes sur un parc social',
       codes: ['BAR-EN-101', 'BAR-EN-102', 'BAR-EN-103', 'BAR-TH-177', 'BAR-TH-137', 'BAR-TH-171', 'BAR-TH-161'],
     },
     faq: [
-      { q: 'Nous sommes éligibles. Pourquoi ne pas valoriser nous-mêmes ?', r: 'Vous le pouvez. Valoriser soi-même suppose un compte sur le registre, une équipe pour monter les dossiers dans les délais et une capacité à négocier avec plusieurs acheteurs. Nous apportons ces trois choses, et nous ne sommes rémunérés que sur les dossiers aboutis.' },
-      { q: 'Comment la précarité énergétique est-elle justifiée ?', r: 'Par la nature du logement et l’occupation : les règles distinguent les ménages modestes et très modestes selon les plafonds de ressources en vigueur. Pour un parc social, les conventions et les plafonds de loyers servent de justificatif. Nous précisons les pièces au cas par cas.' },
+      { q: 'Nous sommes éligibles. Pourquoi ne pas valoriser nous-mêmes ?', r: 'Vous le pouvez. Valoriser soi-même suppose un compte sur le registre, d’atteindre le seuil de volume par dossier ou de se regrouper, une équipe pour monter les dossiers dans les délais et une capacité à négocier avec plusieurs acheteurs. Nous apportons tout cela, et notre rémunération porte sur les dossiers aboutis.' },
+      { q: 'Comment la précarité énergétique est-elle justifiée ?', r: 'Par l’occupation du logement : un ménage est en situation de précarité énergétique quand ses revenus sont sous les plafonds de l’Anah, catégorie « très modestes ». Pour un parc social, le conventionnement du logement ou sa gestion par un organisme HLM suffit, et le volume précarité est compté au prorata fixé pour le département. Nous précisons les pièces au cas par cas.' },
       { q: 'Peut-on traiter une rénovation globale plutôt qu’opération par opération ?', r: 'Oui, la fiche de rénovation globale d’un bâtiment résidentiel collectif s’applique quand le gain énergétique atteint le seuil requis, avec une étude préalable. Nous comparons les deux voies sur votre programme.' },
       { q: 'Les CEE sont-ils cumulables avec les autres financements ?', r: 'Avec la plupart des prêts et subventions, oui, sous réserve des règles de cumul propres à chaque dispositif. Nous vous signalons les cas où un autre financeur valorise lui-même les CEE.' },
     ],
@@ -119,7 +151,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
 
   'public-collectivites': {
     slug: 'public-collectivites',
-    surtitre: 'Public et collectivités',
+    surtitre: 'Public & collectivités',
     titre: 'La prime CEE pour les bâtiments et équipements publics',
     chapo:
       'Écoles, gymnases, mairies, éclairage public, réseaux de chaleur : chaque opération d’économies d’énergie de la collectivité génère des certificats à valoriser.',
@@ -128,27 +160,32 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
       'Ultra Énergie prend ce rôle. Nous repérons les opérations éligibles dans votre programme, mettons plusieurs acheteurs en concurrence, montons les dossiers et déposons. Vous gardez vos marchés et vos entreprises.',
       'L’isolation d’une école, la gestion technique d’un gymnase, la rénovation de l’éclairage extérieur ou le raccordement d’un bâtiment à un réseau de chaleur relèvent chacun d’une fiche, avec son forfait.',
     ],
-    schema: 'collectivite',
+    schema: 'commande-publique',
+    financement: [
+      'Le coût des travaux est porté au budget d’investissement de la collectivité, sur marché ou sur devis.',
+      'La prime CEE est une recette de la collectivité, versée après dépôt du dossier.',
+      'Les subventions d’investissement se cumulent, sous réserve des règles de chaque financeur.',
+    ],
     arguments: [
       { icone: 'balance', titre: 'La concurrence entre acheteurs', texte: 'Un mandataire indépendant n’est lié à aucun fournisseur d’énergie. Chaque opération est proposée à plusieurs acheteurs, et vous recevez la meilleure offre.' },
       { icone: 'mairie', titre: 'Le bâti public, bien couvert', texte: 'Tertiaire, réseaux, éclairage extérieur : les fiches couvrent la majorité des travaux d’une collectivité, et nous savons lesquelles s’appliquent à chaque projet.' },
-      { icone: 'dossier', titre: 'Un dossier compatible avec vos marchés', texte: 'L’engagement de prime doit précéder l’engagement des travaux. Nous nous calons sur votre calendrier de commande publique pour que la chronologie soit respectée.' },
+      { icone: 'dossier', titre: 'Un dossier calé sur la commande publique', texte: 'Programmation, consultation, signature : nous entrons dès la programmation et suivons le calendrier de votre marché, bâtiment par bâtiment. Vos pièces de marché restent les vôtres.' },
       { icone: 'bouclier', titre: 'La conformité avant le dépôt', texte: 'Chaque pièce est vérifiée avant le dépôt au PNCEE. Un dossier refusé après travaux est une recette perdue pour la collectivité.' },
     ],
     etapes: [
       { icone: 'loupe', delai: 'Programmation', titre: 'Revue des opérations', desc: 'Nous lisons votre programme de travaux et identifions les fiches applicables, bâtiment par bâtiment.' },
-      { icone: 'echange', delai: 'Avant la commande', titre: 'Engagement de prime', desc: 'Les acheteurs sont consultés et l’engagement est signé avant la notification du marché ou la signature du devis.' },
+      { icone: 'echange', delai: 'Avant signature', titre: 'Engagement de prime', desc: 'Les acheteurs sont consultés et l’engagement est signé avant la signature du marché (acte d’engagement ou bon de commande) ou du devis.' },
       { icone: 'document', delai: 'Travaux', titre: 'Collecte des pièces', desc: 'Attestations, factures, justificatifs techniques : nous suivons les entreprises et vérifions.' },
-      { icone: 'controle', delai: 'Réception', titre: 'Dépôt et versement', desc: 'Dépôt au PNCEE, suivi de l’instruction, versement à la collectivité.' },
+      { icone: 'controle', delai: 'Réception', titre: 'Dépôt et versement', desc: 'Dépôt au PNCEE dans les douze mois de l’achèvement, suivi de l’instruction, versement à la collectivité.' },
     ],
-    regle: REGLE_ENGAGEMENT,
+    regle: REGLE_ENGAGEMENT_ELIGIBLE,
     fichesCles: {
       titre: 'Les opérations les plus courantes pour une collectivité',
-      codes: ['BAT-EN-101', 'BAT-EN-102', 'BAT-TH-116', 'BAT-TH-157', 'RES-EC-104', 'RES-CH-103', 'BAT-EQ-117'],
+      codes: ['BAT-EN-101', 'BAT-EN-102', 'BAT-EN-103', 'BAT-TH-116', 'BAT-TH-157', 'RES-EC-104', 'RES-CH-103'],
     },
     faq: [
-      { q: 'La collectivité peut-elle valoriser elle-même ses CEE ?', r: 'Oui, elle est éligible. Cela suppose un compte sur le registre national et un suivi des dossiers dans les délais. Passer par un mandataire évite ce suivi et apporte la mise en concurrence des acheteurs.' },
-      { q: 'Comment concilier la commande publique et l’engagement de prime ?', r: 'L’engagement de prime doit précéder l’engagement des travaux, c’est-à-dire la notification du marché ou la signature du devis. Nous intervenons en amont, au stade de la programmation ou de la consultation.' },
+      { q: 'La collectivité peut-elle valoriser elle-même ses CEE ?', r: 'Oui, elle est éligible. Cela suppose un compte sur le registre national, un volume minimal par dossier (50 GWh cumac, avec une dérogation par an ou un regroupement) et un suivi des dossiers dans les délais. Passer par un mandataire évite ce suivi et apporte la mise en concurrence des acheteurs.' },
+      { q: 'Comment concilier la commande publique et l’engagement de prime ?', r: 'L’engagement de prime doit précéder l’engagement des travaux, c’est-à-dire la signature du marché (acte d’engagement ou bon de commande) ou du devis. Nous intervenons en amont, au stade de la programmation ou de la consultation.' },
       { q: 'Quels bâtiments sont concernés ?', r: 'Les bâtiments tertiaires existants, dont les bâtiments publics, ainsi que les réseaux de chaleur et l’éclairage extérieur. Chaque type de travaux relève d’une fiche, consultable dans notre catalogue.' },
       { q: 'Les certificats concernent-ils aussi les programmes d’accompagnement ?', r: 'Les programmes CEE, financés par les obligés, sont une voie distincte des opérations standardisées. Nous vous orientons si votre projet en relève.' },
     ],
@@ -157,21 +194,26 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
 
   'entreprises-industriels': {
     slug: 'entreprises-industriels',
-    surtitre: 'Entreprises et industriels',
+    surtitre: 'Entreprises & industriels',
     titre: 'La prime CEE pour les sites tertiaires et industriels',
     chapo:
       'Gestion technique du bâtiment, moteurs et variateurs, récupération de chaleur, isolation : les opérations d’efficacité énergétique d’un site génèrent des certificats que nous valorisons pour vous.',
     intro: [
-      'Une entreprise qui installe une GTB, équipe ses moteurs de variateurs, isole ses réseaux de vapeur ou récupère la chaleur de ses groupes froid réalise une opération standardisée, avec un forfait en kWh cumac. Ces certificats se vendent aux fournisseurs d’énergie.',
+      'Une entreprise qui installe une GTB, équipe ses moteurs de variateurs, isole ses réseaux de vapeur ou récupère la chaleur de ses groupes froid réalise une opération standardisée, avec un forfait en kWh cumac. Ces certificats sont obtenus par les obligés et leurs délégataires, qui vous versent une prime en échange.',
       'Ultra Énergie identifie les opérations éligibles sur votre site, consulte plusieurs acheteurs et retient la meilleure offre. Le dossier est monté par nous, avec vos prestataires. Les opérations qui n’entrent dans aucune fiche peuvent relever d’une opération spécifique, avec une étude dédiée.',
       'Le calendrier compte : l’engagement de prime doit être signé avant le devis ou le bon de commande. Le bon moment pour nous parler, c’est quand le projet est à l’étude.',
     ],
     schema: 'site',
+    financement: [
+      'L’investissement est le vôtre, sur devis ou bon de commande signé après l’engagement.',
+      'La prime CEE réduit le temps de retour, sans condition de financement.',
+      'Les autres aides à l’investissement se cumulent, sous réserve des règles de chaque financeur.',
+    ],
     arguments: [
       { icone: 'balance', titre: 'Plusieurs acheteurs sur chaque opération', texte: 'Nous ne dépendons d’aucun obligé. Chaque dossier est proposé à plusieurs acheteurs et vous recevez la meilleure offre.' },
       { icone: 'usine', titre: 'Le tertiaire et l’industrie, en détail', texte: 'GTB, éclairage, isolation, moteurs, air comprimé, froid, vapeur, chaleur fatale : les fiches sont nombreuses et précises. Nous savons laquelle s’applique et ce qu’elle exige.' },
       { icone: 'dossier', titre: 'Le dossier avec vos prestataires', texte: 'Nous listons les pièces attendues de l’installateur et du bureau d’études, relançons et vérifions. Vous signez l’attestation, nous faisons le reste.' },
-      { icone: 'eclair', titre: 'Le calendrier tenu', texte: 'L’engagement avant devis, le dépôt dans les délais après achèvement : nous tenons la chronologie qui conditionne la délivrance.' },
+      { icone: 'eclair', titre: 'Le calendrier tenu', texte: 'L’engagement avant devis, le dépôt dans les douze mois de l’achèvement : nous tenons la chronologie qui conditionne la délivrance.' },
     ],
     etapes: [
       { icone: 'loupe', delai: 'Projet à l’étude', titre: 'Qualification de l’opération', desc: 'Nous identifions la fiche applicable, ses conditions et le volume attendu à partir de vos données techniques.' },
@@ -185,7 +227,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
       codes: ['BAT-TH-116', 'BAT-EN-101', 'IND-UT-102', 'IND-UT-116', 'IND-UT-131', 'IND-UT-134', 'IND-BA-110', 'IND-UT-125'],
     },
     faq: [
-      { q: 'Notre opération n’est dans aucune fiche. Est-elle perdue ?', r: 'Pas forcément. Les opérations spécifiques permettent d’obtenir des certificats hors catalogue, sur la base d’une étude énergétique et d’une situation de référence. Elles concernent surtout l’industrie. Nous vous disons si votre projet peut en relever.' },
+      { q: 'Notre opération n’est dans aucune fiche. Est-elle perdue ?', r: 'Pas forcément. Les opérations spécifiques permettent d’obtenir des certificats hors catalogue, sur la base d’une étude énergétique, d’une situation de référence et d’un temps de retour supérieur à trois ans. Elles concernent surtout l’industrie. Nous vous disons si votre projet peut en relever.' },
       { q: 'Le prestataire doit-il être RGE ?', r: 'Non, la qualification RGE est une exigence des fiches résidentielles. En tertiaire et en industrie, les fiches demandent un professionnel, et parfois des justificatifs techniques précis (étude de dimensionnement, plaque signalétique, norme de mesure).' },
       { q: 'Comment la prime est-elle calculée ?', r: 'Chaque fiche donne un forfait en kWh cumac, par unité de surface, de puissance ou par équipement, parfois pondéré par un facteur. Ce volume, multiplié par le prix négocié avec l’acheteur, donne la prime. Le simulateur donne le volume pour les fiches modélisées.' },
       { q: 'Quels délais après les travaux ?', r: 'Le dossier doit être déposé dans les douze mois suivant l’achèvement de l’opération. Nous déposons dès que les pièces sont complètes.' },
@@ -206,12 +248,26 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
       'Nous travaillons sous mandat, sans porter d’obligation. Nos opérations viennent des copropriétés, des bailleurs, des collectivités et des entreprises que nous accompagnons, et des installateurs et apporteurs qui nous confient leurs chantiers.',
       'Chaque dossier est proposé à plusieurs acheteurs. Un partenariat avec nous, c’est l’accès à ce flux et à la possibilité d’y répondre.',
     ],
-    schema: 'flux',
+    schema: 'entonnoir',
+    schemaLegende: 'Ce qui vous est transmis a déjà passé trois filtres : la fiche, le rôle actif daté, le contrôle des pièces.',
+    profils: ['Obligés', 'Délégataires'],
+    partage: {
+      vous: [
+        'Vous nous indiquez les secteurs, les fiches et les volumes qui vous intéressent.',
+        'Vous répondez sur chaque proposition d’opération : prix, volume, délai.',
+        'Vous déposez, ou nous mandatez pour déposer en votre nom.',
+      ],
+      nous: [
+        'Nous apportons des opérations qualifiées, rôle actif prouvé et daté.',
+        'Nous collectons et contrôlons chaque pièce avant transmission.',
+        'Nous suivons le chantier et vous informons de l’avancement.',
+      ],
+    },
     arguments: [
       { icone: 'bouclier', titre: 'Le rôle actif prouvé', texte: 'Chaque opération porte une proposition de prime datée d’avant le devis. La pièce est dans le dossier, pas reconstituée après coup.' },
       { icone: 'dossier', titre: 'Les pièces vérifiées avant dépôt', texte: 'Attestation sur l’honneur complète, qualification du professionnel, justificatifs techniques prévus par la fiche : nous contrôlons chaque pièce avant de vous transmettre le dossier.' },
-      { icone: 'usine', titre: 'Des secteurs à volumes', texte: 'Résidentiel collectif, tertiaire, industrie : des opérations à plusieurs centaines de MWh cumac, et des bénéficiaires structurés.' },
-      { icone: 'balance', titre: 'Une relation claire', texte: 'Un mandat écrit, un prix convenu par opération ou par lot, des dossiers transmis prêts à déposer. Vous décidez de répondre ou non sur chaque proposition.' },
+      { icone: 'usine', titre: 'Des secteurs à volumes', texte: 'Résidentiel collectif, tertiaire, industrie : des opérations de plusieurs centaines de MWh à plusieurs GWh cumac, et des bénéficiaires structurés.' },
+      { icone: 'balance', titre: 'Une relation claire', texte: 'Un mandat écrit qui fixe le périmètre, un prix proposé par opération ou par lot, des dossiers transmis prêts à déposer. Vous décidez de répondre ou non sur chaque proposition.' },
     ],
     etapes: [
       { icone: 'echange', delai: 'Démarrage', titre: 'Mandat et conditions', desc: 'Nous formalisons le mandat, les secteurs et les fiches qui vous intéressent, et les conditions de prix.' },
@@ -221,7 +277,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
     ],
     regle: {
       titre: 'Nous ne portons aucune obligation',
-      texte: 'Ultra Énergie n’est ni obligé ni délégataire. Nous agissons pour le compte de nos partenaires acheteurs, sous mandat, et nous rémunérons sur les opérations abouties. Les certificats sont délivrés sur votre compte.',
+      texte: 'Ultra Énergie n’est ni obligé ni délégataire. Nous agissons pour le compte de nos partenaires acheteurs, sous mandat, et notre rémunération porte sur les opérations abouties. Les certificats sont délivrés sur votre compte. Le mandat est le vôtre ; la mise en concurrence est ce que nous devons au bénéficiaire, et vous le savez en y répondant.',
     },
     faq: [
       { q: 'Sous quelle forme travaillez-vous avec un obligé ?', r: 'Sous mandat écrit, qui précise le périmètre (secteurs, fiches, volumes) et les conditions. Nous pouvons collecter et transmettre les dossiers, ou déposer en votre nom.' },
@@ -234,7 +290,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
 
   installateurs: {
     slug: 'installateurs',
-    surtitre: 'Installateurs et artisans',
+    surtitre: 'Installateurs & artisans',
     titre: 'Une prime pour chaque chantier, sans monter le dossier',
     chapo:
       'Vous gardez votre client et votre devis. Nous apportons l’engagement de prime avant signature, montons le dossier CEE et suivons le versement.',
@@ -244,15 +300,29 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
       'Nous mettons plusieurs acheteurs en concurrence, donc votre client reçoit une meilleure offre qu’avec un acheteur unique. Vous n’avez rien à négocier.',
     ],
     schema: 'chronologie',
+    schemaLegende: 'L’engagement de prime précède le devis signé. Dans l’autre ordre, l’opération est inéligible.',
+    profils: ['Isolation', 'Chauffage et ENR', 'GTB et régulation', 'Électricité industrielle', 'Froid et ventilation'],
+    partage: {
+      vous: [
+        'Vous nous décrivez le chantier : travaux, surface ou puissance, client.',
+        'Vous portez sur le devis et la facture les mentions que la fiche exige.',
+        'Vous réalisez, puis signez l’attestation sur l’honneur avec le client.',
+      ],
+      nous: [
+        'Nous qualifions l’opération et vous donnons la liste des mentions.',
+        'Nous consultons les acheteurs et transmettons l’engagement de prime au client.',
+        'Nous montons le dossier, déposons et suivons le versement.',
+      ],
+    },
     arguments: [
       { icone: 'poignee', titre: 'Votre client reste le vôtre', texte: 'Nous intervenons sur le financement, pas sur la relation commerciale. Le devis, les travaux et la garantie restent entre vous et lui.' },
-      { icone: 'eclair', titre: 'Un signalement, pas un dossier', texte: 'Vous nous envoyez le projet avant signature. Nous vous disons ce que la fiche exige et ce qu’il faudra mentionner sur le devis et la facture.' },
-      { icone: 'euro', titre: 'Une prime qui aide à conclure', texte: 'L’engagement de prime arrive avant la signature : votre client sait ce qu’il touchera, et le devis se signe avec cette ligne en face.' },
+      { icone: 'eclair', titre: 'Un signalement, pas un dossier', texte: 'Vous nous envoyez le projet, nous vous disons ce que la fiche exige et ce qu’il faudra porter sur le devis et la facture. Rien à monter de votre côté.' },
+      { icone: 'euro', titre: 'Une prime qui aide à conclure', texte: 'Votre client connaît le montant proposé, sous réserve de la conformité du dossier, et le devis se signe avec cette ligne en face.' },
       { icone: 'bouclier', titre: 'La conformité vérifiée avec vous', texte: 'Qualification, mentions du devis, attestation sur l’honneur : nous vérifions avant le dépôt, pour que le chantier ne soit pas refusé après coup.' },
     ],
     etapes: [
       { icone: 'loupe', delai: 'Avant le devis', titre: 'Vous signalez le chantier', desc: 'Type de travaux, surface ou puissance, client : nous identifions la fiche et vous indiquons les mentions à porter sur le devis.' },
-      { icone: 'echange', delai: 'Avant signature', titre: 'Engagement de prime au client', desc: 'Nous consultons les acheteurs et transmettons l’engagement. Le devis est signé ensuite.' },
+      { icone: 'echange', delai: 'Avant signature', titre: 'Engagement de prime au client', desc: 'Nous consultons les acheteurs et transmettons l’engagement à votre client, qui signe le devis avec la prime en face.' },
       { icone: 'document', delai: 'Chantier', titre: 'Travaux et attestation', desc: 'Vous réalisez, facturez, et signez avec le client l’attestation sur l’honneur que nous préparons.' },
       { icone: 'controle', delai: 'Après travaux', titre: 'Dépôt et versement', desc: 'Nous contrôlons les pièces, déposons et suivons le versement selon les termes convenus.' },
     ],
@@ -262,7 +332,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
     },
     fichesCles: {
       titre: 'Les fiches les plus courantes selon votre métier',
-      codes: ['BAR-EN-101', 'BAR-EN-102', 'BAR-EN-103', 'BAR-TH-171', 'BAR-TH-113', 'BAT-TH-116', 'BAT-EQ-117', 'IND-UT-102'],
+      codes: ['BAR-EN-101', 'BAR-EN-102', 'BAR-EN-103', 'BAR-TH-171', 'BAR-TH-113', 'BAT-TH-116', 'BAT-EN-102', 'IND-UT-102'],
     },
     faq: [
       { q: 'Dois-je être RGE ?', r: 'Pour les travaux en résidentiel, la plupart des fiches l’exigent. En tertiaire et en industrie, ce n’est pas requis, mais la fiche peut demander des justificatifs techniques précis. Nous vous le disons fiche par fiche.' },
@@ -270,7 +340,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
       { q: 'Qui touche la prime ?', r: 'Le bénéficiaire des travaux, selon l’engagement qu’il a signé. Une remise sur devis est possible dans certains montages ; nous en discutons selon le chantier.' },
       { q: 'Suis-je rémunéré en tant qu’apporteur ?', r: 'Un installateur qui nous apporte des chantiers peut être rémunéré comme apporteur d’affaires, dans les conditions d’un contrat de partenariat. Parlons-en.' },
     ],
-    appel: { titre: 'Un chantier à signaler, ou un partenariat à ouvrir ?', bouton: 'Devenir installateur partenaire →', modale: 'partenaire' },
+    appel: { titre: 'Un partenariat à ouvrir ?', bouton: 'Devenir installateur partenaire →', modale: 'partenaire', note: 'Un chantier à signaler tout de suite ?' },
   },
 
   'apporteurs-affaires': {
@@ -285,11 +355,25 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
       'Votre rémunération est une commission sur chaque dossier abouti, prévue au contrat de partenariat.',
     ],
     schema: 'reseau',
+    schemaLegende: 'Vous signalez, nous qualifions. La prime va au client, la commission à vous.',
+    profils: ['Syndics', 'Bureaux d’études', 'Mainteneurs', 'Distributeurs'],
+    partage: {
+      vous: [
+        'Vous repérez un projet d’économies d’énergie avant son engagement.',
+        'Vous nous le signalez : un contact, une nature de travaux, une date.',
+        'Vous restez l’interlocuteur de confiance de votre client, si vous le souhaitez.',
+      ],
+      nous: [
+        'Nous qualifions l’opération et contactons le maître d’ouvrage avec vous.',
+        'Nous mettons les acheteurs en concurrence et transmettons l’engagement.',
+        'Nous montons, déposons, suivons, et vous réglons la commission à la délivrance.',
+      ],
+    },
     arguments: [
       { icone: 'euro', titre: 'Une commission par dossier abouti', texte: 'Le contrat de partenariat fixe la commission. Elle est due quand les certificats sont délivrés, sur chaque opération que vous avez apportée.' },
       { icone: 'eclair', titre: 'Un signalement suffit', texte: 'Un projet, un contact, une date prévisionnelle. Nous prenons le relais et vous tenons informé de l’avancement.' },
       { icone: 'poignee', titre: 'Votre client mieux servi', texte: 'La mise en concurrence des acheteurs donne à votre client une meilleure offre que celle d’un fournisseur unique. Vous lui apportez une recette, pas un vendeur.' },
-      { icone: 'bouclier', titre: 'Aucun risque réglementaire', texte: 'Le rôle actif, les pièces, le dépôt et les contrôles sont de notre côté. Vous ne signez rien qui engage la conformité du dossier.' },
+      { icone: 'bouclier', titre: 'Le montage réglementaire est chez nous', texte: 'Le rôle actif, les pièces, le dépôt et les contrôles sont de notre côté. Vous n’avez aucun dossier à monter ; si votre client vous mandate pour signer l’attestation, nous la préparons avec vous.' },
     ],
     etapes: [
       { icone: 'echange', delai: 'Démarrage', titre: 'Contrat de partenariat', desc: 'Nous convenons du périmètre et de la commission, et vous donnons la fiche de signalement.' },

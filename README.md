@@ -129,13 +129,27 @@ Deux contrôles au build, éprouvés en falsifiant un code :
 
 ## Les pages « Pour qui » et « Partenaires »
 
-Sept pages argumentaires, un gabarit : `components/PageArgumentaire.tsx`, alimenté par
-`lib/argumentaires.ts` (un objet par slug). Ordre de lecture : introduction en deux colonnes
-avec un schéma SVG (`components/Schemas.tsx`, un dessin par page, deux tons, `currentColor`
-et `.schema-accent`), arguments (icônes `IconeArgument`), étapes (`ListeEtapes`, partagé avec
-l'accueil), encadré de la règle à ne pas manquer, fiches clés (codes du catalogue, liées si
-elles ont une page, refusées au build si le code n'existe pas), FAQ (`ListeFaq`, partagé
-avec l'accueil), appel à l'action en accent, liens vers les pages sœurs.
+Sept pages, **deux gabarits distincts**, un contenu par slug dans `lib/argumentaires.ts`.
+
+- **« Pour qui »** (`components/PagePourQui.tsx`), pour qui décide des travaux : intro et
+  schéma du bâti côte à côte, financement en parts (schéma sans chiffres, la prime est la part
+  la plus petite), avantages en rangées à icônes, chronologie verticale avec le moment en
+  marge, règle, fiches clés, FAQ, « Voir aussi », appel à l'action en dernier.
+- **« Partenaires »** (`components/PagePartenaire.tsx`), pour qui apporte ou achète des
+  opérations : pastilles de profils, chapeau et deux paragraphes, bande de schéma avec sa
+  légende en HTML, « Qui fait quoi » (vous / nous), raisons numérotées, étapes numérotées,
+  règle, fiches (installateurs), FAQ, « Voir aussi », appel avec le téléphone.
+
+Les schémas (`components/Schemas.tsx`) sont en deux tons, `currentColor` et `.schema-accent`,
+et le blanc d'un texte sur aplat se déclare texte par texte (`sur`) : une règle de fratrie CSS
+blanchissait des libellés sur fond clair. Les fiches clés sont des codes du catalogue, liées
+si elles ont une page, refusées au build sinon.
+
+Revue du 19/09/2026 par trois agents (design « Pour qui », design « Partenaires », relecture
+CEE) : correctifs appliqués, dont la règle du devis pour les éligibles (le dépôt en nom propre
+reste possible), la précarité (part comptée par département, plus de « bonification »), le
+cumul MaPrimeRénov' Copropriété (copropriétés fragiles à part), les contrôles (organisme
+accrédité avant dépôt, PNCEE après), le seuil de dépôt et les bornes en marché public.
 
 ⛔ **Aucune promesse chiffrée dans ces pages** : ni délai de paiement, ni taux de prime, ni
 « montant garanti ». Rien ne les documente à ce jour. Ce qui est affirmé du dispositif vient
