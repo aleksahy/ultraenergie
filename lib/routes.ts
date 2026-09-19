@@ -26,8 +26,6 @@ export const url = {
 
   /** Page « Pour qui » (premier niveau). */
   public: (slug: string) => `/${slug}/`,
-  /** Page secteur commerciale (premier niveau). */
-  secteur: (slug: string) => `/${slug}/`,
   /** Page partenaire (premier niveau). */
   partenaire: (slug: string) => `/${slug}/`,
 
@@ -44,10 +42,14 @@ export const url = {
 
 /**
  * ⚠️ LE REGISTRE DES SLUGS DE PREMIER NIVEAU. `/industrie`, `/contact` et `/blog` cohabitent
- * dans le même espace de noms : une page secteur, une page fixe et une racine de section s'y
- * marchent dessus sans prévenir. Les six pages secteur passant par un segment dynamique
- * (`app/[secteur]/`), une collision ne produirait pas d'erreur — la route statique gagnerait
- * en silence et la page secteur deviendrait inatteignable.
+ * dans le même espace de noms : une page « pour qui », une page fixe et une racine de section
+ * s'y marchent dessus sans prévenir. Les pages « pour qui » et partenaires passant par un
+ * segment dynamique (`app/[slug]/`), une collision ne produirait pas d'erreur — la route
+ * statique gagnerait en silence et la page du même nom deviendrait inatteignable.
+ *
+ * ⛔ LES SIX PAGES SECTEUR COMMERCIALES (`/industrie/`, `/tertiaire/`…) ONT ÉTÉ RETIRÉES le
+ * 19/09/2026, « pour le moment ». Les slugs de secteur restent réservés ici pour que rien ne
+ * s'y installe entre-temps : le jour où elles reviennent, elles reprennent leur adresse.
  *
  * Tout nouveau premier niveau s'ajoute ICI, et `verifieRegistre()` refuse le doublon au build.
  */
@@ -57,7 +59,7 @@ export const PREMIER_NIVEAU: { slug: string; role: string }[] = [
   { slug: 'veille-cee', role: 'page fixe' },
   { slug: 'simulateur', role: 'page fixe' },
   ...PUBLICS.map((p) => ({ slug: p.slug, role: 'page « pour qui »' })),
-  ...SECTEURS.map((s) => ({ slug: s.slug, role: 'page secteur (segment dynamique)' })),
+  ...SECTEURS.map((s) => ({ slug: s.slug, role: 'slug réservé (page secteur retirée)' })),
   ...PARTENAIRES.map((p) => ({ slug: p.slug, role: 'page partenaire' })),
   { slug: 'fiches-cee', role: 'racine de section' },
   { slug: 'comprendre-les-cee', role: 'racine de section' },
@@ -72,7 +74,6 @@ export const TOUTES_LES_ROUTES: string[] = [
   url.veilleCee,
   url.simulateur,
   ...PUBLICS.map((p) => url.public(p.slug)),
-  ...SECTEURS.map((s) => url.secteur(s.slug)),
   ...PARTENAIRES.map((p) => url.partenaire(p.slug)),
   url.fichesCee,
   ...SECTEURS.map((s) => url.hubFiches(s.slug)),

@@ -6,7 +6,7 @@ import { NAV, estGroupe } from '@/lib/nav';
  * globals.css) : les enfants sont de vrais `<a href>` présents dans le HTML, seulement
  * masqués en CSS. Aucun `'use client'`, aucun état, rien à hydrater.
  *
- * ⚠️ LE DÉCLENCHEUR D'UN GROUPE EST UN `<button>`, PAS UN LIEN. « Pour qui », « Secteurs » et
+ * ⚠️ LE DÉCLENCHEUR D'UN GROUPE EST UN `<button>`, PAS UN LIEN. « Pour qui » et
  * « Partenaires » n'ont pas d'URL : ce sont des libellés de menu. Le rendre en `<a href="#">`
  * ou en lien vers une pseudo-page fabriquerait une URL que rien ne sert. Le bouton ouvre au
  * survol et au focus clavier, et ne navigue nulle part.

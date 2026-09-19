@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Page, { Section } from '@/components/Page';
 import ListeLiens from '@/components/ListeLiens';
@@ -28,7 +27,6 @@ export async function generateMetadata({ params }: { params: Promise<{ secteur: 
  * Le hub catalogue d'un secteur. Son maillage est fixé par l'architecture :
  *   → toutes ses fiches, groupées par famille en sections à ancres
  *   → les cinq autres hubs
- *   → sa page secteur commerciale (ancre différente de celle qui vient d'en face)
  *
  * ⛔ LES FAMILLES SONT DES SECTIONS À ANCRES, PAS DES PAGES. Pas de niveau sous-secteur, ni
  * en URL ni en page : `#utilites` est un point d'entrée dans ce hub, pas une adresse à lui.
@@ -72,14 +70,6 @@ export default async function HubSecteur({ params }: { params: Promise<{ secteur
           <ListeFiches entrees={famille.entrees} />
         </Section>
       ))}
-
-      <Section titre={`${secteur.label} : notre accompagnement`}>
-        <p className="page-texte">
-          <Link className="lien-appuye" href={url.secteur(slug)}>
-            Comment nous valorisons vos opérations {secteur.label.toLowerCase()} →
-          </Link>
-        </p>
-      </Section>
 
       <Section titre="Les autres secteurs">
         <ListeLiens

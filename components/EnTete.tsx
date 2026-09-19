@@ -16,9 +16,9 @@ export default function EnTete() {
 
         <NavDesktop />
 
-        {/* ⚠️ /contact est un BOUTON, hors des six entrées du menu. C'est une destination
+        {/* ⚠️ /contact est un BOUTON, hors des quatre entrées du menu. C'est une destination
             d'action, pas une rubrique : la ranger dans un déroulant la met au même rang
-            qu'une page secteur. */}
+            qu'une page « Pour qui ». */}
         <div className="entete-droite">
           <a className="entete-tel" href={`tel:${COORDONNEES.telephoneLien}`}>{COORDONNEES.telephone}</a>
           <Link href={url.contact} className="pilule pilule-accent">Contact →</Link>

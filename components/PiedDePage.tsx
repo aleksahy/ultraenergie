@@ -45,9 +45,9 @@ export default function PiedDePage() {
         </div>
 
         <div className="pied-col">
-          <div className="pied-titre">Secteurs</div>
+          <div className="pied-titre">Fiches par secteur</div>
           <div className="pied-liens">
-            {SECTEURS.map((s) => <Link key={s.slug} href={url.secteur(s.slug)}>{s.label}</Link>)}
+            {SECTEURS.map((s) => <Link key={s.slug} href={url.hubFiches(s.slug)}>{s.label}</Link>)}
           </div>
         </div>
 

@@ -1,4 +1,4 @@
-import { SECTEURS, secteurParSlug } from './secteurs';
+import { secteurParSlug } from './secteurs';
 import { PUBLICS, PARTENAIRES } from './publics';
 import { ficheParCode } from './fiches';
 import { termeParSlug } from './glossaire';
@@ -16,12 +16,11 @@ export interface Miette {
  *
  * ⚠️ DÉDUIT, ET PAS DÉCLARÉ PAGE PAR PAGE. Les niveaux viennent du chemin : une page rangée
  * sous `/fiches-cee/{secteur}/` hérite forcément de ses deux parents, et une page de premier
- * niveau n'en a aucun, donc elle reste à un seul niveau (« Accueil > Industrie »). Un fil
+ * niveau n'en a aucun, donc elle reste à un seul niveau (« Accueil > Obligés »). Un fil
  * écrit à la main sur chaque page finit par mentir sur l'une d'elles.
  *
  *   /fiches-cee/industrie/ind-ut-102  →  Accueil > Fiches CEE > Industrie > IND-UT-102
  *   /fiches-cee/industrie             →  Accueil > Fiches CEE > Industrie
- *   /industrie                        →  Accueil > Industrie
  *   /syndics-coproprietes             →  Accueil > Syndics & copropriétés
  */
 export function filAriane(chemin: string): Miette[] {
@@ -73,7 +72,6 @@ const PAGES_FIXES: Record<string, string> = {
 
 function libellePremierNiveau(slug: string): string {
   return (
-    SECTEURS.find((s) => s.slug === slug)?.label ??
     PUBLICS.find((p) => p.slug === slug)?.label ??
     PARTENAIRES.find((p) => p.slug === slug)?.label ??
     PAGES_FIXES[slug] ??
