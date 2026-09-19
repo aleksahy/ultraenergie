@@ -3,12 +3,16 @@
 import { useState } from 'react';
 import type { Calcul, Saisie } from '@/lib/calcul';
 import { champs, evalue } from '@/lib/calcul';
-import { dateFr } from '@/lib/dates';
-import { TAUX_CEE, enEuros, nombreFr, euroFr } from '@/lib/site';
+import { nombreFr } from '@/lib/site';
 
 /**
- * Le simulateur de prime d'une fiche : un champ par dimension du barème, le montant en kWh
- * cumac, puis sa conversion en euros.
+ * Le simulateur d'une fiche : un champ par dimension du barème, et le montant en kWh cumac.
+ *
+ * ⛔ PAS DE CONVERSION EN EUROS. Le site en affichait une au cours EMMY ; retirée le
+ * 19/09/2026. La cotation est un prix entre détenteurs de certificats, pas la prime versée
+ * au bénéficiaire, qui est plus basse et dépend du contrat. Afficher l'une pour l'autre
+ * surestimait ce que le client touchera. Le jour où un prix revient, c'est un prix de prime
+ * fixé par Ultra Énergie, daté, pas la cotation.
  *
  * ⚠️ IL CALCULE AVEC `lib/calcul.ts`, LA MÊME FONCTION QUI SERT À TOUT LE RESTE. Réécrire la
  * multiplication ici donnerait, tôt ou tard, un montant différent de celui que la grille
@@ -76,12 +80,9 @@ export default function Simulateur({ calcul, code }: { calcul: Calcul; code: str
             <div className="simulateur-kwh">
               <strong>{nombreFr.format(kwhCumac)}</strong> kWh cumac
             </div>
-            <div className="simulateur-euros">
-              soit environ <strong>{euroFr.format(enEuros(kwhCumac))}</strong> de prime
-            </div>
             <p className="simulateur-avertissement">
-              Montant indicatif pour la fiche {code}, sur la base de {TAUX_CEE.euroParMwhCumac} €/MWh
-              cumac relevés le {dateFr(TAUX_CEE.releveLe)}, et sous réserve de validation du dossier.
+              Volume indicatif pour la fiche {code}, sous réserve de validation du dossier. Le montant
+              de la prime dépend de l'offre retenue.
             </p>
           </>
         )}

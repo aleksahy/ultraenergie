@@ -13,7 +13,7 @@ export default function Simulateur() {
     <Page
       chemin={url.simulateur}
       titre="Simulateur de prime CEE"
-      chapo="Le montant en kWh cumac calculé à partir du barème officiel de la fiche, puis converti en euros au cours du moment."
+      chapo="Le volume en kWh cumac calculé à partir du barème officiel de la fiche."
     >
       <SimulateurPage />
     </Page>
