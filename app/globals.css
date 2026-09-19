@@ -467,7 +467,8 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
   margin: 0 auto;
   padding: 64px var(--gouttiere) 40px;
   display: grid;
-  grid-template-columns: minmax(210px, 1.3fr) minmax(150px, 0.85fr) minmax(120px, 0.7fr) minmax(170px, 0.95fr) auto;
+  /* Trois colonnes de liens et le logo CEE : la colonne des secteurs est partie le 19/09/2026. */
+  grid-template-columns: minmax(210px, 1.3fr) minmax(170px, 0.9fr) minmax(170px, 0.95fr) auto;
   gap: 40px 32px;
   align-items: start;
 }
@@ -691,6 +692,8 @@ select.champ { appearance: auto; }
   font-weight: 500;
 }
 .ancres a:hover { border-color: var(--accent); color: var(--accent); }
+.ancres a[aria-current='true'] { background: var(--accent); border-color: var(--accent); color: var(--sur-accent); }
+.ancres a[aria-current='true'] .ancres-compte { color: var(--sur-accent); opacity: 0.85; }
 
 
 /* ── Page de fiche : corps et bande latérale ─────────────────────────
@@ -898,6 +901,10 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
 .tableau tbody td { font-variant-numeric: tabular-nums; }
 .tableau tbody tr + tr th, .tableau tbody tr + tr td { border-top: 1px solid var(--ligne); }
 .tableau-legende { padding: 10px 14px; font-size: 12px; color: var(--texte-3); text-align: left; }
+/* Les tableaux copiés du PDF ont des libellés longs : on les laisse aller à la ligne, et on
+   les espace quand une fiche en publie plusieurs. */
+.tableau-publie { margin-bottom: 16px; }
+.tableau-publie .tableau th, .tableau-publie .tableau td { white-space: normal; min-width: 90px; }
 
 .mention { max-width: 760px; font-size: 13px; color: var(--texte-3); }
 .page-section .pilule { margin-top: 4px; }

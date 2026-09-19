@@ -3,18 +3,24 @@ import { famillesDuSecteur, segmentDe, verifieFamille, FAMILLES } from './famill
 import type { Calcul } from './calcul';
 import * as BAREMES from './baremes';
 import catalogue from '@/data/fiches.json';
+import detailsImportes from '@/data/details.json';
 
 /**
  * Le catalogue des fiches CEE, et le détail de celles qui en ont un.
  *
  * ⚠️ DEUX NIVEAUX, ET C'EST VOULU. Le CATALOGUE (code + secteur) vient du tableur fourni : il
- * est complet, 216 lignes, et c'est lui qui bâtit les hubs. Le DÉTAIL (barème, conditions,
- * documents…) arrivera par un second export ; tant qu'une fiche n'en a pas, elle n'a pas de
- * page. Une page de fiche sans barème ni conditions ne dirait rien de plus que la ligne du
- * hub, et il y en aurait 216.
+ * est complet, 216 lignes, et c'est lui qui bâtit les hubs. Le DÉTAIL vient de deux sources
+ * fondues champ par champ :
+ *   · `data/details.json`, GÉNÉRÉ par `npm run details` depuis les PDF officiels (texte des
+ *     sections 1 à 5, tableaux de barème tels que publiés, Partie A). Ne pas l'éditer.
+ *   · `DETAILS` ci-dessous, écrit à la main : le barème MODÉLISÉ pour le simulateur, des
+ *     conditions titrées, une note sur les jumelles. Il l'emporte sur l'import, champ par
+ *     champ, et n'existe que pour les fiches où quelqu'un a fait ce travail.
+ * Une fiche n'a de page que si le PDF a livré au moins son intitulé et ses conditions.
  *
- * ⛔ NE PAS INVENTER DE DÉTAIL POUR REMPLIR. Un barème plausible attaché à un code réel est
- * plus dangereux qu'une page absente : il se lit comme une information.
+ * ⛔ NE PAS INVENTER DE DÉTAIL POUR REMBLAYER. Un barème plausible attaché à un code réel est
+ * plus dangereux qu'une page absente : il se lit comme une information. Le simulateur ne
+ * s'ouvre que sur un `calcul` écrit à la main et vérifié contre le PDF.
  */
 
 /* ── Le catalogue ──────────────────────────────────────────────────────── */
@@ -69,7 +75,21 @@ export interface DocumentFiche {
   url?: string;
 }
 
-/** Tout ce qui vient du second export, et qui donne sa page à une fiche. */
+/** Un tableau de barème tel que publié dans la fiche : la première ligne est l'en-tête. */
+export type TableauBareme = string[][];
+
+/** Le barème tel que le PDF le donne, quand il n'est pas (encore) modélisé pour le simulateur. */
+export interface BaremePublie {
+  tableaux: TableauBareme[];
+  /** Ce que la fiche écrit avant ses tableaux (« Pour un système de classe A : »). */
+  avant: string[];
+  /** Le texte de la section 5 qui suit les tableaux : formules, définitions, renvois. */
+  notes: string[];
+  /** Vrai quand la détection a manqué un tableau, ou n'en a trouvé aucun : le PDF fait foi. */
+  incomplet: boolean;
+}
+
+/** Tout ce qui donne sa page à une fiche. */
 export interface DetailFiche {
   /** Le libellé officiel complet. Il sert au <title>, jamais au H1. */
   intitule: string;
@@ -85,7 +105,8 @@ export interface DetailFiche {
   /** Dernière révision connue. Déduite du document le plus récent si elle n'est pas donnée. */
   dateMaj?: string;
   version: string;
-  dateApplication: string;
+  /** Absente quand la source ne la donne pas : l'encadré n'affiche alors pas la ligne. */
+  dateApplication?: string;
   /**
    * ⚠️ DATE FUTURE = DATE LIMITE D'ENGAGEMENT, pas une alarme. Elle s'affiche en synthèse
    * (« Engageable jusqu'au … ») sans bandeau : une fiche encore en vigueur pendant huit mois
@@ -95,17 +116,27 @@ export interface DetailFiche {
   dateAbrogation?: string;
   zoneApplication: ZoneApplication;
   dureeVie: DureeVie[];
-  calcul: Calcul;
+  /** Le texte officiel de la durée de vie, quand il dit plus qu'un nombre d'années. */
+  dureeVieTexte?: string;
+  /**
+   * Le barème MODÉLISÉ, écrit à la main dans lib/baremes.ts et vérifié contre le PDF. C'est
+   * lui qui ouvre le simulateur. Absent, la page rend `bareme`, le tableau tel que publié.
+   */
+  calcul?: Calcul;
+  bareme?: BaremePublie;
+  /** L'URL du PDF officiel de la fiche, tel qu'importé. */
+  pdf?: string;
   documents: DocumentFiche[];
   jumelles: string[];
   /** Opérations complémentaires. Déduites de la famille si absentes. */
   voisines?: string[];
   /** §1 du PDF. */
   secteurApplication?: string;
-  /** §2 du PDF. */
-  denomination?: string;
-  /** §3 du PDF. */
-  conditions?: { titre: string; texte: string }[];
+  /** §2 du PDF, en paragraphes. Le premier sert de chapo, les suivants (exclusions,
+      précisions de périmètre) rejoignent la section « Qui peut en bénéficier ? ». */
+  denomination?: string[];
+  /** §3 du PDF. Titrées quand quelqu'un les a découpées à la main ; sinon des paragraphes. */
+  conditions?: { titre?: string; texte: string }[];
   /** Ce que la Partie A réclame en plus des champs du calcul. */
   justificatifs?: string[];
   coupDePouce?: { nom: string; texte: string };
@@ -122,14 +153,14 @@ export interface DetailFiche {
 export type Fiche = EntreeCatalogue & DetailFiche;
 
 /**
- * 🚨 VIDE POUR L'INSTANT, EN ATTENDANT L'EXPORT DÉTAILLÉ. Le gabarit de page de fiche est
- * écrit et éprouvé (cf. README) ; il ne rend aucune page tant que cette table est vide, et
- * les hubs listent les 216 codes sans les lier.
+ * Le détail ÉDITÉ À LA MAIN, fiche par fiche, qui l'emporte sur l'import champ par champ.
+ * C'est ici que vit un barème modélisé (`calcul`), des conditions titrées, une note sur les
+ * jumelles. Une entrée peut être partielle : ce qu'elle ne dit pas vient du PDF.
  *
- * ⛔ Ne pas y remettre les données d'amorce qui vivaient ici : elles décrivaient des codes
- * inventés, dont plusieurs n'existent pas dans le catalogue réel.
+ * ⛔ Ne pas y remettre des données d'amorce inventées : un code réel avec un barème faux se
+ * lit comme une information.
  */
-export const DETAILS: Record<string, DetailFiche> = {
+export const DETAILS_EDITES: Record<string, Partial<DetailFiche>> = {
   'BAR-EN-101': {
     intitule: 'Isolation de combles ou de toitures',
     h1Edite: 'Isolation en comble perdu ou rampant de toiture dans un logement existant',
@@ -192,26 +223,98 @@ export const DETAILS: Record<string, DetailFiche> = {
   },
 };
 
-/**
- * Les intitulés connus de fiches qui n'ont pas encore de détail complet.
- *
- * ⚠️ ILS SERVENT AUX ANCRES DE LIENS, qui doivent porter « CODE — intitulé » et jamais le code
- * seul. Une fiche voisine citée sans son intitulé donnerait une carte illisible.
- *
- * 🚨 Table provisoire : elle disparaît le jour où l'export détaillé fournit les 216 intitulés.
- * Rien ici n'est inventé — ce sont les libellés transmis avec la spécification.
- */
-const INTITULES: Record<string, string> = {
-  'BAT-EN-101': 'Isolation de combles ou de toitures',
-  'BAR-EN-102': 'Isolation des murs',
-  'BAR-EN-103': "Isolation d'un plancher",
-  'BAR-EN-105': 'Isolation des toitures terrasses',
-  'BAR-EN-106': "Isolation de combles ou de toitures (France d'outre-mer)",
-};
+/* ── L'import des PDF, et sa fusion avec le détail édité ───────────────── */
 
-/** L'intitulé d'un code, qu'il ait son détail complet ou seulement son libellé. */
+interface DetailImporte {
+  code: string;
+  pdf: string;
+  intitule?: string;
+  secteurApplication?: string;
+  denomination?: string[];
+  conditions?: string[];
+  dureeVieAns?: number[];
+  dureeVieTexte?: string;
+  bareme?: BaremePublie;
+  dateAbrogation?: string;
+  version?: string;
+  dateApplication?: string;
+  justificatifs?: string[];
+  qualification?: string;
+}
+
+const IMPORTES = detailsImportes as Record<string, DetailImporte>;
+
+/** Le H1 édité : la première phrase de la dénomination si elle tient, sinon l'intitulé. */
+function h1Depuis(d: DetailImporte): string {
+  const premiere = d.denomination?.[0]?.split(/(?<=[a-zé\)])\. /)[0]?.trim();
+  if (premiere && premiere.length <= 140) return premiere.replace(/\.$/, '');
+  return d.intitule ?? d.code;
+}
+
+/** Les fiches d'un autre secteur qui portent le même intitulé : la relation jumelle. */
+function jumellesDepuis(code: string, intitule: string | undefined): string[] {
+  if (!intitule) return [];
+  const cle = intitule.toLowerCase().replace(/\s*\(.*?\)\s*/g, '').trim();
+  return Object.values(IMPORTES)
+    .filter((x) => x.code !== code && x.intitule && x.intitule.toLowerCase().replace(/\s*\(.*?\)\s*/g, '').trim() === cle)
+    .map((x) => x.code)
+    .sort();
+}
+
+/** Un détail importé, mis dans la forme du modèle. `null` si le PDF n'a pas livré l'essentiel. */
+function depuisImport(d: DetailImporte): DetailFiche | null {
+  if (!d.intitule || !d.conditions) return null;
+  const ans = d.dureeVieAns ?? [];
+  const dureeVie: DureeVie[] = ans.length === 1 ? [{ valeurAnnees: ans[0] }] : ans.length > 1 ? [{ valeurAnnees: Math.max(...ans) }] : [];
+  const version = d.version ?? 'n. c.';
+  return {
+    intitule: d.intitule,
+    h1Edite: h1Depuis(d),
+    version,
+    dateApplication: d.dateApplication,
+    dateAbrogation: d.dateAbrogation,
+    zoneApplication: /outre-mer/i.test(d.intitule) ? 'dom' : 'metropole',
+    dureeVie,
+    dureeVieTexte: ans.length > 1 || ans.length === 0 ? d.dureeVieTexte : undefined,
+    bareme: d.bareme,
+    pdf: d.pdf,
+    documents: d.dateApplication ? [{ nature: 'fiche', version, dateEffet: d.dateApplication, url: d.pdf }] : [],
+    jumelles: jumellesDepuis(d.code, d.intitule),
+    secteurApplication: d.secteurApplication,
+    denomination: d.denomination,
+    conditions: d.conditions.map((texte) => ({ texte })),
+    justificatifs: d.justificatifs,
+    qualification: d.qualification,
+  };
+}
+
+/** Le détail complet par code : l'import, recouvert champ par champ par l'édité. */
+export const DETAILS: Record<string, DetailFiche> = Object.fromEntries(
+  CATALOGUE.flatMap((e) => {
+    const importe = IMPORTES[e.code] ? depuisImport(IMPORTES[e.code]) : null;
+    const edite = DETAILS_EDITES[e.code];
+    if (!importe && !edite) return [];
+    const fusion = { ...(importe ?? {}), ...(edite ?? {}) } as DetailFiche;
+    if (!fusion.intitule || !fusion.h1Edite || !fusion.dureeVie) return [];
+    return [[e.code, fusion]];
+  }),
+);
+
+/* ⚠️ LA RELATION JUMELLE EST SYMÉTRIQUE PAR CONSTRUCTION. Une jumelle déclarée à la main sur
+   une fiche est reportée sur l'autre : l'intitulé importé peut différer d'une lettre
+   (« toiture » / « toitures ») et l'appariement automatique ne suffirait pas. Le contrôle de
+   réciprocité, plus bas, reste : il attrape une déclaration vers un code sans page. */
+for (const [code, d] of Object.entries(DETAILS)) {
+  for (const j of d.jumelles) {
+    const autre = DETAILS[j];
+    if (autre && !autre.jumelles.includes(code)) autre.jumelles = [...autre.jumelles, code].sort();
+  }
+}
+
+/** L'intitulé d'un code, qu'il ait sa page ou seulement son libellé importé. */
 export function intituleDe(code: string): string | undefined {
-  return DETAILS[code.toUpperCase()]?.intitule ?? INTITULES[code.toUpperCase()];
+  const c = code.toUpperCase();
+  return DETAILS[c]?.intitule ?? IMPORTES[c]?.intitule;
 }
 
 export const FICHES: Fiche[] = CATALOGUE.flatMap((entree) => {
@@ -415,28 +518,25 @@ function verifieCoherence() {
     verifieFamille(e.code, e.secteur);
   }
 
+  const titresLongs: string[] = [];
+  const h1Communs: string[] = [];
+  for (const code of Object.keys(DETAILS_EDITES)) {
+    if (!codes.has(code)) throw new Error(`Détail édité sans entrée au catalogue : ${code}`);
+  }
   for (const [code, d] of Object.entries(DETAILS)) {
-    if (!codes.has(code)) throw new Error(`Détail sans entrée au catalogue : ${code}`);
     // Le <title> vaut « CODE : intitulé, prime CEE AAAA ». Au-delà d'environ 70 caractères
     // les moteurs le tronquent, et ce qu'ils coupent est la fin : « prime CEE 2026 », soit
     // précisément ce qu'on y a mis. Signalé, pas bloquant : l'intitulé officiel s'impose à nous.
     const longueurTitre = `${code} : ${d.intitule}, prime CEE 2026`.length;
-    if (longueurTitre > 70) {
-      console.warn(`⚠ ${code} : <title> de ${longueurTitre} caractères, il sera tronqué (70 au plus).`);
-    }
-    if (d.dureeVie.length === 0) throw new Error(`Fiche ${code} : aucune durée de vie`);
+    if (longueurTitre > 70) titresLongs.push(code);
+    if (d.dureeVie.length === 0 && !d.dureeVieTexte) console.warn(`⚠ ${code} : aucune durée de vie lue dans le PDF.`);
     if (d.dureeVie.length > 1 && d.dureeVie.some((v) => !v.condition)) {
       throw new Error(`Fiche ${code} : plusieurs durées de vie, chacune doit porter sa condition`);
     }
     // Le H1 sert à couvrir le vocabulaire que le titre officiel n'emploie pas. Un mot commun
     // n'est pas une faute bloquante — la fiche fournie en partage un — mais c'est du
     // rendement perdu, et personne ne le verra jamais sans un signal ici.
-    const communs = motsCommuns(d.intitule, d.h1Edite);
-    if (communs.length) {
-      console.warn(
-        `⚠ ${code} : le H1 et l'intitulé officiel partagent ${communs.map((m) => `« ${m} »`).join(', ')}.`,
-      );
-    }
+    if (motsCommuns(d.intitule, d.h1Edite).length) h1Communs.push(code);
     // La relation jumelle est symétrique : sans ça, une fiche apparaît dans le bloc de
     // l'autre mais pas l'inverse, et le maillage devient un aller sans retour.
     for (const jumelle of d.jumelles) {
@@ -451,6 +551,12 @@ function verifieCoherence() {
     }
   }
 
+  // Deux signaux agrégés plutôt que deux cents lignes : ce sont des rendements perdus, pas
+  // des fautes, et une liste par build suffit à savoir où reprendre.
+  if (titresLongs.length) console.warn(`⚠ ${titresLongs.length} <title> de plus de 70 caractères (tronqués par les moteurs) : ${titresLongs.slice(0, 8).join(', ')}${titresLongs.length > 8 ? '…' : ''}`);
+  if (h1Communs.length) console.warn(`⚠ ${h1Communs.length} fiches dont le H1 partage un mot plein avec l'intitulé officiel.`);
+  const sansPage = CATALOGUE.filter((e) => !DETAILS[e.code]).map((e) => e.code);
+  if (sansPage.length) console.warn(`⚠ ${sansPage.length} fiche(s) du catalogue sans page (PDF non lu) : ${sansPage.join(', ')}`);
   for (const s of SECTEURS) {
     if (catalogueDuSecteur(s.slug).length === 0) throw new Error(`Secteur sans aucune fiche : ${s.slug}`);
   }

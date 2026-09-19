@@ -29,3 +29,6 @@ next-env.d.ts
 
 # État local de wrangler
 .wrangler/
+
+# PDF officiels des fiches, téléchargés par scripts/importe-details.py
+.cache/

@@ -15,7 +15,7 @@ import { dateFr, dateCourte } from '@/lib/dates';
  */
 export default function FicheSynthese({ fiche }: { fiche: Fiche }) {
   const secteur = secteurParSlug(fiche.secteur);
-  const montant = montantVitrine(fiche.calcul);
+  const montant = fiche.calcul ? montantVitrine(fiche.calcul) : null;
 
   return (
     <div className="synthese">
@@ -24,21 +24,30 @@ export default function FicheSynthese({ fiche }: { fiche: Fiche }) {
           {secteur?.label} — {familleLabel(fiche.code)}
         </Ligne>
 
-        <Ligne terme="Montant">
-          <strong>{nombreFr.format(montant.valeur)} {montant.unite}</strong>
-          {/* ⚠️ La condition fait partie du montant, pas d'une note : « 1 700 kWh cumac/m² »
-              sans « en zone H1 » se lit comme une promesse valable partout. */}
-          {montant.condition && <span className="synthese-precision"> en {montant.condition}</span>}
-        </Ligne>
+        {/* Le montant n'a sa ligne que sur un barème modélisé : un tableau publié n'a pas de
+            « valeur vitrine » qu'on puisse citer sans la condition qui la produit. */}
+        {montant && (
+          <Ligne terme="Montant">
+            <strong>{nombreFr.format(montant.valeur)} {montant.unite}</strong>
+            {/* ⚠️ La condition fait partie du montant, pas d'une note : « 1 700 kWh cumac/m² »
+                sans « en zone H1 » se lit comme une promesse valable partout. */}
+            {montant.condition && <span className="synthese-precision"> en {montant.condition}</span>}
+          </Ligne>
+        )}
 
-        <Ligne terme={<Terme slug="duree-de-vie-conventionnelle">Durée de vie</Terme>}>
-          {fiche.dureeVie.length === 1
-            ? `${fiche.dureeVie[0].valeurAnnees} ans`
-            : fiche.dureeVie.map((d) => `${d.valeurAnnees} ans (${d.condition})`).join(', ')}
-        </Ligne>
+        {(fiche.dureeVie.length > 0 || fiche.dureeVieTexte) && (
+          <Ligne terme={<Terme slug="duree-de-vie-conventionnelle">Durée de vie</Terme>}>
+            {fiche.dureeVieTexte
+              ? fiche.dureeVieTexte
+              : fiche.dureeVie.length === 1
+                ? `${fiche.dureeVie[0].valeurAnnees} ans`
+                : fiche.dureeVie.map((d) => `${d.valeurAnnees} ans (${d.condition})`).join(', ')}
+          </Ligne>
+        )}
 
         <Ligne terme="Version">
-          {fiche.version}, applicable depuis le {dateCourte(fiche.dateApplication)}
+          {fiche.version}
+          {fiche.dateApplication && <>, applicable depuis le {dateCourte(fiche.dateApplication)}</>}
         </Ligne>
 
         {/* Date future : c'est une date limite d'engagement, pas une alerte. */}

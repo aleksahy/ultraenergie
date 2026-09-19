@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Page, { Section } from '@/components/Page';
 import ListeLiens from '@/components/ListeLiens';
 import ListeFiches from '@/components/ListeFiches';
+import FiltreFamilles from '@/components/FiltreFamilles';
 import { SECTEURS, secteurParSlug } from '@/lib/secteurs';
 import { catalogueParFamille, catalogueDuSecteur, FICHES_EN_LIGNE } from '@/lib/fiches';
 import { url } from '@/lib/routes';
@@ -25,11 +26,14 @@ export async function generateMetadata({ params }: { params: Promise<{ secteur: 
 
 /**
  * Le hub catalogue d'un secteur. Son maillage est fixé par l'architecture :
- *   → toutes ses fiches, groupées par famille en sections à ancres
+ *   → toutes ses fiches, groupées par famille, derrière une barre « Tous » + une entrée par
+ *     famille qui FILTRE la liste (demande d'Alek du 19/09/2026 ; avant, les ancres
+ *     faisaient défiler)
  *   → les cinq autres hubs
  *
- * ⛔ LES FAMILLES SONT DES SECTIONS À ANCRES, PAS DES PAGES. Pas de niveau sous-secteur, ni
- * en URL ni en page : `#utilites` est un point d'entrée dans ce hub, pas une adresse à lui.
+ * ⛔ LES FAMILLES SONT DES FILTRES, PAS DES PAGES. Pas de niveau sous-secteur, ni en URL ni
+ * en page : `#utilites` est un état de ce hub, pas une adresse à lui. Toutes les fiches sont
+ * dans le HTML prérendu, le filtre ne fait que masquer.
  */
 export default async function HubSecteur({ params }: { params: Promise<{ secteur: string }> }) {
   const { secteur: slug } = await params;
@@ -47,14 +51,6 @@ export default async function HubSecteur({ params }: { params: Promise<{ secteur
       titre={`Fiches CEE ${secteur.label}`}
       chapo={`Les ${total} fiches d’opérations standardisées du secteur ${secteur.label.toLowerCase()}, classées par famille d’opération.`}
     >
-      {familles.length > 1 && (
-        <nav className="ancres" aria-label="Les familles d’opérations de ce secteur">
-          {familles.map((f) => (
-            <a key={f.slug} href={`#${f.slug}`}>{f.label} <span className="ancres-compte">{f.entrees.length}</span></a>
-          ))}
-        </nav>
-      )}
-
       {/* Tant que le détail des fiches n'est pas importé, le hub liste sans lier. Le dire est
           plus honnête que de laisser croire à des liens qui ne réagissent pas. */}
       {enLigne < total && (
@@ -65,11 +61,14 @@ export default async function HubSecteur({ params }: { params: Promise<{ secteur
         </p>
       )}
 
-      {familles.map((famille) => (
-        <Section key={famille.slug} id={famille.slug} titre={famille.label}>
-          <ListeFiches entrees={famille.entrees} />
-        </Section>
-      ))}
+      <FiltreFamilles
+        familles={familles.map((f) => ({ slug: f.slug, label: f.label, compte: f.entrees.length }))}
+        sections={familles.map((famille) => (
+          <Section key={famille.slug} id={famille.slug} titre={famille.label}>
+            <ListeFiches entrees={famille.entrees} />
+          </Section>
+        ))}
+      />
 
       <Section titre="Les autres secteurs">
         <ListeLiens

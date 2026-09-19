@@ -23,13 +23,29 @@ export default function FicheRail({ fiche, sections }: { fiche: Fiche; sections:
     <aside className="fiche-rail" aria-label="Repères de la fiche">
       <div className="rail-bloc rail-bloc-action">
         <div className="rail-surtitre">Votre opération</div>
-        <p className="rail-accroche">Estimez la prime {fiche.code}, ou confiez-nous le dossier.</p>
-        <Link className="pilule pilule-blanc rail-pilule" href={`${url.simulateur}?fiche=${fiche.code.toLowerCase()}`}>
-          Estimer ma prime →
-        </Link>
-        <BoutonModale modale="estimation" contexte={`Fiche ${fiche.code}`} className="pilule rail-pilule rail-pilule-contour">
-          Être rappelé →
-        </BoutonModale>
+        {/* Le simulateur ne s'ouvre que sur un barème modélisé : sur les autres fiches, le
+            premier bouton est la demande d'estimation, qui passe par nous. */}
+        {fiche.calcul ? (
+          <>
+            <p className="rail-accroche">Estimez la prime {fiche.code}, ou confiez-nous le dossier.</p>
+            <Link className="pilule pilule-blanc rail-pilule" href={`${url.simulateur}?fiche=${fiche.code.toLowerCase()}`}>
+              Estimer ma prime →
+            </Link>
+            <BoutonModale modale="estimation" contexte={`Fiche ${fiche.code}`} className="pilule rail-pilule rail-pilule-contour">
+              Être rappelé →
+            </BoutonModale>
+          </>
+        ) : (
+          <>
+            <p className="rail-accroche">Confiez-nous votre opération {fiche.code}.</p>
+            <BoutonModale modale="estimation" contexte={`Fiche ${fiche.code}`} className="pilule pilule-blanc rail-pilule">
+              Estimer ma prime →
+            </BoutonModale>
+            <BoutonModale modale="rappel" contexte={`Fiche ${fiche.code}`} className="pilule rail-pilule rail-pilule-contour">
+              Être rappelé →
+            </BoutonModale>
+          </>
+        )}
       </div>
 
       <nav className="rail-bloc" aria-label="Sommaire de la fiche">

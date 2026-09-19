@@ -5,6 +5,9 @@ import Link from 'next/link';
 import Simulateur from './Simulateur';
 import ListeLiens from './ListeLiens';
 import { FICHES_EN_LIGNE, ficheParCode, ancreFiche } from '@/lib/fiches';
+
+/** Les fiches dont le barème est modélisé : les seules que le simulateur sait calculer. */
+const MODELISEES = FICHES_EN_LIGNE.filter((f) => f.calcul);
 import { url } from '@/lib/routes';
 
 /**
@@ -35,7 +38,7 @@ export default function SimulateurPage() {
   const code = useSyncExternalStore(abonneAlHistorique, litFiche, () => null);
   const fiche = code ? ficheParCode(code) : undefined;
 
-  if (fiche) {
+  if (fiche && fiche.calcul) {
     return (
       <>
         <p className="page-texte">
@@ -47,7 +50,7 @@ export default function SimulateurPage() {
     );
   }
 
-  if (FICHES_EN_LIGNE.length === 0) {
+  if (MODELISEES.length === 0) {
     return (
       <p className="page-chantier">
         Aucun barème n’est encore importé : le simulateur s’ouvrira fiche par fiche, à mesure
@@ -68,7 +71,7 @@ export default function SimulateurPage() {
         à partir de son barème officiel.
       </p>
       <ListeLiens
-        liens={FICHES_EN_LIGNE.map((f) => ({
+        liens={MODELISEES.map((f) => ({
           href: `${url.simulateur}?fiche=${f.code.toLowerCase()}`,
           label: ancreFiche(f.code),
         }))}

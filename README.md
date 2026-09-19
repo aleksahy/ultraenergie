@@ -129,11 +129,34 @@ Deux contrôles au build, éprouvés en falsifiant un code :
 
 ## Le catalogue
 
-216 fiches, importées du tableur fourni :
+216 fiches, importées du tableur fourni, et leur détail importé des PDF officiels :
 
 ```bash
-npm run fiches   # data/fiches_cee.xlsx → data/fiches.json
+npm run fiches    # data/fiches_cee.xlsx → data/fiches.json (le catalogue : code + secteur)
+npm run details   # data/fiches_sources.json → data/details.json (le détail, depuis les PDF)
 ```
+
+### Le détail vient des PDF officiels
+
+`data/fiches_sources.json` est le manifeste : pour chaque code, l'URL du PDF de la fiche
+(relevée sur les pages du Club C2E de l'ATEE le 19/09/2026, version la plus récente), la
+version et la date d'application quand la page les donnait. `scripts/importe-details.py`
+télécharge les PDF dans `.cache/fiches-pdf/` (non versionné), en extrait le texte des cinq
+sections et la Partie A, et lit les tableaux de barème avec PyMuPDF. Résultat :
+`data/details.json`, **généré, jamais édité**.
+
+Deux sources se fondent champ par champ dans `lib/fiches.ts` : l'import, et `DETAILS_EDITES`,
+écrit à la main, qui l'emporte. C'est là que vit un **barème modélisé** (`calcul`, qui ouvre
+le simulateur), des conditions titrées, une note sur les jumelles. Sans `calcul`, la page rend
+le barème **tel que le PDF le publie** (`bareme.tableaux`), et signale, avec un lien vers le
+PDF, quand la détection a manqué un tableau (`bareme.incomplet`). Le simulateur ne s'ouvre que
+sur un barème modélisé.
+
+État au 19/09/2026 : 209 fiches ont leur page, 7 PDF ne se lisent pas (scans : BAT-EN-110,
+BAT-EQ-123, BAT-SE-104, BAT-TH-156, IND-UT-127, TRA-EQ-133, TRA-SE-113), 1 barème est
+modélisé (BAR-EN-101). Le H1 des fiches importées est la première phrase de la dénomination
+quand elle tient en 140 caractères, sinon l'intitulé. La date d'application n'est connue que
+pour 110 fiches.
 
 ⚠️ **Le tableur est la source, le JSON en est la copie générée.** Ne jamais éditer
 `data/fiches.json` à la main. L'import refuse d'écrire si quoi que ce soit cloche : code en
@@ -142,9 +165,11 @@ Sur 216 lignes recopiées, c'est la seule façon de voir une faute de saisie aut
 lisant plus tard sur le site.
 
 **Deux niveaux, et c'est voulu.** Le *catalogue* (code + secteur) est complet et bâtit les
-hubs. Le *détail* (barème, conditions, documents) arrive fiche par fiche : tant qu'une fiche
-n'en a pas, elle est listée dans son hub **sans être liée**, et n'a pas de page. Une page sans
-barème ni conditions ne dirait rien de plus que sa ligne dans le hub, et il y en aurait 216.
+hubs. Le *détail* donne sa page à une fiche dès que le PDF a livré son intitulé et ses
+conditions ; sinon elle est listée dans son hub **sans être liée**.
+
+Les hubs portent une barre « Tous » + une entrée par famille, qui **filtre** la liste (le HTML
+prérendu contient toutes les fiches, le filtre ne fait que masquer ; l'adresse suit, `#enveloppe`).
 
 ⛔ Ne pas inventer de détail pour remplir. Un barème plausible attaché à un code réel est plus
 dangereux qu'une page absente : il se lit comme une information.

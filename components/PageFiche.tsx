@@ -2,6 +2,7 @@ import { Section } from '@/components/Page';
 import FilAriane from '@/components/FilAriane';
 import ListeLiens from '@/components/ListeLiens';
 import GrilleCalcul from '@/components/GrilleCalcul';
+import TableauBareme from '@/components/TableauBareme';
 import FicheSynthese from '@/components/FicheSynthese';
 import FicheRail, { FicheSources } from '@/components/FicheRail';
 import Terme from '@/components/Terme';
@@ -50,13 +51,7 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
 
 
   /* La quantité par laquelle le forfait se multiplie (« Surface d'isolant »), s'il y en a une. */
-  const quantite = champs(fiche.calcul).find((c) => c.nature === 'nombre');
-  /* ⚠️ `secteurApplication` est rédigé comme un groupe nominal pluriel sans article
-     (« Bâtiments résidentiels existants. ») : c'est ce qui permet de l'insérer après
-     « dans les ». Le point final est retiré, l'initiale mise en minuscule. */
-  const champ = fiche.secteurApplication
-    ? fiche.secteurApplication.replace(/\.$/, '').replace(/^./, (c) => c.toLowerCase())
-    : null;
+  const quantite = fiche.calcul ? champs(fiche.calcul).find((c) => c.nature === 'nombre') : undefined;
 
   /* ⚠️ UNE SEULE LISTE POUR LE RENDU ET LE SOMMAIRE. Le nombre de sections varie de cinq à
      neuf selon la matière : une table des matières construite à part finirait par annoncer
@@ -69,11 +64,17 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
       court: 'La fiche en bref',
       contenu: <FicheSynthese fiche={fiche} />,
     },
-    {
+  ];
+
+  /* Le barème : modélisé (grille + simulateur) quand quelqu'un l'a écrit et vérifié, sinon
+     les tableaux tels que le PDF les publie. Une fiche sans l'un ni l'autre n'a pas de
+     section : on ne remplace pas un barème absent par une phrase. */
+  if (fiche.calcul || fiche.bareme) {
+    sections.push({
       id: 'bareme',
       titre: `Le barème de ${fiche.code}`,
       court: 'Barème',
-      contenu: (
+      contenu: fiche.calcul ? (
         <>
           <p className="page-texte">
             Le forfait de {fiche.code} est exprimé en <Terme slug="kwh-cumac">kWh cumac</Terme>
@@ -90,22 +91,50 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
               l'écran, alors que ce sont elles qu'on lit juste après un montant. */}
           <p className="mention">Volume indicatif, sous réserve de validation du dossier.</p>
         </>
+      ) : (
+        <>
+          <p className="page-texte">
+            Le montant de {fiche.code} en <Terme slug="kwh-cumac">kWh cumac</Terme>, tel que la
+            fiche officielle le publie.
+          </p>
+          {fiche.bareme!.avant.map((n) => <p key={n} className="page-texte">{n}</p>)}
+          {fiche.bareme!.tableaux.map((t, i) => <TableauBareme key={i} lignes={t} />)}
+          {fiche.bareme!.notes.map((n) => <p key={n} className="page-texte">{n}</p>)}
+          {/* Un tableau manqué par l'extraction ne se remplace pas par une phrase : on renvoie
+              au texte officiel, et on le dit. */}
+          {fiche.bareme!.incomplet && fiche.pdf && (
+            <p className="page-texte">
+              Une partie du barème n’est pas reproduite ici : le montant complet figure dans{' '}
+              <a className="lien-terme" href={fiche.pdf} target="_blank" rel="noopener noreferrer">la fiche officielle (PDF)</a>.
+            </p>
+          )}
+          <p className="mention">
+            Volume indicatif, sous réserve de validation du dossier.
+            {fiche.pdf && !fiche.bareme!.incomplet && (
+              <> Texte officiel : <a href={fiche.pdf} target="_blank" rel="noopener noreferrer">la fiche {fiche.code} (PDF)</a>.</>
+            )}
+          </p>
+        </>
       ),
-    },
-  ];
+    });
+  }
 
-  if (fiche.secteurApplication) {
+  const perimetre = fiche.denomination?.slice(1) ?? [];
+  if (fiche.secteurApplication || perimetre.length > 0) {
     sections.push({
       id: 'beneficiaires',
       titre: 'Qui peut en bénéficier ?',
       court: 'Bénéficiaires',
       contenu: (
-        <p className="page-texte">
-          {fiche.code} s’applique dans les {champ}
-          {jumelles.length > 0 ? (
-            <>. Hors de ce champ, la même opération relève de {jumelles.join(', ')}, décrite plus bas.</>
-          ) : '.'}
-        </p>
+        <>
+          {fiche.secteurApplication && <p className="page-texte">{fiche.secteurApplication}</p>}
+          {perimetre.map((p) => <p key={p} className="page-texte">{p}</p>)}
+          {jumelles.length > 0 && (
+            <p className="page-texte">
+              Hors de ce champ, la même opération relève de {jumelles.join(', ')}, décrite plus bas.
+            </p>
+          )}
+        </>
       ),
     });
   }
@@ -121,14 +150,18 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
             {fiche.conditions.length} conditions, toutes à remplir : un seul écart et l’opération
             est refusée en bloc, sans prime partielle.
           </p>
-          <dl className="conditions">
-            {fiche.conditions.map((c) => (
-              <div key={c.titre}>
-                <dt>{c.titre}</dt>
-                <dd>{c.texte}</dd>
-              </div>
-            ))}
-          </dl>
+          {fiche.conditions.every((c) => c.titre) ? (
+            <dl className="conditions">
+              {fiche.conditions.map((c) => (
+                <div key={c.titre}>
+                  <dt>{c.titre}</dt>
+                  <dd>{c.texte}</dd>
+                </div>
+              ))}
+            </dl>
+          ) : (
+            fiche.conditions.map((c) => <p key={c.texte} className="page-texte">{c.texte}</p>)
+          )}
         </>
       ),
     });
@@ -234,18 +267,20 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
 
       <main className="page page-fiche">
         <h1 className="page-titre">{fiche.code} — {fiche.h1Edite}</h1>
-        {fiche.denomination && <p className="page-chapo">{fiche.denomination}</p>}
+        {fiche.denomination?.[0] && <p className="page-chapo">{fiche.denomination[0]}</p>}
 
         <div className="fiche-intro">
           <p>
             {fiche.code} est la fiche d’opération standardisée des certificats d’économies
-            d’énergie pour « {fiche.intitule.toLowerCase()} »{champ && <> dans les {champ}</>}.
+            d’énergie pour « {fiche.intitule.toLowerCase()} », dans le secteur {secteur.label.toLowerCase()}.
           </p>
-          <p>
-            La fiche est en version {fiche.version}, applicable depuis le{' '}
-            {dateCourte(fiche.dateApplication)}
-            {fiche.dateAbrogation && <>, et reste engageable jusqu’au {dateFr(fiche.dateAbrogation)}</>}.
-          </p>
+          {(fiche.dateApplication || fiche.dateAbrogation) && (
+            <p>
+              La fiche est en version {fiche.version}
+              {fiche.dateApplication && <>, applicable depuis le {dateCourte(fiche.dateApplication)}</>}
+              {fiche.dateAbrogation && <>, et reste engageable jusqu’au {dateFr(fiche.dateAbrogation)}</>}.
+            </p>
+          )}
         </div>
 
         <div className="fiche-corps">
@@ -322,7 +357,7 @@ function secteurDe(code: string): string {
 /** Vrai quand le barème est indexé sur la zone climatique : conditionne un lien contextuel. */
 function estParZone(fiche: Fiche): boolean {
   return (
-    fiche.calcul.type === 'croisement' &&
+    fiche.calcul?.type === 'croisement' &&
     fiche.calcul.dimensions.some((d) => d.nom.toLowerCase().includes('zone climatique'))
   );
 }
@@ -336,6 +371,8 @@ export function metadataFiche(fiche: Fiche) {
     title: `${fiche.code} : ${fiche.intitule}, prime CEE ${anneeCourante()}`,
     description:
       `Montant, conditions et justificatifs de la fiche ${fiche.code} (${secteur?.label}). ` +
-      `Version ${fiche.version}, applicable depuis le ${dateCourte(fiche.dateApplication)}.`,
+      (fiche.dateApplication
+        ? `Version ${fiche.version}, applicable depuis le ${dateCourte(fiche.dateApplication)}.`
+        : `Version ${fiche.version}.`),
   };
 }

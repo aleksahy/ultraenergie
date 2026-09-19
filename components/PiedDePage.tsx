@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Wordmark from './Wordmark';
 import { COORDONNEES } from '@/lib/contenu';
-import { SECTEURS } from '@/lib/secteurs';
 import { PUBLICS, PARTENAIRES } from '@/lib/publics';
 import { url } from '@/lib/routes';
 import logoCee from '@/cee.png';
@@ -44,13 +43,8 @@ export default function PiedDePage() {
           </div>
         </div>
 
-        <div className="pied-col">
-          <div className="pied-titre">Fiches par secteur</div>
-          <div className="pied-liens">
-            {SECTEURS.map((s) => <Link key={s.slug} href={url.hubFiches(s.slug)}>{s.label}</Link>)}
-          </div>
-        </div>
-
+        {/* Trois colonnes, pas quatre : la colonne des secteurs est partie avec les pages
+            secteur (19/09/2026). Les hubs restent joignables par « Fiches CEE ». */}
         <div className="pied-col">
           <div className="pied-titre">Ressources</div>
           <div className="pied-liens">
