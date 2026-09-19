@@ -21,7 +21,7 @@ npm run images   # dérivées web des photos (cf. ci-dessous)
 
 ## Architecture
 
-69 pages, toutes statiques. La source unique des URL est `lib/routes.ts` ; rien n'écrit une
+36 pages, toutes statiques. La source unique des URL est `lib/routes.ts` ; rien n'écrit une
 URL à la main.
 
 ```
@@ -29,7 +29,6 @@ URL à la main.
 /qui-sommes-nous  /contact           pages fixes
 /veille-cee                          la newsletter
 /{public}                            4 pages « Pour qui »
-/{secteur}                           6 pages secteur commerciales
 /{partenaire}                        3 pages « Partenaires »
 /fiches-cee/                         index du catalogue
 /fiches-cee/{secteur}/               hub catalogue (6)
@@ -41,35 +40,39 @@ URL à la main.
 
 ### Espace de noms de premier niveau
 
-`/industrie`, `/contact` et `/blog` cohabitent. Les treize pages de premier niveau passent par
-**un seul segment dynamique** (`app/[slug]/page.tsx`) qui dispatche vers la page secteur,
-« pour qui » ou partenaire — Next n'accepte de toute façon qu'un segment dynamique par niveau.
+`/obliges`, `/contact` et `/blog` cohabitent. Les sept pages de premier niveau passent par
+**un seul segment dynamique** (`app/[slug]/page.tsx`) qui dispatche vers la page « pour qui »
+ou partenaire — Next n'accepte de toute façon qu'un segment dynamique par niveau.
 
-⚠️ Une route statique l'emporte sur ce segment **sans lever d'erreur** : une page secteur
+⛔ Les six pages secteur commerciales (`/industrie/`, `/tertiaire/`…) ont été **retirées le
+19/09/2026**, pour le moment. Leurs slugs restent réservés dans `PREMIER_NIVEAU` afin qu'une
+page fixe ne s'y installe pas entre-temps.
+
+⚠️ Une route statique l'emporte sur ce segment **sans lever d'erreur** : une page dynamique
 nommée comme une page fixe deviendrait inatteignable en silence. C'est `PREMIER_NIVEAU` dans
 `lib/routes.ts` qui refuse le doublon, au build. Tout nouveau premier niveau s'y déclare.
 
 ### Navigation
 
-Cinq entrées, dans cet ordre :
+Quatre entrées, dans cet ordre :
 
 | Entrée | Sous-menu |
 | --- | --- |
 | Qui sommes-nous | *(lien direct)* |
 | Pour qui ▾ | les 4 pages « Pour qui » |
-| Secteurs ▾ | les 6 pages secteur |
 | Ressources ▾ | Fiches CEE · Comprendre les CEE · Blog · Veille CEE |
 | Partenaires ▾ | Obligés · Installateurs · Apporteurs d'affaires |
 
 `/contact` est un bouton, hors des cinq entrées.
 
-**« Pour qui », « Secteurs » et « Partenaires » n'ont pas d'URL** : ce sont des libellés de
+**« Pour qui » et « Partenaires » n'ont pas d'URL** : ce sont des libellés de
 menu. Le type `GroupeNav` ne porte pas de champ `href`, et le déclencheur est rendu en
 `<button>` — un groupe ne peut donc pas être lié par accident.
 
 ⛔ Les six hubs `/fiches-cee/{secteur}` ne sont pas dans le menu : « Fiches CEE » y est une
 entrée parmi les ressources, pas un bloc. Ils restent atteignables par quatre chemins
-(l'index, les hubs voisins, les pages secteur, les blocs « Travaux éligibles » de l'accueil),
+(l'index, les hubs voisins, le pied de page, les pages « Pour qui », les blocs « Travaux
+éligibles » de l'accueil),
 et le contrôle d'orphelines le vérifie à chaque build plutôt que de le supposer.
 
 ### Fils d'Ariane
@@ -120,12 +123,9 @@ Deux contrôles au build, éprouvés en falsifiant un code :
 
 | Depuis | Vers |
 | --- | --- |
-| Hub `/fiches-cee/{secteur}` | ses fiches groupées par usage · les 5 autres hubs · sa page secteur |
+| Hub `/fiches-cee/{secteur}` | ses fiches groupées par usage · les 5 autres hubs |
 | Fiche | son hub (par le fil d'Ariane) · 6 liens : jumelles d'abord, voisines d'usage ensuite |
-| Page secteur `/{secteur}` | son hub catalogue |
 
-Le lien entre une page secteur et son hub est réciproque, **sous deux ancres différentes** :
-sous la même, les deux pages se disputent la même requête.
 
 ## Le catalogue
 
@@ -156,9 +156,18 @@ Rendu aujourd'hui pour **BAR-EN-101**, la seule fiche dont le détail est import
 
 ### L'ordre des sections est un ordre d'intention
 
-1. La fiche en bref · 2. Montant · 3. Bénéficiaires · 4. Conditions · 5. Justificatifs ·
-6. Durée de vie · 7. Coup de pouce · 8. Versions · 9. Jumelles · 10. Complémentaires ·
-11. CTA de clôture
+1. La fiche en bref · 2. Barème · 3. Bénéficiaires · 4. Conditions · 5. Justificatifs ·
+6. Coup de pouce · 7. Jumelles · 8. Complémentaires · 9. CTA de clôture
+
+⛔ **Plus de sections « Durée de vie » ni « Versions »** (retirées le 19/09/2026). La durée
+de vie et la version applicable restent dans l'encadré de synthèse. Le volume engagé a été
+retiré de l'encadré (provenance non établie), et le registre EMMY des sources avec lui.
+L'encadré porte en revanche la qualification exigée du professionnel (« Professionnel RGE »),
+premier motif de refus d'un dossier.
+
+**Chaque section ouvre par une phrase, pas par un tableau.** La prose est écrite au niveau du
+gabarit, vraie pour toute fiche, et ne dit rien que le modèle ne contienne. La seule phrase
+propre à une fiche, en tête de l'encadré, est composée depuis la donnée.
 
 - La section 2 dit **le barème, et rien d'autre**. Ni exemple chiffré ni appel à l'action
   sous la grille : le calcul appartient au simulateur, et l'appel à l'action est porté par la
@@ -166,7 +175,7 @@ Rendu aujourd'hui pour **BAR-EN-101**, la seule fiche dont le détail est import
   conditions d'éligibilité hors de l'écran, alors que ce sont elles qu'on lit juste après un
   montant.
 ⛔ **Pas de section Téléchargement pour l'instant** (retirée le 05/09/2026). Les documents
-restent dans le modèle et alimentent la section « Versions » ainsi que la date de mise à jour :
+restent dans le modèle et alimentent la date de mise à jour de la bande latérale :
 c'est la section qui est retirée, pas la donnée. Le jour où elle revient, elle reprend sa place
 **après** l'appel à l'action — c'est une sortie, elle ne doit pas le précéder — et l'encadré de
 synthèse retrouve son ancre vers elle.
@@ -180,10 +189,10 @@ Trois blocs : appel à l'action en accent, sommaire, sources. Collée sous l'en-
 sous 1120px.
 
 ⚠️ **Le sommaire et les sections sortent de la même liste.** Une table des matières écrite à
-part annoncerait tôt ou tard une section absente — le nombre de sections varie de six à douze.
+part annoncerait tôt ou tard une section absente — le nombre de sections varie de cinq à neuf.
 
 ⚠️ **Les organismes cités suivent le contenu** (`lib/sources.ts`) : le registre n'apparaît que
-sur les fiches dont on affiche un volume engagé. Une source citée pour une donnée absente est
+sur les fiches dont on affiche la donnée correspondante. Une source citée pour une donnée absente est
 une source fausse. Le PNCEE et l'ATEE n'y figurent pas : ils instruisent et documentent, ils
 ne sont la provenance d'aucun chiffre de la page.
 
@@ -194,7 +203,7 @@ la navigation est une chose, masquer la provenance en serait une autre.
 
 | | Source | Exemple |
 | --- | --- | --- |
-| `<title>` | intitulé officiel | `BAR-EN-101 : Isolation de combles ou de toitures — prime CEE 2026` |
+| `<title>` | intitulé officiel | `BAR-EN-101 : Isolation de combles ou de toitures, prime CEE 2026` |
 | `<h1>` | `h1Edite` (§2 + contexte §1) | `BAR-EN-101 — Isolation en comble perdu ou rampant de toiture dans un logement existant` |
 
 Les intervertir revient à ne couvrir qu'un vocabulaire. Un contrôle signale au build les mots
@@ -205,8 +214,10 @@ pleins communs aux deux — **non bloquant**, la fiche fournie en partage un («
 Cinq formes de calcul (`lib/calcul.ts`), rendues génériquement : forfait, correspondance,
 croisement à n dimensions, produit de tables, variantes conditionnelles.
 
-Le cours est un paramètre unique du site, **daté** (`TAUX_CEE` dans `lib/site.ts`) : un prix de
-marché sans date ne veut rien dire. 🚨 Valeur à raccorder à une source réelle.
+⛔ **Aucun montant en euros.** Le site donne des kWh cumac, jamais une prime chiffrée. La
+cotation EMMY est un prix entre détenteurs de certificats, pas la prime versée au bénéficiaire,
+qui est plus basse et dépend de l'offre. Si un prix revient un jour, c'est un prix de prime fixé
+par Ultra Énergie, daté, déclaré à un seul endroit.
 
 Le montant de l'encadré porte **la condition qui le produit** : « 1 700 kWh cumac/m² en zone
 climatique H1 ». Sans elle, il se lit comme une promesse valable partout. Jamais une moyenne.

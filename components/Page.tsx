@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 import FilAriane from './FilAriane';
-import RetourParent from './RetourParent';
 
 /**
  * La coquille commune aux pages intérieures : fil d'Ariane, titre, chapô, contenu.
@@ -24,9 +23,8 @@ export default function Page({
           s'y trouve borné. */}
       <FilAriane chemin={chemin} />
       <main className="page">
-        {/* Le retour vient AVANT le titre : il prolonge le fil d'Ariane, dont il reprend le
-            parent, et sert de porte de sortie avant même d'avoir lu la page. */}
-        <RetourParent chemin={chemin} />
+        {/* Pas de lien « Retour à … » sous le fil d'Ariane (retiré le 19/09/2026) : le fil
+            lie déjà chaque parent, le lien répétait sa dernière miette en plus gros. */}
         <h1 className="page-titre">{titre}</h1>
         {chapo && <p className="page-chapo">{chapo}</p>}
         {children}

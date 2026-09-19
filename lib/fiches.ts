@@ -69,12 +69,6 @@ export interface DocumentFiche {
   url?: string;
 }
 
-/** Le cumul engagé sur la fiche depuis son ouverture, tel qu'affiché en synthèse. */
-export interface VolumeEngage {
-  twhCumac: number;
-  depuis: number;
-}
-
 /** Tout ce qui vient du second export, et qui donne sa page à une fiche. */
 export interface DetailFiche {
   /** Le libellé officiel complet. Il sert au <title>, jamais au H1. */
@@ -115,9 +109,14 @@ export interface DetailFiche {
   /** Ce que la Partie A réclame en plus des champs du calcul. */
   justificatifs?: string[];
   coupDePouce?: { nom: string; texte: string };
-  /** Ce qui distingue la fiche de ses jumelles, affiché en section 10. */
+  /** Ce qui distingue la fiche de ses jumelles, affiché dans la section « À ne pas confondre ». */
   noteJumelles?: string;
-  volumeEngage?: VolumeEngage;
+  /**
+   * La qualification exigée du professionnel, en clair (« Professionnel RGE »). Affichée en
+   * synthèse : c'est le premier motif de refus d'un dossier, il ne doit pas se lire qu'au
+   * détour des conditions. Absente quand la fiche n'exige rien.
+   */
+  qualification?: string;
 }
 
 export type Fiche = EntreeCatalogue & DetailFiche;
@@ -187,7 +186,9 @@ export const DETAILS: Record<string, DetailFiche> = {
       "les aménagements réalisés : coffrage autour des conduits de fumées et des éclairages encastrés, rehausse rigide au-dessus de la trappe d'accès, pare-vapeur",
       'la date de la visite du bâtiment',
     ],
-    volumeEngage: { twhCumac: 95.3, depuis: 2022 },
+    // Le « signe de qualité au sens du décret 2014-812 » de la condition « Professionnel »
+    // est la définition réglementaire du RGE.
+    qualification: 'Professionnel RGE',
   },
 };
 
@@ -416,19 +417,16 @@ function verifieCoherence() {
 
   for (const [code, d] of Object.entries(DETAILS)) {
     if (!codes.has(code)) throw new Error(`Détail sans entrée au catalogue : ${code}`);
-    // Le <title> vaut « CODE : intitulé — prime CEE AAAA ». Au-delà d'environ 70 caractères
+    // Le <title> vaut « CODE : intitulé, prime CEE AAAA ». Au-delà d'environ 70 caractères
     // les moteurs le tronquent, et ce qu'ils coupent est la fin : « prime CEE 2026 », soit
     // précisément ce qu'on y a mis. Signalé, pas bloquant : l'intitulé officiel s'impose à nous.
-    const longueurTitre = `${code} : ${d.intitule} — prime CEE 2026`.length;
+    const longueurTitre = `${code} : ${d.intitule}, prime CEE 2026`.length;
     if (longueurTitre > 70) {
       console.warn(`⚠ ${code} : <title> de ${longueurTitre} caractères, il sera tronqué (70 au plus).`);
     }
     if (d.dureeVie.length === 0) throw new Error(`Fiche ${code} : aucune durée de vie`);
     if (d.dureeVie.length > 1 && d.dureeVie.some((v) => !v.condition)) {
       throw new Error(`Fiche ${code} : plusieurs durées de vie, chacune doit porter sa condition`);
-    }
-    if (d.volumeEngage && d.volumeEngage.twhCumac <= 0) {
-      throw new Error(`Fiche ${code} : volume engagé nul — l'absence se dit en omettant le champ`);
     }
     // Le H1 sert à couvrir le vocabulaire que le titre officiel n'emploie pas. Un mot commun
     // n'est pas une faute bloquante — la fiche fournie en partage un — mais c'est du

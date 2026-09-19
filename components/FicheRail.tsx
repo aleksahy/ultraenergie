@@ -62,7 +62,7 @@ export default function FicheRail({ fiche, sections }: { fiche: Fiche; sections:
  */
 export function FicheSources({ fiche, enPied = false }: { fiche: Fiche; enPied?: boolean }) {
   const maj = dateMajDe(fiche);
-  const organismes = organismesDe(fiche);
+  const organismes = organismesDe();
 
   return (
     <div className={enPied ? 'sources-pied' : 'rail-bloc rail-bloc-sources'}>

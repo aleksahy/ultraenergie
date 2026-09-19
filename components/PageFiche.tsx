@@ -1,20 +1,35 @@
 import { Section } from '@/components/Page';
 import FilAriane from '@/components/FilAriane';
-import RetourParent from '@/components/RetourParent';
 import ListeLiens from '@/components/ListeLiens';
 import GrilleCalcul from '@/components/GrilleCalcul';
 import FicheSynthese from '@/components/FicheSynthese';
 import FicheRail, { FicheSources } from '@/components/FicheRail';
-import { HistoriqueVersions } from '@/components/FicheDocuments';
 import Terme from '@/components/Terme';
 import { BoutonModale } from '@/components/Modales';
 import { secteurParSlug } from '@/lib/secteurs';
 import { ancreFiche, aUnePage, fichesLiees, intituleDe, type Fiche } from '@/lib/fiches';
+import { champs } from '@/lib/calcul';
 import { url } from '@/lib/routes';
-import { dateCourte, anneeCourante } from '@/lib/dates';
+import { dateCourte, dateFr, anneeCourante } from '@/lib/dates';
 
 /**
- * Le gabarit des pages de fiche : douze sections, rendues seulement si leur donnée existe.
+ * Le gabarit des pages de fiche : neuf sections possibles, rendues seulement si leur donnée
+ * existe.
+ *
+ * ⚠️ DE LA PROSE, MAIS PAS DE GÉNÉRALITÉS. Une page qui enchaîne donnée sur donnée se lit
+ * comme un export ; une page qui explique ce qu'est une fiche CEE à chaque section se lit
+ * comme un cours. La prose de ce gabarit parle de CETTE fiche : elle est composée depuis la
+ * donnée (code, intitulé, forfait, qualification, dates, jumelles), et une phrase qui serait
+ * vraie sur n'importe quelle page du site n'a pas sa place ici — elle va dans « Comprendre
+ * les CEE ». ⛔ Aucun fait propre à une fiche n'est écrit en dur : tout passe par le modèle.
+ *
+ * L'INTRODUCTION SOUS LE H1 est le texte de référencement de la page : le code, l'intitulé
+ * officiel, « prime CEE », le champ d'application et le forfait, dans les cent premiers mots.
+ *
+ * ⛔ PLUS DE SECTIONS « DURÉE DE VIE » NI « VERSIONS » (retirées le 19/09/2026). La durée de
+ * vie et la version applicable restent dans l'encadré de synthèse ; l'historique des
+ * versions intéresse le PNCEE, pas un maître d'ouvrage. Les documents restent dans le modèle
+ * et donnent encore la date de mise à jour de la bande latérale.
  *
  * ⚠️ L'ORDRE EST UN ORDRE D'INTENTION, PAS UN ORDRE LOGIQUE.
  *   · Le montant vient en 2, et le CTA JUSTE DESSOUS : c'est le pic d'intention de la page,
@@ -34,10 +49,19 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
   const complementaires = fiche.voisines ?? liees.filter((f) => !fiche.jumelles.includes(f.code)).map((f) => f.code);
 
 
-  /* ⚠️ UNE SEULE LISTE POUR LE RENDU ET LE SOMMAIRE. Le nombre de sections varie de six à
-     douze selon la matière : une table des matières construite à part finirait par annoncer
+  /* La quantité par laquelle le forfait se multiplie (« Surface d'isolant »), s'il y en a une. */
+  const quantite = champs(fiche.calcul).find((c) => c.nature === 'nombre');
+  /* ⚠️ `secteurApplication` est rédigé comme un groupe nominal pluriel sans article
+     (« Bâtiments résidentiels existants. ») : c'est ce qui permet de l'insérer après
+     « dans les ». Le point final est retiré, l'initiale mise en minuscule. */
+  const champ = fiche.secteurApplication
+    ? fiche.secteurApplication.replace(/\.$/, '').replace(/^./, (c) => c.toLowerCase())
+    : null;
+
+  /* ⚠️ UNE SEULE LISTE POUR LE RENDU ET LE SOMMAIRE. Le nombre de sections varie de cinq à
+     neuf selon la matière : une table des matières construite à part finirait par annoncer
      une section absente, ou par en oublier une. `court` est le libellé de la bande latérale,
-     où « Quel montant de prime pour BAR-EN-101 ? » ne tiendrait pas. */
+     où les titres longs ne tiendraient pas. */
   const sections: SectionFiche[] = [
     {
       id: 'bref',
@@ -46,14 +70,15 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
       contenu: <FicheSynthese fiche={fiche} />,
     },
     {
-      id: 'montant',
-      titre: `Quel montant de prime pour ${fiche.code} ?`,
-      court: 'Montant de la prime',
+      id: 'bareme',
+      titre: `Le barème de ${fiche.code}`,
+      court: 'Barème',
       contenu: (
         <>
           <p className="page-texte">
-            Le barème donne le forfait en <Terme slug="kwh-cumac">kWh cumac</Terme> retenu par la
-            fiche{estParZone(fiche) && <> selon la <Terme slug="zone-climatique">zone climatique</Terme></>}.
+            Le forfait de {fiche.code} est exprimé en <Terme slug="kwh-cumac">kWh cumac</Terme>
+            {estParZone(fiche) && <> et dépend de la <Terme slug="zone-climatique">zone climatique</Terme> du bâtiment</>}.
+            {quantite && <> Multiplié par la {quantite.libelle.toLowerCase()}, il donne le volume de certificats de l’opération, dont dépend la prime.</>}
           </p>
 
           <GrilleCalcul calcul={fiche.calcul} />
@@ -63,7 +88,7 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
               l'action est porté par la bande latérale, qui reste visible tout du long. Trois
               blocs empilés sous le tableau repoussaient les conditions d'éligibilité hors de
               l'écran, alors que ce sont elles qu'on lit juste après un montant. */}
-          <p className="mention">Montant indicatif, sous réserve de validation du dossier.</p>
+          <p className="mention">Volume indicatif, sous réserve de validation du dossier.</p>
         </>
       ),
     },
@@ -74,7 +99,14 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
       id: 'beneficiaires',
       titre: 'Qui peut en bénéficier ?',
       court: 'Bénéficiaires',
-      contenu: <p className="page-texte">{fiche.secteurApplication}</p>,
+      contenu: (
+        <p className="page-texte">
+          {fiche.code} s’applique dans les {champ}
+          {jumelles.length > 0 ? (
+            <>. Hors de ce champ, la même opération relève de {jumelles.join(', ')}, décrite plus bas.</>
+          ) : '.'}
+        </p>
+      ),
     });
   }
 
@@ -84,14 +116,20 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
       titre: 'Conditions d’éligibilité',
       court: 'Conditions d’éligibilité',
       contenu: (
-        <dl className="conditions">
-          {fiche.conditions.map((c) => (
-            <div key={c.titre}>
-              <dt>{c.titre}</dt>
-              <dd>{c.texte}</dd>
-            </div>
-          ))}
-        </dl>
+        <>
+          <p className="page-texte">
+            {fiche.conditions.length} conditions, toutes à remplir : un seul écart et l’opération
+            est refusée en bloc, sans prime partielle.
+          </p>
+          <dl className="conditions">
+            {fiche.conditions.map((c) => (
+              <div key={c.titre}>
+                <dt>{c.titre}</dt>
+                <dd>{c.texte}</dd>
+              </div>
+            ))}
+          </dl>
+        </>
       ),
     });
   }
@@ -103,35 +141,21 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
       court: 'Justificatifs',
       contenu: (
         <>
-          <p className="page-texte">La preuve de réalisation mentionne :</p>
+          <p className="page-texte">
+            L’attestation sur l’honneur de {fiche.code}, signée par le bénéficiaire et par le
+            professionnel, doit mentionner :
+          </p>
           <ul className="liste-puces">
             {fiche.justificatifs.map((j) => <li key={j}>{j}</li>)}
           </ul>
+          <p className="page-texte">
+            Le dossier comprend aussi le devis, la facture et la preuve que l’engagement de prime
+            a précédé la signature du devis.
+          </p>
         </>
       ),
     });
   }
-
-  sections.push({
-    id: 'duree-de-vie',
-    titre: 'Durée de vie conventionnelle',
-    court: 'Durée de vie',
-    contenu: fiche.dureeVie.length === 1 ? (
-      <p className="page-texte">
-        La <Terme slug="duree-de-vie-conventionnelle">durée de vie conventionnelle</Terme>{' '}
-        retenue par la fiche {fiche.code} est de <strong>{fiche.dureeVie[0].valeurAnnees} ans</strong>.
-      </p>
-    ) : (
-      <dl className="conditions">
-        {fiche.dureeVie.map((d) => (
-          <div key={d.condition}>
-            <dt>{d.valeurAnnees} ans</dt>
-            <dd>{d.condition}</dd>
-          </div>
-        ))}
-      </dl>
-    ),
-  });
 
   if (fiche.coupDePouce) {
     sections.push({
@@ -147,18 +171,10 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
     });
   }
 
-  sections.push({
-    id: 'versions',
-    titre: 'Versions et dates d’application',
-    court: 'Versions',
-    contenu: <HistoriqueVersions fiche={fiche} />,
-  });
-
   /* ⛔ PAS DE SECTION TÉLÉCHARGEMENT POUR L'INSTANT (retirée le 05/09/2026). Les documents
-     restent dans le modèle et alimentent la section « Versions » ainsi que la date de mise à
-     jour : c'est la SECTION qui est retirée, pas la donnée. Le jour où elle revient, elle
-     reprend sa place après l'appel à l'action — c'est une sortie, elle ne doit pas le
-     précéder — et l'encadré de synthèse retrouve son ancre vers elle. */
+     restent dans le modèle et donnent la date de mise à jour de la bande latérale : c'est la
+     SECTION qui est retirée, pas la donnée. Le jour où elle revient, elle reprend sa place
+     après l'appel à l'action — c'est une sortie, elle ne doit pas le précéder. */
 
   if (jumelles.length > 0) {
     sections.push({
@@ -167,7 +183,10 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
       court: 'À ne pas confondre',
       contenu: (
         <>
-          {fiche.noteJumelles && <p className="page-texte">{fiche.noteJumelles}</p>}
+          <p className="page-texte">
+            {jumelles.join(', ')} : {fiche.noteJumelles ?? 'même intitulé, autre champ d’application.'}{' '}
+            Un dossier monté sur la mauvaise fiche est refusé.
+          </p>
           <ListeFichesLiees codes={jumelles} />
         </>
       ),
@@ -179,7 +198,15 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
       id: 'complementaires',
       titre: `Opérations complémentaires en ${secteur.label.toLowerCase()}`,
       court: 'Opérations complémentaires',
-      contenu: <ListeFichesLiees codes={complementaires} />,
+      contenu: (
+        <>
+          <p className="page-texte">
+            Ces opérations se montent souvent avec {fiche.code} sur le même chantier, chacune sur
+            sa fiche, sous un seul engagement de prime.
+          </p>
+          <ListeFichesLiees codes={complementaires} />
+        </>
+      ),
     });
   }
 
@@ -190,8 +217,9 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
     contenu: (
       <>
         <p className="page-texte">
-          Nous mettons plusieurs obligés en concurrence sur votre dossier et vous transmettons
-          l’engagement de prime avant la signature du devis.
+          Contactez-nous avant de signer le devis : nous mettons plusieurs obligés en concurrence
+          sur votre opération {fiche.code}, vous transmettons l’engagement de prime, puis montons
+          et déposons le dossier.
         </p>
         <BoutonModale modale="estimation" contexte={`Fiche ${fiche.code}`} className="pilule pilule-accent">
           Faire valoriser {fiche.code} →
@@ -205,9 +233,20 @@ export default function PageFiche({ fiche }: { fiche: Fiche }) {
       <FilAriane chemin={url.fiche(fiche.secteur, fiche.code)} />
 
       <main className="page page-fiche">
-        <RetourParent chemin={url.fiche(fiche.secteur, fiche.code)} />
         <h1 className="page-titre">{fiche.code} — {fiche.h1Edite}</h1>
         {fiche.denomination && <p className="page-chapo">{fiche.denomination}</p>}
+
+        <div className="fiche-intro">
+          <p>
+            {fiche.code} est la fiche d’opération standardisée des certificats d’économies
+            d’énergie pour « {fiche.intitule.toLowerCase()} »{champ && <> dans les {champ}</>}.
+          </p>
+          <p>
+            La fiche est en version {fiche.version}, applicable depuis le{' '}
+            {dateCourte(fiche.dateApplication)}
+            {fiche.dateAbrogation && <>, et reste engageable jusqu’au {dateFr(fiche.dateAbrogation)}</>}.
+          </p>
+        </div>
 
         <div className="fiche-corps">
           <div className="fiche-colonne">
@@ -294,7 +333,7 @@ export function metadataFiche(fiche: Fiche) {
   return {
     // ⚠️ L'INTITULÉ OFFICIEL DANS LE <title>, LE H1 ÉDITÉ DANS LE H1 : les deux couvrent des
     // vocabulaires différents. Les intervertir revient à n'en couvrir qu'un.
-    title: `${fiche.code} : ${fiche.intitule} — prime CEE ${anneeCourante()}`,
+    title: `${fiche.code} : ${fiche.intitule}, prime CEE ${anneeCourante()}`,
     description:
       `Montant, conditions et justificatifs de la fiche ${fiche.code} (${secteur?.label}). ` +
       `Version ${fiche.version}, applicable depuis le ${dateCourte(fiche.dateApplication)}.`,

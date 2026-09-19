@@ -1,5 +1,3 @@
-import type { Fiche } from './fiches';
-
 /**
  * Les organismes d'où viennent les données d'une page de fiche.
  *
@@ -8,8 +6,9 @@ import type { Fiche } from './fiches';
  * la provenance d'un chiffre de cette page, les citer ici emprunterait leur autorité sans
  * qu'ils aient rien fourni.
  *
- * ⚠️ La liste SUIT LE CONTENU : le registre n'apparaît que sur les fiches dont on affiche un
- * volume engagé. Une source citée pour une donnée absente est une source fausse.
+ * ⚠️ La liste SUIT LE CONTENU. Le registre EMMY y a figuré tant que la synthèse affichait un
+ * volume engagé ; cette donnée a été retirée le 19/09/2026 (provenance non établie), et le
+ * registre avec elle. Une source citée pour une donnée absente est une source fausse.
  */
 export interface Organisme {
   nom: string;
@@ -26,12 +25,8 @@ const LEGIFRANCE: Organisme = {
   url: 'https://www.legifrance.gouv.fr',
 };
 
-/** 🚨 URL à vérifier avant mise en ligne : le registre national des CEE. */
-const REGISTRE: Organisme = {
-  nom: 'Registre national EMMY',
-  url: 'https://www.emmy.fr',
-};
-
-export function organismesDe(fiche: Fiche): Organisme[] {
-  return [MINISTERE, LEGIFRANCE, ...(fiche.volumeEngage ? [REGISTRE] : [])];
+/** Les organismes cités sur toute fiche. La fiche reviendra en paramètre le jour où une
+    donnée n'aura de source que sur certaines d'entre elles. */
+export function organismesDe(): Organisme[] {
+  return [MINISTERE, LEGIFRANCE];
 }

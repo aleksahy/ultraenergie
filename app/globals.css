@@ -573,20 +573,6 @@ select.champ { appearance: auto; }
 .page-chapo { font-size: 18px; line-height: 1.6; color: var(--texte-2); max-width: 760px; }
 .page-texte { font-size: 15px; line-height: 1.65; color: var(--texte-2); max-width: 760px; margin-bottom: 12px; }
 
-/* Le retour vers le parent : sous le fil d'Ariane, avant le titre. Le fil situe en petit
-   caractère, ce lien-ci est un geste — même destination, deux rôles. */
-.retour {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 22px;
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--accent);
-}
-.retour:hover { text-decoration: underline; text-underline-offset: 3px; }
-.retour svg { transition: transform 0.15s ease; }
-.retour:hover svg { transform: translateX(-3px); }
 .page-section { margin-top: 48px; }
 .page-section-titre { font-size: 20px; font-weight: 700; margin: 0 0 18px; }
 .page-coordonnees {
@@ -623,8 +609,8 @@ select.champ { appearance: auto; }
 /* ── Fil d'Ariane ────────────────────────────────────────────────── */
 
 /* Une bande pleine largeur, jointive à l'en-tête, et volontairement mince : le fil est un
-   repère, pas un élément de mise en page. Le retour vers le parent, lui, est un geste : il a
-   sa place sous le titre, en taille cliquable (cf. `.retour`). */
+   repère, pas un élément de mise en page. C'est aussi le seul chemin de retour : le lien
+   « Retour à … » qui le doublait sous le titre a été retiré le 19/09/2026. */
 .fil-ariane { background: var(--survol); border-bottom: 1px solid var(--ligne); }
 .fil-ariane-inner {
   max-width: var(--largeur);
@@ -710,8 +696,20 @@ select.champ { appearance: auto; }
 /* ── Page de fiche : corps et bande latérale ─────────────────────────
    Deux colonnes au-delà de 1120px, la bande collée en haut pendant le défilement. */
 
-.fiche-corps { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 56px; align-items: start; }
+.page-fiche { --rail-largeur: 300px; --rail-ecart: 56px; }
+.fiche-corps { display: grid; grid-template-columns: minmax(0, 1fr) var(--rail-largeur); gap: var(--rail-ecart); align-items: start; }
 .fiche-colonne { min-width: 0; }
+/* Le titre et le chapo s'arrêtent au bord de la colonne, pas au bord de la page : un H1 qui
+   court au-dessus de la bande latérale lit comme un bandeau, et son retour à la ligne ne
+   tombe plus sur le même bord que les sections qu'il annonce. Même largeur, mêmes variables. */
+@media (min-width: 1120px) {
+  .page-fiche .page-titre,
+  .page-fiche .page-chapo,
+  .page-fiche .fiche-intro { max-width: calc(100% - var(--rail-largeur) - var(--rail-ecart)); }
+}
+/* L'introduction sous le titre : deux paragraphes de prose, même mesure que le texte courant. */
+.fiche-intro { margin: 8px 0 8px; }
+.fiche-intro p { max-width: 760px; margin: 0 0 12px; font-size: 16px; line-height: 1.65; }
 .fiche-rail {
   position: sticky;
   /* En-tête collant (~74px) plus une respiration : la bande s'arrête juste dessous. */
@@ -923,8 +921,6 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
 .simulateur-attente { font-size: 14px; color: var(--texte-3); }
 .simulateur-kwh { font-size: 15px; color: var(--texte-2); }
 .simulateur-kwh strong { font-size: 26px; color: var(--encre); }
-.simulateur-euros { font-size: 15px; color: var(--texte-2); margin-top: 4px; }
-.simulateur-euros strong { font-size: 20px; color: var(--accent); }
 .simulateur-avertissement { max-width: 760px; margin-top: 12px; font-size: 12px; line-height: 1.55; color: var(--texte-3); }
 
 /* Listes de conditions et de justificatifs */
@@ -1011,7 +1007,6 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
   .modale { padding: 28px 24px; }
 
   .page { padding: 28px var(--gouttiere) var(--espace-section); }
-  .retour { margin-bottom: 18px; }
   .fil-ariane-inner { padding: 7px var(--gouttiere); }
   .page-section { margin-top: 36px; }
   .liste-liens-auto, .liste-liens-trois { grid-template-columns: 1fr; }

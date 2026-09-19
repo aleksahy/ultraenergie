@@ -4,7 +4,7 @@ import { LIBELLE_ZONE } from '@/lib/fiches';
 import { familleLabel } from '@/lib/familles';
 import { secteurParSlug } from '@/lib/secteurs';
 import { montantVitrine } from '@/lib/calcul';
-import { nombreFr, decimalFr } from '@/lib/site';
+import { nombreFr } from '@/lib/site';
 import { dateFr, dateCourte } from '@/lib/dates';
 
 /**
@@ -46,11 +46,9 @@ export default function FicheSynthese({ fiche }: { fiche: Fiche }) {
           <Ligne terme="Engageable jusqu’au">{dateFr(fiche.dateAbrogation)}</Ligne>
         )}
 
-        {fiche.volumeEngage && (
-          <Ligne terme="Volume engagé">
-            {decimalFr.format(fiche.volumeEngage.twhCumac)} TWh cumac depuis {fiche.volumeEngage.depuis}
-          </Ligne>
-        )}
+        {/* Le premier motif de refus d'un dossier mérite sa ligne, pas une lecture des
+            conditions jusqu'au cinquième point. */}
+        {fiche.qualification && <Ligne terme="Qualification">{fiche.qualification}</Ligne>}
 
         {fiche.zoneApplication !== 'metropole' && (
           <Ligne terme="Zone d’application">{LIBELLE_ZONE[fiche.zoneApplication]}</Ligne>

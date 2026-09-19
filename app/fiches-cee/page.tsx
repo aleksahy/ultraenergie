@@ -15,7 +15,7 @@ export default function IndexFiches() {
     <Page
       chemin={url.fichesCee}
       titre="Fiches CEE"
-      chapo={`Les ${CATALOGUE.length} fiches d'opérations standardisées que nous valorisons, classées par secteur.`}
+      chapo={`Les ${CATALOGUE.length} fiches d'opérations standardisées, classées par secteur.`}
     >
       <Section titre="Par secteur">
         {/* Six secteurs, deux lignes de trois : ils forment un ensemble, pas une liste. */}
