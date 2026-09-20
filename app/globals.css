@@ -1114,6 +1114,16 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
 .glossaire-sources-date { color: var(--texte-3); font-size: 13px; }
 .glossaire-mention { margin-top: 16px; }
 
+/* La carte des zones : trois valeurs d'une même couleur. H1 plein, H2 atténué par l'opacité
+   (pas une seconde teinte), H3 en blanc cerné d'encre. Contours blancs entre zones. */
+.schema-carte { max-width: 420px; }
+.schema-plein-attenue { opacity: 0.42; }
+.schema-carte-h3 { fill: var(--blanc); }
+.schema-carte-contour { fill: none; stroke: var(--blanc); stroke-width: 1.4; }
+.schema-carte-contour-h3 { stroke: var(--encre); stroke-width: 1.2; }
+.schema-carte .schema-texte { font-size: 15px; font-weight: 700; }
+.schema-carte .schema-texte-petit { font-size: 11px; }
+
 /* Les petits libellés des schémas : 11px dans une colonne de 460px passaient ; ici la figure
    descend à 340px sur mobile, et 11px y devient illisible. */
 .glossaire-figure .schema-texte-petit { font-size: 12px; }

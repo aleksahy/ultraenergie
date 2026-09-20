@@ -252,7 +252,7 @@ export const TERMES: Terme[] = [
           'Le document de répartition ne cite pas de critère climatique ni de règle d’altitude : c’est une liste, et elle se lit par département.',
         ],
         schema: 'zones-climatiques',
-        legendeSchema: 'Le nord, l’est et le Massif central en H1, l’ouest et le sud-ouest en H2, le pourtour méditerranéen en H3. Le tracé est simplifié ; la liste officielle se lit par département.',
+        legendeSchema: 'En vert foncé la zone H1 (nord, est, Massif central, Alpes du Nord, Île-de-France), en vert clair la zone H2 (ouest et sud-ouest), en blanc la zone H3 (pourtour méditerranéen et Corse). Découpage par département, d’après la liste ministérielle ; l’outre-mer est en H3.',
       },
       {
         titre: 'Pourquoi les fiches en tiennent compte',

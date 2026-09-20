@@ -19,6 +19,7 @@
  * deux sur la même page.
  */
 import type { NomSchemaGlossaire } from '@/lib/glossaire';
+import { CARTE_ZONES, TRACES_ZONES, CENTRES_ZONES } from './traces-zones';
 
 const COMMUN = {
   fill: 'none',
@@ -322,21 +323,28 @@ function ParcoursDossier() {
 
 /* Une carte volontairement simplifiée : le nord, l'est et le Massif central en H1, l'ouest et le sud-ouest en H2, le
    pourtour méditerranéen en H3. Les frontières exactes sont dans l'annexe de l'arrêté. */
+/* La carte des zones : les géométries réelles des départements, fusionnées par zone et
+   simplifiées (scripts/genere-carte-zones.py). H1 en aplat d'accent, H2 en accent atténué,
+   H3 en blanc : trois valeurs d'une même couleur, du plus froid au plus doux, sans
+   hexadécimal. La légende est en HTML sous la figure, pas dans le dessin. */
 function ZonesClimatiques() {
+  const { largeur, hauteur } = CARTE_ZONES;
   return (
-    <svg viewBox="0 0 440 340" className="schema" aria-hidden="true" {...COMMUN}>
-      <path d="M150 50 L210 18 L370 80 L400 210 L330 190 L250 150 Z" className="schema-accent schema-plein" strokeWidth={0} />
-      <path d="M150 50 L250 150 L330 190 L400 210 M330 190 L260 220 L200 305" className="schema-doux" />
-      <path d="M150 50 L210 18 L370 80 L400 210 L300 305 L150 305 L50 200 L90 70 Z" />
-      <rect x="412" y="262" width="16" height="30" rx="4" className="schema-doux" />
-      <T x={290} y={120} sur>H1</T>
-      <T x={290} y={136} sur petit>nord, est, centre</T>
-      <T x={150} y={200}>H2</T>
-      <T x={150} y={216} petit>ouest et sud-ouest</T>
-      <T x={300} y={262}>H3</T>
-      <T x={300} y={278} petit>pourtour méditerranéen</T>
-      <T x={420} y={306} petit>Corse</T>
-      <T x={30} y={332} petit ancre="start">Découpage par département, tracé simplifié</T>
+    <svg viewBox={`0 0 ${largeur} ${hauteur}`} className="schema schema-carte" aria-hidden="true" {...COMMUN}>
+      <path d={TRACES_ZONES.H2} className="schema-accent schema-plein schema-plein-attenue" strokeWidth={0} />
+      <path d={TRACES_ZONES.H1} className="schema-accent schema-plein" strokeWidth={0} />
+      <path d={TRACES_ZONES.H3} className="schema-carte-h3" strokeWidth={0} />
+      {/* Les contours par-dessus les aplats, en blanc fin, pour que les frontières entre
+          zones se lisent sans alourdir le dessin. */}
+      <path d={TRACES_ZONES.H1} className="schema-carte-contour" />
+      <path d={TRACES_ZONES.H2} className="schema-carte-contour" />
+      <path d={TRACES_ZONES.H3} className="schema-carte-contour schema-carte-contour-h3" />
+      <T x={CENTRES_ZONES.H1.x} y={CENTRES_ZONES.H1.y} sur>H1</T>
+      <T x={CENTRES_ZONES.H2.x} y={CENTRES_ZONES.H2.y} sur>H2</T>
+      {/* Le point représentatif de H3 tombe sur la côte varoise, sur la frontière : l'étiquette
+          est posée à la main dans la partie large de la zone, entre Gard et Hérault. */}
+      <T x={CENTRES_ZONES.H3.x - 60} y={CENTRES_ZONES.H3.y + 24}>H3</T>
+      <T x={CENTRES_ZONES.corse.x} y={CENTRES_ZONES.corse.y + 4} petit>H3</T>
     </svg>
   );
 }

@@ -160,7 +160,10 @@ construction (mise en concurrence, montage et dépôt, aucune obligation portée
 
 Onze articles, dans `lib/glossaire.ts` (modèle `Terme` : intro, sections avec schéma
 optionnel, « À retenir », sources datées, `dateMaj` ; temps de lecture calculé, mots / 200).
-Schémas dans `components/SchemasGlossaire.tsx`, mêmes conventions que `Schemas.tsx`. Écrits
+Schémas dans `components/SchemasGlossaire.tsx`, mêmes conventions que `Schemas.tsx`. La carte des
+zones climatiques est tracée depuis les géométries réelles des départements :
+`scripts/genere-carte-zones.py` (shapely, GeoJSON france-geojson en cache) écrit
+`components/traces-zones.ts`, généré, jamais édité. Écrits
 le 20/09/2026 par un agent depuis des sources officielles (ecologie.gouv.fr, Légifrance, ATEE,
 Cour des comptes), relus par trois agents experts (juriste du dispositif, pédagogue, directeur
 artistique avec rendu des schémas en image), correctifs appliqués en un tour. Les doutes
