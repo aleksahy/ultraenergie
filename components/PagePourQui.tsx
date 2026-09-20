@@ -42,7 +42,7 @@ export default function PagePourQui({ argumentaire: a, chemin, autres }: {
       </div>
 
       {a.financement && (
-        <Section titre="Comment se finance l’opération">
+        <Section titre="Où se place la prime">
           <div className="financement">
             <div className="financement-schema">
               <SchemaFinancement />

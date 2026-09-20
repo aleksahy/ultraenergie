@@ -71,7 +71,7 @@ function Copropriete() {
       <T x={306} y={164} ancre="start">Murs et planchers</T>
       <Rappel x={236} y={270} vers={296} />
       <T x={306} y={274} ancre="start">Chaufferie, réseau</T>
-      <T x={140} y={312} accent>Parties communes, votées en assemblée</T>
+      <T x={140} y={312} accent>Parties communes : trois postes, trois fiches</T>
     </svg>
   );
 }
