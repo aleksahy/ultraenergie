@@ -1084,6 +1084,13 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
 }
 .lien-terme:hover { color: var(--accent); }
 
+/* ── Mode lecture ─────────────────────────────────────────────────── */
+
+/* Une colonne centrée pour les articles : `.page` garde ses gouttières et son centrage, seule
+   la largeur maximale change. Les tableaux et figures bornés à 760px y tiennent en entier. */
+.page-lecture { max-width: calc(800px + 2 * var(--gouttiere)); }
+.page-lecture .page-titre { font-size: clamp(30px, 4vw, 44px); }
+
 /* ── Glossaire (« Comprendre les CEE ») ────────────────────────────── */
 
 /* Les repères de lecture sous le chapô : temps de lecture et date, en petit et en gris,

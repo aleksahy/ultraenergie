@@ -36,7 +36,7 @@ export default async function PageTerme({ params }: { params: Promise<{ terme: s
   const autres = TERMES.filter((t) => t.slug !== slug);
 
   return (
-    <Page chemin={url.terme(slug)} titre={terme.terme} chapo={terme.intro} surtitre="Comprendre les CEE">
+    <Page chemin={url.terme(slug)} titre={terme.terme} chapo={terme.intro} surtitre="Comprendre les CEE" lecture>
       <p className="glossaire-meta">
         <span>Lecture : {tempsLecture(terme)} min</span>
         <span>Mis à jour le {dateFr(terme.dateMaj)}</span>

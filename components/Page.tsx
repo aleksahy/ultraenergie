@@ -9,13 +9,20 @@ import FilAriane from './FilAriane';
  * refaire les URL.
  */
 export default function Page({
-  chemin, titre, chapo, surtitre, children,
+  chemin, titre, chapo, surtitre, lecture = false, children,
 }: {
   chemin: string;
   titre: string;
   chapo?: string;
   /** Le libellé en capitales au-dessus du titre (« Syndics et copropriétés »). */
   surtitre?: string;
+  /**
+   * Mode lecture : la page entière (titre compris) tient dans une colonne centrée d'environ
+   * 800px. Pour les articles longs sans bande latérale : en pleine largeur, la prose bridée à
+   * 760px restait collée au bord gauche et laissait les deux tiers de l'écran vides (Alek,
+   * 20/09/2026, sur le glossaire).
+   */
+  lecture?: boolean;
   children?: ReactNode;
 }) {
   return (
@@ -24,7 +31,7 @@ export default function Page({
           `.page` est un conteneur à largeur maximale et à gouttières, tout ce qu'il contient
           s'y trouve borné. */}
       <FilAriane chemin={chemin} />
-      <main className="page">
+      <main className={lecture ? 'page page-lecture' : 'page'}>
         {/* Pas de lien « Retour à … » sous le fil d'Ariane (retiré le 19/09/2026) : le fil
             lie déjà chaque parent, le lien répétait sa dernière miette en plus gros. */}
         {surtitre && <div className="surtitre page-surtitre">{surtitre}</div>}
