@@ -1084,6 +1084,36 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
 }
 .lien-terme:hover { color: var(--accent); }
 
+/* ── Glossaire (« Comprendre les CEE ») ────────────────────────────── */
+
+/* Les repères de lecture sous le chapô : temps de lecture et date, en petit et en gris,
+   séparés par un point médian tracé en CSS pour ne pas être lu à voix haute. */
+.glossaire-meta { display: flex; flex-wrap: wrap; gap: 4px 0; margin-top: 14px; font-size: 13px; color: var(--texte-3); }
+.glossaire-meta span + span::before { content: ''; display: inline-block; width: 3px; height: 3px; border-radius: 50%; background: var(--texte-4); margin: 0 10px; vertical-align: middle; }
+
+/* Le schéma d'une section : borné plus court que la prose, parce qu'un dessin à 440 unités
+   étiré sur 760px grossit ses libellés au point de concurrencer les titres. */
+.glossaire-figure { margin: 24px 0 8px; max-width: 600px; }
+.glossaire-figure figcaption { margin-top: 12px; font-size: 13px; line-height: 1.5; color: var(--texte-3); max-width: 560px; }
+
+/* « À retenir » réutilise `.regle` ; la liste y reprend la mesure du texte de l'encadré. */
+.glossaire-retenir .liste-puces { margin-top: 4px; }
+
+/* Les sources : une liste numérotée de liens externes, soulignés discrètement, avec la date
+   de lecture à la suite. */
+.glossaire-sources { margin: 0; padding-left: 22px; max-width: 760px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; line-height: 1.55; color: var(--texte-2); }
+.glossaire-sources a { text-decoration: underline; text-decoration-color: var(--ligne); text-underline-offset: 3px; }
+.glossaire-sources a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+.glossaire-sources-date { color: var(--texte-3); font-size: 13px; }
+.glossaire-mention { margin-top: 16px; }
+
+/* Les petits libellés des schémas : 11px dans une colonne de 460px passaient ; ici la figure
+   descend à 340px sur mobile, et 11px y devient illisible. */
+.glossaire-figure .schema-texte-petit { font-size: 12px; }
+
+/* Sur l'index, le temps de lecture prend la ligne sous la note de la carte. */
+.glossaire-lecture { margin-top: 8px; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--texte-4); }
+
 /* ── Sous 900px ──────────────────────────────────────────────────────
    Un seul point de rupture, comme le handoff. La gouttière et les espaces verticaux sont
    redéfinis sur `:root` : tous les conteneurs les lisent, donc TOUT se réaligne sur le même

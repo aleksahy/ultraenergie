@@ -156,6 +156,17 @@ accrédité avant dépôt, PNCEE après), le seuil de dépôt et les bornes en m
 des textes ; ce qui est affirmé de l'offre est ce qu'un mandataire indépendant fait par
 construction (mise en concurrence, montage et dépôt, aucune obligation portée).
 
+## Comprendre les CEE
+
+Onze articles, dans `lib/glossaire.ts` (modèle `Terme` : intro, sections avec schéma
+optionnel, « À retenir », sources datées, `dateMaj` ; temps de lecture calculé, mots / 200).
+Schémas dans `components/SchemasGlossaire.tsx`, mêmes conventions que `Schemas.tsx`. Écrits
+le 20/09/2026 par un agent depuis des sources officielles (ecologie.gouv.fr, Légifrance, ATEE,
+Cour des comptes), relus par trois agents experts (juriste du dispositif, pédagogue, directeur
+artistique avec rendu des schémas en image), correctifs appliqués en un tour. Les doutes
+résiduels sont écrits au conditionnel dans les articles (chiffres de présentation DGEC,
+déductions des textes, plafond des bonifications).
+
 ## Le catalogue
 
 216 fiches, importées du tableur fourni, et leur détail importé des PDF officiels :
