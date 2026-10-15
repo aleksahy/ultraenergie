@@ -20,6 +20,7 @@ type Etat = 'repos' | 'envoi' | 'inscrit' | 'erreur';
 
 export default function Veille() {
   const [etat, setEtat] = useState<Etat>('repos');
+  const [message, setMessage] = useState('');
 
   async function envoyer(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -31,8 +32,15 @@ export default function Veille() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: donnees.get('email'), site: donnees.get('site') }),
       });
-      setEtat(r.ok ? 'inscrit' : 'erreur');
+      if (r.ok) { setEtat('inscrit'); return; }
+      /* Le message du serveur quand il en donne un (« Lettre non configurée », adresse
+         invalide) : sans lui, Alek ne pouvait pas distinguer une variable manquante d'une
+         panne Brevo (preview du 15/10/2026). */
+      const d = (await r.json().catch(() => ({}))) as { erreur?: string };
+      setMessage(d.erreur ?? '');
+      setEtat('erreur');
     } catch {
+      setMessage('');
       setEtat('erreur');
     }
   }
@@ -48,7 +56,7 @@ export default function Veille() {
         {etat === 'envoi' ? 'Envoi…' : 'S’inscrire'}
       </button>
       {etat === 'erreur' && (
-        <p className="veille-erreur" role="alert">Inscription impossible pour le moment. Réessayez dans quelques minutes.</p>
+        <p className="veille-erreur" role="alert">{message || 'Inscription impossible pour le moment. Réessayez dans quelques minutes.'}</p>
       )}
     </form>
   );
