@@ -31,10 +31,8 @@ next-env.d.ts
 # Téléchargements mis en cache par les scripts (PDF officiels, GeoJSON)
 .cache/
 
-
 # Python
 __pycache__/
-
 
 # Photos non retenues, gardées sous la main (27 Mo) : pas dans le dépôt
 images/reserve/
