@@ -17,14 +17,16 @@
  * Pas de double opt-in ni de mail de confirmation : décision du 14/10/2026, on collecte.
  * Le champ `site` est un piège à robots : un humain ne le voit pas et le laisse vide.
  */
+import { json, adresseValide, MESSAGE_ADRESSE_INVALIDE } from './_formulaire';
+
 interface Env {
   BREVO_API_KEY?: string;
   BREVO_LIST_ID?: string;
 }
 
-const ENTETES = { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' };
-const reponse = (status: number, corps: Record<string, unknown>) =>
-  new Response(JSON.stringify(corps), { status, headers: ENTETES });
+/* La réponse JSON et la validation d'adresse sont celles de `_formulaire.ts`, partagées avec
+   `/api/contact` : une règle recopiée finit par diverger (leçon de Salons en France). */
+const reponse = (status: number, corps: Record<string, unknown>) => json(corps, status);
 
 export const onRequestPost = async ({ request, env }: { request: Request; env: Env }): Promise<Response> => {
   if (!env.BREVO_API_KEY || !/^\d+$/.test(env.BREVO_LIST_ID ?? '')) {
@@ -52,9 +54,7 @@ export const onRequestPost = async ({ request, env }: { request: Request; env: E
   if (piege) return reponse(200, { ok: true });
 
   email = email.trim().toLowerCase();
-  if (email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-    return reponse(400, { erreur: 'Adresse invalide.' });
-  }
+  if (!adresseValide(email)) return reponse(400, { erreur: MESSAGE_ADRESSE_INVALIDE });
 
   const brevo = await fetch('https://api.brevo.com/v3/contacts', {
     method: 'POST',

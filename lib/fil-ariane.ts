@@ -1,6 +1,5 @@
 import { PUBLICS, PARTENAIRES } from './publics';
 import { termeParSlug } from './glossaire';
-import { articleParSlug } from './blog';
 import { url } from './routes';
 
 export interface Miette {
@@ -35,20 +34,12 @@ export function filAriane(chemin: string): Miette[] {
     return derniereSansLien(miettes);
   }
 
-  if (premier === 'blog') {
-    miettes.push({ label: 'Blog', href: url.blog });
-    if (deuxieme) miettes.push({ label: articleParSlug(deuxieme)?.titre ?? deuxieme });
-    return derniereSansLien(miettes);
-  }
-
   miettes.push({ label: libellePremierNiveau(premier) });
   return derniereSansLien(miettes);
 }
 
 const PAGES_FIXES: Record<string, string> = {
-  'qui-sommes-nous': 'Qui sommes-nous',
   contact: 'Contact',
-  'veille-cee': 'Veille CEE',
   'mentions-legales': 'Mentions légales',
 };
 

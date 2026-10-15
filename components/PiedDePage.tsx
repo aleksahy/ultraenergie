@@ -31,7 +31,7 @@ export default function PiedDePage() {
           </address>
           {/* La lettre « Veille CEE », sous les informations de la société et nulle part
               ailleurs sur la page (Alek, 15/10/2026). */}
-          <Veille variante="pied" />
+          <Veille />
         </div>
 
         <div className="pied-col">
@@ -52,13 +52,11 @@ export default function PiedDePage() {
           <div className="pied-titre">Ressources</div>
           <div className="pied-liens">
             <Link href={url.comprendreLesCee}>Comprendre les CEE</Link>
-            <Link href={url.blog}>Blog</Link>
-            <Link href={url.veilleCee}>Veille CEE</Link>
           </div>
           <div className="pied-titre pied-titre-suivant">Ultra Énergie</div>
           <div className="pied-liens">
             <Link href={url.quiSommesNous}>Qui sommes-nous</Link>
-            <Link href={url.contact}>Contact</Link>
+            <Link href={url.contact}>Nous contacter</Link>
             <Link href={url.mentionsLegales}>Mentions légales</Link>
           </div>
         </div>

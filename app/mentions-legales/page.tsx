@@ -19,9 +19,8 @@ export const metadata: Metadata = {
  * Les demandes sur les données vont à `rgpd@`, un alias de `contact@` chez OVH. Tout vient de
  * `COORDONNEES` (lib/contenu.ts), comme le pied et /contact.
  *
- * ⚠️ LA SECTION « DONNÉES PERSONNELLES » NE DÉCRIT QUE LA LETTRE, seul formulaire branché.
- * Le jour où les modales (estimation, rappel, partenariat) partiront quelque part, elle doit
- * dire ce qu'elles collectent et qui le reçoit.
+ * La section « Données personnelles » décrit la lettre et les deux formulaires (contact,
+ * partenariat), qui partent en mail chez nous depuis le 15/10/2026 (functions/api/contact.ts).
  */
 export default function MentionsLegales() {
   return (
@@ -69,7 +68,7 @@ export default function MentionsLegales() {
           chaque envoi. L&apos;envoi est assuré par notre prestataire Brevo.
         </p>
         <p className="page-texte">
-          Les formulaires d&apos;estimation, de rappel et de partenariat recueillent les informations
+          Le formulaire de contact et le formulaire de partenariat recueillent les informations
           nécessaires pour vous répondre : identité, société, coordonnées, et la description du
           chantier ou du projet. Elles ne sont utilisées que pour traiter votre demande, ne sont
           transmises à aucun tiers à des fins commerciales, et sont conservées au plus trois ans

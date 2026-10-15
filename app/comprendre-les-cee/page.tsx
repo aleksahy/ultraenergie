@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Page, { Section } from '@/components/Page';
-import ListeLiens from '@/components/ListeLiens';
 import { TERMES, tempsLecture } from '@/lib/glossaire';
 import { url } from '@/lib/routes';
 
@@ -15,7 +14,7 @@ export default function IndexGlossaire() {
     <Page
       chemin={url.comprendreLesCee}
       titre="Comprendre les CEE"
-      chapo="Les mots du dispositif, expliqués un par un : ce que c’est, pourquoi ça existe, ce que ça change pour vous, et les pièges. Chaque article cite ses sources."
+      chapo="Les mots du dispositif, expliqués un par un : ce que c’est, pourquoi ça existe, ce que ça change pour vous, et les pièges."
     >
       <Section titre="Le glossaire">
         {/* La grille reprend les cartes de `ListeLiens`, avec en plus le temps de lecture : le
@@ -32,14 +31,6 @@ export default function IndexGlossaire() {
             </li>
           ))}
         </ul>
-      </Section>
-
-      <Section titre="Pour aller plus loin">
-        <ListeLiens
-          liens={[
-            { href: url.blog, label: "L’actualité réglementaire" },
-          ]}
-        />
       </Section>
     </Page>
   );

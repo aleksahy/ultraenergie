@@ -7,10 +7,9 @@ import { dateFr } from '@/lib/dates';
 /**
  * Les trois articles les plus récents de « Comprendre les CEE », en cartes de texte.
  *
- * ⛔ PAS LES ARTICLES DU BLOG : ils sont encore des coquilles (« Article à rédiger ») et les
- * dater sur l'accueil, c'était afficher des publications inventées (relecture du 15/10/2026).
- * Le glossaire, lui, est écrit et sourcé. Quand le blog aura de vrais articles, ils
- * reviendront ici avec leur photo.
+ * Le glossaire est la seule publication écrite : le blog, qui n'avait que trois titres sans
+ * article, a été retiré le 15/10/2026 pour le premier déploiement. S'il revient avec de vrais
+ * articles, ils reviendront ici avec leur photo.
  */
 export default function Publications() {
   const recents = [...TERMES].sort((a, b) => b.dateMaj.localeCompare(a.dateMaj)).slice(0, 3);

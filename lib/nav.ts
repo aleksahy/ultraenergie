@@ -11,8 +11,9 @@ import { url } from './routes';
  * contrôle de liens signalerait en 404. C'est pour ça que `GroupeNav` ne porte pas le champ :
  * le déclencheur est rendu en `<button>`, pas en `<a>`.
  *
- * « Ressources » suit la même forme : ses pages index sont ses entrées, le libellé lui-même
- * n'en est pas une.
+ * « Ressources » est un lien direct depuis le 15/10/2026 (blog et page Veille CEE retirés
+ * pour le premier déploiement, il ne reste que « Comprendre les CEE ») ; il redeviendra un
+ * groupe quand une seconde ressource existera.
  *
  * ⛔ PLUS D'ENTRÉES « FICHES CEE » NI « SIMULATEUR DE PRIME » depuis le 14/10/2026 : le
  * catalogue et le simulateur sont retirés pour être rebâtis. Quand ils reviennent, ils
@@ -40,20 +41,17 @@ export function estGroupe(noeud: NoeudNav): noeud is GroupeNav {
 }
 
 export const NAV: NoeudNav[] = [
+  /* Une ancre de l'accueil, pas une page (15/10/2026) ; le contrôle de liens ignore le `#`. */
   { label: 'Qui sommes-nous', href: url.quiSommesNous },
   {
     /* Les installateurs ouvrent la liste : ce sont les clients (cf. lib/publics.ts). */
     label: 'Pour qui',
     enfants: PUBLICS.map((p) => ({ label: p.label, href: url.public(p.slug) })),
   },
-  {
-    label: 'Ressources',
-    enfants: [
-      { label: 'Comprendre les CEE', href: url.comprendreLesCee },
-      { label: 'Blog', href: url.blog },
-      { label: 'Veille CEE', href: url.veilleCee },
-    ],
-  },
+  /* « Ressources » garde son nom mais n'est plus un déroulant (Alek, 15/10/2026 : « l'ancre
+     sur le header reste Ressources », puis « pas besoin de dropdown ») : un lien direct vers
+     la seule ressource, « Comprendre les CEE ». Le groupe reviendra avec les fiches ou le blog. */
+  { label: 'Ressources', href: url.comprendreLesCee },
   {
     label: 'Partenaires',
     enfants: PARTENAIRES.map((p) => ({ label: p.label, href: url.partenaire(p.slug) })),

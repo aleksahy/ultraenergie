@@ -73,17 +73,13 @@ export default function Page({
  * `colonnes` met la tête à gauche et le contenu à droite (le contexte des pages « Pour qui »).
  * `centree` centre la tête et borne le contenu (la FAQ de ces mêmes pages).
  *
- * `numero` numérote le titre quand la page tient un sommaire : le repère visuel relie la
- * section à sa ligne dans la bande latérale. Il est décoratif — `aria-hidden` — parce qu'une
- * synthèse vocale qui lit « zéro trois Conditions d'éligibilité » n'apprend rien de plus.
  */
 export function Section({
-  titre, surtitre, id, numero, colonnes = false, centree = false, children,
+  titre, surtitre, id, colonnes = false, centree = false, children,
 }: {
   titre: string;
   surtitre?: string;
   id?: string;
-  numero?: number;
   colonnes?: boolean;
   centree?: boolean;
   children: ReactNode;
@@ -91,12 +87,7 @@ export function Section({
   const tete = (
     <div className="page-section-tete">
       {surtitre && <div className="surtitre">{surtitre}</div>}
-      <h2 className="page-section-titre">
-        {numero !== undefined && (
-          <span className="page-section-numero" aria-hidden="true">{String(numero).padStart(2, '0')}</span>
-        )}
-        {titre}
-      </h2>
+      <h2 className="page-section-titre">{titre}</h2>
       <div className="tete-section-barre page-section-barre" aria-hidden="true" />
     </div>
   );
@@ -106,9 +97,4 @@ export function Section({
       {colonnes ? <div className="page-section-corps">{children}</div> : children}
     </section>
   );
-}
-
-/** Le bandeau qui dit qu'une page est une coquille, en attendant son contenu. */
-export function AChantier({ children }: { children: ReactNode }) {
-  return <p className="page-chantier">{children}</p>;
 }

@@ -10,7 +10,7 @@
 :root {
   /* Encre et gris.
      ⚠️ L'ENCRE EST UN VERT FORÊT depuis le 15/10/2026 (charte « Bureau », choisie par Alek
-     sur la page des variantes) : titres, texte courant, boutons « encre », appel final. Il
+     parmi des variantes, depuis supprimées) : titres, texte courant, boutons « encre », appel final. Il
      est assez profond pour se lire presque noir, à sa demande. Les gris tirent légèrement
      vers le vert pour ne pas jurer avec lui. */
   --foret: #0D1C13;
@@ -41,8 +41,7 @@
 
   /* Le bandeau d'abrogation, seul endroit du site qui avertit. Un orange sourd : il doit
      se voir sans concurrencer le vert d'accent, qui reste la couleur de l'action. */
-  --alerte: #C2751A;
-  --alerte-fond: #FDF6EC;
+  --erreur: #B42318;
 
   --voile: rgba(20, 20, 20, 0.5);
   --ombre-menu: 0 16px 32px rgba(20, 20, 20, 0.08);
@@ -102,8 +101,6 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
 
-.accentue { color: var(--accent); }
-
 /* L'étiquette au-dessus d'un titre : capitales vertes, sans trait (motif EBS, 15/10/2026). */
 .surtitre {
   font-size: 12.5px;
@@ -132,9 +129,6 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 .pilule:active { opacity: 0.75; }
 .pilule-encre { background: var(--encre); color: var(--blanc); }
 .pilule-accent { background: var(--accent); color: var(--sur-accent); }
-.pilule-blanc { background: var(--blanc); color: var(--encre); }
-.pilule-contour { background: none; color: var(--encre); box-shadow: inset 0 0 0 1.5px var(--encre); }
-.pilule-contour:hover { background: var(--survol); opacity: 1; }
 
 /* ── En-tête ─────────────────────────────────────────────────────── */
 
@@ -288,7 +282,6 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 .menu-groupe.est-deplie .menu-chevron { transform: rotate(180deg); color: var(--encre); }
 .menu-sous { display: flex; flex-direction: column; padding: 4px 0 10px 12px; }
 .menu-sous-lien { padding: 11px 0; font-size: 15px; color: var(--texte-2); }
-.menu-actions { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
 
 /* ── Héros ───────────────────────────────────────────────────────────
    Une photo plein écran sous un voile forêt, une colonne de texte à gauche, un bouton.
@@ -384,22 +377,6 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 .bande-tuile h3 { font-size: 18px; font-weight: 700; margin: 10px 0; line-height: 1.3; }
 .bande-tuile p { font-size: 14px; line-height: 1.6; color: rgba(var(--blanc-rgb), 0.78); margin: 0; }
 
-/* Les étapes des pages partenaires (« Comment on démarre », numérotées). */
-.etapes { display: flex; flex-wrap: wrap; gap: 32px; }
-.etape { flex: 1 1 240px; min-width: 220px; max-width: 280px; }
-.page .etape { flex-basis: 180px; min-width: 0; }
-.ico-etape { display: block; width: 36px; height: 36px; color: var(--encre); margin-bottom: 20px; }
-.etape-delai {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--accent-texte);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.etape-titre { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
-.etape-desc { font-size: 14px; line-height: 1.6; color: var(--texte-2); }
-
 /* ── Métier ──────────────────────────────────────────────────────── */
 
 .metier { display: grid; grid-template-columns: 1fr 1.6fr; gap: 56px; align-items: start; }
@@ -416,8 +393,6 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 
 .articles { display: flex; flex-wrap: wrap; gap: 20px; }
 .article { flex: 1 1 300px; min-width: 260px; }
-.article-photo { border-radius: var(--rayon-carte); overflow: hidden; margin-bottom: 14px; }
-.article-photo img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
 .article-tag {
   font-size: 12px;
   font-weight: 700;
@@ -426,8 +401,6 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
   text-transform: uppercase;
   margin-bottom: 8px;
 }
-.article-titre { font-size: 16px; font-weight: 600; line-height: 1.4; }
-.article:hover .article-titre { color: var(--accent-texte); }
 .article-date { margin-top: 6px; font-size: 13px; color: var(--texte-2); }
 .lien-suite {
   display: inline-block;
@@ -442,19 +415,6 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 
 /* ── Veille CEE ──────────────────────────────────────────────────── */
 
-.veille {
-  margin-top: 28px;
-  border: 1px solid var(--ligne);
-  border-radius: var(--rayon-carte);
-  padding: 32px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-.veille-titre { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
-.veille-desc { font-size: 14px; color: var(--texte-2); }
 .veille-merci { font-size: 14px; font-weight: 500; color: var(--accent-texte); }
 .veille-form { display: flex; flex-wrap: wrap; gap: 10px; }
 .veille-champ {
@@ -476,7 +436,6 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 .pied-veille .veille-form { flex-wrap: nowrap; }
 .pied-veille .veille-champ { flex: 1 1 auto; min-width: 0; padding: 11px 14px; }
 .pied-veille .veille-bouton { flex: 0 0 auto; padding: 11px 16px; }
-.page .veille { max-width: 560px; flex-direction: column; align-items: stretch; }
 
 /* ── FAQ ─────────────────────────────────────────────────────────── */
 
@@ -585,7 +544,6 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
   width: 100%;
 }
 .modale:focus { outline: none; }
-.modale-etroite { max-width: 380px; }
 .modale-titre { font-size: 22px; font-weight: 700; }
 .modale-soustitre { font-size: 14px; color: var(--texte-2); margin-top: 6px; }
 .modale-titre + .modale-form,
@@ -626,6 +584,24 @@ select.champ { appearance: auto; }
 .modale-info { margin: 4px 0 0; font-size: 12px; line-height: 1.5; color: var(--texte-2); }
 .modale-info a { text-decoration: underline; text-underline-offset: 3px; }
 
+/* ── Formulaires et simulateur ────────────────────────────────────── */
+
+/* Un formulaire en page (contact, simulateur) : la même pile de champs que la modale. */
+.formulaire { display: flex; flex-direction: column; gap: 14px; max-width: 640px; }
+/* Le bouton d'envoi prend la largeur du formulaire, comme dans la modale. */
+.formulaire .pilule { padding: 15px; }
+.formulaire-erreur { margin: 0; font-size: 14px; line-height: 1.5; color: var(--erreur); }
+.formulaire-merci { margin: 0; font-size: 15px; line-height: 1.6; font-weight: 500; color: var(--accent-texte); max-width: 640px; }
+.champ-aide { display: block; margin: 6px 0 0; font-size: 12.5px; line-height: 1.5; color: var(--texte-2); }
+.champ-texte { resize: vertical; min-height: 120px; font-family: inherit; }
+/* Le widget Turnstile : la place est réservée pour que le formulaire ne saute pas. */
+.turnstile { min-height: 66px; }
+.turnstile:empty { min-height: 0; }
+.turnstile-indisponible { margin: 0; font-size: 13px; line-height: 1.5; color: var(--texte-2); }
+
+/* La page Contact : le formulaire seul, dans la colonne de lecture (15/10/2026). */
+.page-lecture .formulaire { max-width: 760px; margin-top: 36px; }
+.contact-etape { font-size: 17px; font-weight: 700; margin: 18px 0 0; }
 
 /* ── Pages intérieures ───────────────────────────────────────────────
    Coquilles d'architecture : le contenu et le design viennent ensuite. Ce qui compte ici,
@@ -658,7 +634,8 @@ select.champ { appearance: auto; }
 .page-bande::before { background: linear-gradient(180deg, rgba(var(--foret-rgb), 0.35), rgba(var(--foret-rgb), 0.82)); }
 .page-bande-inner { width: 100%; max-width: var(--largeur); margin: 0 auto; padding: 120px var(--gouttiere) 48px; }
 .page-bande .surtitre { color: rgba(var(--blanc-rgb), 0.8); margin-bottom: 14px; }
-.page-bande .page-titre { color: var(--blanc); margin: 0; max-width: 820px; }
+/* Le titre prend toute la largeur du bandeau : borné à 820px, « Des opérations CEE vérifiées avant le dépôt » cassait sur « le dépôt » (Alek, 15/10/2026). */
+.page-bande .page-titre { color: var(--blanc); margin: 0; }
 
 .page-section { margin-top: 64px; }
 .page-section-tete .surtitre { margin-bottom: 10px; }
@@ -677,6 +654,14 @@ select.champ { appearance: auto; }
 .operation-titre { font-size: 17px; font-weight: 700; margin: 0 0 6px; }
 .operation-texte { font-size: 14px; line-height: 1.6; color: var(--texte-2); margin: 0; }
 .operations + .mention { margin-top: 20px; }
+/* Les atouts des pages Partenaires : la même tuile, sur deux colonnes. */
+.operations.est-deux { grid-template-columns: repeat(2, 1fr); max-width: 1000px; }
+.page-section.est-colonnes .operations { max-width: none; }
+
+/* Une bande forêt au milieu d'une page : elle déborde des gouttières de `.page` jusqu'aux
+   bords de la fenêtre. Le `body` rogne l'excédent de barre de défilement (overflow-x). */
+.page-pleine { width: 100vw; margin: 64px calc(50% - 50vw) 0; }
+.bande-tuiles.est-trois { grid-template-columns: repeat(3, 1fr); }
 
 /* Le déroulé : quatre tuiles reliées, à l'horizontale, sur le modèle d'EBS. */
 .deroule { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; position: relative; }
@@ -706,7 +691,6 @@ select.champ { appearance: auto; }
 /* Même motif que l'accueil : un titre de rang intermédiaire et la courte barre verte. */
 .page-section-titre { font-size: clamp(22px, 2.4vw, 28px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin: 0; }
 .page-section-barre { margin: 14px 0 22px; }
-.page-action { margin-top: 24px; }
 .page-coordonnees {
   font-style: normal;
   display: flex;
@@ -716,18 +700,6 @@ select.champ { appearance: auto; }
   color: var(--texte-2);
 }
 .page-coordonnees a:hover { color: var(--accent-texte); }
-
-/* Le bandeau qui dit qu'une page est une coquille. Il disparaîtra page par page, à mesure
-   qu'elles se remplissent ; tant qu'il est là, il vaut mieux qu'il se voie. */
-.page-chantier {
-  max-width: 760px;
-  margin-top: 28px;
-  padding: 14px 18px;
-  border: 1px dashed var(--ligne);
-  border-radius: var(--rayon-champ);
-  font-size: 13px;
-  color: var(--texte-3);
-}
 
 /* ── Fil d'Ariane ────────────────────────────────────────────────── */
 
@@ -771,7 +743,6 @@ select.champ { appearance: auto; }
    vise sans effort. La flèche dit que le lien mène ailleurs. */
 .liste-liens { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
 .liste-liens-auto { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-.liste-liens-trois { grid-template-columns: repeat(3, 1fr); }
 .liste-liens a {
   position: relative;
   display: flex;
@@ -801,15 +772,8 @@ select.champ { appearance: auto; }
 .liste-liens a:hover .liste-liens-label { color: var(--accent-texte); }
 .liste-liens-note { font-size: 13px; line-height: 1.5; color: var(--texte-3); }
 
-.lien-appuye { font-size: 15px; font-weight: 700; color: var(--accent-texte); }
-.lien-appuye:hover { text-decoration: underline; }
-
 /* ── Tableaux (glossaire) ──────────────────────────────────────────── */
 
-/* ⚠️ LE TABLEAU DÉFILE DANS SON PROPRE CADRE, jamais en poussant la page. Une grille à cinq
-   colonnes sur un téléphone de 390px déborde forcément ; sans ce cadre, c'est le corps du
-   document qui se met à défiler de côté, et tout le site paraît cassé. */
-.tableau-cadre { overflow-x: auto; border: 1px solid var(--ligne); border-radius: var(--rayon-champ); }
 .tableau { border-collapse: collapse; width: 100%; font-size: 14px; }
 .tableau caption { caption-side: bottom; }
 .tableau th, .tableau td { padding: 11px 14px; text-align: left; white-space: nowrap; }
@@ -825,88 +789,20 @@ select.champ { appearance: auto; }
 .tableau tbody th { font-weight: 500; white-space: normal; }
 .tableau tbody td { font-variant-numeric: tabular-nums; }
 .tableau tbody tr + tr th, .tableau tbody tr + tr td { border-top: 1px solid var(--ligne); }
-.tableau-legende { padding: 10px 14px; font-size: 12px; color: var(--texte-3); text-align: left; }
 .mention { max-width: 760px; font-size: 13px; color: var(--texte-2); }
 .page-section .pilule { margin-top: 4px; }
 
 /* ── Pages argumentaires (« Pour qui », « Partenaires ») ─────────────── */
 
 .page-surtitre { margin-bottom: 14px; }
-/* L'intro en deux colonnes : la prose à gauche, le schéma à droite, comme le héros. */
-.argu-prose { margin-top: 8px; max-width: 760px; }
-.argu-prose .page-texte { font-size: 16px; }
 
 /* ── Gabarit « Pour qui » ─────────────────────────────────────────── */
 
-/* Le financement : la légende seule, en liste à témoins (le schéma SVG est parti le 15/10/2026). */
-.financement-legende { flex: 1 1 300px; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
-.financement-legende li { display: flex; gap: 14px; align-items: flex-start; font-size: 15px; line-height: 1.6; color: var(--texte-2); }
-/* Les témoins reprennent les trois boîtes du schéma : cadre encre, vert, gris. */
-.financement-legende .ico-coche { flex: none; width: 20px; height: 20px; color: var(--accent); margin-top: 2px; }
-
-/* Les avantages en rangées, icône à gauche, sur deux colonnes. */
-.avantages { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 28px 48px; }
 .avantage { padding-top: 16px; border-top: 1px solid var(--ligne); }
 .ico-argument { display: block; flex: none; width: 32px; height: 32px; color: var(--accent); margin-top: 2px; }
-.avantage-titre { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
-.avantage-texte { font-size: 14px; line-height: 1.6; color: var(--texte-2); }
 
 /* La chronologie verticale : le moment en marge, le trait, l'étape. */
 .chrono { list-style: none; margin: 0; padding: 0; max-width: 840px; }
-.chrono-etape { display: grid; grid-template-columns: 140px 56px 1fr; gap: 0 16px; position: relative; padding-bottom: 36px; }
-.chrono-etape:last-child { padding-bottom: 0; }
-.chrono-marge { text-align: right; padding-top: 10px; }
-.chrono-delai { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-texte); }
-.chrono-point { position: relative; display: flex; justify-content: center; }
-.chrono-pastille { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--foret); color: var(--blanc); font-size: 15px; font-weight: 700; position: relative; z-index: 1; }
-.chrono-etape:not(:last-child) .chrono-point::after {
-  content: ''; position: absolute; top: 44px; bottom: -36px; left: 50%; width: 1px; background: var(--ligne);
-}
-.chrono-corps { padding-top: 8px; }
-.chrono-titre { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
-.chrono-desc { font-size: 14px; line-height: 1.6; color: var(--texte-2); max-width: 560px; }
-
-/* ── Gabarit « Partenaires » ─────────────────────────────────────── */
-
-/* Les profils : des étiquettes sur fond doux, avec un « Pour » en tête, pas des filtres. */
-.pastilles { margin: 20px 0 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.pastilles-liste { list-style: none; margin: 0; padding: 0; display: contents; }
-.pastilles-label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texte-3); margin-right: 4px; }
-.pastille { padding: 6px 12px; background: var(--survol); border-radius: var(--rayon-champ); font-size: 13px; font-weight: 500; color: var(--texte-2); }
-
-/* L'intro : un chapeau en grand à gauche, deux paragraphes à droite. Pas de multicolonne,
-   qui fait descendre puis remonter le lecteur. */
-.colonnes-prose { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 8px 56px; margin-top: 28px; max-width: 1080px; }
-.colonnes-prose .page-texte { max-width: none; font-size: 16px; }
-.colonnes-prose .page-texte:first-child { grid-row: 1 / span 2; font-size: 16px; color: var(--texte); }
-
-/* La bande : la phrase-clé en HTML à gauche, le dessin à droite, sur fond doux. */
-
-/* Les étapes de démarrage : alignées à gauche comme le reste de la page, numérotées. */
-.page .etapes { justify-content: flex-start; gap: 32px; }
-.page .etape { flex: 1 1 200px; max-width: none; }
-.etape-numero { display: block; font-size: 22px; font-weight: 700; color: var(--accent); line-height: 1.2; margin-bottom: 14px; }
-
-/* Vous / nous : deux colonnes, la nôtre en accent léger. */
-.partage { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-.partage-col { border: 1px solid var(--ligne); border-radius: var(--rayon-carte); padding: 26px 28px; }
-.partage-col-nous { border-color: var(--accent); }
-.partage-titre { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texte-3); margin-bottom: 14px; }
-.partage-col-nous .partage-titre { color: var(--accent-texte); }
-.partage-liste { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
-.partage-liste li { position: relative; padding-left: 26px; font-size: 15px; line-height: 1.6; color: var(--texte-2); }
-.partage-liste li::before {
-  content: ''; position: absolute; left: 0; top: 9px; width: 12px; height: 7px;
-  border-left: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(-45deg);
-}
-
-/* Les raisons en liste numérotée, une colonne, chiffres en accent. */
-.raisons { list-style: none; margin: 0; padding: 0; max-width: 820px; }
-.raison { display: flex; gap: 22px; padding: 22px 0; border-top: 1px solid var(--ligne); }
-.raison:last-child { border-bottom: 1px solid var(--ligne); }
-.raison-titre { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
-.raison-texte { font-size: 14px; line-height: 1.6; color: var(--texte-2); max-width: 620px; }
-
 
 /* La règle à ne pas manquer : un encadré à bord d'accent, pas un bandeau d'alerte. */
 .regle {
@@ -918,35 +814,8 @@ select.champ { appearance: auto; }
   max-width: 760px;
 }
 .regle-titre { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-.regle-texte { font-size: 15px; line-height: 1.65; color: var(--texte-2); }
-
-/* L'appel à l'action de la page : fond forêt et bouton dans le vert d'action, comme l'appel
-   final de l'accueil (15/10/2026). */
-.appel-page {
-  margin-top: 56px;
-  padding: 48px 32px;
-  background: var(--foret);
-  color: var(--blanc);
-  border-radius: var(--rayon-carte);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 22px;
-}
-.appel-page h2 { font-size: clamp(22px, 3vw, 30px); line-height: 1.2; font-weight: 500; letter-spacing: -0.02em; margin: 0; max-width: 640px; }
 
 .liste-puces { margin: 0; max-width: 760px; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.6; color: var(--texte-2); }
-
-/* Lien contextuel vers le glossaire : souligné discrètement, il se voit dans une phrase sans
-   la trouer comme le ferait un lien en couleur d'accent. */
-.lien-terme {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-color: var(--accent);
-  text-underline-offset: 3px;
-}
-.lien-terme:hover { color: var(--accent-texte); }
 
 /* ── Mode lecture ─────────────────────────────────────────────────── */
 
@@ -963,23 +832,22 @@ select.champ { appearance: auto; }
 .glossaire-meta span + span::before { content: ''; display: inline-block; width: 3px; height: 3px; border-radius: 50%; background: var(--texte-4); margin: 0 10px; vertical-align: middle; }
 
 /* Le schéma d'une section : borné plus court que la prose, parce qu'un dessin à 440 unités
-   étiré sur 760px grossit ses libellés au point de concurrencer les titres. */
-.glossaire-figure { margin: 24px 0 8px; max-width: 600px; }
-.glossaire-figure figcaption { margin-top: 12px; font-size: 13px; line-height: 1.5; color: var(--texte-3); max-width: 560px; }
+   étiré sur 760px grossit ses libellés au point de concurrencer les titres. Centré dans la
+   colonne, légende centrée dessous (Alek, 15/10/2026) : calé à gauche, il laissait un tiers
+   de colonne vide à droite. */
+.glossaire-figure { margin: 32px auto 8px; max-width: 600px; }
+.glossaire-figure figcaption { margin: 14px auto 0; max-width: 520px; font-size: 13px; line-height: 1.5; color: var(--texte-3); text-align: center; }
 
 /* « À retenir » réutilise `.regle` ; la liste y reprend la mesure du texte de l'encadré. */
 .glossaire-retenir .liste-puces { margin-top: 4px; }
 
-/* Les sources : une liste numérotée de liens externes, soulignés discrètement, avec la date
-   de lecture à la suite. */
+/* Les sources : une liste numérotée de liens externes, soulignés discrètement. La date de
+   lecture est sur la ligne de réserve, pas par ligne (15/10/2026). */
 .glossaire-sources { margin: 0; padding-left: 22px; max-width: 760px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; line-height: 1.55; color: var(--texte-2); }
 .glossaire-sources a { text-decoration: underline; text-decoration-color: var(--ligne); text-underline-offset: 3px; }
 .glossaire-sources a:hover { color: var(--accent); text-decoration-color: var(--accent); }
-.glossaire-sources-date { color: var(--texte-3); font-size: 13px; }
 .glossaire-mention { margin-top: 16px; }
 
-/* La carte des zones : trois valeurs d'une même couleur. H1 plein, H2 atténué par l'opacité
-   (pas une seconde teinte), H3 en blanc cerné d'encre. Contours blancs entre zones. */
 /* Les schémas SVG du glossaire (SchemasGlossaire.tsx) : les seuls qui restent. */
 .schema { display: block; width: 100%; height: auto; color: var(--encre); }
 .schema-accent { stroke: var(--accent); }
@@ -1008,12 +876,11 @@ select.champ { appearance: auto; }
 .glossaire-lecture { margin-top: 8px; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--texte-4); }
 
 /* ── Sous 900px ──────────────────────────────────────────────────────
-   Un seul point de rupture, comme le handoff. La gouttière et les espaces verticaux sont
+   Un seul point de rupture. La gouttière et les espaces verticaux sont
    redéfinis sur `:root` : tous les conteneurs les lisent, donc TOUT se réaligne sur le même
    bord gauche d'un coup, y compris les cartes de profil et les étapes, qui perdent ici leur
    centrage et leur largeur maximale. */
 @media (min-width: 900px) and (max-width: 1120px) {
-  .liste-liens-trois { grid-template-columns: repeat(2, 1fr); }
   .deroule { grid-template-columns: repeat(2, 1fr); }
   .operations { grid-template-columns: repeat(2, 1fr); }
   .deroule-etape:nth-child(3)::before { display: none; }
@@ -1028,15 +895,7 @@ select.champ { appearance: auto; }
 }
 
 @media (max-width: 899px) {
-  .chrono-etape { grid-template-columns: 56px 1fr; }
-  .chrono-marge { grid-column: 2; text-align: left; padding-top: 0; order: -1; }
-  .chrono-point { grid-row: 2; }
-  .chrono-corps { grid-row: 2; }
-  .chrono-etape:not(:last-child) .chrono-point::after { bottom: -54px; }
-  .colonnes-prose { grid-template-columns: 1fr; }
-  .colonnes-prose .page-texte:first-child { grid-row: auto; }
   /* La bande sort des gouttières : le dessin gagne 40px, et ses libellés 11px restent lisibles. */
-  .page .etape { flex: 1 1 100%; }
   :root {
     --gouttiere: 20px;
     --espace-section: 64px;
@@ -1062,12 +921,11 @@ select.champ { appearance: auto; }
   .secteurs, .solutions { grid-template-columns: repeat(2, 1fr); }
   .solutions-intro { grid-column: 1 / -1; padding-right: 0; }
   .bande { padding: 48px 0; }
-  .bande-tuiles, .metier { grid-template-columns: 1fr; }
+  .bande-tuiles, .bande-tuiles.est-trois, .metier { grid-template-columns: 1fr; }
   .metier { gap: 20px; }
   .articles { justify-content: flex-start; }
-  .article, .etape { flex: 1 1 100%; min-width: 0; max-width: 100%; }
+  .article { flex: 1 1 100%; min-width: 0; max-width: 100%; }
 
-  .veille { flex-direction: column; align-items: stretch; padding: 24px; }
   /* Le champ et le bouton tiennent sur une seule ligne : le champ prend la place restante,
      le bouton garde la sienne. `min-width: 0` est ce qui autorise le champ à rétrécir,
      sans lui un `<input>` refuse de descendre sous sa taille intrinsèque. */
@@ -1079,21 +937,20 @@ select.champ { appearance: auto; }
   .page-bande { min-height: 260px; }
   .page-bande-inner { padding: 48px var(--gouttiere) 32px; }
   .page-section.est-colonnes { grid-template-columns: 1fr; gap: 16px; }
-  .operations { grid-template-columns: 1fr; }
+  .operations, .operations.est-deux { grid-template-columns: 1fr; }
   .deroule { grid-template-columns: 1fr; }
   .deroule-etape + .deroule-etape::before { display: none; }
 
   .pied-inner { grid-template-columns: 1fr; gap: 32px; padding-top: 48px; }
   .pied-cee { justify-self: start; width: 130px; }
   .publications, .champs-deux { grid-template-columns: 1fr; }
-  .etape-numero, .etape-delai { display: inline; margin-right: 10px; }
 
   .modale { padding: 28px 24px; }
 
   .page { padding: 28px var(--gouttiere) var(--espace-section); }
   .fil-ariane-inner { padding: 7px var(--gouttiere); }
   .page-section { margin-top: 36px; }
-  .liste-liens-auto, .liste-liens-trois { grid-template-columns: 1fr; }
+.liste-liens-auto { grid-template-columns: 1fr; }
   .pied-titre-suivant { margin-top: 24px; }
 
 }

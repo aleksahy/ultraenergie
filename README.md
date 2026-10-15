@@ -21,23 +21,27 @@ npm run images   # dérivées web des photos (cf. ci-dessous)
 
 ## Architecture
 
-27 pages, toutes statiques. La source unique des URL est `lib/routes.ts` ; rien n'écrit une
+22 pages, toutes statiques. La source unique des URL est `lib/routes.ts` ; rien n'écrit une
 URL à la main.
 
 ```
-/                                    accueil
-/qui-sommes-nous  /contact           pages fixes
-/veille-cee                          la newsletter
-/{public}                            4 pages « Pour qui »
-/{partenaire}                        3 pages « Partenaires »
+/                                    accueil (« Qui sommes-nous » en est une ancre : /#qui-sommes-nous)
+/contact  /mentions-legales          pages fixes
+/{public}                            5 pages « Pour qui »
+/{partenaire}                        2 pages « Partenaires »
 /comprendre-les-cee/                 index du glossaire
-/comprendre-les-cee/{terme}/         terme (8)
-/blog/  /blog/{article}/             index et articles (3)
+/comprendre-les-cee/{terme}/         terme (11)
 ```
+
+⛔ Le blog (`/blog/`), la page `/qui-sommes-nous/` et la page `/veille-cee/` ont été retirés le
+15/10/2026 pour le premier déploiement : le blog n'avait que trois titres sans article,
+« Qui sommes-nous » est devenu une ancre de la section « Notre métier » de l'accueil, et la
+lettre « Veille CEE » n'a plus que son formulaire dans le pied. Leurs slugs restent réservés
+dans `PREMIER_NIVEAU`.
 
 ### Espace de noms de premier niveau
 
-`/obliges`, `/contact` et `/blog` cohabitent. Les sept pages de premier niveau passent par
+`/obliges`, `/contact` et `/comprendre-les-cee` cohabitent. Les sept pages de premier niveau passent par
 **un seul segment dynamique** (`app/[slug]/page.tsx`) qui dispatche vers la page « pour qui »
 ou partenaire — Next n'accepte de toute façon qu'un segment dynamique par niveau.
 
@@ -55,10 +59,10 @@ Quatre entrées, dans cet ordre :
 
 | Entrée | Sous-menu |
 | --- | --- |
-| Qui sommes-nous | *(lien direct)* |
-| Pour qui ▾ | les 4 pages « Pour qui » |
-| Ressources ▾ | Comprendre les CEE · Blog · Veille CEE |
-| Partenaires ▾ | Obligés · Installateurs · Apporteurs d'affaires |
+| Qui sommes-nous | *(ancre de l'accueil, `/#qui-sommes-nous`)* |
+| Pour qui ▾ | les 5 pages « Pour qui », installateurs en tête |
+| Ressources | *(lien direct vers Comprendre les CEE depuis le 15/10/2026, pas de déroulant)* |
+| Partenaires ▾ | Obligés · Apporteurs d'affaires |
 
 `/contact` est un bouton, hors des cinq entrées.
 
@@ -181,9 +185,33 @@ passe par le proxy `DATAIMPULSE_PROXY`, jamais par notre adresse.
 
 ## 🚨 Ce qui reste à fournir
 
-`lib/glossaire.ts` est écrit et sourcé ; `lib/blog.ts` reste une amorce. Les coordonnées du
-pied de page sont des valeurs d'amorce. Les deux variables Brevo du projet Cloudflare
+`lib/glossaire.ts` est écrit et sourcé. Les deux variables Brevo du projet Cloudflare
 (cf. Déploiement) sont à renseigner.
+
+## Formulaires
+
+Deux formulaires, un seul point d'entrée : `functions/api/contact.ts` (fonction Cloudflare
+Pages) reçoit la page Contact (`components/FormulaireContact.tsx`, modèle EBS : deux volets,
+coordonnées à gauche, formulaire sur forêt à droite) et la modale « Devenir partenaire »
+(`components/Modales.tsx`), et envoie un mail à contact@ultraenergie.fr par Brevo
+transactionnel (`functions/api/_mail.ts`), `Reply-To` sur le visiteur. Repris de Salons en
+France le 15/10/2026 : validation d'adresse stricte, champs bornés, piège à robots, Turnstile
+(`functions/api/_turnstile.ts`, `lib/turnstile.ts`) ; sans CRM, sans base, sans limiteur KV.
+
+Variables du projet Cloudflare : `BREVO_API_KEY` (déjà posée pour la lettre) et
+`TURNSTILE_SECRET_KEY` (secret du widget Turnstile, à créer dans le tableau de bord
+Cloudflare avec les domaines `ultraenergie.fr` et `*.pages.dev`). Au BUILD :
+`NEXT_PUBLIC_TURNSTILE_SITE_KEY` (la clé publique du même widget, variable de build du projet
+Pages et `.env.local`). ⛔ Déployé sans secret, tout envoi est refusé (503), visiblement ; en
+local (`localhost`) la porte est ouverte. Sans clé publique au build, aucun jeton n'est produit.
+L'expéditeur contact@ultraenergie.fr doit être un expéditeur validé chez Brevo, sinon 400.
+
+En local : `npm run build && npx wrangler pages dev out` (`.dev.vars` porte les variables) ;
+`next dev` répond 404 sur `/api/`, les formulaires affichent alors l'erreur.
+
+⛔ Pas de simulateur en attendant le cœur (Alek, 15/10/2026) : tous les appels à l'action du
+site (en-tête, héros, bandes de fin de page) mènent à `/contact/`. Un simulateur simplifié à
+sept fiches a existé quelques heures ce jour-là ; il est dans l'historique git.
 
 ## Contrôles au build
 
@@ -204,7 +232,7 @@ niveau et forme des URL.
 
 La forme canonique porte **une barre oblique finale**, sur toutes les pages
 (`trailingSlash: true`). L'architecture demandait à la fois que `/comprendre-les-cee/`
-et `/blog/` répondent 200 telles qu'écrites, et que la forme soit
+et `/contact/` répondent 200 telles qu'écrites, et que la forme soit
 cohérente partout : les deux ensemble ne laissent qu'une possibilité.
 
 ⛔ Ne pas repasser à `false` sans refaire les redirections en sens inverse : toutes les URL
@@ -274,7 +302,7 @@ Cloudflare Pages connecté à GitHub (`aleksahy/ultraenergie`) :
 ### Fonctions
 
 `functions/` porte les fonctions Cloudflare Pages, déployées avec `out/` : c'est le seul code
-qui s'exécute côté serveur. `functions/api/newsletter.ts` reçoit le formulaire « Veille CEE »
+qui s'exécute côté serveur (cf. « Formulaires » pour `api/contact.ts`). `functions/api/newsletter.ts` reçoit le formulaire « Veille CEE »
 et ajoute l'adresse à la liste Brevo, sans double opt-in (décision du 14/10/2026). Deux
 variables du projet Pages, à renseigner dans le tableau de bord (Settings → Variables and
 secrets), pour Production et Preview :
@@ -301,10 +329,12 @@ fonctions : en local, `npm run build` puis `npx wrangler pages dev out`, avec un
 
 ```
 app/          les routes, le layout, sitemap.ts, robots.ts, la feuille de style globale
-components/   l'en-tête, le pied, les sections d'accueil, les coquilles de pages, les icônes
-lib/          routes.ts (le registre), nav.ts, fil-ariane.ts, et les données
-              (secteurs, publics, argumentaires, glossaire, blog, contenu d'accueil)
-functions/    les fonctions Cloudflare Pages (api/newsletter.ts)
+components/   l'en-tête, le pied, les sections d'accueil, les gabarits de pages, les formulaires, les icônes
+lib/          routes.ts (le registre), nav.ts, fil-ariane.ts, turnstile.ts et formulaire.ts
+              (côté navigateur), et les données (secteurs, publics, argumentaires, glossaire,
+              contenu d'accueil)
+functions/    les fonctions Cloudflare Pages : api/newsletter.ts, api/contact.ts et ses
+              helpers _formulaire.ts, _turnstile.ts, _mail.ts
 assets/       polices et photos dérivées — importées comme modules
 images/       photos sources pleine résolution — jamais importées
 cee.png       logo officiel du dispositif CEE (pied de page), importé comme module

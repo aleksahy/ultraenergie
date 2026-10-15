@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { NAV, estGroupe } from '@/lib/nav';
 import { url } from '@/lib/routes';
-import { useModales } from './Modales';
 
 /**
  * Le menu mobile (< 900px) : le burger ouvre un panneau qui se déploie SOUS l'en-tête.
@@ -24,7 +23,6 @@ export default function MenuMobile() {
   const [ouvert, setOuvert] = useState(false);
   const [groupesOuverts, setGroupesOuverts] = useState<string[]>([]);
   const burger = useRef<HTMLButtonElement>(null);
-  const ouvrirModale = useModales();
 
   const basculerGroupe = (label: string) =>
     setGroupesOuverts((g) => (g.includes(label) ? g.filter((x) => x !== label) : [...g, label]));
@@ -105,18 +103,7 @@ export default function MenuMobile() {
 
             {/* /contact est hors menu en desktop (c'est le bouton de l'en-tête) ; sur
                 téléphone il rejoint la liste, faute d'une place à droite où le poser. */}
-            <Link href={url.contact} className="menu-lien" onClick={fermer}>Contact</Link>
-
-            {/* Le même bouton qu'en PC, et lui seul : « Contact » est déjà dans la liste. */}
-            <div className="menu-actions">
-              <button
-                type="button"
-                className="pilule pilule-accent"
-                onClick={() => { setOuvert(false); ouvrirModale('estimation'); }}
-              >
-                Estimer ma prime
-              </button>
-            </div>
+            <Link href={url.contact} className="menu-lien" onClick={fermer}>Nous contacter</Link>
           </nav>
         </>
       )}

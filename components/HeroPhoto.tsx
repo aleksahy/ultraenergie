@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import { BoutonModale } from './Modales';
+import Link from 'next/link';
+import { url } from '@/lib/routes';
 import photo from '@/assets/photos/conseil-metier-1600.jpg';
 
 /**
@@ -25,7 +26,7 @@ export default function HeroPhoto() {
           Nous accompagnons les installateurs et leurs clients : engagement de prime avant le devis,
           dossier constitué et déposé, versement suivi.
         </p>
-        <BoutonModale modale="estimation" className="pilule pilule-accent">Estimer ma prime</BoutonModale>
+        <Link href={url.contact} className="pilule pilule-accent">Nous contacter</Link>
       </div>
     </section>
   );

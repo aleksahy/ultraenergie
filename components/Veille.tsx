@@ -6,9 +6,10 @@ import type { FormEvent } from 'react';
 /**
  * Le formulaire de la lettre « Veille CEE ».
  *
- * Deux rendus : `bloc` (la page /veille-cee/, encadré) et `pied` (sous les informations de
- * la société, dans le pied de page, et nulle part ailleurs : Alek, 15/10/2026). ⛔ Aucune
- * ligne sous le formulaire : ni prestataire, ni fréquence, ni lien (Alek, même jour).
+ * Un seul rendu depuis le 15/10/2026 : sous les informations de la société, dans le pied de
+ * page, et nulle part ailleurs (Alek). La page /veille-cee/ qui portait l'autre rendu a été
+ * retirée le même jour. ⛔ Aucune ligne sous le formulaire : ni prestataire, ni fréquence,
+ * ni lien (Alek, même jour).
  *
  * Le formulaire poste à `/api/newsletter`, une fonction Cloudflare Pages
  * (`functions/api/newsletter.ts`) qui ajoute l'adresse à la liste Brevo. `next dev` ne la
@@ -17,7 +18,7 @@ import type { FormEvent } from 'react';
  */
 type Etat = 'repos' | 'envoi' | 'inscrit' | 'erreur';
 
-export default function Veille({ variante = 'bloc' }: { variante?: 'bloc' | 'pied' } = {}) {
+export default function Veille() {
   const [etat, setEtat] = useState<Etat>('repos');
 
   async function envoyer(e: FormEvent<HTMLFormElement>) {
@@ -52,21 +53,11 @@ export default function Veille({ variante = 'bloc' }: { variante?: 'bloc' | 'pie
     </form>
   );
 
-  if (variante === 'pied') {
-    return (
-      <div className="pied-veille">
-        <div className="pied-titre pied-titre-suivant">Veille CEE</div>
-        <p className="pied-veille-desc">L’actualité réglementaire CEE, chaque semaine.</p>
-        {formulaire}
-        
-      </div>
-    );
-  }
-
   return (
-    <div id="veille" className="veille">
+    <div className="pied-veille">
+      <div className="pied-titre pied-titre-suivant">Veille CEE</div>
+      <p className="pied-veille-desc">L’actualité réglementaire CEE, chaque semaine.</p>
       {formulaire}
-      
     </div>
   );
 }

@@ -5,55 +5,6 @@ import type { ReactNode } from 'react';
    qui pose la couleur depuis une variable de `:root`. Une icône codée en dur survit à un
    changement de charte en gardant l'ancienne couleur, sans rien signaler. */
 
-/* ── Icônes des étapes (44×44, trait épais) ─────────────────────────── */
-
-const TRACES_ETAPES: Record<string, ReactNode> = {
-  loupe: (
-    <>
-      <circle cx="19" cy="19" r="12" />
-      <path d="M28 28 L38 38" />
-    </>
-  ),
-  document: (
-    <>
-      <rect x="9" y="5" width="26" height="34" rx="2" />
-      <path d="M15 15h14M15 22h14" />
-      <path d="M15 30 L19 34 L29 24" />
-    </>
-  ),
-  echange: (
-    <>
-      <path d="M9 16h22" />
-      <path d="M25 10l6 6-6 6" />
-      <path d="M35 28H13" />
-      <path d="M19 22l-6 6 6 6" />
-    </>
-  ),
-  controle: (
-    <>
-      <path d="M22 5 36 10v11c0 8-6 14-14 18-8-4-14-10-14-18V10L22 5Z" />
-      <path d="M15.5 21.5 20 26l9-9" />
-    </>
-  ),
-};
-
-export function IconeEtape({ nom }: { nom: string }) {
-  return (
-    <svg
-      className="ico-etape"
-      viewBox="0 0 44 44"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.6}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      {TRACES_ETAPES[nom]}
-    </svg>
-  );
-}
-
 /* ── Icônes des arguments (24×24, filaire fin), pages « Pour qui » et « Partenaires » ── */
 
 const TRACES_ARGUMENTS: Record<string, ReactNode> = {

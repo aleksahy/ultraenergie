@@ -1,7 +1,6 @@
 /**
- * Les schémas des articles « Comprendre les CEE » : un dessin filaire en deux tons par idée,
- * sur le modèle de `Schemas.tsx`. Chaque schéma dit UNE chose, celle que la section qui
- * l'appelle vient d'expliquer.
+ * Les schémas des articles « Comprendre les CEE » : un dessin filaire en deux tons par idée.
+ * Chaque schéma dit UNE chose, celle que la section qui l'appelle vient d'expliquer.
  *
  * ⚠️ AUCUN HEXADÉCIMAL. Les tracés héritent de `currentColor` ; `.schema-accent`,
  * `.schema-plein`, `.schema-doux` et `.schema-texte-*` posent les couleurs depuis la feuille
@@ -12,6 +11,10 @@
  * schéma (1,04 ; 0,015 € ; 14 jours ; 12 mois ; 2 et 6 mois d'instruction ; 50 GWh cumac ;
  * 2026-2030). Aucun montant de
  * prime, aucun taux : un chiffre dessiné se lit comme une promesse.
+ *
+ * ⚠️ ANGLES NETS : aucun `rx` sur les rectangles, jonctions en onglet. La charte « Bureau »
+ * (15/10/2026) a des cartes à 4px et des boutons droits ; les boîtes arrondies des schémas
+ * juraient dessous. Les cercles (jalons, coefficient) restent des cercles.
  *
  * Les SVG sont `aria-hidden` : la phrase-clé va dans la légende HTML (`figcaption`), pas ici,
  * et aucun schéma ne la répète en bas de dessin (revue du 20/09/2026).
@@ -25,8 +28,8 @@ const COMMUN = {
   fill: 'none',
   stroke: 'currentColor',
   strokeWidth: 1.6,
-  strokeLinecap: 'round' as const,
-  strokeLinejoin: 'round' as const,
+  strokeLinecap: 'butt' as const,
+  strokeLinejoin: 'miter' as const,
 };
 
 function T({ x, y, children, accent = false, petit = false, sur = false, ancre = 'middle' }: {
@@ -52,7 +55,7 @@ function Defs({ id }: { id: string }) {
   );
 }
 
-/* Une boîte à coins arrondis avec son libellé centré, pleine (accent) ou en contour. */
+/* Une boîte à angles nets avec son libellé centré, pleine (accent) ou en contour. */
 function Boite({ x, y, w, h, lignes, accent = false, doux = false }: {
   x: number; y: number; w: number; h: number; lignes: string[]; accent?: boolean; doux?: boolean;
 }) {
@@ -60,7 +63,7 @@ function Boite({ x, y, w, h, lignes, accent = false, doux = false }: {
   return (
     <g>
       <rect
-        x={x} y={y} width={w} height={h} rx="8"
+        x={x} y={y} width={w} height={h}
         className={accent ? 'schema-accent schema-plein' : doux ? 'schema-doux' : undefined}
         strokeWidth={accent ? 0 : 1.6}
       />
@@ -82,7 +85,7 @@ function Actualisation() {
       <path d={`M${x0 - 10} ${base} H${x0 + annees * pas}`} />
       {barres.map((h, i) => (
         <rect
-          key={i} x={x0 + i * pas} y={base - h} width={pas - 8} height={h} rx="2"
+          key={i} x={x0 + i * pas} y={base - h} width={pas - 8} height={h}
           className={i === 0 ? 'schema-accent schema-plein' : undefined} strokeWidth={i === 0 ? 0 : 1.6}
         />
       ))}
@@ -104,11 +107,11 @@ function DureeConventionnelle() {
   return (
     <svg viewBox="0 0 440 220" className="schema" aria-hidden="true" {...COMMUN}>
       <T x={40} y={46} ancre="start" accent>Durée conventionnelle, fixée par la fiche</T>
-      <rect x="40" y="58" width="250" height="26" rx="6" className="schema-accent schema-plein" strokeWidth={0} />
+      <rect x="40" y="58" width="250" height="26" className="schema-accent schema-plein" strokeWidth={0} />
       <T x={165} y={75} sur>comptée dans le calcul</T>
       <path d="M290 50 V190" className="schema-accent" strokeDasharray="4 4" />
       <T x={40} y={130} ancre="start">Durée réelle de l’équipement</T>
-      <rect x="40" y="142" width="330" height="26" rx="6" className="schema-doux" />
+      <rect x="40" y="142" width="330" height="26" className="schema-doux" />
       <path d="M370 142 h30 M370 168 h30" className="schema-doux" strokeDasharray="3 5" />
       <T x={412} y={161} ancre="start">?</T>
       <path d="M40 190 H400" />
@@ -154,7 +157,7 @@ function Periodes() {
         const x = 24 + i * 66;
         return (
           <g key={nom}>
-            <rect x={x} y={40} width={58} height={36} rx="6" className={accent ? 'schema-accent schema-plein' : undefined} strokeWidth={accent ? 0 : 1.6} />
+            <rect x={x} y={40} width={58} height={36} className={accent ? 'schema-accent schema-plein' : undefined} strokeWidth={accent ? 0 : 1.6} />
             <path d={`M${x + 29} 76 V98`} className="schema-doux" />
             <T x={x + 29} y={63} sur={accent} accent={false}>{nom}</T>
             <T x={x + 29} y={118} petit accent={accent}>{annees}</T>
@@ -213,10 +216,10 @@ function AnatomieFiche() {
   const rubriques = ['Secteur d’application', 'Dénomination', 'Conditions pour la délivrance', 'Durée de vie conventionnelle', 'Montant en kWh cumac : le forfait'];
   return (
     <svg viewBox="0 0 440 300" className="schema" aria-hidden="true" {...COMMUN}>
-      <rect x="30" y="20" width="380" height="262" rx="10" />
+      <rect x="30" y="20" width="380" height="262" />
       {[['BAR', 'secteur', 90], ['EN', 'famille', 190], ['101', 'numéro', 290]].map(([code, sens, x]) => (
         <g key={code as string}>
-          <rect x={(x as number) - 36} y={38} width={72} height={34} rx="6" />
+          <rect x={(x as number) - 36} y={38} width={72} height={34} />
           <T x={x as number} y={60}>{code as string}</T>
           <T x={x as number} y={92} petit accent>{sens as string}</T>
         </g>
@@ -358,7 +361,7 @@ function Multiplicateur() {
     <svg viewBox="0 0 440 250" className="schema" aria-hidden="true" {...COMMUN}>
       <Defs id="pointe-multiplicateur" />
       <path d="M30 190 H410" />
-      <rect x="50" y="130" width="70" height="60" rx="3" />
+      <rect x="50" y="130" width="70" height="60" />
       <T x={85} y={210} petit>Forfait de la fiche</T>
       <T x={85} y={224} petit>en kWh cumac</T>
       <circle cx="190" cy="120" r="38" className="schema-accent" strokeWidth={2.2} />
@@ -366,8 +369,8 @@ function Multiplicateur() {
       <T x={190} y={132} petit accent>coefficient</T>
       <T x={190} y={178} petit>fixé par la charte</T>
       <path d="M228 120 H262" className="schema-accent" markerEnd="url(#pointe-multiplicateur)" />
-      <rect x="290" y="40" width="70" height="150" rx="3" className="schema-accent schema-plein" strokeWidth={0} />
-      <rect x="290" y="130" width="70" height="60" rx="3" className="schema-doux" strokeDasharray="3 4" />
+      <rect x="290" y="40" width="70" height="150" className="schema-accent schema-plein" strokeWidth={0} />
+      <rect x="290" y="130" width="70" height="60" className="schema-doux" strokeDasharray="3 4" />
       <T x={325} y={210} petit>Volume bonifié</T>
       <T x={325} y={224} petit>même opération</T>
     </svg>

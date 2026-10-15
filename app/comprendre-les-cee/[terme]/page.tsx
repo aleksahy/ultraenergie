@@ -24,9 +24,9 @@ export async function generateMetadata({ params }: { params: Promise<{ terme: st
  * L'article d'un terme : chapô, repères de lecture, sections avec leurs schémas, l'encadré
  * « À retenir », les sources, puis les autres termes.
  *
- * Les sources sont des liens externes en fin d'article, avec leur date de lecture : c'est
- * ce qui permet au lecteur de vérifier plutôt que de nous croire, et de voir quand une page
- * a pu changer depuis.
+ * Les sources sont des liens externes en fin d'article, réduits au strict minimum (Alek,
+ * 15/10/2026) : intitulé court, pas de date par ligne. La date de lecture, commune à toutes,
+ * tient sur la ligne de réserve sous la liste.
  */
 export default async function PageTerme({ params }: { params: Promise<{ terme: string }> }) {
   const { terme: slug } = await params;
@@ -34,6 +34,7 @@ export default async function PageTerme({ params }: { params: Promise<{ terme: s
   if (!terme) notFound();
 
   const autres = TERMES.filter((t) => t.slug !== slug);
+  const datesLecture = [...new Set(terme.sources.map((s) => s.consulteLe))].sort().map(dateFr);
 
   return (
     <Page chemin={url.terme(slug)} titre={terme.terme} chapo={terme.intro} surtitre="Comprendre les CEE" lecture>
@@ -71,11 +72,12 @@ export default async function PageTerme({ params }: { params: Promise<{ terme: s
           {terme.sources.map((s) => (
             <li key={s.url}>
               <a href={s.url} target="_blank" rel="noopener noreferrer">{s.titre}</a>
-              <span className="glossaire-sources-date"> Consulté le {dateFr(s.consulteLe)}.</span>
             </li>
           ))}
         </ol>
-        <p className="mention glossaire-mention">Informations indicatives ; les textes officiels font seuls foi.</p>
+        <p className="mention glossaire-mention">
+          Pages consultées le {datesLecture.join(' et le ')}. Informations indicatives ; les textes officiels font seuls foi.
+        </p>
       </Section>
 
       <Section titre="Les autres termes">

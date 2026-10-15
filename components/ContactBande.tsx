@@ -1,21 +1,29 @@
+import Link from 'next/link';
 import { BoutonModale } from './Modales';
 import type { Modale } from './Modales';
+import { url } from '@/lib/routes';
 
 /**
  * L'appel à l'action qui ferme une page : une phrase, un bouton, sur forêt, d'un bord à
- * l'autre. L'accueil l'emploie avec ses valeurs par défaut ; les pages « Pour qui » et
- * « Partenaires » lui passent leur titre, leur bouton et leur modale (prop `pied` de `Page`).
+ * l'autre. L'accueil l'emploie avec ses valeurs par défaut (vers la page Contact, modèle EBS :
+ * Alek, 15/10/2026) ; les pages « Pour qui » et « Partenaires » lui passent leur titre, leur
+ * bouton et leur destination (prop `pied` de `Page`) : un lien (`href`) ou une modale.
+ *
+ * ⛔ Pas de délai promis dans le texte (« sous deux jours ouvrés » retiré par Alek, 15/10/2026).
  */
 export default function ContactBande({
   titre = 'Un chantier à venir ?',
-  texte = 'Décrivez-nous l’opération avant la signature du devis : nous vérifions l’éligibilité et vous transmettons une première estimation sous deux jours ouvrés.',
-  bouton = 'Estimer ma prime',
-  modale = 'estimation',
+  texte = 'Décrivez-nous l’opération avant la signature du devis : nous vérifions l’éligibilité et vous transmettons une estimation.',
+  bouton = 'Nous contacter',
+  href = url.contact,
+  modale,
   contexte,
 }: {
   titre?: string;
   texte?: string;
   bouton?: string;
+  href?: string;
+  /** Prend le pas sur `href` : la modale « Devenir partenaire ». */
   modale?: Modale;
   contexte?: string;
 }) {
@@ -26,7 +34,9 @@ export default function ContactBande({
           <h2>{titre}</h2>
           <p>{texte}</p>
         </div>
-        <BoutonModale modale={modale} contexte={contexte} className="pilule pilule-accent">{bouton}</BoutonModale>
+        {modale
+          ? <BoutonModale modale={modale} contexte={contexte} className="pilule pilule-accent">{bouton}</BoutonModale>
+          : <Link href={href} className="pilule pilule-accent">{bouton}</Link>}
       </div>
     </section>
   );

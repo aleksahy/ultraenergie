@@ -16,25 +16,21 @@ export const COORDONNEES = {
 
 export const ETAPES = [
   {
-    icone: 'loupe',
-    delai: 'Sous deux jours ouvrés',
+    delai: 'Au premier contact',
     titre: 'Étude d’éligibilité et estimation',
     desc: 'Nous analysons les travaux au regard de la fiche d’opération applicable et transmettons une première estimation de prime.',
   },
   {
-    icone: 'echange',
     delai: 'Avant le devis',
     titre: 'Valorisation et engagement de prime',
     desc: 'Nous négocions la valorisation avec un acheteur de certificats et transmettons l’engagement de prime daté, que le client reçoit avant de signer le devis.',
   },
   {
-    icone: 'document',
     delai: 'Chantier',
     titre: 'Travaux et attestation',
     desc: 'L’installateur réalise, facture avec les mentions exigées par la fiche, et signe avec le client l’attestation sur l’honneur que nous préparons.',
   },
   {
-    icone: 'controle',
     delai: 'Après travaux',
     titre: 'Dépôt et versement',
     desc: 'Nous contrôlons les pièces, transmettons le dossier complet à l’acheteur qui le dépose au PNCEE, ou le déposons en son nom sous mandat, et suivons le versement.',

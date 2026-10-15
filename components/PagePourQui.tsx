@@ -43,7 +43,7 @@ export default function PagePourQui({ argumentaire: a, chemin }: {
       surtitre={a.surtitre}
       photo={PHOTOS_PAGES[a.photo].src}
       photoPosition={PHOTOS_PAGES[a.photo].position}
-      pied={<ContactBande titre={a.appel.titre} bouton={a.appel.bouton} modale={a.appel.modale} contexte={a.titre} />}
+      pied={<ContactBande titre={a.appel.titre} texte={a.appel.texte} bouton={a.appel.bouton} modale={a.appel.modale} href={a.appel.href} contexte={a.titre} />}
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
@@ -53,7 +53,7 @@ export default function PagePourQui({ argumentaire: a, chemin }: {
 
       <Section titre="Les opérations éligibles à la prime CEE" surtitre="Opérations">
         <ul className="operations" role="list">
-          {a.operations.map((o) => (
+          {a.operations?.map((o) => (
             <li key={o.titre} className="operation">
               <h3 className="operation-titre">{o.titre}</h3>
               <p className="operation-texte">{o.texte}</p>

@@ -1,15 +1,14 @@
 import { SECTEURS } from './secteurs';
 import { PUBLICS, PARTENAIRES } from './publics';
 import { TERMES } from './glossaire';
-import { ARTICLES } from './blog';
 
 /**
  * Le registre des URL. Une seule source pour la navigation, le fil d'Ariane, le pied de page,
  * le sitemap et les redirections.
  *
  * ⚠️ TOUTES LES URL FINISSENT PAR UNE BARRE OBLIQUE, et `next.config.ts` porte le
- * `trailingSlash: true` correspondant. Ce n'est pas un goût : l'architecture demande que
- * `/comprendre-les-cee/` et `/blog/` répondent 200 telles qu'écrites, ET que
+ * `trailingSlash: true` correspondant. Ce n'est pas un goût : l'architecture demande que
+ * `/comprendre-les-cee/` et `/contact/` répondent 200 telles qu'écrites, ET que
  * la forme soit cohérente sur tout le site. Les deux ensemble ne laissent qu'une possibilité.
  * La forme sans barre redirige en 301 (cf. scripts/verifie-routes.mjs, qui écrit `_redirects`).
  *
@@ -18,9 +17,13 @@ import { ARTICLES } from './blog';
  */
 export const url = {
   accueil: '/',
-  quiSommesNous: '/qui-sommes-nous/',
+  /**
+   * ⛔ PAS UNE PAGE : une ancre de l'accueil, la section « Notre métier ». La page
+   * `/qui-sommes-nous/` a été retirée le 15/10/2026 (Alek : « juste une ancre de l'index »)
+   * et son slug reste réservé dans `PREMIER_NIVEAU`. Absente de `TOUTES_LES_ROUTES`.
+   */
+  quiSommesNous: '/#qui-sommes-nous',
   contact: '/contact/',
-  veilleCee: '/veille-cee/',
   mentionsLegales: '/mentions-legales/',
 
   /** Page « Pour qui » (premier niveau). */
@@ -30,13 +33,10 @@ export const url = {
 
   comprendreLesCee: '/comprendre-les-cee/',
   terme: (slug: string) => `/comprendre-les-cee/${slug}/`,
-
-  blog: '/blog/',
-  article: (slug: string) => `/blog/${slug}/`,
 };
 
 /**
- * ⚠️ LE REGISTRE DES SLUGS DE PREMIER NIVEAU. `/industrie`, `/contact` et `/blog` cohabitent
+ * ⚠️ LE REGISTRE DES SLUGS DE PREMIER NIVEAU. `/industrie`, `/contact` et `/comprendre-les-cee` cohabitent
  * dans le même espace de noms : une page « pour qui », une page fixe et une racine de section
  * s'y marchent dessus sans prévenir. Les pages « pour qui » et partenaires passant par un
  * segment dynamique (`app/[slug]/`), une collision ne produirait pas d'erreur — la route
@@ -48,37 +48,40 @@ export const url = {
  *
  * ⛔ LE CATALOGUE DE FICHES ET LE SIMULATEUR ONT ÉTÉ RETIRÉS le 14/10/2026 pour être rebâtis
  * sur un nouveau modèle de données. `/fiches-cee` et `/simulateur` restent réservés ici : ils
- * reprendront leur adresse, et rien ne doit s'y installer entre-temps.
+ * reprendront leur adresse, et rien ne doit s'y installer entre-temps. (Un simulateur
+ * simplifié a vécu quelques heures le 15/10/2026 ; Alek : « pas de simulateur en attendant
+ * d'avoir construit le cœur », les appels à l'action mènent au contact.)
+ *
+ * ⛔ LE BLOG, « QUI SOMMES-NOUS » ET « VEILLE CEE » ONT ÉTÉ RETIRÉS le 15/10/2026 pour le
+ * premier déploiement : le blog n'avait que trois titres sans article, « Qui sommes-nous »
+ * est devenu une ancre de l'accueil, et la lettre n'a plus que son formulaire dans le pied.
+ * Leurs slugs restent réservés ici.
  *
  * Tout nouveau premier niveau s'ajoute ICI, et `verifieRegistre()` refuse le doublon au build.
  */
 export const PREMIER_NIVEAU: { slug: string; role: string }[] = [
-  { slug: 'qui-sommes-nous', role: 'page fixe' },
+  { slug: 'qui-sommes-nous', role: 'slug réservé (ancre de l’accueil depuis le 15/10/2026)' },
   { slug: 'contact', role: 'page fixe' },
-  { slug: 'veille-cee', role: 'page fixe' },
+  { slug: 'veille-cee', role: 'slug réservé (page retirée le 15/10/2026, formulaire dans le pied)' },
   { slug: 'mentions-legales', role: 'page fixe' },
   { slug: 'simulateur', role: 'slug réservé (simulateur à rebâtir)' },
-  ...PUBLICS.map((p) => ({ slug: p.slug, role: 'page « pour qui »' })),
+  ...PUBLICS.map((p) => ({ slug: p.slug, role: 'page « pour qui »' })),
   ...SECTEURS.map((s) => ({ slug: s.slug, role: 'slug réservé (page secteur retirée)' })),
   ...PARTENAIRES.map((p) => ({ slug: p.slug, role: 'page partenaire' })),
   { slug: 'fiches-cee', role: 'slug réservé (catalogue à rebâtir)' },
   { slug: 'comprendre-les-cee', role: 'racine de section' },
-  { slug: 'blog', role: 'racine de section' },
+  { slug: 'blog', role: 'slug réservé (blog retiré le 15/10/2026)' },
 ];
 
 /** Toutes les URL du site, dans l'ordre du sitemap. */
 export const TOUTES_LES_ROUTES: string[] = [
   url.accueil,
-  url.quiSommesNous,
   url.contact,
-  url.veilleCee,
   url.mentionsLegales,
   ...PUBLICS.map((p) => url.public(p.slug)),
   ...PARTENAIRES.map((p) => url.partenaire(p.slug)),
   url.comprendreLesCee,
   ...TERMES.map((t) => url.terme(t.slug)),
-  url.blog,
-  ...ARTICLES.map((a) => url.article(a.slug)),
 ];
 
 /** Une URL absolue sur le domaine de production, pour le sitemap et le balisage. */

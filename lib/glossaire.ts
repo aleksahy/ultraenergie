@@ -3,9 +3,11 @@
  *
  * ⚠️ LES SLUGS SONT LIÉS DEPUIS LES PAGES DE FICHE (composant `Terme`) : on ne les renomme pas.
  *
- * ⚠️ RIEN N'EST ÉCRIT SANS SOURCE. Chaque règle des articles vient d'une page listée dans
- * `sources`, lue à la date indiquée ; quand une source manque, la phrase est au conditionnel
- * et le doute est dit. Les chiffres sont réglementaires (1,04 ; 0,015 € ; 14 jours ; 12 mois)
+ * ⚠️ RIEN N'EST ÉCRIT SANS SOURCE. Chaque règle des articles vient d'une page de `SRC`, lue à
+ * la date indiquée ; quand une source manque, la phrase est au conditionnel et le doute est
+ * dit. ⛔ LA LISTE AFFICHÉE (`sources`) EST LE STRICT MINIMUM (Alek, 15/10/2026) : les seuls
+ * textes que l'article nomme ou cite, quatre à sept par article, avec des intitulés courts.
+ * Les autres pages consultées restent dans `SRC`, non citées, pour la trace. Les chiffres sont réglementaires (1,04 ; 0,015 € ; 14 jours ; 12 mois)
  * ou présentés comme illustratifs. Aucune promesse sur l'offre d'Ultra Énergie : ni délai, ni
  * taux, ni montant.
  *
@@ -67,55 +69,55 @@ const LU = '2026-09-20';
 
 /* Les sources citées par plusieurs articles, pour ne pas les recopier avec des variantes. */
 const SRC = {
-  dispositif: { titre: 'Dispositif des certificats d’économies d’énergie (ministère de la Transition écologique)', url: 'https://www.ecologie.gouv.fr/politiques-publiques/dispositif-certificats-deconomies-denergie', consulteLe: LU },
-  questionsReponses: { titre: 'Questions-réponses sur le dispositif CEE (ministère de la Transition écologique)', url: 'https://www.ecologie.gouv.fr/politiques-publiques/questions-reponses-dispositif-cee', consulteLe: LU },
-  standardisees: { titre: 'Opérations standardisées d’économies d’énergie (ministère de la Transition écologique)', url: 'https://www.ecologie.gouv.fr/politiques-publiques/operations-standardisees-deconomies-denergie', consulteLe: LU },
-  specifiques: { titre: 'Opérations spécifiques d’économies d’énergie (ministère de la Transition écologique)', url: 'https://www.ecologie.gouv.fr/politiques-publiques/operations-specifiques-deconomies-denergie', consulteLe: LU },
-  modalitesDepot: { titre: 'Modalités détaillées pour déposer un dossier de demande de CEE (ministère de la Transition écologique)', url: 'https://www.ecologie.gouv.fr/politiques-publiques/modalites-detaillees-deposer-dossier-demande-certificats-deconomies-denergie', consulteLe: LU },
-  codeL: { titre: 'Code de l’énergie, articles L221-1 à L221-13 (Légifrance)', url: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000023983208/LEGISCTA000023986206', consulteLe: LU },
-  codeR: { titre: 'Code de l’énergie, articles R221-1 à R221-31 (Légifrance)', url: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000023983208/LEGISCTA000031747955/', consulteLe: LU },
-  r22122: { titre: 'Code de l’énergie, article R221-22 (Légifrance)', url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046816614', consulteLe: LU },
-  r22116: { titre: 'Code de l’énergie, article R221-16 (Légifrance)', url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043616744', consulteLe: LU },
-  l2218: { titre: 'Code de l’énergie, article L221-8 (Légifrance)', url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051830603', consulteLe: LU },
-  sanctions: { titre: 'Code de l’énergie, articles R222-1 à R222-12, sanctions (Légifrance)', url: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000023983208/LEGISCTA000031748021/', consulteLe: LU },
-  registre: { titre: 'Code de l’énergie, articles R221-26 à R221-30, registre national (Légifrance)', url: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000023983208/LEGISCTA000031752560/', consulteLe: LU },
-  arreteModalites: { titre: 'Arrêté du 29 décembre 2014 relatif aux modalités d’application du dispositif des CEE (Légifrance, version consolidée)', url: 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000030001603', consulteLe: LU },
-  arreteStandardisees: { titre: 'Arrêté du 22 décembre 2014 définissant les opérations standardisées d’économies d’énergie (Légifrance, version consolidée)', url: 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000029953752/', consulteLe: LU },
-  arreteDemande: { titre: 'Arrêté du 4 septembre 2014 fixant la liste des éléments d’une demande de CEE (Légifrance, version consolidée)', url: 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000029460644', consulteLe: LU },
-  decretP6: { titre: 'Décret n° 2025-1048 du 30 octobre 2025 relatif à la sixième période du dispositif des CEE (Légifrance)', url: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052486193', consulteLe: LU },
-  webinaireP6: { titre: 'Webinaire DGEC « 6e période des certificats d’économies d’énergie », 2 décembre 2025 (PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/2025-12-02%20Webinaire%20DGEC%20P6%20CEE%20vweb.pdf', consulteLe: LU },
-  lettreNov2025: { titre: 'Lettre d’information CEE de novembre 2025 (DGEC, PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/2025-11%20lettre%20d’infos%20CEE%20vf.pdf', consulteLe: LU },
-  doctrineFiches: { titre: 'Doctrine relative à la création et à la révision des fiches d’opérations standardisées et aux bonifications, version au 1er juillet 2026 (DGEC, PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/Doctrine%20Fiches%20et%20bonifications%20CEE%20vdef.pdf', consulteLe: LU },
-  courDesComptes: { titre: 'Cour des comptes, « Les certificats d’économies d’énergie : un dispositif à réformer », juillet 2024 (PDF)', url: 'https://www.ccomptes.fr/sites/default/files/2024-09/20240917-Certificats-economie-energie_0.pdf', consulteLe: LU },
-  atee: { titre: 'ATEE, Club C2E, « Les certificats d’économies d’énergie »', url: 'https://atee.fr/efficacite-energetique/club-c2e/les-certificats-deconomie-denergie', consulteLe: LU },
-  ficheBarEn101: { titre: 'Fiche BAR-EN-101 « Isolation de combles ou de toiture », version A64-6 (ministère, PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/BAR-EN-101%20vA64-6%20%C3%A0%20compter%20du%2001-01-2025_1.pdf', consulteLe: LU },
-  ficheBarTh171: { titre: 'Fiche BAR-TH-171 « Pompe à chaleur de type air/eau », version A82-5 (ministère, PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/BAR-TH-171%20vA82-5%20%C3%A0%20compter%20du%2001-09-2026.pdf', consulteLe: LU },
-  zonesDepartements: { titre: 'Répartition des départements par zone climatique (ministère, PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/La%20r%C3%A9partition%20des%20d%C3%A9partements%20par%20zone%20climatique.pdf', consulteLe: LU },
-  arreteStandardiseesConsolide: { titre: 'Arrêté du 22 décembre 2014, version consolidée au 30 avril 2026 (ministère, PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/20260430%20Arr%C3%AAt%C3%A9%20du%2022%20d%C3%A9cembre%202014%20consolid%C3%A9.pdf', consulteLe: LU },
-  ficheBarSe105: { titre: 'Fiche BAR-SE-105 « Contrat de performance énergétique services » (calculateur CEE de l’ADEME, PDF)', url: 'https://calculateur-cee.ademe.fr/pdf/display/218/BAR-SE-105', consulteLe: LU },
-  re2020: { titre: 'Décret n° 2021-1004 du 29 juillet 2021 relatif aux exigences de performance énergétique des constructions neuves (RE2020), annexe sur les zones climatiques (Légifrance)', url: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043877196', consulteLe: LU },
-  l2211: { titre: 'Code de l’énergie, article L221-1 (Légifrance)', url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051830610', consulteLe: LU },
-  r2215: { titre: 'Code de l’énergie, article R221-5, délégation (Légifrance)', url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000052490787', consulteLe: LU },
-  l2222: { titre: 'Code de l’énergie, article L222-2, sanctions (Légifrance)', url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051830576', consulteLe: LU },
-  delivrance: { titre: 'Code de l’énergie, articles R221-14 à R221-25, délivrance des certificats (Légifrance)', url: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000023983208/LEGISCTA000031747985/', consulteLe: LU },
-  bilan2024: { titre: 'Bilan annuel du dispositif CEE, cinquième période, année 2024 (DGEC, PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/Bilan%20annuel%20CEE%20P5%20-%202024_0.pdf', consulteLe: LU },
-  lettreJuil2026: { titre: 'Lettre d’information CEE de juillet 2026 (DGEC, PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/2026-07%20lettre%20d%27infos%20CEE%20vf2.pdf', consulteLe: LU },
-  delegatairesP6: { titre: 'Liste des délégataires d’obligation validés pour la sixième période, au 5 juin 2026 (ministère, PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/Liste%20des%20d%C3%A9l%C3%A9gataires%20P6%20au%202026-06-05.pdf', consulteLe: LU },
-  codeCivilMandat: { titre: 'Code civil, articles 1984 à 2010, du mandat (Légifrance)', url: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070721/LEGISCTA000006118139/', consulteLe: LU },
-  annexe5: { titre: 'Arrêté du 4 septembre 2014, annexe 5, pièces des opérations standardisées (Légifrance)', url: 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046730494', consulteLe: LU },
-  arreteControles: { titre: 'Arrêté du 28 septembre 2021 relatif aux contrôles dans le cadre du dispositif des CEE, version consolidée au 1er mai 2026 (ministère, PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/2026-05-01%20Arr%C3%AAt%C3%A9%20Contr%C3%B4les%20CEE%20du%2028%20sept%202021%20vconsolid%C3%A9e.pdf', consulteLe: LU },
-  arreteModalitesConsolide: { titre: 'Arrêté du 29 décembre 2014, version consolidée au 1er avril 2026 (ministère, PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/2026-04-01%20Arrete%20modalites%2029_dec_2014%20vconsolidee.pdf', consulteLe: LU },
-  guideSpecifiques: { titre: 'Guide technique pour le montage d’un dossier CEE dans le cadre d’une opération spécifique, installations fixes, avril 2025 (ADEME, PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/Guide-CEE-ope-sp%C3%A9cifique-inst-fixes-2025_0.pdf', consulteLe: LU },
-  arreteGuide: { titre: 'Arrêté du 18 avril 2025 donnant valeur réglementaire au guide des opérations spécifiques (Légifrance)', url: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051522615', consulteLe: LU },
-  arreteMacf: { titre: 'Arrêté du 27 mars 2026 modifiant la bonification des opérations spécifiques industrielles (Légifrance)', url: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053734274', consulteLe: LU },
-  ateeSpecifiques: { titre: 'ATEE, Club C2E, « Opérations spécifiques »', url: 'https://atee.fr/efficacite-energetique/club-c2e/operations-specifiques', consulteLe: LU },
-  ateeFiches: { titre: 'ATEE, Club C2E, « Fiches d’opérations standardisées »', url: 'https://atee.fr/efficacite-energetique/club-c2e/fiches-doperations-standardisees', consulteLe: LU },
-  arreteMai2026: { titre: 'Arrêté du 29 mai 2026 modifiant les arrêtés du 22 décembre 2014, du 29 décembre 2014 et du 28 septembre 2021 (Légifrance)', url: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054152008', consulteLe: LU },
-  coupsDePouce: { titre: 'Certificats d’économies d’énergie : pages des Coups de pouce (ministère de la Transition écologique)', url: 'https://www.ecologie.gouv.fr/politiques/certificats-economies-denergie', consulteLe: LU },
-  coupDePouceChauffage: { titre: 'Coup de pouce « Chauffage » (ministère de la Transition écologique)', url: 'https://www.ecologie.gouv.fr/politiques-publiques/coup-pouce-chauffage', consulteLe: LU },
-  coupDePouceCollectif: { titre: 'Coup de pouce « Chauffage des bâtiments résidentiels collectifs et tertiaires » (ministère de la Transition écologique)', url: 'https://www.ecologie.gouv.fr/politiques-publiques/coup-pouce-chauffage-batiments-residentiels-collectifs-tertiaires', consulteLe: LU },
-  coupDePouceRenovation: { titre: 'Coup de pouce « Rénovation performante de bâtiment résidentiel collectif » (ministère de la Transition écologique)', url: 'https://www.ecologie.gouv.fr/politiques-publiques/coup-pouce-renovation-performante-batiment-residentiel-collectif', consulteLe: LU },
-  noteCoupsDePouce2021: { titre: 'Note « Évolutions liées aux Coups de pouce CEE », mai 2021 (ministère, PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/Evolutions%20li%C3%A9es%20aux%20Coups%20de%20Pouce%20-%20mai%202021.pdf', consulteLe: LU },
+  dispositif: { titre: 'Le dispositif CEE, ministère de la Transition écologique', url: 'https://www.ecologie.gouv.fr/politiques-publiques/dispositif-certificats-deconomies-denergie', consulteLe: LU },
+  questionsReponses: { titre: 'Questions-réponses sur le dispositif CEE, ministère', url: 'https://www.ecologie.gouv.fr/politiques-publiques/questions-reponses-dispositif-cee', consulteLe: LU },
+  standardisees: { titre: 'Opérations standardisées, ministère', url: 'https://www.ecologie.gouv.fr/politiques-publiques/operations-standardisees-deconomies-denergie', consulteLe: LU },
+  specifiques: { titre: 'Opérations spécifiques, ministère', url: 'https://www.ecologie.gouv.fr/politiques-publiques/operations-specifiques-deconomies-denergie', consulteLe: LU },
+  modalitesDepot: { titre: 'Déposer un dossier de demande de CEE, ministère', url: 'https://www.ecologie.gouv.fr/politiques-publiques/modalites-detaillees-deposer-dossier-demande-certificats-deconomies-denergie', consulteLe: LU },
+  codeL: { titre: 'Code de l’énergie, art. L221-1 à L221-13', url: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000023983208/LEGISCTA000023986206', consulteLe: LU },
+  codeR: { titre: 'Code de l’énergie, art. R221-1 à R221-31', url: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000023983208/LEGISCTA000031747955/', consulteLe: LU },
+  r22122: { titre: 'Code de l’énergie, art. R221-22', url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046816614', consulteLe: LU },
+  r22116: { titre: 'Code de l’énergie, art. R221-16', url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043616744', consulteLe: LU },
+  l2218: { titre: 'Code de l’énergie, art. L221-8', url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051830603', consulteLe: LU },
+  sanctions: { titre: 'Code de l’énergie, art. R222-1 à R222-12', url: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000023983208/LEGISCTA000031748021/', consulteLe: LU },
+  registre: { titre: 'Code de l’énergie, art. R221-26 à R221-30', url: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000023983208/LEGISCTA000031752560/', consulteLe: LU },
+  arreteModalites: { titre: 'Arrêté du 29 décembre 2014, modalités d’application', url: 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000030001603', consulteLe: LU },
+  arreteStandardisees: { titre: 'Arrêté du 22 décembre 2014, opérations standardisées', url: 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000029953752/', consulteLe: LU },
+  arreteDemande: { titre: 'Arrêté du 4 septembre 2014, éléments d’une demande', url: 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000029460644', consulteLe: LU },
+  decretP6: { titre: 'Décret n° 2025-1048 du 30 octobre 2025, sixième période', url: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052486193', consulteLe: LU },
+  webinaireP6: { titre: 'Webinaire DGEC sur la sixième période, décembre 2025 (PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/2025-12-02%20Webinaire%20DGEC%20P6%20CEE%20vweb.pdf', consulteLe: LU },
+  lettreNov2025: { titre: 'Lettre d’information CEE, novembre 2025 (PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/2025-11%20lettre%20d’infos%20CEE%20vf.pdf', consulteLe: LU },
+  doctrineFiches: { titre: 'Doctrine DGEC sur les fiches et les bonifications, juillet 2026 (PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/Doctrine%20Fiches%20et%20bonifications%20CEE%20vdef.pdf', consulteLe: LU },
+  courDesComptes: { titre: 'Cour des comptes, rapport sur les CEE, juillet 2024 (PDF)', url: 'https://www.ccomptes.fr/sites/default/files/2024-09/20240917-Certificats-economie-energie_0.pdf', consulteLe: LU },
+  atee: { titre: 'ATEE, Club C2E, les certificats d’économies d’énergie', url: 'https://atee.fr/efficacite-energetique/club-c2e/les-certificats-deconomie-denergie', consulteLe: LU },
+  ficheBarEn101: { titre: 'Fiche BAR-EN-101, isolation de combles ou de toiture (PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/BAR-EN-101%20vA64-6%20%C3%A0%20compter%20du%2001-01-2025_1.pdf', consulteLe: LU },
+  ficheBarTh171: { titre: 'Fiche BAR-TH-171, pompe à chaleur air/eau (PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/BAR-TH-171%20vA82-5%20%C3%A0%20compter%20du%2001-09-2026.pdf', consulteLe: LU },
+  zonesDepartements: { titre: 'Répartition des départements par zone climatique (PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/La%20r%C3%A9partition%20des%20d%C3%A9partements%20par%20zone%20climatique.pdf', consulteLe: LU },
+  arreteStandardiseesConsolide: { titre: 'Arrêté du 22 décembre 2014, version consolidée (PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/20260430%20Arr%C3%AAt%C3%A9%20du%2022%20d%C3%A9cembre%202014%20consolid%C3%A9.pdf', consulteLe: LU },
+  ficheBarSe105: { titre: 'Fiche BAR-SE-105, contrat de performance énergétique services (PDF)', url: 'https://calculateur-cee.ademe.fr/pdf/display/218/BAR-SE-105', consulteLe: LU },
+  re2020: { titre: 'Décret n° 2021-1004 du 29 juillet 2021, RE2020', url: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043877196', consulteLe: LU },
+  l2211: { titre: 'Code de l’énergie, art. L221-1', url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051830610', consulteLe: LU },
+  r2215: { titre: 'Code de l’énergie, art. R221-5', url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000052490787', consulteLe: LU },
+  l2222: { titre: 'Code de l’énergie, art. L222-2', url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051830576', consulteLe: LU },
+  delivrance: { titre: 'Code de l’énergie, art. R221-14 à R221-25', url: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000023983208/LEGISCTA000031747985/', consulteLe: LU },
+  bilan2024: { titre: 'Bilan annuel du dispositif CEE, année 2024 (PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/Bilan%20annuel%20CEE%20P5%20-%202024_0.pdf', consulteLe: LU },
+  lettreJuil2026: { titre: 'Lettre d’information CEE, juillet 2026 (PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/2026-07%20lettre%20d%27infos%20CEE%20vf2.pdf', consulteLe: LU },
+  delegatairesP6: { titre: 'Liste des délégataires validés pour la sixième période (PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/Liste%20des%20d%C3%A9l%C3%A9gataires%20P6%20au%202026-06-05.pdf', consulteLe: LU },
+  codeCivilMandat: { titre: 'Code civil, art. 1984 à 2010, du mandat', url: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070721/LEGISCTA000006118139/', consulteLe: LU },
+  annexe5: { titre: 'Arrêté du 4 septembre 2014, annexe 5', url: 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046730494', consulteLe: LU },
+  arreteControles: { titre: 'Arrêté du 28 septembre 2021, contrôles, version consolidée (PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/2026-05-01%20Arr%C3%AAt%C3%A9%20Contr%C3%B4les%20CEE%20du%2028%20sept%202021%20vconsolid%C3%A9e.pdf', consulteLe: LU },
+  arreteModalitesConsolide: { titre: 'Arrêté du 29 décembre 2014, version consolidée (PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/2026-04-01%20Arrete%20modalites%2029_dec_2014%20vconsolidee.pdf', consulteLe: LU },
+  guideSpecifiques: { titre: 'Guide ADEME des opérations spécifiques, avril 2025 (PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/Guide-CEE-ope-sp%C3%A9cifique-inst-fixes-2025_0.pdf', consulteLe: LU },
+  arreteGuide: { titre: 'Arrêté du 18 avril 2025, valeur réglementaire du guide', url: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051522615', consulteLe: LU },
+  arreteMacf: { titre: 'Arrêté du 27 mars 2026, bonification des opérations spécifiques industrielles', url: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053734274', consulteLe: LU },
+  ateeSpecifiques: { titre: 'ATEE, Club C2E, opérations spécifiques', url: 'https://atee.fr/efficacite-energetique/club-c2e/operations-specifiques', consulteLe: LU },
+  ateeFiches: { titre: 'ATEE, Club C2E, fiches d’opérations standardisées', url: 'https://atee.fr/efficacite-energetique/club-c2e/fiches-doperations-standardisees', consulteLe: LU },
+  arreteMai2026: { titre: 'Arrêté du 29 mai 2026, modifiant les arrêtés CEE', url: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054152008', consulteLe: LU },
+  coupsDePouce: { titre: 'Les Coups de pouce CEE, ministère', url: 'https://www.ecologie.gouv.fr/politiques/certificats-economies-denergie', consulteLe: LU },
+  coupDePouceChauffage: { titre: 'Coup de pouce Chauffage, ministère', url: 'https://www.ecologie.gouv.fr/politiques-publiques/coup-pouce-chauffage', consulteLe: LU },
+  coupDePouceCollectif: { titre: 'Coup de pouce Chauffage des bâtiments collectifs et tertiaires, ministère', url: 'https://www.ecologie.gouv.fr/politiques-publiques/coup-pouce-chauffage-batiments-residentiels-collectifs-tertiaires', consulteLe: LU },
+  coupDePouceRenovation: { titre: 'Coup de pouce Rénovation performante de bâtiment résidentiel collectif, ministère', url: 'https://www.ecologie.gouv.fr/politiques-publiques/coup-pouce-renovation-performante-batiment-residentiel-collectif', consulteLe: LU },
+  noteCoupsDePouce2021: { titre: 'Note sur les évolutions des Coups de pouce, mai 2021 (PDF)', url: 'https://www.ecologie.gouv.fr/sites/default/files/documents/Evolutions%20li%C3%A9es%20aux%20Coups%20de%20Pouce%20-%20mai%202021.pdf', consulteLe: LU },
 } satisfies Record<string, SourceTerme>;
 
 export const TERMES: Terme[] = [
@@ -176,7 +178,7 @@ export const TERMES: Terme[] = [
       'Le volume est calculé à l’avance, à partir de la fiche et des paramètres de l’opération, jamais mesuré au compteur.',
       'Tout le dispositif se lit dans cette unité : forfaits, seuils de dépôt, obligations ; la valeur en euros vient du marché, pas des textes.',
     ],
-    sources: [SRC.dispositif, SRC.arreteModalites, SRC.l2218, SRC.r22116, SRC.doctrineFiches, SRC.courDesComptes, SRC.atee, SRC.webinaireP6, SRC.decretP6, SRC.modalitesDepot, SRC.ficheBarEn101],
+    sources: [SRC.l2218, SRC.arreteModalites, SRC.atee, SRC.courDesComptes, SRC.doctrineFiches],
   },
   {
     slug: 'duree-de-vie-conventionnelle',
@@ -234,7 +236,7 @@ export const TERMES: Terme[] = [
       'Elle fixe le nombre d’années additionnées dans le calcul des kWh cumac, avec un coefficient qui divise chaque année par 1,04.',
       'Elle engage : pas de nouveaux certificats pour la même opération chez le même bénéficiaire tant qu’elle court, et l’équipement doit rester en service.',
     ],
-    sources: [SRC.questionsReponses, SRC.r22116, SRC.arreteModalites, SRC.arreteStandardisees, SRC.arreteStandardiseesConsolide, SRC.doctrineFiches, SRC.courDesComptes, SRC.ficheBarEn101, SRC.ficheBarTh171, SRC.ficheBarSe105],
+    sources: [SRC.questionsReponses, SRC.r22116, SRC.arreteStandardisees, SRC.doctrineFiches, SRC.courDesComptes],
   },
   {
     slug: 'zone-climatique',
@@ -293,7 +295,7 @@ export const TERMES: Terme[] = [
       'La zone module le forfait des fiches de chauffage et d’isolation, parfois presque du simple au double ; une fiche sans mention de zone a le même forfait partout.',
       'La zone se lit à l’adresse des travaux, et c’est cette adresse que l’attestation sur l’honneur doit porter.',
     ],
-    sources: [SRC.standardisees, SRC.zonesDepartements, SRC.arreteStandardiseesConsolide, SRC.arreteStandardisees, SRC.questionsReponses, SRC.ficheBarEn101, SRC.ficheBarTh171, SRC.re2020],
+    sources: [SRC.zonesDepartements, SRC.standardisees, SRC.arreteStandardisees, SRC.ficheBarEn101, SRC.re2020],
   },
   {
     slug: 'oblige',
@@ -354,7 +356,7 @@ export const TERMES: Terme[] = [
       'Il s’en acquitte en finançant des opérations, en achetant des certificats, en déléguant ou en contribuant à des programmes ; sinon il paie 0,015 euro par kWh cumac manquant, 0,02 pour la précarité.',
       'La prime que vous recevez est l’argent d’un obligé ou d’un délégataire, et c’est lui, demandeur, qui répond des manquements devant le PNCEE.',
     ],
-    sources: [SRC.l2211, SRC.codeL, SRC.codeR, SRC.sanctions, SRC.decretP6, SRC.webinaireP6, SRC.lettreJuil2026, SRC.bilan2024, SRC.questionsReponses, SRC.dispositif],
+    sources: [SRC.codeL, SRC.sanctions, SRC.decretP6, SRC.webinaireP6, SRC.questionsReponses],
   },
   {
     slug: 'delegataire',
@@ -413,7 +415,7 @@ export const TERMES: Terme[] = [
       'Il doit justifier d’un volume minimal, d’une certification qualité et de sa capacité financière ; la délégation vaut pour une période et ne peut pas être sous-déléguée.',
       'Il dépose en son nom et répond des manquements ; son rôle actif et incitatif ne peut commencer qu’après validation de son statut.',
     ],
-    sources: [SRC.r2215, SRC.codeR, SRC.codeL, SRC.questionsReponses, SRC.delegatairesP6, SRC.bilan2024, SRC.webinaireP6, SRC.modalitesDepot],
+    sources: [SRC.codeR, SRC.codeL, SRC.delegatairesP6, SRC.questionsReponses],
   },
   {
     slug: 'mandataire',
@@ -476,7 +478,7 @@ export const TERMES: Terme[] = [
       'Le mandat doit être joint à la demande, identifier les parties, fixer sa durée et son périmètre, et précéder tout contrat signé au nom du mandant.',
       'La responsabilité du dossier reste au demandeur ; le mandataire répond de ses fautes envers son mandant, et pénalement en cas de fraude.',
     ],
-    sources: [SRC.codeCivilMandat, SRC.arreteDemande, SRC.annexe5, SRC.modalitesDepot, SRC.questionsReponses, SRC.arreteControles, SRC.webinaireP6, SRC.l2211, SRC.codeR],
+    sources: [SRC.codeCivilMandat, SRC.arreteDemande, SRC.questionsReponses, SRC.modalitesDepot, SRC.arreteControles],
   },
   {
     slug: 'fiche-operation-standardisee',
@@ -535,7 +537,7 @@ export const TERMES: Terme[] = [
       'Cinq rubriques et une attestation en annexe : secteur, dénomination, conditions, durée de vie conventionnelle, montant.',
       'La version applicable est celle en vigueur à la date d’engagement ; une fiche non révisée pendant cinq ans disparaît.',
     ],
-    sources: [SRC.delivrance, SRC.arreteStandardisees, SRC.standardisees, SRC.ateeFiches, SRC.doctrineFiches, SRC.arreteMai2026, SRC.ficheBarEn101, SRC.questionsReponses, SRC.lettreNov2025],
+    sources: [SRC.delivrance, SRC.arreteStandardisees, SRC.standardisees, SRC.doctrineFiches, SRC.arreteMai2026, SRC.ficheBarEn101],
   },
   {
     slug: 'operation-specifique',
@@ -595,7 +597,7 @@ export const TERMES: Terme[] = [
       'Deux conditions de fond : un temps de retour supérieur à trois ans et une action qui dépasse le simple respect de la réglementation.',
       'Le guide ADEME d’avril 2025 est opposable pour les installations fixes ; le PNCEE instruit en six mois, et sept dossiers sur dix reçoivent des demandes de compléments.',
     ],
-    sources: [SRC.delivrance, SRC.specifiques, SRC.arreteDemande, SRC.arreteModalites, SRC.arreteGuide, SRC.guideSpecifiques, SRC.arreteMacf, SRC.ateeSpecifiques, SRC.lettreNov2025, SRC.modalitesDepot],
+    sources: [SRC.delivrance, SRC.specifiques, SRC.arreteDemande, SRC.arreteGuide, SRC.guideSpecifiques, SRC.arreteMacf],
   },
   {
     slug: 'role-actif-et-incitatif',
@@ -654,7 +656,7 @@ export const TERMES: Terme[] = [
       'Particuliers et copropriétés : quatorze jours de tolérance après le devis, et toujours avant le début des travaux ; personnes morales : aucune tolérance.',
       'La règle protège l’additionnalité du dispositif : sans preuve que la prime a déclenché l’opération, pas de certificats.',
     ],
-    sources: [SRC.r22122, SRC.annexe5, SRC.arreteDemande, SRC.questionsReponses, SRC.codeL, SRC.webinaireP6, SRC.modalitesDepot, SRC.ficheBarEn101],
+    sources: [SRC.r22122, SRC.annexe5, SRC.codeL, SRC.webinaireP6, SRC.ficheBarEn101],
   },
   {
     slug: 'pncee',
@@ -717,7 +719,7 @@ export const TERMES: Terme[] = [
       'Un dossier se dépose sous douze mois après l’achèvement, au-dessus d’un seuil de 50 GWh cumac pour les opérations standardisées, et s’instruit en deux mois, six pour les opérations spécifiques.',
       'Les contrôles avant dépôt sont à la charge du demandeur, par organisme accrédité indépendant ; le demandeur répond seul des manquements devant le pôle.',
     ],
-    sources: [SRC.modalitesDepot, SRC.r22122, SRC.codeR, SRC.codeL, SRC.l2222, SRC.arreteDemande, SRC.arreteModalitesConsolide, SRC.arreteControles, SRC.webinaireP6, SRC.lettreJuil2026, SRC.bilan2024, SRC.courDesComptes, SRC.questionsReponses, SRC.registre],
+    sources: [SRC.codeL, SRC.codeR, SRC.l2222, SRC.arreteDemande, SRC.arreteModalites, SRC.arreteControles, SRC.courDesComptes],
   },
   {
     slug: 'coup-de-pouce',
@@ -776,7 +778,7 @@ export const TERMES: Terme[] = [
       'En 2026, les Coups de pouce actifs portent sur le chauffage, individuel et collectif, et la rénovation performante ou d’ampleur ; les coefficients et les dates se lisent dans l’arrêté et la charte.',
       'Plus de prime, plus de contrôles : certaines fiches bonifiées sont contrôlées sur site à 100 %, et le ministre peut retirer la charte à un signataire fautif.',
     ],
-    sources: [SRC.dispositif, SRC.noteCoupsDePouce2021, SRC.arreteModalitesConsolide, SRC.coupsDePouce, SRC.coupDePouceChauffage, SRC.coupDePouceCollectif, SRC.coupDePouceRenovation, SRC.arreteControles, SRC.webinaireP6, SRC.lettreNov2025, SRC.bilan2024],
+    sources: [SRC.arreteModalites, SRC.coupsDePouce, SRC.coupDePouceChauffage, SRC.coupDePouceCollectif, SRC.coupDePouceRenovation, SRC.arreteControles],
   },
 ];
 
