@@ -21,7 +21,10 @@ export interface Argumentaire {
   slug: string;
   /** Le surtitre en capitales, au-dessus du H1. */
   surtitre: string;
+  /** Le H1 du bandeau : la promesse. */
   titre: string;
+  /** Le `<title>` : le mot-clé et le contexte, DISTINCT du H1 (audit SEO du 15/10/2026). Sans « | Ultra Énergie », ajouté au rendu. */
+  titreSeo: string;
   /** ⛔ Pas affiché : c'est la description de la page pour les moteurs et le partage. */
   chapo: string;
   /** Les paragraphes de la première section : « Le contexte » (Pour qui), « Notre proposition » (Partenaires). */
@@ -34,7 +37,7 @@ export interface Argumentaire {
    * Pages Pour qui : les familles d'opérations éligibles pour ce profil, avec les fiches
    * citées en exemple. ⚠️ NE CITER QUE DES CODES DONT LE TITRE EST VÉRIFIÉ
    * (data/fiches/catalogue.json ou le glossaire) : les autres familles se décrivent sans code.
-   * Les pages Partenaires n'en ont pas : leur bande montre les six secteurs de l'accueil.
+   * Les pages Partenaires n'en ont pas : leur bande montre les six secteurs de l'accueil.
    */
   operations?: { titre: string; texte: string }[];
   /** Le déroulé horizontal, quatre étapes. */
@@ -56,6 +59,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
     slug: 'syndics-coproprietes',
     surtitre: 'Syndics & copropriétés',
     titre: 'La prime CEE pour les travaux de copropriété',
+    titreSeo: 'Prime CEE en copropriété : isolation, chaufferie, rénovation performante',
     chapo:
       'Isolation, chaufferie, réseau de chaleur, ventilation : les travaux votés en assemblée générale peuvent donner lieu à une prime que nous chiffrons et valorisons pour la copropriété.',
     intro: [
@@ -97,6 +101,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
     slug: 'bailleurs-sociaux',
     surtitre: 'Bailleurs sociaux',
     titre: 'Valoriser les CEE d’un parc de logements sociaux',
+    titreSeo: 'Prime CEE pour bailleurs sociaux : valoriser les travaux du parc',
     chapo:
       'Réhabilitation, remplacement de chaufferies, rénovation globale : un parc social produit des volumes de certificats importants, en grande partie comptés au titre de l’obligation précarité énergétique.',
     intro: [
@@ -136,6 +141,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
     slug: 'public-collectivites',
     surtitre: 'Public & collectivités',
     titre: 'La prime CEE pour les bâtiments et équipements publics',
+    titreSeo: 'Prime CEE pour collectivités : bâtiments publics et éclairage',
     chapo:
       'Écoles, gymnases, mairies, éclairage public, réseaux de chaleur : chaque opération d’économies d’énergie de la collectivité génère des certificats. Nous les valorisons pour vous, sans mobiliser vos services.',
     intro: [
@@ -175,6 +181,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
     slug: 'entreprises-industriels',
     surtitre: 'Entreprises & industriels',
     titre: 'La prime CEE pour les sites tertiaires et industriels',
+    titreSeo: 'Prime CEE pour entreprises et industriels : tertiaire et industrie',
     chapo:
       'Gestion technique du bâtiment, moteurs et variateurs, récupération de chaleur, isolation : les opérations d’efficacité énergétique d’un site génèrent des certificats que nous valorisons pour vous.',
     intro: [
@@ -216,6 +223,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
     slug: 'obliges',
     surtitre: 'Obligés & délégataires',
     titre: 'Des opérations CEE vérifiées avant le dépôt',
+    titreSeo: 'Obligés et délégataires : des opérations CEE qualifiées, vérifiées avant dépôt',
     chapo:
       'Ultra Énergie apporte aux obligés et aux délégataires des opérations qualifiées en résidentiel collectif, tertiaire et industrie, avec des dossiers complets, vérifiés avant dépôt.',
     /* « Notre proposition » : ce qu'on apporte, d'où ça vient, ce qu'on n'est pas. Absorbe
@@ -257,6 +265,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
     slug: 'installateurs',
     surtitre: 'Installateurs & artisans',
     titre: 'Une prime sur vos chantiers éligibles, sans monter le dossier',
+    titreSeo: 'Prime CEE pour installateurs : engagement avant le devis, dossier monté',
     chapo:
       'Vous gardez votre client et votre devis. Nous apportons l’engagement de prime avant la signature, montons le dossier CEE et suivons le versement.',
     /* Le contexte, pour le gabarit EBS : ce qu'est la prime, quand elle se joue, ce que nous faisons. */
@@ -301,6 +310,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
     slug: 'apporteurs-affaires',
     surtitre: 'Apporteurs d’affaires',
     titre: 'Signaler un projet avant le devis',
+    titreSeo: 'Apporteurs d’affaires CEE : une commission par dossier abouti',
     chapo:
       'Gestionnaires de patrimoine, bureaux d’études, mainteneurs, distributeurs, courtiers : vous êtes en amont des travaux. Chaque projet signalé avant le devis peut devenir une prime pour votre client et une commission pour vous.',
     intro: [

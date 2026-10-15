@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { PUBLICS, PARTENAIRES } from '@/lib/publics';
 import { argumentaireDe } from '@/lib/argumentaires';
 import { url } from '@/lib/routes';
+import { metaPage } from '@/lib/meta';
 import PagePourQui from '@/components/PagePourQui';
 import PagePartenaire from '@/components/PagePartenaire';
 
@@ -40,17 +41,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const cible = resoudre(slug);
   if (!cible) return {};
-  // Le <title> et la description viennent de l'argumentaire, pas du libellé de menu :
-  // « La prime CEE pour les travaux de copropriété » dit plus que « Syndics & copropriétés ».
+  // Le <title> (`titreSeo`, distinct du H1) et la description viennent de l'argumentaire.
   const a = argumentaireDe(slug);
-  const titre = `${a?.titre ?? cible.label} | Ultra Énergie`;
-  const chemin = cible.type === 'public' ? url.public(slug) : url.partenaire(slug);
-  return {
-    title: titre,
-    description: a?.chapo,
-    alternates: { canonical: chemin },
-    openGraph: { title: titre, description: a?.chapo },
-  };
+  if (!a) return {};
+  return metaPage({ titre: a.titreSeo, description: a.chapo, chemin: cible.type === 'public' ? url.public(slug) : url.partenaire(slug) });
 }
 
 export default async function PagePremierNiveau({ params }: { params: Promise<{ slug: string }> }) {

@@ -2,12 +2,13 @@ import type { Metadata } from 'next';
 import Page from '@/components/Page';
 import FormulaireContact from '@/components/FormulaireContact';
 import { url } from '@/lib/routes';
+import { metaPage } from '@/lib/meta';
 
-export const metadata: Metadata = {
-  title: 'Contact | Ultra Énergie',
-  description: 'Contacter Ultra Énergie, mandataire CEE indépendant : un chantier à valoriser, une opération à estimer, un partenariat.',
-  alternates: { canonical: url.contact },
-};
+export const metadata: Metadata = metaPage({
+  titre: 'Contacter Ultra Énergie, mandataire CEE indépendant',
+  description: 'Contacter Ultra Énergie, mandataire CEE indépendant : un chantier à valoriser, une opération à estimer, un partenariat.',
+  chemin: url.contact,
+});
 
 /**
  * La page Contact : le formulaire, et rien d'autre (Alek, 15/10/2026 : « garde juste le

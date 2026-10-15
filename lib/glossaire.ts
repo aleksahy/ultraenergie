@@ -49,7 +49,10 @@ export interface SectionTerme {
 
 export interface Terme {
   slug: string;
+  /** Le H1 de l'article. */
   terme: string;
+  /** Le `<title>`, distinct du H1 : le terme et ce que l'article en dit (audit SEO du 15/10/2026). */
+  titreSeo: string;
   /** Résumé d'une phrase, servant de description de lien et de balise meta. */
   resume: string;
   /** Date ISO de dernière mise à jour de l'article. */
@@ -124,6 +127,7 @@ export const TERMES: Terme[] = [
   {
     slug: 'kwh-cumac',
     terme: 'kWh cumac',
+    titreSeo: 'kWh cumac : l’unité des CEE, cumul et actualisation à 4 %',
     resume: 'L’unité de compte du dispositif CEE : des kWh cumulés et actualisés sur la durée de vie de l’opération.',
     dateMaj: '2026-09-20',
     intro: 'Le kWh cumac est l’unité dans laquelle le dispositif compte les économies d’énergie. Un certificat vaut un kWh cumac. L’obligation d’un fournisseur, le forfait d’une fiche, le seuil de dépôt d’un dossier : tout s’exprime dans cette unité, et rien n’y est en euros.',
@@ -183,6 +187,7 @@ export const TERMES: Terme[] = [
   {
     slug: 'duree-de-vie-conventionnelle',
     terme: 'Durée de vie conventionnelle',
+    titreSeo: 'Durée de vie conventionnelle d’une fiche CEE : définition et effets',
     resume: 'La durée retenue par la fiche pour calculer les kWh cumac, indépendante de la durée réelle de l’équipement.',
     dateMaj: '2026-09-20',
     intro: 'Chaque fiche d’opération standardisée fixe une durée de vie conventionnelle : le nombre d’années sur lequel les économies d’énergie sont comptées. C’est une convention de calcul, pas une garantie ni une prévision. Elle détermine pourtant l’essentiel du volume de certificats, et elle engage le bénéficiaire.',
@@ -241,6 +246,7 @@ export const TERMES: Terme[] = [
   {
     slug: 'zone-climatique',
     terme: 'Zone climatique',
+    titreSeo: 'Zones climatiques H1, H2, H3 des CEE : liste et effet sur le forfait',
     resume: 'Le découpage H1, H2, H3 du territoire qui module le forfait de nombreuses fiches.',
     dateMaj: '2026-09-20',
     intro: 'Le dispositif CEE découpe la France en trois zones climatiques, H1, H2 et H3, par département. Pour les fiches de chauffage et d’isolation, le forfait en kWh cumac dépend de la zone : plus le climat est froid, plus l’économie estimée est grande. La zone se lit à l’adresse des travaux.',
@@ -300,6 +306,7 @@ export const TERMES: Terme[] = [
   {
     slug: 'oblige',
     terme: 'Obligé',
+    titreSeo: 'Obligé CEE : qui est soumis à l’obligation d’économies d’énergie',
     resume: 'Le vendeur d’énergie à qui l’État impose un volume d’économies d’énergie à réaliser.',
     dateMaj: '2026-09-20',
     intro: 'L’obligé est le vendeur d’énergie à qui l’État impose de faire réaliser des économies d’énergie. C’est lui qui porte l’obligation, et lui qui paie une pénalité s’il ne l’atteint pas. Tout le dispositif découle de cette contrainte, y compris la prime qu’un maître d’ouvrage reçoit pour ses travaux.',
@@ -361,6 +368,7 @@ export const TERMES: Terme[] = [
   {
     slug: 'delegataire',
     terme: 'Délégataire',
+    titreSeo: 'Délégataire CEE : définition, conditions et responsabilités',
     resume: 'Celui à qui un obligé délègue tout ou partie de son obligation.',
     dateMaj: '2026-09-20',
     intro: 'Le délégataire reçoit d’un obligé tout ou partie de son obligation d’économies d’énergie. Une fois sa délégation validée par le ministère, il est lui-même considéré comme un obligé pour ce volume, avec les mêmes devoirs : réunir les certificats, ou payer la pénalité. Pour un maître d’ouvrage, c’est un interlocuteur de même rang que l’obligé.',
@@ -420,6 +428,7 @@ export const TERMES: Terme[] = [
   {
     slug: 'mandataire',
     terme: 'Mandataire',
+    titreSeo: 'Mandataire CEE : ce que disent le code civil et les textes du dispositif',
     resume: 'Celui qui agit au nom du bénéficiaire ou de l’obligé, sans porter lui-même l’obligation.',
     dateMaj: '2026-09-20',
     intro: 'Le mandataire agit au nom d’un autre : il constitue le dossier, signe ou dépose à sa place, mais ne porte ni l’obligation ni la qualité de demandeur. C’est la position d’Ultra Énergie. Elle est définie par le code civil et encadrée, dans le dispositif CEE, par les pièces que le mandat doit contenir.',
@@ -483,6 +492,7 @@ export const TERMES: Terme[] = [
   {
     slug: 'fiche-operation-standardisee',
     terme: 'Fiche d’opération standardisée',
+    titreSeo: 'Fiche d’opération standardisée CEE : code, rubriques, forfait, versions',
     resume: 'Le document qui fixe, pour une opération donnée, le forfait de kWh cumac et les conditions d’éligibilité.',
     dateMaj: '2026-09-20',
     intro: 'Une fiche d’opération standardisée décrit une opération courante d’économies d’énergie et fixe, une fois pour toutes, le volume de certificats qu’elle vaut. Elle dit à quels bâtiments elle s’applique, à quelles conditions, sur quelle durée, et avec quel forfait. Neuf certificats sur dix délivrés en cinquième période reposent sur une fiche.',
@@ -542,6 +552,7 @@ export const TERMES: Terme[] = [
   {
     slug: 'operation-specifique',
     terme: 'Opération spécifique',
+    titreSeo: 'Opération spécifique CEE : audit, situation de référence, temps de retour',
     resume: 'L’opération qui ne relève d’aucune fiche standardisée et se calcule au cas par cas.',
     dateMaj: '2026-09-20',
     intro: 'Quand aucune fiche ne couvre une opération, le dispositif ne la refuse pas : il demande de démontrer les économies. C’est l’opération spécifique. Elle exige un audit, une situation de référence, un calcul propre au site et un temps de retour supérieur à trois ans, et le Pôle national des certificats d’économies d’énergie (PNCEE) l’instruit dossier par dossier.',
@@ -602,6 +613,7 @@ export const TERMES: Terme[] = [
   {
     slug: 'role-actif-et-incitatif',
     terme: 'Rôle actif et incitatif',
+    titreSeo: 'Rôle actif et incitatif : la contribution CEE avant le devis',
     resume: 'L’exigence qui impose que l’engagement de prime précède la signature du devis.',
     dateMaj: '2026-09-20',
     intro: 'Le rôle actif et incitatif est la preuve que le demandeur de certificats a contribué à déclencher l’opération, et non qu’il l’a récupérée après coup. La règle tient en une chronologie : la contribution est formalisée au plus tard à la date d’engagement, c’est-à-dire à la signature du devis. C’est le motif de refus le plus simple à éviter.',
@@ -661,6 +673,7 @@ export const TERMES: Terme[] = [
   {
     slug: 'pncee',
     terme: 'PNCEE',
+    titreSeo: 'PNCEE : instruction, délivrance et contrôle des certificats',
     resume: 'Le Pôle national des certificats d’économies d’énergie, qui instruit et délivre les certificats.',
     dateMaj: '2026-09-20',
     intro: 'Le Pôle national des certificats d’économies d’énergie est le service de l’État qui reçoit les demandes, les instruit, délivre les certificats, contrôle les opérations et sanctionne les manquements. Il valide aussi le statut des délégataires. Tout dossier CEE finit sur son bureau, et c’est à ses exigences que les pièces d’un chantier sont préparées.',
@@ -724,6 +737,7 @@ export const TERMES: Terme[] = [
   {
     slug: 'coup-de-pouce',
     terme: 'Coup de pouce',
+    titreSeo: 'Coup de pouce CEE : bonification, charte et coefficients',
     resume: 'La bonification qui majore la prime de certaines opérations, sous conditions.',
     dateMaj: '2026-09-20',
     intro: 'Un Coup de pouce est une bonification : pour certaines opérations que l’État veut encourager, le volume de certificats d’une fiche est multiplié par un coefficient. En contrepartie, le demandeur signe une charte qui l’engage, notamment sur la contribution versée au bénéficiaire. La prime monte, et les contrôles aussi.',

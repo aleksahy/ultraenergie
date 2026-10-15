@@ -3,11 +3,13 @@ import Link from 'next/link';
 import Page, { Section } from '@/components/Page';
 import { TERMES, tempsLecture } from '@/lib/glossaire';
 import { url } from '@/lib/routes';
+import { metaPage } from '@/lib/meta';
 
-export const metadata: Metadata = {
-  title: 'Comprendre les CEE | Ultra Énergie',
+export const metadata: Metadata = metaPage({
+  titre: 'Comprendre les CEE : le glossaire du dispositif en onze termes',
   description: 'Le glossaire du dispositif des certificats d’économies d’énergie : onze termes expliqués, avec leurs sources.',
-};
+  chemin: url.comprendreLesCee,
+});
 
 export default function IndexGlossaire() {
   return (

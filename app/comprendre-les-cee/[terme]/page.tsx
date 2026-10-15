@@ -6,6 +6,7 @@ import SchemaGlossaire from '@/components/SchemasGlossaire';
 import { TERMES, termeParSlug, tempsLecture } from '@/lib/glossaire';
 import { dateFr } from '@/lib/dates';
 import { url } from '@/lib/routes';
+import { metaPage } from '@/lib/meta';
 
 export function generateStaticParams() {
   return TERMES.map((t) => ({ terme: t.slug }));
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ terme: st
   const { terme } = await params;
   const t = termeParSlug(terme);
   if (!t) return {};
-  return { title: `${t.terme} | Comprendre les CEE | Ultra Énergie`, description: t.resume };
+  return metaPage({ titre: t.titreSeo, description: t.resume, chemin: url.terme(terme) });
 }
 
 /**

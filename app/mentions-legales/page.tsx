@@ -2,12 +2,13 @@ import type { Metadata } from 'next';
 import Page, { Section } from '@/components/Page';
 import { COORDONNEES } from '@/lib/contenu';
 import { url } from '@/lib/routes';
+import { metaPage } from '@/lib/meta';
 
-export const metadata: Metadata = {
-  title: 'Mentions légales | Ultra Énergie',
+export const metadata: Metadata = metaPage({
+  titre: 'Mentions légales du site Ultra Énergie',
   description: 'Mentions légales du site d’Ultra Énergie, mandataire CEE indépendant à Saint-Cloud : éditeur, hébergeur, données personnelles.',
-  alternates: { canonical: '/mentions-legales/' },
-};
+  chemin: url.mentionsLegales,
+});
 
 /**
  * Les mentions légales (article 6 de la loi pour la confiance dans l'économie numérique).
