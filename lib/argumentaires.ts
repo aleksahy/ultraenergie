@@ -14,7 +14,6 @@
  * ⛔ PLUS DE « FICHES CLÉS » depuis le 14/10/2026 : le catalogue a été retiré pour être rebâti.
  * La section reviendra avec lui, branchée sur le nouveau modèle.
  */
-import type { Modale } from '@/components/Modales';
 import { url } from './routes';
 
 export interface Argumentaire {
@@ -45,11 +44,11 @@ export interface Argumentaire {
   faq: { q: string; r: string }[];
   /**
    * La bande de contact qui ferme la page : `texte` est la phrase sous le titre (sans elle,
-   * `ContactBande` affiche sa phrase par défaut) ; la destination est un lien (`href`, la page
-   * Contact) ou la modale partenaire. ⛔ Ni « Qui fait quoi », ni encadré de règle, ni
-   * profils en pastilles : retirés le 15/10/2026 (Alek), leur fond est dans les textes.
+   * `ContactBande` affiche sa phrase par défaut) ; `href` est la destination, la page Contact
+   * partout depuis le 15/10/2026 (plus de modale partenaire). ⛔ Ni « Qui fait quoi », ni
+   * encadré de règle, ni profils en pastilles : retirés le même jour (Alek).
    */
-  appel: { titre: string; texte?: string; bouton: string; modale?: Modale; href?: string };
+  appel: { titre: string; texte?: string; bouton: string; href: string };
 }
 
 export const ARGUMENTAIRES: Record<string, Argumentaire> = {
@@ -257,7 +256,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
       titre: 'Recevoir nos propositions d’opérations ?',
       texte: 'Dites-nous vos secteurs, vos fiches et vos volumes : nous vous soumettons des opérations qualifiées, rôle actif daté et pièces vérifiées.',
       bouton: 'Devenir partenaire acheteur',
-      modale: 'partenaire',
+      href: url.contact,
     },
   },
 
@@ -341,7 +340,7 @@ export const ARGUMENTAIRES: Record<string, Argumentaire> = {
       titre: 'Vous voyez passer des projets de travaux ?',
       texte: 'Un contact, une nature de travaux, une date prévisionnelle : nous qualifions l’opération et prenons le relais, et vous êtes informé à chaque étape.',
       bouton: 'Devenir apporteur d’affaires',
-      modale: 'partenaire',
+      href: url.contact,
     },
   },
 };

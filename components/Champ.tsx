@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 
 /**
- * Un champ de formulaire avec son libellé visible au-dessus. Partagé par la modale
- * partenaire et la page Contact : chaque champ a un libellé visible, parce
+ * Un champ de formulaire avec son libellé visible au-dessus. Le formulaire de la page
+ * Contact : chaque champ a un libellé visible, parce
  * qu'un placeholder disparaît dès qu'on tape.
  */
 export function Champ({ label, facultatif = false, aide, children }: {

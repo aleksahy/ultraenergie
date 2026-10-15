@@ -25,7 +25,7 @@ const DELAI_CHARGEMENT_MS = 8000;
 
 /** Le nom du formulaire, posé en `action` sur le widget et VÉRIFIÉ par la fonction : même
     mot des deux côtés (`functions/api/contact.ts`). */
-export type ActionTurnstile = 'contact' | 'partenaire';
+export type ActionTurnstile = 'contact';
 
 interface ApiTurnstile {
   render: (el: HTMLElement, opts: Record<string, unknown>) => string;

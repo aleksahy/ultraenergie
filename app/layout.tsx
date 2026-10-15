@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import ProviderModales from '@/components/Modales';
 import EnTete from '@/components/EnTete';
 import PiedDePage from '@/components/PiedDePage';
 import './globals.css';
@@ -38,11 +37,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="fr" className={satoshi.variable}>
       <body>
-        <ProviderModales>
-          <EnTete />
-          {children}
-          <PiedDePage />
-        </ProviderModales>
+        <EnTete />
+        {children}
+        <PiedDePage />
       </body>
     </html>
   );

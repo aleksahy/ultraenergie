@@ -1,15 +1,13 @@
 /**
- * POST /api/contact : les deux formulaires du site (la page Contact et la modale « Devenir
- * partenaire ») arrivent ici et repartent en un mail vers contact@, avec `Reply-To` sur le
- * visiteur. Piège à robots, Turnstile, champs bornés.
+ * POST /api/contact : le formulaire de la page Contact arrive ici et repart en un mail vers
+ * contact@, avec `Reply-To` sur le visiteur. Piège à robots, Turnstile, champs bornés.
  *
  * ⚠️ C'EST UNE FONCTION CLOUDFLARE PAGES, PAS DU NEXT (cf. newsletter.ts) : `next dev` ne la
  * sert pas. En local : `npm run build`, puis `npx wrangler pages dev out`, avec `.dev.vars`.
  *
- * Un seul point d'entrée, discriminé par `formulaire` : même destination, même porte, même
- * mail. Chacun a son `action` Turnstile (le même mot des deux côtés) et sa liste de lignes.
- * (Le simulateur, troisième formulaire pendant quelques heures le 15/10/2026, a été retiré
- * en attendant le cœur du site.)
+ * Le champ `formulaire` reste le discriminant (`contact`, seul formulaire depuis le
+ * 15/10/2026 : la modale partenaire et le simulateur sont partis le même jour) ; il est
+ * aussi l'`action` Turnstile, le même mot des deux côtés.
  *
  * Variables du projet Cloudflare : `BREVO_API_KEY` (déjà posée pour la lettre) et
  * `TURNSTILE_SECRET_KEY` (à poser ; sans elle, refus partout sauf en local).
@@ -25,8 +23,8 @@ interface Env {
 }
 
 type Corps = Record<string, unknown>;
-type Formulaire = 'contact' | 'partenaire';
-const FORMULAIRES: Formulaire[] = ['contact', 'partenaire'];
+type Formulaire = 'contact';
+const FORMULAIRES: Formulaire[] = ['contact'];
 
 export const onRequestPost = async ({ request, env }: { request: Request; env: Env }): Promise<Response> => {
   const ip = request.headers.get('CF-Connecting-IP') ?? '';
@@ -80,18 +78,6 @@ export const onRequestPost = async ({ request, env }: { request: Request; env: E
     ];
     bloc = { titre: 'Message', texte: message };
     sujet = `[Contact] ${objet || 'Message'} (${nomComplet})`;
-  } else {
-    const activite = cleanStr(corps.activite, 60);
-    if (!activite || !societe) return json({ erreur: 'Activité et société sont nécessaires.' }, 400);
-    nomComplet = societe;
-    lignes = [
-      ['Activité', activite],
-      ['Société', societe],
-      ['Email', email.trim()],
-      ['Téléphone', telephone],
-      ['Page d’origine', cleanStr(corps.origine, 120)],
-    ];
-    sujet = `[Partenaire] ${activite} (${societe})`;
   }
 
   const { html, texte } = corpsMail(lignes.filter(([, v]) => v), bloc);

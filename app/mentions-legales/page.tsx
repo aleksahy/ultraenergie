@@ -47,16 +47,6 @@ export default function MentionsLegales() {
         </p>
       </Section>
 
-      <Section titre="Propriété intellectuelle">
-        <p className="page-texte">
-          Les textes, schémas et illustrations de ce site appartiennent à Ultra Énergie, sauf
-          mention contraire. Leur reproduction sans autorisation écrite est interdite. Le logo
-          « Certificats d&apos;économies d&apos;énergie » est celui du dispositif public. Le fond de
-          la carte des zones climatiques vient d&apos;Admin Express (IGN, licence ouverte), par
-          france-geojson. Les photographies sont des images sous licence.
-        </p>
-      </Section>
-
       <Section titre="Données personnelles">
         <p className="page-texte">
           Responsable de traitement : Ultra Énergie, représentée par Alek Hasoyan, à l&apos;adresse

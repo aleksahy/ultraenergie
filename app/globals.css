@@ -524,34 +524,6 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 
 /* ── Modales ─────────────────────────────────────────────────────── */
 
-.modale-voile {
-  position: fixed;
-  inset: 0;
-  z-index: 300;
-  background: var(--voile);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  overflow-y: auto;
-}
-.modale {
-  position: relative;
-  background: var(--blanc);
-  border-radius: var(--rayon-modale);
-  padding: 36px;
-  max-width: 420px;
-  width: 100%;
-}
-.modale:focus { outline: none; }
-.modale-titre { font-size: 22px; font-weight: 700; }
-.modale-soustitre { font-size: 14px; color: var(--texte-2); margin-top: 6px; }
-.modale-titre + .modale-form,
-.modale-titre + .modale-merci,
-.modale-soustitre + .modale-form,
-.modale-soustitre + .modale-merci { margin-top: 24px; }
-.modale-form { display: flex; flex-direction: column; gap: 14px; }
-.modale-merci { font-size: 14px; line-height: 1.6; color: var(--accent-texte); font-weight: 500; }
 .champ {
   width: 100%;
   border: 1px solid var(--texte-3);
@@ -571,28 +543,13 @@ select.champ { appearance: none; -webkit-appearance: none; padding-right: 42px; 
   border-right: 1.5px solid var(--texte-2); border-bottom: 1.5px solid var(--texte-2);
   transform: rotate(45deg); pointer-events: none;
 }
-.modale-envoi { margin-top: 6px; padding: 15px; }
-.modale-fermer { margin-top: 12px; padding: 12px 0; color: var(--texte-2); font-size: 14px; font-weight: 500; }
-.modale-fermer:hover { color: var(--encre); text-decoration: underline; text-underline-offset: 3px; }
-/* La croix, 44×44 en haut à droite : sur téléphone il n'y a pas de touche Échap. */
-.modale-croix {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--texte-2);
-}
-.modale-croix:hover { color: var(--encre); }
+
 .champ-bloc { display: block; }
 .champ-label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
 .champ-facultatif { font-weight: 400; color: var(--texte-2); }
 .champs-deux { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.modale-info { margin: 4px 0 0; font-size: 12px; line-height: 1.5; color: var(--texte-2); }
-.modale-info a { text-decoration: underline; text-underline-offset: 3px; }
+.formulaire-info { margin: 4px 0 0; font-size: 12px; line-height: 1.5; color: var(--texte-2); }
+.formulaire-info a { text-decoration: underline; text-underline-offset: 3px; }
 
 /* ── Formulaires et simulateur ────────────────────────────────────── */
 
@@ -965,8 +922,6 @@ select.champ { appearance: none; -webkit-appearance: none; padding-right: 42px; 
   .pied-inner { grid-template-columns: 1fr; gap: 32px; padding-top: 48px; }
   .pied-cee { justify-self: start; width: 130px; }
   .publications, .champs-deux { grid-template-columns: 1fr; }
-
-  .modale { padding: 28px 24px; }
 
   .page { padding: 28px var(--gouttiere) var(--espace-section); }
   .fil-ariane-inner { padding: 7px var(--gouttiere); }

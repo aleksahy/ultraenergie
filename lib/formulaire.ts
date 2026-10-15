@@ -1,7 +1,7 @@
 /**
  * L'envoi d'un formulaire du site vers `/api/contact` (functions/api/contact.ts), côté
- * navigateur. Un seul exemplaire du `fetch` et de la lecture d'erreur, pour les deux
- * formulaires (page Contact, modale partenaire).
+ * navigateur. Un seul exemplaire du `fetch` et de la lecture d'erreur, pour le
+ * formulaire de la page Contact.
  *
  * ⚠️ `next dev` ne sert pas les fonctions : en local sans wrangler, l'envoi répond 404 et le
  * formulaire affiche l'erreur. C'est attendu (cf. README, « Formulaires »).

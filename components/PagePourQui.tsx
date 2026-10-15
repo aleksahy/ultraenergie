@@ -43,7 +43,7 @@ export default function PagePourQui({ argumentaire: a, chemin }: {
       surtitre={a.surtitre}
       photo={PHOTOS_PAGES[a.photo].src}
       photoPosition={PHOTOS_PAGES[a.photo].position}
-      pied={<ContactBande titre={a.appel.titre} texte={a.appel.texte} bouton={a.appel.bouton} modale={a.appel.modale} href={a.appel.href} contexte={a.titre} />}
+      pied={<ContactBande titre={a.appel.titre} texte={a.appel.texte} bouton={a.appel.bouton} href={a.appel.href} />}
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 

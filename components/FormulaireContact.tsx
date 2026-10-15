@@ -82,7 +82,7 @@ export default function FormulaireContact() {
       <button type="submit" className="pilule pilule-accent" disabled={etat === 'envoi' || (turnstileActif && !jeton)}>
         {etat === 'envoi' ? 'Envoi…' : 'Envoyer le message'}
       </button>
-      <p className="modale-info">
+      <p className="formulaire-info">
         Ces informations ne servent qu’à vous répondre. <Link href={url.mentionsLegales}>Mentions légales</Link>.
       </p>
     </form>

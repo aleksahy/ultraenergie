@@ -190,10 +190,9 @@ passe par le proxy `DATAIMPULSE_PROXY`, jamais par notre adresse.
 
 ## Formulaires
 
-Deux formulaires, un seul point d'entrée : `functions/api/contact.ts` (fonction Cloudflare
-Pages) reçoit la page Contact (`components/FormulaireContact.tsx`, modèle EBS : deux volets,
-coordonnées à gauche, formulaire sur forêt à droite) et la modale « Devenir partenaire »
-(`components/Modales.tsx`), et envoie un mail à contact@ultraenergie.fr par Brevo
+Un seul formulaire, celui de la page Contact (`components/FormulaireContact.tsx`), reçu par
+`functions/api/contact.ts` (fonction Cloudflare Pages) et envoyé en mail à
+contact@ultraenergie.fr par Brevo
 transactionnel (`functions/api/_mail.ts`), `Reply-To` sur le visiteur. Repris de Salons en
 France le 15/10/2026 : validation d'adresse stricte, champs bornés, piège à robots, Turnstile
 (`functions/api/_turnstile.ts`, `lib/turnstile.ts`) ; sans CRM, sans base, sans limiteur KV.
