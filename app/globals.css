@@ -560,7 +560,17 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
   font-size: 14px;
   background: var(--blanc);
 }
-select.champ { appearance: auto; }
+/* ⚠️ RENDU MAÎTRISÉ, PAS NATIF. En `appearance: auto`, Safari dessinait son bouton gris arrondi
+   sans nos marges ni notre bordure (vu par Alek en preview, 15/10/2026) ; Chrome, lui, suivait
+   le style du champ, d'où une capture trompeuse. Le chevron est tracé en CSS sur le bloc du
+   champ (`:has`), sans image ni couleur en dur. */
+select.champ { appearance: none; -webkit-appearance: none; padding-right: 42px; background-color: var(--blanc); }
+.champ-bloc:has(> select) { position: relative; }
+.champ-bloc:has(> select)::after {
+  content: ''; position: absolute; right: 17px; bottom: 20px; width: 8px; height: 8px;
+  border-right: 1.5px solid var(--texte-2); border-bottom: 1.5px solid var(--texte-2);
+  transform: rotate(45deg); pointer-events: none;
+}
 .modale-envoi { margin-top: 6px; padding: 15px; }
 .modale-fermer { margin-top: 12px; padding: 12px 0; color: var(--texte-2); font-size: 14px; font-weight: 500; }
 .modale-fermer:hover { color: var(--encre); text-decoration: underline; text-underline-offset: 3px; }
