@@ -289,6 +289,13 @@ Cloudflare ne le rattrape.
 
 ## Déploiement
 
+**Deux cibles depuis le 15/10/2026.** `main` déploie la production : `https://ultraenergie.fr`
+(domaine rattaché au projet Pages) et `ultraenergie.pages.dev`. La branche `preview` déploie
+l'environnement Preview de Cloudflare : `https://preview.ultraenergie.pages.dev`, en noindex,
+avec ses propres variables (à poser dans l'environnement Preview du projet). Pour montrer
+quelque chose avant de le publier : pousser `preview`, puis fusionner dans `main`. Chaque push
+sur `main` est une mise en production.
+
 Cloudflare Pages connecté à GitHub (`aleksahy/ultraenergie`) :
 
 | Réglage           | Valeur                          |
