@@ -942,6 +942,9 @@ select.champ { appearance: auto; }
   .veille-bouton { flex: 0 0 auto; }
 
   .contact-bande { padding: 48px 0; }
+  /* Sur téléphone, la bande de contact est centrée : titre, phrase et bouton (Alek, 15/10/2026). */
+  .contact-bande-inner { flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 24px; }
+  .contact-bande p { margin-left: auto; margin-right: auto; }
   .page-bande { min-height: 260px; }
   .page-bande-inner { padding: 48px var(--gouttiere) 32px; }
   .page-section.est-colonnes { grid-template-columns: 1fr; gap: 16px; }
