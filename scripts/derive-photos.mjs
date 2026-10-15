@@ -1,45 +1,56 @@
 /**
- * Dérivées web des photos d'articles.
+ * Dérivées web des photos de bandeau.
  *
  * ⚠️ L'EXPORT STATIQUE SERT LES FICHIERS TELS QUELS. `output: 'export'` désactive
  * l'optimiseur d'images de Next (`images.unoptimized`) : ce que l'on importe est
  * exactement ce que le visiteur télécharge. Les sources de `images/` pèsent entre
- * 750 Ko et 1,4 Mo pièce, soit 3,4 Mo pour trois vignettes de 800 px de large.
- * Ce script fabrique les seules images que le site a le droit d'importer.
+ * 750 Ko et 1,4 Mo pièce. Ce script fabrique les seules images que le site a le droit
+ * d'importer.
  *
- * Entrée  : images/<nom>.jpg               (pleine résolution, versionnée, jamais importée)
- * Sorties : assets/photos/<nom>.jpg        (800x450, qualité 78 : vignettes d'articles)
- *           assets/photos/<nom>-1600.jpg   (1600x900, qualité 76 : héros et bandeaux)
+ * UNE SEULE VERSION PAR PHOTO, EN WEBP, sur le modèle de Salons en France
+ * (`scripts/photos/preparer-photos.py`, réglé par Alek à l'œil) : les photos accompagnent,
+ * le visiteur ne vient pas pour elles, et elles sont sous un voile forêt. 1400 px de large en
+ * 16:9, qualité 40 : de 25 à 73 Ko par bandeau, contre 77 à 194 Ko en JPEG 1600 q76
+ * (mesuré le 15/10/2026, total 340 Ko au lieu de 962). Le navigateur étire ou réduit, et
+ * `object-fit: cover` finit la coupe ; sous 900px le bandeau est recadré dans la même image.
+ *
+ * Entrée  : images/<nom>.jpg            (pleine résolution, versionnée, jamais importée)
+ * Sortie  : assets/photos/<nom>.webp    (1400×788)
  *
  * Usage : npm run images
  */
-import { readdir, mkdir } from 'node:fs/promises';
+import { readdir, mkdir, readdir as lire, unlink } from 'node:fs/promises';
 import { join, extname, basename } from 'node:path';
 import sharp from 'sharp';
 
 const SOURCE = 'images';
 const CIBLE = 'assets/photos';
-/* Deux tailles : la vignette (16:9 en 800) et le bandeau (16:9 en 1600). Un héros en 1440 de
-   large servi en 800 serait flou ; une vignette servie en 1600 pèserait quatre fois trop. */
-const TAILLES = [
-  { suffixe: '', largeur: 800, hauteur: 450, qualite: 78 },
-  { suffixe: '-1600', largeur: 1600, hauteur: 900, qualite: 76 },
-];
+const LARGEUR = 1400;
+const HAUTEUR = Math.round((LARGEUR * 9) / 16);
+const QUALITE = 40;
 
 await mkdir(CIBLE, { recursive: true });
 
 const fichiers = (await readdir(SOURCE)).filter((f) => /\.(jpe?g|png)$/i.test(f));
+const produits = new Set();
 
 for (const fichier of fichiers) {
-  for (const t of TAILLES) {
-    const nom = `${basename(fichier, extname(fichier))}${t.suffixe}.jpg`;
-    const sortie = join(CIBLE, nom);
-    // `fit: cover` recadre au centre : les sources ne sont pas en 16:9 et un
-    // redimensionnement sans recadrage les écraserait.
-    const info = await sharp(join(SOURCE, fichier))
-      .resize(t.largeur, t.hauteur, { fit: 'cover', position: 'centre' })
-      .jpeg({ quality: t.qualite, mozjpeg: true })
-      .toFile(sortie);
-    console.log(`${fichier} → ${sortie}  ${info.width}x${info.height}  ${(info.size / 1024).toFixed(0)} Ko`);
+  const nom = `${basename(fichier, extname(fichier))}.webp`;
+  const sortie = join(CIBLE, nom);
+  produits.add(nom);
+  // `fit: cover` recadre au centre : les sources ne sont pas en 16:9 et un
+  // redimensionnement sans recadrage les écraserait.
+  const info = await sharp(join(SOURCE, fichier))
+    .resize(LARGEUR, HAUTEUR, { fit: 'cover', position: 'centre' })
+    .webp({ quality: QUALITE, effort: 6 })
+    .toFile(sortie);
+  console.log(`${fichier} → ${sortie}  ${info.width}x${info.height}  ${(info.size / 1024).toFixed(0)} Ko`);
+}
+
+// Les dérivées d'une photo retirée des sources partent avec elle : rien d'orphelin importable.
+for (const f of await lire(CIBLE)) {
+  if (/\.(webp|jpe?g)$/i.test(f) && !produits.has(f)) {
+    await unlink(join(CIBLE, f));
+    console.log(`${f} supprimé (plus de source)`);
   }
 }

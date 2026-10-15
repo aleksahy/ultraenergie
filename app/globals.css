@@ -261,9 +261,8 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
   flex-direction: column;
   overflow-y: auto;
   background: var(--blanc);
-  /* ⛔ NI OMBRE PORTÉE NI VOILE : le panneau est un aplat blanc posé sur la page, sans
-     relief. Son bord gauche ne se distingue donc que là où la page est colorée derrière
-     lui. C'est un choix, pas un oubli. */
+  /* ⛔ NI OMBRE PORTÉE NI VOILE : le panneau est un aplat posé sur la page, sans relief
+     (blanc à l'origine, vert forêt depuis le 15/10/2026, cf. le bloc sous 900px). */
   padding: 6px var(--gouttiere) 28px;
 }
 .menu-lien {
@@ -883,6 +882,15 @@ select.champ { appearance: none; -webkit-appearance: none; padding-right: 42px; 
   .entete-wordmark { font-size: 20px; }
   .nav-desktop, .entete-droite { display: none; }
   .menu-mobile { display: block; }
+  /* Variante D choisie par Alek (15/10/2026) sur la page de comparaison : le burger est un
+     carré vert d'action à traits blancs, pendant du bouton « Nous contacter » du bureau, et le
+     panneau ouvert est en vert forêt avec les entrées en blanc, comme les bandes du site. */
+  .burger { width: 44px; height: 44px; margin-right: 0; background: var(--accent); color: var(--blanc); }
+  .menu-panneau { background: var(--foret); color: var(--blanc); }
+  .menu-lien { color: var(--blanc); border-color: rgba(var(--blanc-rgb), 0.14); }
+  .menu-chevron { color: rgba(var(--blanc-rgb), 0.7); }
+  .menu-groupe.est-deplie .menu-chevron { color: var(--blanc); }
+  .menu-sous-lien { color: rgba(var(--blanc-rgb), 0.78); }
 
   .hero-photo { min-height: 0; padding: 56px 0; }
   /* Sur téléphone, le texte prend toute la largeur : le voile devient vertical. */

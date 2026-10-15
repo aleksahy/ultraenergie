@@ -255,25 +255,26 @@ Les sources pleine résolution vivent dans `images/` (0,7 à 1,4 Mo pièce). **E
 jamais importées par le site** : l'export statique sert les fichiers tels quels, donc ce
 qu'on importe est exactement ce que le visiteur télécharge.
 
-`npm run images` fabrique les dérivées dans `assets/photos/` : **800×450, qualité 78**,
-recadrage centré (`fit: cover`, les sources ne sont pas en 16:9). Les trois photos sont
-passées de 3,4 Mo à 99 Ko au total.
+`npm run images` fabrique **une seule dérivée par photo** dans `assets/photos/` : WebP,
+1400 × 788 (16:9, recadrage centré), qualité 40, sur le modèle de la chaîne photos de Salons en
+France. Les huit bandeaux pèsent de 25 à 73 Ko, 340 Ko en tout (962 Ko en JPEG 1600 avant le
+15/10/2026). Sous le voile forêt, la qualité 40 ne se voit pas ; le navigateur étire ou réduit,
+et `object-fit: cover` finit la coupe, aussi sur téléphone. Le script supprime les dérivées
+dont la source a disparu.
 
-Pour ajouter une photo : la déposer en pleine résolution dans `images/`, lancer
-`npm run images`, puis l'importer comme module depuis `assets/photos/` :
+Pour ajouter une photo : la déposer en pleine résolution dans `images/` (crédits dans
+`images/SOURCES.md`), lancer `npm run images`, puis l'importer comme module depuis
+`assets/photos/` et la déclarer dans `components/PhotosPages.tsx` avec son cadrage.
 
 ```tsx
-import photo from '@/assets/photos/ma-photo.jpg';
-<Image src={photo} alt="" sizes="(max-width: 900px) 100vw, 33vw" />
+import photo from '@/assets/photos/ma-photo.webp';
+<Image src={photo} alt="" fill sizes="100vw" priority />
 ```
 
 L'import en module, plutôt qu'un fichier dans `public/`, donne un nom porteur d'une empreinte
-du contenu (`/_next/static/media/ma-photo.<hash>.jpg`) et laisse Next déduire `width`/`height`,
-ce qui réserve la place avant chargement. C'est aussi ce qui autorise la règle `immutable` de
-`public/_headers`.
-
-Le script tourne sur tout ce qu'il trouve dans `images/` ; les réglages (dimensions, qualité)
-sont en tête de `scripts/derive-photos.mjs`.
+du contenu (`/_next/static/media/ma-photo.<hash>.webp`) et laisse Next déduire `width`/`height`.
+C'est aussi ce qui autorise la règle `immutable` de `public/_headers` : une photo modifiée
+change d'adresse.
 
 ## Cache
 

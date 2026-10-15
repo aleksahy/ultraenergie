@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { url } from '@/lib/routes';
-import photo from '@/assets/photos/conseil-metier-1600.jpg';
+import photo from '@/assets/photos/conseil-metier.webp';
 
 /**
  * Le héros de l'accueil : une photo plein écran sous un voile forêt, une colonne de texte à

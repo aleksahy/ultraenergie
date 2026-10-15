@@ -22,7 +22,7 @@ export default function Page({
   chapo?: string;
   /** Le libellé en capitales au-dessus du titre (« Syndics et copropriétés »). */
   surtitre?: string;
-  /** Une dérivée 1600 de `assets/photos/`, jamais une source de `images/`. */
+  /** Une dérivée WebP de `assets/photos/`, jamais une source de `images/`. */
   photo?: StaticImageData;
   /** L'`object-position` de la photo dans le bandeau (cf. PhotosPages.tsx). */
   photoPosition?: string;
