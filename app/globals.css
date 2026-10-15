@@ -817,6 +817,14 @@ select.champ { appearance: auto; }
 
 .liste-puces { margin: 0; max-width: 760px; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.6; color: var(--texte-2); }
 
+/* ── Page introuvable ────────────────────────────────────────────── */
+
+/* Centrée, bornée, avec de l'air : la page ne contient qu'un titre, une phrase et un bouton. */
+.introuvable { max-width: 640px; margin: 0 auto; padding: 128px var(--gouttiere) 168px; text-align: center; }
+.introuvable .surtitre { margin-bottom: 16px; }
+.introuvable .page-titre { margin-bottom: 16px; }
+.introuvable .page-chapo { max-width: none; margin: 0 0 36px; }
+
 /* ── Mode lecture ─────────────────────────────────────────────────── */
 
 /* Une colonne centrée pour les articles : `.page` garde ses gouttières et son centrage, seule

@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { url } from '@/lib/routes';
 
-/** La page 404, en français et hors index ; celle de Next était en anglais (audit du 15/10/2026). */
+/**
+ * La page 404, en français et hors index, sur le modèle de celle de Salons en France (Alek,
+ * 15/10/2026) : centrée, surtitre « Erreur 404 », un seul bouton, de l'air autour.
+ */
 export const metadata: Metadata = {
   title: 'Page introuvable | Ultra Énergie',
   robots: { index: false, follow: false },
@@ -10,10 +13,11 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <main className="page page-lecture">
+    <main className="introuvable">
+      <div className="surtitre">Erreur 404</div>
       <h1 className="page-titre">Page introuvable</h1>
       <p className="page-chapo">Cette adresse ne correspond à aucune page du site.</p>
-      <p><Link href={url.accueil} className="pilule pilule-accent">Retour à l’accueil</Link></p>
+      <Link href={url.accueil} className="pilule pilule-accent">Retour à l’accueil</Link>
     </main>
   );
 }
