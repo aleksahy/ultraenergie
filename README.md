@@ -256,11 +256,11 @@ jamais importées par le site** : l'export statique sert les fichiers tels quels
 qu'on importe est exactement ce que le visiteur télécharge.
 
 `npm run images` fabrique **une seule dérivée par photo** dans `assets/photos/` : WebP,
-1400 × 788 (16:9, recadrage centré), qualité 40, sur le modèle de la chaîne photos de Salons en
-France. Les huit bandeaux pèsent de 25 à 73 Ko, 340 Ko en tout (962 Ko en JPEG 1600 avant le
-15/10/2026). Sous le voile forêt, la qualité 40 ne se voit pas ; le navigateur étire ou réduit,
-et `object-fit: cover` finit la coupe, aussi sur téléphone. Le script supprime les dérivées
-dont la source a disparu.
+1400 × 788 (16:9, recadrage centré), qualité 70, sur le modèle de la chaîne photos de Salons en
+France. Les huit bandeaux pèsent de 36 à 106 Ko, 492 Ko en tout (962 Ko en JPEG 1600 avant le
+15/10/2026 ; la qualité 40 essayée d'abord, 340 Ko, se voyait sur certaines pages). Le
+navigateur étire ou réduit, et `object-fit: cover` finit la coupe, aussi sur téléphone. Le
+script supprime les dérivées dont la source a disparu.
 
 Pour ajouter une photo : la déposer en pleine résolution dans `images/` (crédits dans
 `images/SOURCES.md`), lancer `npm run images`, puis l'importer comme module depuis

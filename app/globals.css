@@ -62,7 +62,6 @@
   --header-h: 69px;
   /* La bande de page laissée à gauche du panneau mobile. Étroite exprès : elle signale un
      panneau posé sur la page, sans laisser lire un mot de ce qu'il y a dessous. */
-  --bande-menu: 32px;
 
   --espace-section: 96px;
 
@@ -253,7 +252,7 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 .menu-panneau {
   position: fixed;
   top: var(--header-h);
-  left: var(--bande-menu);
+  left: 0;
   right: 0;
   bottom: 0;
   z-index: 81;
@@ -882,10 +881,11 @@ select.champ { appearance: none; -webkit-appearance: none; padding-right: 42px; 
   .entete-wordmark { font-size: 20px; }
   .nav-desktop, .entete-droite { display: none; }
   .menu-mobile { display: block; }
-  /* Variante D choisie par Alek (15/10/2026) sur la page de comparaison : le burger est un
-     carré vert d'action à traits blancs, pendant du bouton « Nous contacter » du bureau, et le
-     panneau ouvert est en vert forêt avec les entrées en blanc, comme les bandes du site. */
-  .burger { width: 44px; height: 44px; margin-right: 0; background: var(--accent); color: var(--blanc); }
+  /* Le panneau ouvert est en vert forêt avec les entrées en blanc, comme les bandes du site
+     (variante choisie par Alek le 15/10/2026). Le burger garde ses trois traits nus : le carré
+     vert essayé avec a été écarté (« tu peux garder la précédente »). Le panneau prend toute la
+     largeur, sans la bande de page à gauche : ses entrées s'alignent sur le wordmark, et la
+     page derrière ne dépasse plus (« problème d'alignement », même jour). */
   .menu-panneau { background: var(--foret); color: var(--blanc); }
   .menu-lien { color: var(--blanc); border-color: rgba(var(--blanc-rgb), 0.14); }
   .menu-chevron { color: rgba(var(--blanc-rgb), 0.7); }

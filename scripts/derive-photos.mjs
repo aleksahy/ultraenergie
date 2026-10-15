@@ -10,8 +10,8 @@
  * UNE SEULE VERSION PAR PHOTO, EN WEBP, sur le modèle de Salons en France
  * (`scripts/photos/preparer-photos.py`, réglé par Alek à l'œil) : les photos accompagnent,
  * le visiteur ne vient pas pour elles, et elles sont sous un voile forêt. 1400 px de large en
- * 16:9, qualité 40 : de 25 à 73 Ko par bandeau, contre 77 à 194 Ko en JPEG 1600 q76
- * (mesuré le 15/10/2026, total 340 Ko au lieu de 962). Le navigateur étire ou réduit, et
+ * 16:9, qualité 70 : Alek voyait la différence à 40 sur certaines pages (15/10/2026), 70 reste
+ * bien en dessous des 77 à 194 Ko du JPEG 1600 q76 d'avant. Le navigateur étire ou réduit, et
  * `object-fit: cover` finit la coupe ; sous 900px le bandeau est recadré dans la même image.
  *
  * Entrée  : images/<nom>.jpg            (pleine résolution, versionnée, jamais importée)
@@ -27,7 +27,7 @@ const SOURCE = 'images';
 const CIBLE = 'assets/photos';
 const LARGEUR = 1400;
 const HAUTEUR = Math.round((LARGEUR * 9) / 16);
-const QUALITE = 40;
+const QUALITE = 70;
 
 await mkdir(CIBLE, { recursive: true });
 
