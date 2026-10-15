@@ -14,12 +14,10 @@ import { url } from './routes';
  * « Ressources » suit la même forme : ses pages index sont ses entrées, le libellé lui-même
  * n'en est pas une.
  *
- * ⛔ LES SIX HUBS `/fiches-cee/{secteur}` NE SONT PLUS DANS LE MENU. « Fiches CEE » y est une
- * entrée parmi les ressources, pas un bloc à part : lister ses six hubs en dessous en
- * referait un.
- * Ils restent atteignables, et pas d'un seul chemin : l'index /fiches-cee/ les liste tous,
- * chaque hub pointe les cinq autres, le pied de page et les pages « Pour qui » les listent,
- * et les huit blocs « Travaux éligibles » de l'accueil y mènent directement.
+ * ⛔ PLUS D'ENTRÉES « FICHES CEE » NI « SIMULATEUR DE PRIME » depuis le 14/10/2026 : le
+ * catalogue et le simulateur sont retirés pour être rebâtis. Quand ils reviennent, ils
+ * reprennent leur place en tête des ressources, et « Fiches CEE » reste une entrée parmi les
+ * ressources, pas un bloc à part : lister ses hubs en dessous en referait un.
  *
  * ⛔ PAS D'ENTRÉE « SECTEURS » : les six pages secteur commerciales ont été retirées le
  * 19/09/2026. Le menu a quatre entrées, pas cinq. Le contrôle d'orphelines de
@@ -44,14 +42,13 @@ export function estGroupe(noeud: NoeudNav): noeud is GroupeNav {
 export const NAV: NoeudNav[] = [
   { label: 'Qui sommes-nous', href: url.quiSommesNous },
   {
+    /* Les installateurs ouvrent la liste : ce sont les clients (cf. lib/publics.ts). */
     label: 'Pour qui',
     enfants: PUBLICS.map((p) => ({ label: p.label, href: url.public(p.slug) })),
   },
   {
     label: 'Ressources',
     enfants: [
-      { label: 'Fiches CEE', href: url.fichesCee },
-      { label: 'Simulateur de prime', href: url.simulateur },
       { label: 'Comprendre les CEE', href: url.comprendreLesCee },
       { label: 'Blog', href: url.blog },
       { label: 'Veille CEE', href: url.veilleCee },

@@ -1,0 +1,1230 @@
+{
+ "genereLe": "2026-10-14",
+ "documents": [
+  {
+   "code": "AGRI-EQ-102",
+   "codeTexte": "AGRI-EQ-102",
+   "intitule": "Double écran thermique",
+   "version": "A65-2",
+   "versionSource": "texte",
+   "du": "2025-04-01",
+   "duSource": "nom du fichier",
+   "finTexte": null,
+   "finDeduite": null,
+   "au": null,
+   "enVigueur": true,
+   "fichier": "data/fiches/pdf/AGRI-EQ-102/AGRI-EQ-102 vA65-2 à compter du 01-04-2025_0.pdf",
+   "texte": "data/fiches/pdf/AGRI-EQ-102/AGRI-EQ-102 vA65-2 à compter du 01-04-2025_0.txt",
+   "pages": 2,
+   "caracteres": 2816,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     85,
+     180
+    ],
+    "denomination": [
+     180,
+     422
+    ],
+    "conditions": [
+     422,
+     1044
+    ],
+    "duree": [
+     1044,
+     1084
+    ],
+    "montant": [
+     1084,
+     1268
+    ],
+    "annexe1": [
+     1268,
+     2816
+    ]
+   }
+  },
+  {
+   "code": "AGRI-SE-101",
+   "codeTexte": "AGRI-SE-101",
+   "intitule": "Contrôle et préconisations de réglage du moteur d'un tracteur",
+   "version": "A40-2",
+   "versionSource": "texte",
+   "du": null,
+   "duSource": null,
+   "finTexte": null,
+   "finDeduite": null,
+   "au": null,
+   "enVigueur": null,
+   "fichier": "data/fiches/pdf/AGRI-SE-101/AGRI-SE-101_FS&AH+annexe2 v40.pdf",
+   "texte": "data/fiches/pdf/AGRI-SE-101/AGRI-SE-101_FS&AH+annexe2 v40.txt",
+   "pages": 3,
+   "caracteres": 3937,
+   "ossature": {
+    "manquants": []
+   },
+   "sections": {
+    "secteur": [
+     124,
+     264
+    ],
+    "denomination": [
+     264,
+     369
+    ],
+    "conditions": [
+     369,
+     1426
+    ],
+    "duree": [
+     1426,
+     1466
+    ],
+    "montant": [
+     1466,
+     1652
+    ],
+    "annexe1": [
+     1652,
+     3052
+    ],
+    "annexe2": [
+     3052,
+     3937
+    ]
+   }
+  },
+  {
+   "code": "AGRI-TH-108",
+   "codeTexte": "AGRI-TH-108",
+   "intitule": "Pompe à chaleur de type air/eau ou eau/eau",
+   "version": "A35",
+   "versionSource": "nom du fichier, incomplète",
+   "du": null,
+   "duSource": null,
+   "finTexte": null,
+   "finDeduite": null,
+   "au": null,
+   "enVigueur": null,
+   "fichier": "data/fiches/pdf/AGRI-TH-108/AGRI-TH-108_FS_Pompe à chaleur de type air eau ou eau eau v35.pdf",
+   "texte": "data/fiches/pdf/AGRI-TH-108/AGRI-TH-108_FS_Pompe à chaleur de type air eau ou eau eau v35.txt",
+   "pages": 2,
+   "caracteres": 4343,
+   "ossature": {
+    "manquants": [
+     "annexe1",
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     105,
+     200
+    ],
+    "denomination": [
+     200,
+     493
+    ],
+    "conditions": [
+     493,
+     3339
+    ],
+    "duree": [
+     3339,
+     3380
+    ],
+    "montant": [
+     3380,
+     4343
+    ]
+   }
+  },
+  {
+   "code": "AGRI-UT-102",
+   "codeTexte": "AGRI-UT-102",
+   "intitule": "Système de variation électronique de vitesse sur un moteur asynchrone",
+   "version": "A22-2",
+   "versionSource": "texte",
+   "du": null,
+   "duSource": null,
+   "finTexte": null,
+   "finDeduite": null,
+   "au": null,
+   "enVigueur": null,
+   "fichier": "data/fiches/pdf/AGRI-UT-102/AGRI-UT-102 mod A22-2.pdf",
+   "texte": "data/fiches/pdf/AGRI-UT-102/AGRI-UT-102 mod A22-2.txt",
+   "pages": 3,
+   "caracteres": 4673,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     132,
+     171
+    ],
+    "denomination": [
+     171,
+     826
+    ],
+    "conditions": [
+     826,
+     1337
+    ],
+    "duree": [
+     1337,
+     1377
+    ],
+    "montant": [
+     1377,
+     2161
+    ],
+    "annexe1": [
+     2161,
+     4673
+    ]
+   }
+  },
+  {
+   "code": "BAR-EN-101",
+   "codeTexte": "BAR-EN-101",
+   "intitule": "Isolation de combles ou de toiture",
+   "version": "A64-6",
+   "versionSource": "texte",
+   "du": "2025-01-01",
+   "duSource": "nom du fichier",
+   "finTexte": {
+    "nature": "abrogation",
+    "date": "2027-05-01",
+    "citation": "abrogée à compter du 1er mai 2027"
+   },
+   "finDeduite": null,
+   "au": "2027-04-30",
+   "enVigueur": true,
+   "fichier": "data/fiches/pdf/BAR-EN-101/BAR-EN-101 vA64-6 à compter du 01-01-2025_4.pdf",
+   "texte": "data/fiches/pdf/BAR-EN-101/BAR-EN-101 vA64-6 à compter du 01-01-2025_4.txt",
+   "pages": 4,
+   "caracteres": 8992,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     96,
+     156
+    ],
+    "denomination": [
+     156,
+     707
+    ],
+    "conditions": [
+     707,
+     4989
+    ],
+    "duree": [
+     4989,
+     5030
+    ],
+    "montant": [
+     5030,
+     5196
+    ],
+    "annexe1": [
+     5196,
+     8992
+    ]
+   }
+  },
+  {
+   "code": "BAR-EQ-115",
+   "codeTexte": "BAR-EQ-115",
+   "intitule": "Dispositif d'affichage et d'interprétation des consommations d'énergie",
+   "version": "A28-1",
+   "versionSource": "texte",
+   "du": "2019-01-01",
+   "duSource": "nom du fichier",
+   "finTexte": null,
+   "finDeduite": null,
+   "au": null,
+   "enVigueur": true,
+   "fichier": "data/fiches/pdf/BAR-EQ-115/bar-eq-115_-_a_compter_du_01-01-2019_0_0.pdf",
+   "texte": "data/fiches/pdf/BAR-EQ-115/bar-eq-115_-_a_compter_du_01-01-2019_0_0.txt",
+   "pages": 5,
+   "caracteres": 10351,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     132,
+     386
+    ],
+    "denomination": [
+     386,
+     980
+    ],
+    "conditions": [
+     980,
+     4820
+    ],
+    "duree": [
+     4820,
+     4859
+    ],
+    "montant": [
+     4859,
+     5848
+    ],
+    "annexe1": [
+     5848,
+     10351
+    ]
+   }
+  },
+  {
+   "code": "BAR-SE-108",
+   "codeTexte": "BAR-SE-108",
+   "intitule": "Désembouage d'un réseau hydraulique individuel de chauffage en France métropolitaine",
+   "version": "A71-3",
+   "versionSource": "texte",
+   "du": "2025-08-01",
+   "duSource": "nom du fichier",
+   "finTexte": null,
+   "finDeduite": null,
+   "au": null,
+   "enVigueur": true,
+   "fichier": "data/fiches/pdf/BAR-SE-108/BAR-SE-108 vA71-3 à compter du 01-08-2025 - Désembouage d’un réseau hydraulique de chauffage collectif en France métropolitaine.pdf",
+   "texte": "data/fiches/pdf/BAR-SE-108/BAR-SE-108 vA71-3 à compter du 01-08-2025 - Désembouage d’un réseau hydraulique de chauffage collectif en France métropolitaine.txt",
+   "pages": 3,
+   "caracteres": 6415,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     146,
+     231
+    ],
+    "denomination": [
+     231,
+     665
+    ],
+    "conditions": [
+     665,
+     3033
+    ],
+    "duree": [
+     3033,
+     3074
+    ],
+    "montant": [
+     3074,
+     3320
+    ],
+    "annexe1": [
+     3320,
+     6415
+    ]
+   }
+  },
+  {
+   "code": "BAR-TH-129",
+   "codeTexte": "BAR-TH-129",
+   "intitule": "Pompe à chaleur de type air/air",
+   "version": "A27-3",
+   "versionSource": "texte",
+   "du": "2018-04-01",
+   "duSource": "nom du fichier",
+   "finTexte": null,
+   "finDeduite": null,
+   "au": null,
+   "enVigueur": true,
+   "fichier": "data/fiches/pdf/BAR-TH-129/bar-th-129_mod_a27-3_a_compter_du_01-04-2018_1.pdf",
+   "texte": "data/fiches/pdf/BAR-TH-129/bar-th-129_mod_a27-3_a_compter_du_01-04-2018_1.txt",
+   "pages": 3,
+   "caracteres": 4353,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     93,
+     153
+    ],
+    "denomination": [
+     153,
+     229
+    ],
+    "conditions": [
+     229,
+     1746
+    ],
+    "duree": [
+     1746,
+     1787
+    ],
+    "montant": [
+     1787,
+     2643
+    ],
+    "annexe1": [
+     2643,
+     4353
+    ]
+   }
+  },
+  {
+   "code": "BAR-TH-148",
+   "codeTexte": "BAR-TH-148",
+   "intitule": "Chauffe-eau thermodynamique à accumulation",
+   "version": "A78-4",
+   "versionSource": "texte",
+   "du": "2026-01-01",
+   "duSource": "nom du fichier",
+   "finTexte": null,
+   "finDeduite": null,
+   "au": null,
+   "enVigueur": true,
+   "fichier": "data/fiches/pdf/BAR-TH-148/BAR-TH-148 vA78.4 à compter du 01-01-2026.pdf",
+   "texte": "data/fiches/pdf/BAR-TH-148/BAR-TH-148 vA78.4 à compter du 01-01-2026.txt",
+   "pages": 3,
+   "caracteres": 5676,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     104,
+     164
+    ],
+    "denomination": [
+     164,
+     537
+    ],
+    "conditions": [
+     537,
+     2601
+    ],
+    "duree": [
+     2601,
+     2642
+    ],
+    "montant": [
+     2642,
+     2776
+    ],
+    "annexe1": [
+     2776,
+     5676
+    ]
+   }
+  },
+  {
+   "code": "BAR-TH-171",
+   "codeTexte": "BAR-TH-171",
+   "intitule": "Pompe à chaleur de type air/eau",
+   "version": "A82-5",
+   "versionSource": "texte",
+   "du": "2026-09-01",
+   "duSource": "nom du fichier",
+   "finTexte": {
+    "nature": "engagement_jusquau",
+    "date": "2030-12-31",
+    "citation": "engagées jusqu'au 31 décembre 2030"
+   },
+   "finDeduite": null,
+   "au": "2030-12-31",
+   "enVigueur": true,
+   "fichier": "data/fiches/pdf/BAR-TH-171/BAR-TH-171 vA82-5 à compter du 01-09-2026 avec annexes_0.pdf",
+   "texte": "data/fiches/pdf/BAR-TH-171/BAR-TH-171 vA82-5 à compter du 01-09-2026 avec annexes_0.txt",
+   "pages": 7,
+   "caracteres": 18836,
+   "ossature": {
+    "manquants": []
+   },
+   "sections": {
+    "secteur": [
+     93,
+     153
+    ],
+    "denomination": [
+     153,
+     1247
+    ],
+    "conditions": [
+     1247,
+     7621
+    ],
+    "duree": [
+     7621,
+     7662
+    ],
+    "montant": [
+     7662,
+     8657
+    ],
+    "annexe1": [
+     8657,
+     15895
+    ],
+    "annexe2": [
+     15895,
+     18836
+    ]
+   }
+  },
+  {
+   "code": "BAT-EN-101",
+   "codeTexte": "BAT-EN-101",
+   "intitule": "Isolation de combles ou de toitures",
+   "version": "A64-4",
+   "versionSource": "texte",
+   "du": "2025-01-01",
+   "duSource": "nom du fichier",
+   "finTexte": {
+    "nature": "abrogation",
+    "date": "2027-05-01",
+    "citation": "abrogée à compter du 1er mai 2027"
+   },
+   "finDeduite": null,
+   "au": "2027-04-30",
+   "enVigueur": true,
+   "fichier": "data/fiches/pdf/BAT-EN-101/BAT-EN-101 vA64-4 à compter du 01-01-2025_0.pdf",
+   "texte": "data/fiches/pdf/BAT-EN-101/BAT-EN-101 vA64-4 à compter du 01-01-2025_0.txt",
+   "pages": 3,
+   "caracteres": 6148,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     97,
+     205
+    ],
+    "denomination": [
+     205,
+     376
+    ],
+    "conditions": [
+     376,
+     3226
+    ],
+    "duree": [
+     3226,
+     3267
+    ],
+    "montant": [
+     3267,
+     3555
+    ],
+    "annexe1": [
+     3555,
+     6148
+    ]
+   }
+  },
+  {
+   "code": "BAT-EQ-134",
+   "codeTexte": "BAT-EQ-134",
+   "intitule": "Meuble frigorifique de vente performant avec groupe de production de froid intégré",
+   "version": "A58-2",
+   "versionSource": "texte",
+   "du": "2024-04-01",
+   "duSource": "nom du fichier",
+   "finTexte": {
+    "nature": "engagement_jusquau",
+    "date": "2028-12-31",
+    "citation": "engagées jusqu'au 31 décembre 2028"
+   },
+   "finDeduite": null,
+   "au": "2028-12-31",
+   "enVigueur": true,
+   "fichier": "data/fiches/pdf/BAT-EQ-134/BAT-EQ-134 vA58-2 à compter du 01-04-2024.pdf",
+   "texte": "data/fiches/pdf/BAT-EQ-134/BAT-EQ-134 vA58-2 à compter du 01-04-2024.txt",
+   "pages": 4,
+   "caracteres": 7499,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     144,
+     332
+    ],
+    "denomination": [
+     332,
+     1336
+    ],
+    "conditions": [
+     1336,
+     3317
+    ],
+    "duree": [
+     3317,
+     3358
+    ],
+    "montant": [
+     3358,
+     5071
+    ],
+    "annexe1": [
+     5071,
+     7499
+    ]
+   }
+  },
+  {
+   "code": "BAT-SE-103",
+   "codeTexte": "BAT-SE-103",
+   "intitule": "Réglage des organes d'équilibrage d'une installation de chauffage à eau chaude",
+   "version": "A19-1",
+   "versionSource": "texte",
+   "du": null,
+   "duSource": null,
+   "finTexte": null,
+   "finDeduite": null,
+   "au": null,
+   "enVigueur": null,
+   "fichier": "data/fiches/pdf/BAT-SE-103/bat-se-103_0.pdf",
+   "texte": "data/fiches/pdf/BAT-SE-103/bat-se-103_0.txt",
+   "pages": 3,
+   "caracteres": 3274,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     141,
+     269
+    ],
+    "denomination": [
+     269,
+     647
+    ],
+    "conditions": [
+     647,
+     2065
+    ],
+    "duree": [
+     2065,
+     2106
+    ],
+    "montant": [
+     2106,
+     2238
+    ],
+    "annexe1": [
+     2238,
+     3274
+    ]
+   }
+  },
+  {
+   "code": "BAT-TH-116",
+   "codeTexte": "BAT-TH-116",
+   "intitule": "Système de gestion technique du bâtiment pour le chauffage, l'eau chaude sanitaire, le refroidissement/climatisation, l'éclairage et les auxiliaires",
+   "version": "A62-6",
+   "versionSource": "texte",
+   "du": "2025-01-01",
+   "duSource": "nom du fichier",
+   "finTexte": null,
+   "finDeduite": null,
+   "au": null,
+   "enVigueur": true,
+   "fichier": "data/fiches/pdf/BAT-TH-116/BAT-TH-116 vA62-6 à compter du 01-01-2025_0.pdf",
+   "texte": "data/fiches/pdf/BAT-TH-116/BAT-TH-116 vA62-6 à compter du 01-01-2025_0.txt",
+   "pages": 5,
+   "caracteres": 7534,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     210,
+     265
+    ],
+    "denomination": [
+     265,
+     1248
+    ],
+    "conditions": [
+     1248,
+     2923
+    ],
+    "duree": [
+     2923,
+     2964
+    ],
+    "montant": [
+     2964,
+     4759
+    ],
+    "annexe1": [
+     4759,
+     7534
+    ]
+   }
+  },
+  {
+   "code": "IND-BA-110",
+   "codeTexte": "IND-BA-110",
+   "intitule": "Système de déstratification d'air",
+   "version": "A69-3",
+   "versionSource": "texte",
+   "du": "2025-07-01",
+   "duSource": "nom du fichier",
+   "finTexte": null,
+   "finDeduite": "2025-07-31",
+   "au": "2025-07-31",
+   "enVigueur": false,
+   "fichier": "data/fiches/pdf/IND-BA-110/IND-BA-110 v69-3 à compter du 01-07-2025 système de destratifiaction d'air_0.pdf",
+   "texte": "data/fiches/pdf/IND-BA-110/IND-BA-110 v69-3 à compter du 01-07-2025 système de destratifiaction d'air_0.txt",
+   "pages": 3,
+   "caracteres": 6276,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     95,
+     132
+    ],
+    "denomination": [
+     132,
+     725
+    ],
+    "conditions": [
+     725,
+     2056
+    ],
+    "duree": [
+     2056,
+     2097
+    ],
+    "montant": [
+     2097,
+     3430
+    ],
+    "annexe1": [
+     3430,
+     6276
+    ]
+   }
+  },
+  {
+   "code": "IND-BA-110",
+   "codeTexte": "IND-BA-110",
+   "intitule": "Système de déstratification d'air (France métropolitaine)",
+   "version": "A71-4",
+   "versionSource": "texte",
+   "du": "2025-08-01",
+   "duSource": "nom du fichier",
+   "finTexte": null,
+   "finDeduite": null,
+   "au": null,
+   "enVigueur": true,
+   "fichier": "data/fiches/pdf/IND-BA-110/IND-BA-110 Système de déstratification d'air vA71.4 à compter du 01-08-2025.pdf",
+   "texte": "data/fiches/pdf/IND-BA-110/IND-BA-110 Système de déstratification d'air vA71.4 à compter du 01-08-2025.txt",
+   "pages": 5,
+   "caracteres": 13496,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     119,
+     175
+    ],
+    "denomination": [
+     175,
+     1172
+    ],
+    "conditions": [
+     1172,
+     6735
+    ],
+    "duree": [
+     6735,
+     6776
+    ],
+    "montant": [
+     6776,
+     8671
+    ],
+    "annexe1": [
+     8671,
+     13496
+    ]
+   }
+  },
+  {
+   "code": "IND-EN-102",
+   "codeTexte": "IND-EN-102",
+   "intitule": "Isolation de combles ou de toitures (France d'outre-mer)",
+   "version": "A64-3",
+   "versionSource": "texte",
+   "du": "2025-01-01",
+   "duSource": "nom du fichier",
+   "finTexte": {
+    "nature": "abrogation",
+    "date": "2027-05-01",
+    "citation": "abrogée à compter du 1er mai 2027"
+   },
+   "finDeduite": null,
+   "au": "2027-04-30",
+   "enVigueur": true,
+   "fichier": "data/fiches/pdf/IND-EN-102/IND-EN-102 vA64-3 à compter du 01-01-2025_0.pdf",
+   "texte": "data/fiches/pdf/IND-EN-102/IND-EN-102 vA64-3 à compter du 01-01-2025_0.txt",
+   "pages": 3,
+   "caracteres": 4474,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     118,
+     204
+    ],
+    "denomination": [
+     204,
+     389
+    ],
+    "conditions": [
+     389,
+     2474
+    ],
+    "duree": [
+     2474,
+     2516
+    ],
+    "montant": [
+     2516,
+     2677
+    ],
+    "annexe1": [
+     2677,
+     4474
+    ]
+   }
+  },
+  {
+   "code": "IND-UT-102",
+   "codeTexte": "IND-UT-102",
+   "intitule": "Système de variation électronique de vitesse sur un moteur asynchrone",
+   "version": "A19-2",
+   "versionSource": "texte",
+   "du": null,
+   "duSource": null,
+   "finTexte": null,
+   "finDeduite": null,
+   "au": null,
+   "enVigueur": null,
+   "fichier": "data/fiches/pdf/IND-UT-102/IND-UT-102 mod v.A19.2.pdf",
+   "texte": "data/fiches/pdf/IND-UT-102/IND-UT-102 mod v.A19.2.txt",
+   "pages": 3,
+   "caracteres": 4490,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     131,
+     168
+    ],
+    "denomination": [
+     168,
+     822
+    ],
+    "conditions": [
+     822,
+     1334
+    ],
+    "duree": [
+     1334,
+     1375
+    ],
+    "montant": [
+     1375,
+     2063
+    ],
+    "annexe1": [
+     2063,
+     4490
+    ]
+   }
+  },
+  {
+   "code": "IND-UT-131",
+   "codeTexte": "IND-UT-131",
+   "intitule": "Isolation thermique des parois planes ou cylindriques sur des installations industrielles",
+   "version": "A37-2",
+   "versionSource": "texte",
+   "du": "2021-04-01",
+   "duSource": "nom du fichier",
+   "finTexte": null,
+   "finDeduite": null,
+   "au": null,
+   "enVigueur": true,
+   "fichier": "data/fiches/pdf/IND-UT-131/IND-UT-131 vA37-2 à compter du 01-04-2021.pdf",
+   "texte": "data/fiches/pdf/IND-UT-131/IND-UT-131 vA37-2 à compter du 01-04-2021.txt",
+   "pages": 5,
+   "caracteres": 11958,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     151,
+     188
+    ],
+    "denomination": [
+     188,
+     754
+    ],
+    "conditions": [
+     754,
+     4988
+    ],
+    "duree": [
+     4988,
+     5029
+    ],
+    "montant": [
+     5029,
+     6366
+    ],
+    "annexe1": [
+     6366,
+     11958
+    ]
+   }
+  },
+  {
+   "code": "IND-UT-131",
+   "codeTexte": "IND-UT-131",
+   "intitule": "Isolation thermique des parois planes ou cylindriques sur des installations industrielles (France métropolitaine)",
+   "version": "A24-1",
+   "versionSource": "texte",
+   "du": null,
+   "duSource": null,
+   "finTexte": null,
+   "finDeduite": null,
+   "au": null,
+   "enVigueur": null,
+   "fichier": "data/fiches/pdf/IND-UT-131/IND-UT-131.pdf",
+   "texte": "data/fiches/pdf/IND-UT-131/IND-UT-131.txt",
+   "pages": 4,
+   "caracteres": 9315,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     175,
+     237
+    ],
+    "denomination": [
+     237,
+     759
+    ],
+    "conditions": [
+     759,
+     3002
+    ],
+    "duree": [
+     3002,
+     3042
+    ],
+    "montant": [
+     3042,
+     4181
+    ],
+    "annexe1": [
+     4181,
+     9315
+    ]
+   }
+  },
+  {
+   "code": "RES-CH-103",
+   "codeTexte": "RES-CH-103",
+   "intitule": "Réhabilitation d'un poste de livraison de chaleur d'un bâtiment tertiaire",
+   "version": "A36-3",
+   "versionSource": "texte",
+   "du": null,
+   "duSource": null,
+   "finTexte": null,
+   "finDeduite": null,
+   "au": null,
+   "enVigueur": null,
+   "fichier": "data/fiches/pdf/RES-CH-103/RES-CH-103_FS&AH_Réhabilitation d'un poste de livraison de chaleur d'une batiment tertiaire v36_0.pdf",
+   "texte": "data/fiches/pdf/RES-CH-103/RES-CH-103_FS&AH_Réhabilitation d'un poste de livraison de chaleur d'une batiment tertiaire v36_0.txt",
+   "pages": 5,
+   "caracteres": 11161,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     135,
+     235
+    ],
+    "denomination": [
+     235,
+     398
+    ],
+    "conditions": [
+     398,
+     1566
+    ],
+    "duree": [
+     1566,
+     1607
+    ],
+    "montant": [
+     1607,
+     2394
+    ],
+    "annexe1": [
+     2394,
+     11161
+    ]
+   }
+  },
+  {
+   "code": "RES-EC-104",
+   "codeTexte": "RES-EC-104",
+   "intitule": "Rénovation d'éclairage extérieur",
+   "version": "A77-3",
+   "versionSource": "texte",
+   "du": "2025-11-26",
+   "duSource": "nom du fichier",
+   "finTexte": null,
+   "finDeduite": null,
+   "au": null,
+   "enVigueur": true,
+   "fichier": "data/fiches/pdf/RES-EC-104/RES-EC-104 vA77-3 à compter du 26-11-2025_1.pdf",
+   "texte": "data/fiches/pdf/RES-EC-104/RES-EC-104 vA77-3 à compter du 26-11-2025_1.txt",
+   "pages": 4,
+   "caracteres": 10309,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     94,
+     684
+    ],
+    "denomination": [
+     684,
+     960
+    ],
+    "conditions": [
+     960,
+     7150
+    ],
+    "duree": [
+     7150,
+     7191
+    ],
+    "montant": [
+     7191,
+     7588
+    ],
+    "annexe1": [
+     7588,
+     10309
+    ]
+   }
+  },
+  {
+   "code": "TRA-EQ-114",
+   "codeTexte": "TRA-EQ-114",
+   "intitule": "Achat ou location d'un véhicule léger électrique neuf ou opération de rétrofit électrique d'un véhicule léger, par une collectivité locale ou une autre personne morale",
+   "version": "A68-3",
+   "versionSource": "texte",
+   "du": "2025-05-28",
+   "duSource": "nom du fichier",
+   "finTexte": null,
+   "finDeduite": "2026-06-30",
+   "au": "2026-06-30",
+   "enVigueur": false,
+   "fichier": "data/fiches/pdf/TRA-EQ-114/TRA-EQ-114 vA68-3 à compter du 28-05-2025.pdf",
+   "texte": "data/fiches/pdf/TRA-EQ-114/TRA-EQ-114 vA68-3 à compter du 28-05-2025.txt",
+   "pages": 6,
+   "caracteres": 12717,
+   "ossature": {
+    "manquants": [
+     "annexe2"
+    ]
+   },
+   "sections": {
+    "secteur": [
+     229,
+     623
+    ],
+    "denomination": [
+     623,
+     993
+    ],
+    "conditions": [
+     993,
+     4700
+    ],
+    "duree": [
+     4700,
+     4940
+    ],
+    "montant": [
+     4940,
+     7268
+    ],
+    "annexe1": [
+     7268,
+     12717
+    ]
+   }
+  },
+  {
+   "code": "TRA-EQ-114",
+   "codeTexte": "TRA-EQ-114",
+   "intitule": "Achat ou location d'un véhicule léger électrique neuf ou opération de rétrofit électrique d'un véhicule léger, par une collectivité locale ou une autre personne morale",
+   "version": "A83-5",
+   "versionSource": "texte",
+   "du": "2026-07-01",
+   "duSource": "nom du fichier",
+   "finTexte": null,
+   "finDeduite": null,
+   "au": null,
+   "enVigueur": true,
+   "fichier": "data/fiches/pdf/TRA-EQ-114/TRA-EQ-114 vA83-5 à compter du 01-07-2026 (complet)_2.pdf",
+   "texte": "data/fiches/pdf/TRA-EQ-114/TRA-EQ-114 vA83-5 à compter du 01-07-2026 (complet)_2.txt",
+   "pages": 6,
+   "caracteres": 12984,
+   "ossature": {
+    "manquants": []
+   },
+   "sections": {
+    "secteur": [
+     229,
+     623
+    ],
+    "denomination": [
+     623,
+     993
+    ],
+    "conditions": [
+     993,
+     4962
+    ],
+    "duree": [
+     4962,
+     5202
+    ],
+    "montant": [
+     5202,
+     6593
+    ],
+    "annexe1": [
+     6593,
+     11410
+    ],
+    "annexe2": [
+     11410,
+     12984
+    ]
+   }
+  },
+  {
+   "code": "TRA-EQ-114",
+   "codeTexte": "TRA-EQ-114",
+   "intitule": "Remplacement de véhicules par des véhicules neufs performants dans une flotte professionnelle",
+   "version": "A16-1",
+   "versionSource": "texte",
+   "du": null,
+   "duSource": null,
+   "finTexte": null,
+   "finDeduite": null,
+   "au": null,
+   "enVigueur": null,
+   "fichier": "data/fiches/pdf/TRA-EQ-114/TRA-EQ-114 v A16 & Annexe 2.pdf",
+   "texte": "data/fiches/pdf/TRA-EQ-114/TRA-EQ-114 v A16 & Annexe 2.txt",
+   "pages": 4,
+   "caracteres": 5051,
+   "ossature": {
+    "manquants": []
+   },
+   "sections": {
+    "secteur": [
+     155,
+     279
+    ],
+    "denomination": [
+     279,
+     359
+    ],
+    "conditions": [
+     359,
+     2228
+    ],
+    "duree": [
+     2228,
+     2339
+    ],
+    "montant": [
+     2339,
+     2836
+    ],
+    "annexe1": [
+     2836,
+     4138
+    ],
+    "annexe2": [
+     4138,
+     5051
+    ]
+   }
+  }
+ ]
+}

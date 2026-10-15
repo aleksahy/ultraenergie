@@ -1,0 +1,187 @@
+{
+ "code": "BAT-SE-103",
+ "intitule": "Réglage des organes d'équilibrage d'une installation de chauffage à eau chaude",
+ "annexe": "Annexe 3",
+ "genereLe": "2026-10-15",
+ "versions": [
+  {
+   "version": null,
+   "nor": "DEVR1529503A",
+   "republiePar": [],
+   "integreeLe": "2016-01-04",
+   "origines": [
+    "création : texte qui a produit la version d’annexe où la fiche apparaît"
+   ],
+   "debut": "2016-01-04",
+   "genreDate": "lendemain",
+   "sourceDate": "aucune date dans l’arrêté : lendemain de la publication au JO du 2016-01-03",
+   "candidats": null,
+   "arrete": {
+    "nor": "DEVR1529503A",
+    "cid": "JORFTEXT000031742205",
+    "titre": "Arrêté du 22 décembre 2015 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie",
+    "publication": "2016-01-03"
+   },
+   "texteAuJo": false,
+   "annexeEnImage": true,
+   "fin": null,
+   "versionProposee": "A19-1",
+   "versionProposeeSource": "PDF déposé, 1e version",
+   "niveau": 3,
+   "pdf": "bat-se-103_0.pdf",
+   "manques": [
+    "numéro de version à confirmer : A19-1 (PDF déposé, 1e version)",
+    "neuf informations",
+    "visa d’Alek"
+   ]
+  }
+ ],
+ "versionsSansDate": [],
+ "textesDuJo": [
+  {
+   "publication": "2023-12-29",
+   "nor": "ENER2333436A",
+   "cid": "JORFTEXT000048708397",
+   "titre": "Arrêté du 22 décembre 2023 modifiant la fiche d'opération standardisée BAT-TH-116 et la bonification associée du dispositif des certificats d'économies d'énergie",
+   "nature": "bonification",
+   "versionCitee": null,
+   "annexeEnImage": false
+  },
+  {
+   "publication": "2024-08-30",
+   "nor": "ECOR2422700A",
+   "cid": "JORFTEXT000050147822",
+   "titre": "Arrêté du 22 août 2024 modifiant l'arrêté du 4 septembre 2014 modifié fixant la liste des éléments d'une demande de certificats d'économies d'énergie et les documents à archiver par le demandeur, l'arrêté du 22 décembre 2014 modifié définissant les opérations standardisées d'économies d'énergie et l'arrêté du 28 septembre 2021 modifié relatif aux contrôles dans le cadre du dispositif des certificats d'économies d'énergie",
+   "nature": "publie peut-être la fiche, en image",
+   "versionCitee": null,
+   "annexeEnImage": true
+  },
+  {
+   "publication": "2024-11-16",
+   "nor": "TECR2428117A",
+   "cid": "JORFTEXT000050500689",
+   "titre": "Arrêté du 24 octobre 2024 modifiant les fiches d'opérations standardisées portant les références BAT-TH-116 et IND-UT-139 et créant les référentiels de contrôle des fiches d'opérations standardisées portant les références IND-UT-137, IND-UT-138 et IND-UT-139, dans le cadre du dispositif des certificats d'économies d'énergie",
+   "nature": "contrôles",
+   "versionCitee": null,
+   "annexeEnImage": true
+  }
+ ],
+ "notesConsolidees": [],
+ "periodesConsolidees": [
+  {
+   "debut": "2015-01-01",
+   "fin": "2016-01-04",
+   "morteNee": false,
+   "presente": false,
+   "entree": null,
+   "versionsAnnexe": [
+    "LEGIARTI000030109052",
+    "LEGIARTI000030418959",
+    "LEGIARTI000030966538",
+    "LEGIARTI000031043944"
+   ]
+  },
+  {
+   "debut": "2016-01-04",
+   "fin": "2019-09-01",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": null,
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000031876994",
+    "LEGIARTI000032192101",
+    "LEGIARTI000033061919",
+    "LEGIARTI000033361060",
+    "LEGIARTI000033677896",
+    "LEGIARTI000034264508",
+    "LEGIARTI000035390120",
+    "LEGIARTI000036501695",
+    "LEGIARTI000037845364"
+   ]
+  },
+  {
+   "debut": "2019-09-01",
+   "fin": "2024-08-31",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Réglage des organes d'équilibrage d'une installation de chauffage à eau chaude",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000039024013",
+    "LEGIARTI000046186585",
+    "LEGIARTI000041893011",
+    "LEGIARTI000042205149",
+    "LEGIARTI000041776168",
+    "LEGIARTI000043874866",
+    "LEGIARTI000045012813",
+    "LEGIARTI000045088406",
+    "LEGIARTI000046159951",
+    "LEGIARTI000046198211",
+    "LEGIARTI000046828588",
+    "LEGIARTI000048137979",
+    "LEGIARTI000048923998",
+    "LEGIARTI000048924186"
+   ]
+  },
+  {
+   "debut": "2024-01-01",
+   "fin": "2023-12-29",
+   "morteNee": true,
+   "presente": true,
+   "entree": {
+    "intitule": "Réglage des organes d'équilibrage d'une installation de chauffage à eau chaude",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000048138546"
+   ]
+  },
+  {
+   "debut": "2024-08-31",
+   "fin": null,
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Réglage des organes d'équilibrage d'une installation de chauffage à eau chaude",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000050149111",
+    "LEGIARTI000050590889",
+    "LEGIARTI000050625796",
+    "LEGIARTI000050940536",
+    "LEGIARTI000051870865",
+    "LEGIARTI000052131554",
+    "LEGIARTI000052236634",
+    "LEGIARTI000053329938",
+    "LEGIARTI000053561792",
+    "LEGIARTI000053980534"
+   ]
+  }
+ ],
+ "confrontationPdf": [
+  {
+   "pdf": "bat-se-103_0.pdf",
+   "versionPdf": "A19-1",
+   "duPdf": null,
+   "versionJo": null,
+   "debutJo": null,
+   "ecarts": [
+    "aucune version du JO ne correspond"
+   ]
+  }
+ ]
+}

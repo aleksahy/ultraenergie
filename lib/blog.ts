@@ -14,7 +14,7 @@ export interface Article {
 }
 
 export const ARTICLES: Article[] = [
-  { slug: 'fiches-operations-standardisees-ce-qui-change', titre: "Fiches d'opérations standardisées : ce qui change", tag: 'Actualité réglementaire', date: '2026-08-28' },
+  { slug: 'fiches-operations-standardisees-ce-qui-change', titre: "Fiches d’opérations standardisées : ce qui change", tag: 'Actualité réglementaire', date: '2026-08-28' },
   { slug: 'comprendre-la-fiche-bat-th-116', titre: 'Comprendre la fiche CEE BAT-TH-116', tag: 'Guide', date: '2026-07-15' },
   { slug: 'preparer-son-dossier-cee-en-5-points', titre: 'Bien préparer son dossier CEE en 5 points', tag: 'Conseil métier', date: '2026-06-30' },
 ];

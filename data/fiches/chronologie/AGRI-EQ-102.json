@@ -1,0 +1,195 @@
+{
+ "code": "AGRI-EQ-102",
+ "intitule": "Double écran thermique",
+ "annexe": "Annexe 1",
+ "genereLe": "2026-10-15",
+ "versions": [
+  {
+   "version": null,
+   "nor": "DEVR1428341A",
+   "republiePar": [],
+   "integreeLe": "2015-01-01",
+   "origines": [
+    "création : arrêté du 22 décembre 2014"
+   ],
+   "debut": "2015-01-01",
+   "genreDate": "article",
+   "sourceDate": "arrêté du 22 décembre 2014, en vigueur au 1er janvier 2015",
+   "candidats": null,
+   "arrete": {
+    "nor": "DEVR1428341A",
+    "cid": "JORFTEXT000029953752",
+    "titre": "Arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie",
+    "publication": "2014-12-24"
+   },
+   "texteAuJo": false,
+   "annexeEnImage": true,
+   "fin": "2025-03-31",
+   "niveau": 2,
+   "pdf": null,
+   "manques": [
+    "numéro de version inconnu",
+    "texte de la fiche (PDF du ministère)"
+   ]
+  },
+  {
+   "version": "A65-2",
+   "nor": "ECOR2435303A",
+   "republiePar": [],
+   "integreeLe": "2025-01-01",
+   "origines": [
+    "note consolidée (art. 2 de l'arrêté du 2024-12-30)"
+   ],
+   "debut": "2025-04-01",
+   "genreDate": "article",
+   "sourceDate": "art. 2 (vise l’annexe A) : « Les fiches d'opérations standardisées figurant en annexe A au présent arrêté remplacent, à compter du 1er avril 2025, les fiches portant les mêmes références figurant en annexe 1 à l' arrêté du 22 déc »",
+   "candidats": null,
+   "arrete": {
+    "nor": "ECOR2435303A",
+    "cid": "JORFTEXT000050872919",
+    "titre": "Arrêté du 30 décembre 2024 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie et l'arrêté du 29 décembre 2014 relatif aux modalités d'application du dispositif des certificats d'économies d'énergie",
+    "publication": "2024-12-31"
+   },
+   "texteAuJo": false,
+   "annexeEnImage": true,
+   "fin": null,
+   "versionSource": "nom du PDF déposé",
+   "niveau": 3,
+   "pdf": "AGRI-EQ-102 vA65-2 à compter du 01-04-2025_0.pdf",
+   "manques": [
+    "neuf informations",
+    "visa d’Alek"
+   ]
+  }
+ ],
+ "versionsSansDate": [],
+ "textesDuJo": [
+  {
+   "publication": "2024-12-31",
+   "nor": "ECOR2435303A",
+   "cid": "JORFTEXT000050872919",
+   "titre": "Arrêté du 30 décembre 2024 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie et l'arrêté du 29 décembre 2014 relatif aux modalités d'application du dispositif des certificats d'économies d'énergie",
+   "nature": "publie peut-être la fiche, en image",
+   "versionCitee": null,
+   "annexeEnImage": true
+  }
+ ],
+ "notesConsolidees": [
+  {
+   "article": "2",
+   "arrete": "2024-12-30",
+   "nor": "ECOR2435303A",
+   "effet": "fiche remplacée",
+   "lettre": "A",
+   "aCompterDu": "2025-01-01",
+   "texte": "Conformément à l'article 2 de l'arrêté du 30 décembre 2024 (NOR : ECOR2435303A), la fiche d'opération n° AGRI-EQ-102 est remplacée à compter du 1er janvier 2025 par la fiche portant la même référence présente à l'annexe A de l'arrêté précité.",
+   "vuDansLaPeriode": "2025-01-01",
+   "morteNee": false
+  }
+ ],
+ "periodesConsolidees": [
+  {
+   "debut": "2015-01-01",
+   "fin": "2024-08-31",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Double écran thermique",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000030077404",
+    "LEGIARTI000030418963",
+    "LEGIARTI000030966545",
+    "LEGIARTI000031043950",
+    "LEGIARTI000031877000",
+    "LEGIARTI000032192119",
+    "LEGIARTI000033061883",
+    "LEGIARTI000033361055",
+    "LEGIARTI000033677887",
+    "LEGIARTI000036501690",
+    "LEGIARTI000037845368",
+    "LEGIARTI000046205210",
+    "LEGIARTI000042205154",
+    "LEGIARTI000043874876",
+    "LEGIARTI000045012821",
+    "LEGIARTI000047313645",
+    "LEGIARTI000048923981"
+   ]
+  },
+  {
+   "debut": "2024-01-01",
+   "fin": "2023-12-29",
+   "morteNee": true,
+   "presente": true,
+   "entree": {
+    "intitule": "Double écran thermique",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000048137933"
+   ]
+  },
+  {
+   "debut": "2024-08-31",
+   "fin": "2025-01-01",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Double écran thermique",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000050149126"
+   ]
+  },
+  {
+   "debut": "2025-01-01",
+   "fin": null,
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Double écran thermique",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 2 de l'arrêté du 30 décembre 2024 (NOR : ECOR2435303A), la fiche d'opération n° AGRI-EQ-102 est remplacée à compter du 1er janvier 2025 par la fiche portant la même référence présente à l'annexe A de l'arrêté précité."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000050940571",
+    "LEGIARTI000052131584",
+    "LEGIARTI000054173646",
+    "LEGIARTI000054299333",
+    "LEGIARTI000053310974",
+    "LEGIARTI000054885008"
+   ]
+  },
+  {
+   "debut": "2999-01-01",
+   "fin": null,
+   "morteNee": false,
+   "presente": false,
+   "entree": null,
+   "versionsAnnexe": [
+    "JORFARTI000029953760"
+   ]
+  }
+ ],
+ "confrontationPdf": [
+  {
+   "pdf": "AGRI-EQ-102 vA65-2 à compter du 01-04-2025_0.pdf",
+   "versionPdf": "A65-2",
+   "duPdf": "2025-04-01",
+   "versionJo": "A65-2",
+   "debutJo": "2025-04-01",
+   "ecarts": []
+  }
+ ]
+}

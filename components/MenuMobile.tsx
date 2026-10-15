@@ -107,20 +107,14 @@ export default function MenuMobile() {
                 téléphone il rejoint la liste, faute d'une place à droite où le poser. */}
             <Link href={url.contact} className="menu-lien" onClick={fermer}>Contact</Link>
 
+            {/* Le même bouton qu'en PC, et lui seul : « Contact » est déjà dans la liste. */}
             <div className="menu-actions">
               <button
                 type="button"
-                className="pilule pilule-encre"
+                className="pilule pilule-accent"
                 onClick={() => { setOuvert(false); ouvrirModale('estimation'); }}
               >
-                Estimer ma prime →
-              </button>
-              <button
-                type="button"
-                className="pilule pilule-accent"
-                onClick={() => { setOuvert(false); ouvrirModale('rappel'); }}
-              >
-                Être rappelé →
+                Estimer ma prime
               </button>
             </div>
           </nav>

@@ -3,7 +3,11 @@ import Page, { Section, AChantier } from '@/components/Page';
 import { COORDONNEES } from '@/lib/contenu';
 import { url } from '@/lib/routes';
 
-export const metadata: Metadata = { title: 'Contact | Ultra Énergie' };
+export const metadata: Metadata = {
+  title: 'Contact | Ultra Énergie',
+  description: 'Contacter Ultra Énergie, mandataire CEE indépendant : une opération à estimer, un chantier à signaler, un partenariat.',
+  alternates: { canonical: '/contact/' },
+};
 
 export default function Contact() {
   return (

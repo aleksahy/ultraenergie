@@ -10,8 +10,9 @@
     "images": "node scripts/derive-photos.mjs",
     "postbuild": "node scripts/verifie-routes.mjs",
     "check:routes": "node scripts/verifie-routes.mjs",
-    "fiches": "python3 scripts/importe-fiches.py",
-    "details": "python3 scripts/importe-details.py"
+    "fiches:extrait": "python3 scripts/extrait-fiches.py",
+    "fiches:atelier": "python3 scripts/atelier-fiches.py",
+    "fiches:chronologie": "python3 scripts/chronologie-fiches.py"
   },
   "dependencies": {
     "next": "16.2.4",

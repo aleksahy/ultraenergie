@@ -22,13 +22,15 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://ultraenergie.fr'),
   title: 'Ultra Énergie, mandataire CEE indépendant',
   description:
-    "Nous mettons plusieurs obligés en concurrence pour valoriser vos kWh cumac au meilleur niveau, sans porter l'obligation ni vendre d'équipement.",
+    'Mandataire CEE indépendant, Ultra Énergie accompagne les installateurs et leurs clients : engagement de prime avant le devis, dossier constitué et déposé, versement suivi.',
+  alternates: { canonical: '/' },
   openGraph: {
     siteName: 'Ultra Énergie',
     locale: 'fr_FR',
     type: 'website',
     title: 'Ultra Énergie, mandataire CEE indépendant',
-    description: 'Financez vos travaux d\'économies d\'énergie avec la prime CEE.',
+    description:
+      'Mandataire CEE indépendant, Ultra Énergie accompagne les installateurs et leurs clients : engagement de prime avant le devis, dossier constitué et déposé, versement suivi.',
   },
 };
 

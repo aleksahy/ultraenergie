@@ -1,0 +1,329 @@
+{
+ "code": "TRA-SE-101",
+ "intitule": "Formation d'un chauffeur de transport à la conduite économe",
+ "annexe": "Annexe 6",
+ "genereLe": "2026-10-15",
+ "versions": [
+  {
+   "version": null,
+   "nor": "DEVR1428341A",
+   "republiePar": [],
+   "integreeLe": "2015-01-01",
+   "origines": [
+    "création : arrêté du 22 décembre 2014"
+   ],
+   "debut": "2015-01-01",
+   "genreDate": "article",
+   "sourceDate": "arrêté du 22 décembre 2014, en vigueur au 1er janvier 2015",
+   "candidats": null,
+   "arrete": {
+    "nor": "DEVR1428341A",
+    "cid": "JORFTEXT000029953752",
+    "titre": "Arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie",
+    "publication": "2014-12-24"
+   },
+   "texteAuJo": false,
+   "annexeEnImage": true,
+   "fin": null,
+   "niveau": 3,
+   "pdf": null,
+   "manques": [
+    "numéro de version inconnu",
+    "texte de la fiche (PDF du ministère)",
+    "neuf informations",
+    "visa d’Alek"
+   ]
+  }
+ ],
+ "versionsSansDate": [],
+ "textesDuJo": [
+  {
+   "publication": "2014-12-24",
+   "nor": "DEVR1428341A",
+   "cid": "JORFTEXT000029953752",
+   "titre": "Arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie",
+   "nature": "annexe de dépôt",
+   "versionCitee": null,
+   "annexeEnImage": true
+  },
+  {
+   "publication": "2016-03-12",
+   "nor": "DEVR1603528A",
+   "cid": "JORFTEXT000032187958",
+   "titre": "Arrêté du 8 février 2016 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie",
+   "nature": "publie peut-être la fiche, en image",
+   "versionCitee": null,
+   "annexeEnImage": true
+  },
+  {
+   "publication": "2023-03-16",
+   "nor": "ENER2303227A",
+   "cid": "JORFTEXT000047310913",
+   "titre": "Arrêté du 18 février 2023 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie",
+   "nature": "annexe de dépôt",
+   "versionCitee": null,
+   "annexeEnImage": false
+  }
+ ],
+ "notesConsolidees": [
+  {
+   "article": "5",
+   "arrete": "2016-02-08",
+   "nor": "DEVR1603528A",
+   "effet": "annexe de dépôt remplacée",
+   "lettre": null,
+   "aCompterDu": null,
+   "texte": "Conformément à l'article 5 de l'arrêté du 8 février 2016 (NOR : DEVR1603528A), l'annexe 2 de la présente fiche d'opération standardisée d'économies d'énergie est remplacée par la version figurant à l'annexe 4 dudit arrêté portant la même référence.",
+   "vuDansLaPeriode": "2016-03-13",
+   "morteNee": false
+  },
+  {
+   "article": "1",
+   "arrete": "2023-02-18",
+   "nor": "ENER2303227A",
+   "effet": "annexe de dépôt remplacée (la note consolidée dit « fiche »)",
+   "lettre": null,
+   "aCompterDu": "2023-04-01",
+   "texte": "Conformément à l'article 1 de l'arrêté du 18 février 2023 (NOR : ENER2303227A), la fiche d'opération n° TRA-SE-101 remplace, à compter du 1 er avril 2023, la fiche portant la même référence.",
+   "vuDansLaPeriode": "2023-04-01",
+   "morteNee": false
+  }
+ ],
+ "periodesConsolidees": [
+  {
+   "debut": "2015-01-01",
+   "fin": "2016-03-13",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Formation d'un chauffeur de transport à la conduite économe",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000030109055",
+    "LEGIARTI000030418955",
+    "LEGIARTI000030966530",
+    "LEGIARTI000031043941",
+    "LEGIARTI000031876988"
+   ]
+  },
+  {
+   "debut": "2016-03-13",
+   "fin": "2018-12-19",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Formation d'un chauffeur de transport à la conduite économe",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 5 de l'arrêté du 8 février 2016 (NOR : DEVR1603528A), l'annexe 2 de la présente fiche d'opération standardisée d'économies d'énergie est remplacée par la version figurant à l'annexe 4 dudit arrêté portant la même référence."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000032192116",
+    "LEGIARTI000033361105",
+    "LEGIARTI000033677909",
+    "LEGIARTI000035390108",
+    "LEGIARTI000036501923"
+   ]
+  },
+  {
+   "debut": "2018-12-19",
+   "fin": "2020-01-31",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Formation d'un chauffeur de transport à la conduite économe",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 5 de l'arrêté du 8 février 2016 (NOR : DEVR1603528A), l'annexe 2 de la présente fiche d'opérations standardisées d'économies d'énergie est remplacée par la version figurant à l'annexe 4 dudit arrêté portant la même référence."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000037845360"
+   ]
+  },
+  {
+   "debut": "2020-01-31",
+   "fin": "2023-01-01",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Formation d'un chauffeur de transport à la conduite économe",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 5 de l'arrêté du 8 février 2016 (NOR : DEVR1603528A), l'annexe 2 de la présente fiche d'opération standardisée d'économies d'énergie est remplacée par la version figurant à l'annexe 4 dudit arrêté portant la même référence."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000046173987",
+    "LEGIARTI000042205133",
+    "LEGIARTI000043034081",
+    "LEGIARTI000043874872",
+    "LEGIARTI000045012803",
+    "LEGIARTI000045207955",
+    "LEGIARTI000046500729"
+   ]
+  },
+  {
+   "debut": "2023-01-01",
+   "fin": "2022-12-14",
+   "morteNee": true,
+   "presente": true,
+   "entree": {
+    "intitule": "Formation d'un chauffeur de transport à la conduite économe",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 5 de l'arrêté du 8 février 2016 (NOR : DEVR1603528A), l'annexe 2 de la présente fiche d'opération standardisée d'économies d'énergie est remplacée par la version figurant à l'annexe 4 dudit arrêté portant la même référence."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000046377449"
+   ]
+  },
+  {
+   "debut": "2023-01-01",
+   "fin": "2023-04-01",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Formation d'un chauffeur de transport à la conduite économe",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 5 de l'arrêté du 8 février 2016 (NOR : DEVR1603528A), l'annexe 2 de la présente fiche d'opération standardisée d'économies d'énergie est remplacée par la version figurant à l'annexe 4 dudit arrêté portant la même référence."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000046730503"
+   ]
+  },
+  {
+   "debut": "2023-04-01",
+   "fin": "2025-01-01",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Formation d'un chauffeur de transport à la conduite économe",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 5 de l'arrêté du 8 février 2016 (NOR : DEVR1603528A), l'annexe 2 de la présente fiche d'opération standardisée d'économies d'énergie est remplacée par la version figurant à l'annexe 4 dudit arrêté portant la même référence.",
+     "Conformément à l'article 1 de l'arrêté du 18 février 2023 (NOR : ENER2303227A), la fiche d'opération n° TRA-SE-101 remplace, à compter du 1 er avril 2023, la fiche portant la même référence."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000047313608",
+    "LEGIARTI000048138005",
+    "LEGIARTI000048924008"
+   ]
+  },
+  {
+   "debut": "2024-01-01",
+   "fin": "2023-12-29",
+   "morteNee": true,
+   "presente": true,
+   "entree": {
+    "intitule": "Formation d'un chauffeur de transport à la conduite économe",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 5 de l'arrêté du 8 février 2016 (NOR : DEVR1603528A), l'annexe 2 de la présente fiche d'opération standardisée d'économies d'énergie est remplacée par la version figurant à l'annexe 4 dudit arrêté portant la même référence.",
+     "Conformément à l'article 1 de l'arrêté du 18 février 2023 (NOR : ENER2303227A), la fiche d'opération n° TRA-SE-101 remplace, à compter du 1 er avril 2023, la fiche portant la même référence."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000048138577"
+   ]
+  },
+  {
+   "debut": "2025-01-01",
+   "fin": "2025-10-01",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Formation d'un chauffeur de transport à la conduite économe",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 5 de l'arrêté du 8 février 2016 (NOR : DEVR1603528A), l'annexe 2 de la présente fiche d'opération standardisée d'économies d'énergie est remplacée par la version figurant à l'annexe 4 dudit arrêté portant la même référence.",
+     "Conformément à l'article 1 de l'arrêté du 18 février 2023 (NOR : ENER2303227A), la fiche d'opération n° TRA-SE-101 remplace, à compter du 1 er avril 2023, la fiche portant la même référence."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000050933928",
+    "LEGIARTI000051225934",
+    "LEGIARTI000051518553",
+    "LEGIARTI000051665281",
+    "LEGIARTI000051823020",
+    "LEGIARTI000052131579",
+    "LEGIARTI000052131840"
+   ]
+  },
+  {
+   "debut": "2025-10-01",
+   "fin": "2025-09-10",
+   "morteNee": true,
+   "presente": true,
+   "entree": {
+    "intitule": "Formation d'un chauffeur de transport à la conduite économe",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 5 de l'arrêté du 8 février 2016 (NOR : DEVR1603528A), l'annexe 2 de la présente fiche d'opération standardisée d'économies d'énergie est remplacée par la version figurant à l'annexe 4 dudit arrêté portant la même référence.",
+     "Conformément à l'article 1 de l'arrêté du 18 février 2023 (NOR : ENER2303227A), la fiche d'opération n° TRA-SE-101 remplace, à compter du 1 er avril 2023, la fiche portant la même référence."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000052225881"
+   ]
+  },
+  {
+   "debut": "2025-10-01",
+   "fin": "2025-10-01",
+   "morteNee": true,
+   "presente": true,
+   "entree": {
+    "intitule": "Formation d'un chauffeur de transport à la conduite économe",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 5 de l'arrêté du 8 février 2016 (NOR : DEVR1603528A), l'annexe 2 de la présente fiche d'opération standardisée d'économies d'énergie est remplacée par la version figurant à l'annexe 4 dudit arrêté portant la même référence.",
+     "Conformément à l'article 1 de l'arrêté du 18 février 2023 (NOR : ENER2303227A), la fiche d'opération n° TRA-SE-101 remplace, à compter du 1 er avril 2023, la fiche portant la même référence."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000052325107"
+   ]
+  },
+  {
+   "debut": "2025-10-01",
+   "fin": null,
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Formation d'un chauffeur de transport à la conduite économe",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 5 de l'arrêté du 8 février 2016 (NOR : DEVR1603528A), l'annexe 2 de la présente fiche d'opération standardisée d'économies d'énergie est remplacée par la version figurant à l'annexe 4 dudit arrêté portant la même référence.",
+     "Conformément à l'article 1 de l'arrêté du 18 février 2023 (NOR : ENER2303227A), la fiche d'opération n° TRA-SE-101 remplace, à compter du 1 er avril 2023, la fiche portant la même référence."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000052326667",
+    "LEGIARTI000052325142",
+    "LEGIARTI000054112450",
+    "LEGIARTI000054669865",
+    "LEGIARTI000054885002"
+   ]
+  }
+ ],
+ "confrontationPdf": []
+}

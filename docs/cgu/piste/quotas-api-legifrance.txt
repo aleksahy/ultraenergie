@@ -1,0 +1,360 @@
+Quotas de l'API Légifrance (PISTE), application de production d'Ultra Énergie
+Relevés par Alek le 14/10/2026 dans PISTE : Applications > l'application > Actions > Consulter les quotas.
+Ils peuvent changer : la DILA prévient par email (CGU, article IV.3).
+
+EN BREF
+Les 68 méthodes de l'API portent les mêmes quatre limites :
+  40 requêtes par seconde, 20 requêtes par seconde,
+  500 000 requêtes par jour, 1 000 000 requêtes par jour.
+La plus stricte s'applique : 20 requêtes par seconde et 500 000 par jour.
+Règle pour nos scripts : rester sous 10 requêtes par seconde, la moitié du plafond.
+
+Méthodes utiles pour les fiches CEE (noms tels que PISTE les affiche) :
+  getJoWithNorUsingPOST       un texte du JO par son NOR
+  getLastNJoUsingPOST         les derniers JO parus (veille quotidienne)
+  displayJorfUsingPOST        un texte du JO, articles et annexes
+  displayJorfContUsingPOST    le sommaire d'un JO
+  searchUsingPOST             la recherche (ex. arrêtés modifiant celui du 22/12/2014)
+  getVersionByTextCidUsingPOST, displayLegiPartUsingPOST   versions consolidées
+
+RELEVÉ COMPLET, tel qu'affiché par PISTE
+getCnilWithAncienIdUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+listDocsAdminsUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+siretRcSuggestUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+getTablesUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+listBodmrUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+getCommitIdUsingGET
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+listDossiersLegislatifsUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+listQuestionsEcritesUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+listConventionsUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+getArticleWithIdEliOrAliasUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+pingUsingGET_1
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayKaliArticleUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+listLODAUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displaySameNumArticleUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayConcordanceLinksArticleUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayCodeUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+searchUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+listTextsBoccUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+pingUsingGET_3
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+listBoccsAndTextsUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayKaliContByIdccUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayTextTableOfContentsUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+crossSearchUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+getArticleByCidUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+listBoccUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayServicePublicLinksArticleUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+listCodeUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayJuriPlanClassementUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+listDebatsParlementairesUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayCnilUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+pingUsingGET_4
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+pingUsingGET_5
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+getVersionByTextCidAndElementCidUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+searchCanonicalArticleVersionUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+searchCanonicalVersionUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+hasVersionByTextCidUsingGET
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayJorfContUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayDossierLegislatifUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayJuriUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+getVersionByTextCidUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayLegiPartUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+pdcSuggestUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+getDatesWithoutJoUsingGET
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+getJuriWithAncienIdUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayJorfUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+getCodeWithAncienIdUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+getJoWithNorUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+getLastNJoUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayKaliSectionUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+listLegislaturesUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayKaliContUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayCodeTableOfContentsUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+searchNearestVersionUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+getBoccTextPdfMetadataUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+hasServicePublicLinksArticleUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+getSectionByCidUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayDebatUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+pingUsingGET
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayKaliTextUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+getArticleUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayLawDecreeUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+getArticleWithIdAndNumUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+getJoCidWithEliOrAliasUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+getYearsWithoutTableUsingGET
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayAccoUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayJorfPartUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayRelatedLinksArticleUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)
+displayCirculaireUsingPOST
+Throttle 40 message(s) every 1 second(s)
+Throttle 500000 message(s) every 1 day(s)
+Throttle 1000000 message(s) every 1 day(s)
+Throttle 20 message(s) every 1 second(s)

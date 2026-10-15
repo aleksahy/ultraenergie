@@ -8,22 +8,36 @@
    charte sans rien signaler, et on la retrouve des mois plus tard. */
 
 :root {
-  /* Encre et gris */
-  --encre: #141414;
-  --texte: #3A3A38;
-  --texte-2: #6B6B68;
-  --texte-3: #8A8A86;
-  --texte-4: #9A9A96;
-  --ligne: #EEEDE9;
-  --survol: #F7F7F5;
+  /* Encre et gris.
+     ⚠️ L'ENCRE EST UN VERT FORÊT depuis le 15/10/2026 (charte « Bureau », choisie par Alek
+     sur la page des variantes) : titres, texte courant, boutons « encre », appel final. Il
+     est assez profond pour se lire presque noir, à sa demande. Les gris tirent légèrement
+     vers le vert pour ne pas jurer avec lui. */
+  --foret: #0D1C13;
+  --encre: var(--foret);
+  --texte: #2C3A31;
+  --texte-2: #5B665F;
+  --texte-3: #7D877F;
+  --texte-4: #949C95;
+  --ligne: #E4E8E2;
+  --survol: #F4F6F2;
   --blanc: #FFFFFF;
+  /* ⛔ LE LOGO RESTE NOIR (Alek, 15/10/2026), même quand l'encre passe en forêt. */
+  --noir: #141414;
 
   /* L'accent, tranché : un seul vert, aucune variante. */
   --accent: #4C8C2B;
+  /* Le même vert, un ton plus profond, pour le texte petit (étiquettes, délais, liens) : à
+     12 ou 13 px, l'accent sur blanc est sous le seuil de contraste AA ; celui-ci le passe. */
+  --accent-texte: #407A20;
   /* ⚠️ LE TEXTE POSÉ SUR L'ACCENT EST BLANC. Le handoff posait l'encre `#141414` sur les
      fonds d'accent : sur ce vert, le contraste tombe sous le seuil lisible. Tout ce qui
      s'écrit sur `--accent` prend `--sur-accent`, jamais `--encre`. */
   --sur-accent: #FFFFFF;
+  /* Les mêmes, en composantes, pour les voiles et les blancs atténués des bandes sombres :
+     `rgba(var(--foret-rgb), 0.6)`. */
+  --foret-rgb: 13, 28, 19;
+  --blanc-rgb: 255, 255, 255;
 
   /* Le bandeau d'abrogation, seul endroit du site qui avertit. Un orange sourd : il doit
      se voir sans concurrencer le vert d'accent, qui reste la couleur de l'action. */
@@ -52,14 +66,11 @@
   --bande-menu: 32px;
 
   --espace-section: 96px;
-  /* L'espace au-dessus du bloc « Veille CEE », qui est aussi celui qui le sépare de la
-     FAQ : la section Ressources annule son `padding-bottom`, la FAQ reprend cette même
-     variable en `padding-top`. Une seule valeur, deux usages, impossible de les désaccorder. */
-  --espace-veille: 136px;
 
-  --rayon-carte: 20px;
-  --rayon-modale: 24px;
-  --rayon-champ: 12px;
+  /* Angles nets depuis le 15/10/2026 : 4px pour les cartes, champs et boutons. */
+  --rayon-carte: 4px;
+  --rayon-modale: 4px;
+  --rayon-champ: 4px;
   --pied-tete-h: 28px;
 }
 
@@ -91,15 +102,15 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
 
-.wm-point { color: var(--accent); }
 .accentue { color: var(--accent); }
 
+/* L'étiquette au-dessus d'un titre : capitales vertes, sans trait (motif EBS, 15/10/2026). */
 .surtitre {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-texte);
 }
 
 /* ── Boutons pilule ──────────────────────────────────────────────── */
@@ -109,7 +120,8 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border-radius: 999px;
+  /* Rectangle à angles vifs depuis le 15/10/2026 : le site n'a plus de pilule, le nom reste. */
+  border-radius: 0;
   padding: 16px 26px;
   font-size: 15px;
   font-weight: 700;
@@ -121,6 +133,8 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 .pilule-encre { background: var(--encre); color: var(--blanc); }
 .pilule-accent { background: var(--accent); color: var(--sur-accent); }
 .pilule-blanc { background: var(--blanc); color: var(--encre); }
+.pilule-contour { background: none; color: var(--encre); box-shadow: inset 0 0 0 1.5px var(--encre); }
+.pilule-contour:hover { background: var(--survol); opacity: 1; }
 
 /* ── En-tête ─────────────────────────────────────────────────────── */
 
@@ -140,11 +154,9 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
   justify-content: space-between;
   gap: 24px;
 }
-.entete-wordmark { font-size: 22px; font-weight: 700; white-space: nowrap; }
-.entete-droite { display: flex; align-items: center; gap: 18px; }
-.entete-tel { font-size: 14px; font-weight: 500; white-space: nowrap; }
-.entete-tel:hover { color: var(--accent); }
-.entete-droite .pilule { padding: 12px 20px; font-size: 14px; }
+.entete-wordmark { font-size: 22px; font-weight: 700; white-space: nowrap; color: var(--noir); }
+.entete-droite { display: flex; align-items: center; gap: 10px; }
+.entete-droite .pilule { padding: 12px 18px; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.05em; }
 
 /* ── Nav desktop (déroulants en CSS pur) ─────────────────────────── */
 
@@ -154,14 +166,26 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
   align-items: center;
   gap: 5px;
   padding: 10px 14px;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
-.nav-lien:hover { color: var(--accent); }
+/* Le survol souligne d'un trait vert au lieu de passer le texte en vert : même geste que le
+   filet des têtes de section. Le groupe ouvert garde son trait tant que le menu est déplié. */
+.nav-lien:hover,
+.nav-groupe:hover .nav-groupe-tete,
+.nav-groupe:has(:focus-visible) .nav-groupe-tete {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 7px;
+}
 .nav-groupe { position: relative; display: inline-flex; align-items: center; }
 .nav-chevron { opacity: 0.6; transition: transform 0.16s ease, opacity 0.16s ease; }
 .nav-groupe:hover .nav-chevron,
-.nav-groupe:focus-within .nav-chevron { transform: rotate(180deg); opacity: 1; }
+.nav-groupe:has(:focus-visible) .nav-chevron { transform: rotate(180deg); opacity: 1; }
 
 .nav-menu {
   position: absolute;
@@ -174,7 +198,7 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
   gap: 2px;
   background: var(--blanc);
   border: 1px solid var(--ligne);
-  border-radius: 14px;
+  border-radius: var(--rayon-champ);
   box-shadow: var(--ombre-menu);
   opacity: 0;
   visibility: hidden;
@@ -184,7 +208,10 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
   z-index: 95;
 }
 .nav-groupe:hover .nav-menu,
-.nav-groupe:focus-within .nav-menu {
+/* ⚠️ `:has(:focus-visible)` et non `:focus-within` : avec `focus-within`, le menu restait
+   déplié après un clic à la souris, le bouton ou le lien gardant le focus (Alek, 15/10/2026).
+   Le clavier, lui, ouvre toujours le menu, parce que Tab donne un focus visible. */
+.nav-groupe:has(:focus-visible) .nav-menu {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
@@ -192,11 +219,14 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 }
 .nav-menu-item {
   padding: 9px 14px;
-  border-radius: 9px;
+  border-radius: 2px;
   font-size: 14px;
   white-space: nowrap;
 }
-.nav-menu-item:hover { background: var(--survol); color: var(--accent); }
+/* L'entrée survolée : un fond pâle, le texte reste à l'encre. ⛔ Pas de filet vert à gauche
+   (retiré le 15/10/2026, Alek). */
+.nav-menu-item:hover,
+.nav-menu-item:focus-visible { background: var(--survol); }
 
 /* ── Menu mobile ─────────────────────────────────────────────────── */
 
@@ -260,70 +290,109 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 .menu-sous-lien { padding: 11px 0; font-size: 15px; color: var(--texte-2); }
 .menu-actions { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
 
-/* ── Héros ───────────────────────────────────────────────────────── */
+/* ── Héros ───────────────────────────────────────────────────────────
+   Une photo plein écran sous un voile forêt, une colonne de texte à gauche, un bouton.
+   D'après EBS Énergie, retenu par Alek le 15/10/2026. */
 
-.hero {
-  max-width: var(--largeur);
-  margin: 0 auto;
-  padding: 64px var(--gouttiere) 88px;
+.hero-photo {
+  position: relative;
+  isolation: isolate;
+  min-height: 560px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 56px;
   align-items: center;
+  padding: 72px 0;
+  color: var(--blanc);
 }
-.hero-texte { flex: 1 1 460px; min-width: 320px; }
-.hero-texte .surtitre { margin-bottom: 18px; }
-.hero h1 { font-size: clamp(32px, 5.2vw, 52px); line-height: 1.08; margin: 0 0 24px; }
-.hero-p { font-size: 17px; line-height: 1.6; color: var(--texte-2); max-width: 480px; margin-bottom: 32px; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.hero-photo > img, .page-bande > img { object-fit: cover; z-index: -2; }
+.hero-photo::before, .page-bande::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.hero-photo::before {
+  background: linear-gradient(90deg, rgba(var(--foret-rgb), 0.88) 0%, rgba(var(--foret-rgb), 0.6) 55%, rgba(var(--foret-rgb), 0.3) 100%);
+}
+.hero-photo-inner { width: 100%; max-width: var(--largeur); margin: 0 auto; padding: 0 var(--gouttiere); }
+.hero-photo .surtitre { color: rgba(var(--blanc-rgb), 0.8); }
+.hero-photo h1 { font-size: clamp(34px, 4.4vw, 54px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.06; margin: 18px 0 20px; max-width: 680px; }
+.hero-photo p { font-size: 18px; line-height: 1.6; max-width: 560px; margin: 0 0 30px; color: rgba(var(--blanc-rgb), 0.88); }
 
-.hero-illustration { flex: 1 1 420px; min-width: 280px; position: relative; }
-.hero-svg { position: relative; z-index: 1; display: block; width: 100%; max-width: 420px; margin: 0 auto; }
-.hero-halo { position: absolute; z-index: 0; border-radius: 50%; background: var(--accent); }
-.hero-halo-1 { width: 220px; height: 220px; opacity: 0.35; filter: blur(40px); top: -30px; right: -20px; }
-.hero-halo-2 { width: 180px; height: 180px; opacity: 0.25; filter: blur(36px); bottom: -20px; left: -10px; }
+/* ── Repères ─────────────────────────────────────────────────────── */
+
+.reperes { border-bottom: 1px solid var(--ligne); }
+.reperes-inner { max-width: var(--largeur); margin: 0 auto; padding: 0 var(--gouttiere); display: grid; grid-template-columns: repeat(3, 1fr); }
+.repere { display: flex; gap: 14px; padding: 26px 24px 26px 0; }
+.repere + .repere { padding-left: 24px; border-left: 1px solid var(--ligne); }
+.repere .ico-coche { flex: none; width: 22px; height: 22px; color: var(--accent); margin-top: 2px; }
+.repere strong { display: block; font-size: 16px; font-weight: 700; color: var(--foret); margin-bottom: 3px; }
+.repere span { font-size: 14px; color: var(--texte-2); line-height: 1.5; }
 
 /* ── Sections ────────────────────────────────────────────────────── */
 
-.section {
-  max-width: var(--largeur);
-  margin: 0 auto;
-  padding: 40px var(--gouttiere) var(--espace-section);
-}
-.tete-section { text-align: center; max-width: 640px; margin: 0 auto 48px; }
-.tete-section-large { max-width: 680px; }
-.tete-section .surtitre { margin-bottom: 14px; }
-.tete-section h2 { font-size: clamp(26px, 3.6vw, 36px); line-height: 1.2; }
+.section { max-width: var(--largeur); margin: 0 auto; padding: 72px var(--gouttiere); }
+.section + .section { border-top: 1px solid var(--ligne); }
 
-/* ── Qui êtes-vous ───────────────────────────────────────────────── */
+/* La tête de section : étiquette, titre, courte barre verte (motif EBS). */
+.tete-section { margin-bottom: 36px; }
+.tete-section h2 { font-size: clamp(26px, 3vw, 34px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin: 12px 0 0; max-width: 720px; }
+.tete-section-barre { width: 48px; height: 3px; background: var(--accent); margin-top: 16px; }
+.tete-section.est-blanc { color: var(--blanc); }
+.tete-section.est-blanc .surtitre { color: rgba(var(--blanc-rgb), 0.72); }
+.tete-section.est-blanc .tete-section-barre { background: var(--blanc); }
+.tete-section.est-compact { margin-bottom: 20px; }
 
-.profils { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-.carte-profil {
-  flex: 1 1 220px;
-  min-width: 220px;
-  max-width: 260px;
-  border: 1px solid var(--ligne);
-  border-radius: var(--rayon-carte);
-  padding: 28px 22px;
+/* ── Secteurs ────────────────────────────────────────────────────── */
+
+.secteurs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+.secteur { background: var(--survol); padding: 22px 18px 24px; border-top: 3px solid var(--foret); }
+.secteur strong { display: block; font-size: 16px; color: var(--foret); margin-bottom: 6px; }
+.secteur span { font-size: 13px; color: var(--texte-2); line-height: 1.5; }
+
+/* ── Nos solutions ───────────────────────────────────────────────── */
+
+/* Quatre tuiles sur une ligne, la tête de section dans la première case. */
+.solutions { display: grid; grid-template-columns: 1.3fr repeat(4, 1fr); gap: 16px; align-items: stretch; }
+.solutions-intro { padding: 8px 32px 8px 0; }
+.solutions-intro p { font-size: 15px; line-height: 1.6; color: var(--texte-2); margin: 0; }
+.solution-tuile {
+  background: var(--survol);
+  min-height: 160px;
+  padding: 28px 16px 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  text-align: left;
-  transition: border-color 0.15s ease;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--foret);
+  transition: background 0.15s ease, color 0.15s ease;
 }
-.carte-profil:hover { border-color: var(--accent); }
-.carte-profil-titre { font-size: 18px; font-weight: 700; }
-.carte-profil-desc { font-size: 14px; line-height: 1.55; color: var(--texte-2); font-weight: 400; }
+.solution-tuile .ico-argument { width: 34px; height: 34px; color: var(--accent); }
+.solution-tuile:hover { background: var(--foret); color: var(--blanc); }
+.solution-tuile:hover .ico-argument { color: var(--blanc); }
 
-/* ── Comment ça marche ───────────────────────────────────────────── */
+/* ── Bande forêt : la méthode ────────────────────────────────────── */
 
-.etapes { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; }
+.bande { background: var(--foret); color: var(--blanc); padding: 72px 0; }
+.bande-inner { max-width: var(--largeur); margin: 0 auto; padding: 0 var(--gouttiere); }
+.bande-tuiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.bande-tuile { background: rgba(var(--blanc-rgb), 0.07); border: 1px solid rgba(var(--blanc-rgb), 0.12); padding: 28px 24px 30px; }
+.bande-num { font-size: 12.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(var(--blanc-rgb), 0.6); }
+.bande-tuile h3 { font-size: 18px; font-weight: 700; margin: 10px 0; line-height: 1.3; }
+.bande-tuile p { font-size: 14px; line-height: 1.6; color: rgba(var(--blanc-rgb), 0.78); margin: 0; }
+
+/* Les étapes des pages partenaires (« Comment on démarre », numérotées). */
+.etapes { display: flex; flex-wrap: wrap; gap: 32px; }
 .etape { flex: 1 1 240px; min-width: 220px; max-width: 280px; }
-.ico-etape { display: block; width: 44px; height: 44px; color: var(--encre); margin-bottom: 20px; }
+.page .etape { flex-basis: 180px; min-width: 0; }
+.ico-etape { display: block; width: 36px; height: 36px; color: var(--encre); margin-bottom: 20px; }
 .etape-delai {
   font-size: 12px;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--accent-texte);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   margin-bottom: 8px;
@@ -331,57 +400,20 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 .etape-titre { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
 .etape-desc { font-size: 14px; line-height: 1.6; color: var(--texte-2); }
 
-/* ── Travaux éligibles ───────────────────────────────────────────── */
+/* ── Métier ──────────────────────────────────────────────────────── */
 
-.travaux { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 44px 32px; }
-.travail { display: block; transition: opacity 0.15s ease; }
-.travail:hover { opacity: 0.72; }
-.ico-travaux { display: block; width: 40px; height: 40px; color: var(--accent); margin-bottom: 18px; }
-.travail-titre { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
-.travail-desc { font-size: 13px; line-height: 1.55; color: var(--texte-2); }
+.metier { display: grid; grid-template-columns: 1fr 1.6fr; gap: 56px; align-items: start; }
+.prose { font-size: 16px; line-height: 1.7; color: var(--texte); margin: 0 0 16px; }
 
-/* ── Comparatif ──────────────────────────────────────────────────── */
+/* ── Publications ────────────────────────────────────────────────── */
 
-.comparatif { display: flex; flex-wrap: wrap; gap: 24px; }
-.colonne-comparatif {
-  flex: 1 1 280px;
-  min-width: 260px;
-  padding: 28px 24px;
-  border-radius: var(--rayon-carte);
-  border: 1px solid var(--ligne);
-}
-.colonne-comparatif.est-mise-en-avant { border: 2px solid var(--accent); }
-.colonne-titre { font-size: 17px; font-weight: 700; margin-bottom: 16px; }
-.colonne-points { list-style: none; margin: 0; padding: 0; }
-.colonne-points li {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--texte);
-}
-.puce { color: var(--texte-3); flex: none; }
-.est-mise-en-avant .puce { color: var(--accent); }
+.publications { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.publication { display: flex; flex-direction: column; background: var(--survol); border-top: 3px solid var(--foret); padding: 24px 24px 26px; }
+.publication-titre { font-size: 18px; font-weight: 700; line-height: 1.3; margin: 2px 0 10px; }
+.publication:hover .publication-titre { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
+.publication-resume { font-size: 14px; line-height: 1.6; color: var(--texte-2); margin: 0; flex: 1; }
+.publication .article-date { margin-top: 16px; }
 
-/* ── Partenaires ─────────────────────────────────────────────────── */
-
-.partenaires { display: flex; flex-wrap: wrap; gap: 24px; }
-.carte-partenaire {
-  flex: 1 1 380px;
-  min-width: 300px;
-  border: 1px solid var(--ligne);
-  border-radius: var(--rayon-carte);
-  padding: 32px;
-}
-.carte-partenaire-titre { font-size: 18px; font-weight: 700; margin-bottom: 14px; }
-.carte-partenaire-desc { font-size: 14px; line-height: 1.6; color: var(--texte-2); margin-bottom: 20px; }
-.carte-partenaire .pilule { padding: 13px 20px; font-size: 14px; }
-
-/* ── Ressources ──────────────────────────────────────────────────── */
-
-/* Le `padding-bottom` de la section est repris par la FAQ : cf. `--espace-veille`. */
-.section-ressources { padding-bottom: 0; }
 .articles { display: flex; flex-wrap: wrap; gap: 20px; }
 .article { flex: 1 1 300px; min-width: 260px; }
 .article-photo { border-radius: var(--rayon-carte); overflow: hidden; margin-bottom: 14px; }
@@ -389,19 +421,27 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 .article-tag {
   font-size: 12px;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--accent-texte);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   margin-bottom: 8px;
 }
 .article-titre { font-size: 16px; font-weight: 600; line-height: 1.4; }
-.article:hover .article-titre { color: var(--accent); }
+.article:hover .article-titre { color: var(--accent-texte); }
+.article-date { margin-top: 6px; font-size: 13px; color: var(--texte-2); }
+.lien-suite {
+  display: inline-block;
+  margin-top: 28px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--foret);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 5px;
+}
 
-/* ⚠️ `--espace-veille` NE S'APPLIQUE QUE SUR L'ACCUEIL. C'est l'espace qui sépare le bloc de
-   la FAQ, et il n'a de sens que dans la section Ressources de la page d'accueil. Porté par
-   `.veille` lui-même, il posait 136px de vide sous le chapô de la page /veille-cee/, où le
-   bloc suit directement le texte qui l'annonce. */
-.section-ressources .veille { margin-top: var(--espace-veille); }
+/* ── Veille CEE ──────────────────────────────────────────────────── */
+
 .veille {
   margin-top: 28px;
   border: 1px solid var(--ligne);
@@ -415,22 +455,37 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 }
 .veille-titre { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
 .veille-desc { font-size: 14px; color: var(--texte-2); }
-.veille-merci { font-size: 14px; font-weight: 500; color: var(--accent); }
-.veille-form { display: flex; gap: 10px; }
+.veille-merci { font-size: 14px; font-weight: 500; color: var(--accent-texte); }
+.veille-form { display: flex; flex-wrap: wrap; gap: 10px; }
 .veille-champ {
-  border: 1px solid var(--ligne);
-  border-radius: 999px;
+  border: 1px solid var(--texte-3);
+  border-radius: 0;
   padding: 13px 18px;
   font-size: 14px;
   min-width: 220px;
   background: var(--blanc);
 }
-.veille-champ:focus-visible { outline-offset: 0; border-radius: 999px; }
+.veille-champ:focus-visible { outline-offset: 0; border-radius: 0; }
 .veille-bouton { padding: 13px 22px; font-size: 14px; }
+/* Le piège à robots : hors écran, pas « display: none », que certains robots respectent. */
+.veille-piege { position: absolute; left: -10000px; width: 1px; height: 1px; opacity: 0; }
+.veille-erreur { flex-basis: 100%; margin: 0; font-size: 13px; color: var(--texte-2); }
+/* Dans le pied, sous les informations de la société : le formulaire en colonne. */
+.pied-veille { max-width: 360px; }
+.pied-veille-desc { font-size: 14px; color: var(--texte-2); margin: 0 0 12px; }
+.pied-veille .veille-form { flex-wrap: nowrap; }
+.pied-veille .veille-champ { flex: 1 1 auto; min-width: 0; padding: 11px 14px; }
+.pied-veille .veille-bouton { flex: 0 0 auto; padding: 11px 16px; }
+.page .veille { max-width: 560px; flex-direction: column; align-items: stretch; }
 
 /* ── FAQ ─────────────────────────────────────────────────────────── */
 
-.section-faq { max-width: 900px; padding-top: var(--espace-veille); }
+.section .faq { max-width: 900px; }
+/* La FAQ de l'accueil, centrée (Alek, 15/10/2026) : la tête, sa barre et la liste. */
+.section.est-centree .tete-section { text-align: center; }
+.section.est-centree .tete-section h2 { margin-left: auto; margin-right: auto; }
+.section.est-centree .tete-section-barre { margin-left: auto; margin-right: auto; }
+.section.est-centree .faq { margin: 0 auto; }
 .faq-item { border-bottom: 1px solid var(--ligne); }
 .faq-question {
   width: 100%;
@@ -443,29 +498,33 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
   font-size: 16px;
   font-weight: 600;
 }
-.faq-question:hover { color: var(--accent); }
-.faq-signe { color: var(--accent); font-size: 20px; flex: none; }
+.faq-question:hover { color: var(--accent-texte); }
+.faq-signe { color: var(--accent-texte); font-size: 20px; flex: none; }
 .faq-reponse { padding-bottom: 22px; font-size: 14px; line-height: 1.65; color: var(--texte-2); max-width: 760px; }
 
-/* ── Appel final ─────────────────────────────────────────────────── */
+/* ── Contact ─────────────────────────────────────────────────────── */
 
-.appel-final { background: var(--accent); padding: 72px var(--gouttiere); text-align: center; }
-.appel-final h2 {
-  font-size: clamp(26px, 3.6vw, 36px);
-  line-height: 1.2;
-  color: var(--sur-accent);
-  max-width: 640px;
-  margin: 0 auto 28px;
+.contact-bande { background: var(--foret); color: var(--blanc); padding: 56px 0; }
+.contact-bande-inner {
+  max-width: var(--largeur);
+  margin: 0 auto;
+  padding: 0 var(--gouttiere);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
 }
-.appel-final-actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
-.appel-final .pilule { padding: 16px 28px; }
+.contact-bande h2 { font-size: clamp(24px, 2.6vw, 30px); font-weight: 500; letter-spacing: -0.02em; margin: 0 0 6px; }
+.contact-bande p { margin: 0; font-size: 15px; color: rgba(var(--blanc-rgb), 0.78); max-width: 560px; }
 
 /* ── Pied de page ────────────────────────────────────────────────── */
 
 .pied-inner {
   max-width: var(--largeur);
   margin: 0 auto;
-  padding: 64px var(--gouttiere) 40px;
+  /* 64px en bas aussi : la ligne de copyright, qui fermait le pied, est partie le 15/10/2026. */
+  padding: 64px var(--gouttiere);
   display: grid;
   /* Trois colonnes de liens et le logo CEE : la colonne des secteurs est partie le 19/09/2026. */
   grid-template-columns: minmax(210px, 1.3fr) minmax(170px, 0.9fr) minmax(170px, 0.95fr) auto;
@@ -476,13 +535,13 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
    même bord haut, mais 20px gras et 13px capitales n'occupent pas la même bande : sans
    cette hauteur commune, « Hubs » et « Légal » flottent au-dessus de « Ultra Énergie » et
    la première ligne du pied paraît de travers. */
-.pied-wordmark { display: block; font-size: 20px; font-weight: 700; line-height: var(--pied-tete-h); margin-bottom: 16px; }
+.pied-wordmark { display: block; font-size: 20px; font-weight: 700; line-height: var(--pied-tete-h); margin-bottom: 16px; color: var(--noir); }
 .pied-titre {
   font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--texte-4);
+  color: var(--texte-2);
   line-height: var(--pied-tete-h);
   margin-bottom: 16px;
 }
@@ -494,21 +553,15 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
   line-height: 1.7;
   color: var(--texte-2);
 }
-.pied-coordonnees a:hover { color: var(--accent); }
+.pied-coordonnees a:hover { color: var(--accent-texte); }
 /* Une colonne peut porter deux rubriques : la seconde se décolle de la liste du dessus,
    sans jamais bouger la PREMIÈRE ligne du pied, qui est alignée sur le wordmark. */
 .pied-titre-suivant { margin-top: 28px; }
-.pied-liens { display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
-.pied-liens a:hover { color: var(--accent); }
+.pied-liens { display: flex; flex-direction: column; gap: 4px; font-size: 14px; }
+.pied-liens a { padding: 3px 0; }
+.pied-liens a:hover { color: var(--accent-texte); }
 /* Le logo officiel du dispositif : à droite du pied, aligné en haut sur la colonne de gauche. */
 .pied-cee { justify-self: end; align-self: start; width: 170px; height: auto; }
-.pied-bas {
-  max-width: var(--largeur);
-  margin: 0 auto;
-  padding: 0 var(--gouttiere) 32px;
-  font-size: 12px;
-  color: var(--texte-4);
-}
 
 /* ── Modales ─────────────────────────────────────────────────────── */
 
@@ -524,6 +577,7 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
   overflow-y: auto;
 }
 .modale {
+  position: relative;
   background: var(--blanc);
   border-radius: var(--rayon-modale);
   padding: 36px;
@@ -539,10 +593,10 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 .modale-soustitre + .modale-form,
 .modale-soustitre + .modale-merci { margin-top: 24px; }
 .modale-form { display: flex; flex-direction: column; gap: 14px; }
-.modale-merci { font-size: 14px; line-height: 1.6; color: var(--accent); font-weight: 500; }
+.modale-merci { font-size: 14px; line-height: 1.6; color: var(--accent-texte); font-weight: 500; }
 .champ {
   width: 100%;
-  border: 1px solid var(--ligne);
+  border: 1px solid var(--texte-3);
   border-radius: var(--rayon-champ);
   padding: 13px 14px;
   font-size: 14px;
@@ -550,8 +604,27 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 }
 select.champ { appearance: auto; }
 .modale-envoi { margin-top: 6px; padding: 15px; }
-.modale-fermer { margin-top: 16px; color: var(--texte-4); font-size: 13px; }
-.modale-fermer:hover { color: var(--encre); }
+.modale-fermer { margin-top: 12px; padding: 12px 0; color: var(--texte-2); font-size: 14px; font-weight: 500; }
+.modale-fermer:hover { color: var(--encre); text-decoration: underline; text-underline-offset: 3px; }
+/* La croix, 44×44 en haut à droite : sur téléphone il n'y a pas de touche Échap. */
+.modale-croix {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--texte-2);
+}
+.modale-croix:hover { color: var(--encre); }
+.champ-bloc { display: block; }
+.champ-label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+.champ-facultatif { font-weight: 400; color: var(--texte-2); }
+.champs-deux { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.modale-info { margin: 4px 0 0; font-size: 12px; line-height: 1.5; color: var(--texte-2); }
+.modale-info a { text-decoration: underline; text-underline-offset: 3px; }
 
 
 /* ── Pages intérieures ───────────────────────────────────────────────
@@ -568,14 +641,72 @@ select.champ { appearance: auto; }
   margin: 0 auto;
   padding: 32px var(--gouttiere) var(--espace-section);
 }
-.page-titre { font-size: clamp(34px, 5vw, 56px); line-height: 1.06; letter-spacing: -0.015em; margin: 0 0 16px; }
-/* L'intitulé officiel d'une fiche peut faire trois lignes : à 56px il occuperait l'écran. */
-.page-fiche .page-titre { font-size: clamp(28px, 3.4vw, 40px); line-height: 1.14; }
+.page-titre { font-size: clamp(34px, 5vw, 56px); font-weight: 500; line-height: 1.06; letter-spacing: -0.03em; margin: 0 0 16px; }
 .page-chapo { font-size: 18px; line-height: 1.6; color: var(--texte-2); max-width: 760px; }
 .page-texte { font-size: 15px; line-height: 1.65; color: var(--texte-2); max-width: 760px; margin-bottom: 12px; }
 
-.page-section { margin-top: 48px; }
-.page-section-titre { font-size: 20px; font-weight: 700; margin: 0 0 18px; }
+/* Le bandeau photo des pages « Pour qui » et « Partenaires » : hors du `.page`, d'un bord à
+   l'autre, le titre en bas à gauche sur un voile forêt. */
+.page-bande {
+  position: relative;
+  isolation: isolate;
+  min-height: 500px;
+  display: flex;
+  align-items: flex-end;
+  color: var(--blanc);
+}
+.page-bande::before { background: linear-gradient(180deg, rgba(var(--foret-rgb), 0.35), rgba(var(--foret-rgb), 0.82)); }
+.page-bande-inner { width: 100%; max-width: var(--largeur); margin: 0 auto; padding: 120px var(--gouttiere) 48px; }
+.page-bande .surtitre { color: rgba(var(--blanc-rgb), 0.8); margin-bottom: 14px; }
+.page-bande .page-titre { color: var(--blanc); margin: 0; max-width: 820px; }
+
+.page-section { margin-top: 64px; }
+.page-section-tete .surtitre { margin-bottom: 10px; }
+/* Tête à gauche, contenu à droite : le contexte des pages « Pour qui ». */
+.page-section.est-colonnes { display: grid; grid-template-columns: 1fr 1.6fr; gap: 24px 56px; align-items: start; }
+.page-section.est-colonnes .page-section-barre { margin-bottom: 0; }
+.page-section.est-colonnes .page-texte { font-size: 16px; max-width: none; }
+/* Tête centrée, contenu borné : la FAQ de ces mêmes pages. */
+.page-section.est-centree .page-section-tete { text-align: center; }
+.page-section.est-centree .page-section-barre { margin-left: auto; margin-right: auto; }
+.page-section.est-centree .faq { max-width: 900px; margin: 0 auto; }
+
+/* Les opérations éligibles : des familles en grille, titre et une ligne. */
+.operations { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px 40px; }
+.operation { padding-top: 14px; border-top: 1px solid var(--ligne); }
+.operation-titre { font-size: 17px; font-weight: 700; margin: 0 0 6px; }
+.operation-texte { font-size: 14px; line-height: 1.6; color: var(--texte-2); margin: 0; }
+.operations + .mention { margin-top: 20px; }
+
+/* Le déroulé : quatre tuiles reliées, à l'horizontale, sur le modèle d'EBS. */
+.deroule { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; position: relative; }
+.deroule-etape {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--survol);
+  border-top: 3px solid var(--foret);
+  padding: 22px 22px 26px;
+}
+/* Le trait qui relie une tuile à la suivante, à la hauteur du numéro. */
+.deroule-etape + .deroule-etape::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 34px;
+  width: 12px;
+  height: 2px;
+  background: var(--foret);
+}
+.deroule-num { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1; color: var(--foret); }
+.deroule-delai { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-texte); margin-top: 6px; }
+.deroule-titre { font-size: 17px; font-weight: 700; line-height: 1.3; }
+.deroule-desc { font-size: 14px; line-height: 1.6; color: var(--texte-2); }
+/* Même motif que l'accueil : un titre de rang intermédiaire et la courte barre verte. */
+.page-section-titre { font-size: clamp(22px, 2.4vw, 28px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin: 0; }
+.page-section-barre { margin: 14px 0 22px; }
+.page-action { margin-top: 24px; }
 .page-coordonnees {
   font-style: normal;
   display: flex;
@@ -584,7 +715,7 @@ select.champ { appearance: auto; }
   line-height: 1.8;
   color: var(--texte-2);
 }
-.page-coordonnees a:hover { color: var(--accent); }
+.page-coordonnees a:hover { color: var(--accent-texte); }
 
 /* Le bandeau qui dit qu'une page est une coquille. Il disparaîtra page par page, à mesure
    qu'elles se remplissent ; tant qu'il est là, il vaut mieux qu'il se voie. */
@@ -596,15 +727,6 @@ select.champ { appearance: auto; }
   border-radius: var(--rayon-champ);
   font-size: 13px;
   color: var(--texte-3);
-}
-
-.fiche-code {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 12px;
 }
 
 /* ── Fil d'Ariane ────────────────────────────────────────────────── */
@@ -638,8 +760,8 @@ select.champ { appearance: auto; }
   border-right: 1.5px solid var(--texte-4);
   transform: rotate(45deg);
 }
-.fil-ariane a { color: var(--texte-3); font-weight: 500; }
-.fil-ariane a:hover { color: var(--accent); }
+.fil-ariane a { display: inline-block; padding: 6px 0; color: var(--texte-2); font-weight: 500; }
+.fil-ariane a:hover { color: var(--accent-texte); }
 .fil-ariane [aria-current='page'] { color: var(--texte); font-weight: 700; }
 
 /* ── Listes de liens (maillage) ──────────────────────────────────── */
@@ -648,7 +770,7 @@ select.champ { appearance: auto; }
    lieu de laisser l'écran vide à droite, et donnent à chaque destination une surface qu'on
    vise sans effort. La flèche dit que le lien mène ailleurs. */
 .liste-liens { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
-.liste-liens-auto { grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); }
+.liste-liens-auto { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 .liste-liens-trois { grid-template-columns: repeat(3, 1fr); }
 .liste-liens a {
   position: relative;
@@ -676,210 +798,13 @@ select.champ { appearance: auto; }
 .liste-liens a:hover { border-color: var(--accent); background: var(--survol); }
 .liste-liens a:hover::after { border-color: var(--accent); transform: rotate(45deg) translate(2px, -2px); }
 .liste-liens-label { font-size: 16px; font-weight: 700; line-height: 1.35; }
-.liste-liens a:hover .liste-liens-label { color: var(--accent); }
+.liste-liens a:hover .liste-liens-label { color: var(--accent-texte); }
 .liste-liens-note { font-size: 13px; line-height: 1.5; color: var(--texte-3); }
 
-.lien-appuye { font-size: 15px; font-weight: 700; color: var(--accent); }
+.lien-appuye { font-size: 15px; font-weight: 700; color: var(--accent-texte); }
 .lien-appuye:hover { text-decoration: underline; }
 
-/* Les ancres d'usage d'un hub catalogue : des raccourcis vers ses sections, pas des pages. */
-.ancres { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
-.ancres a {
-  padding: 8px 14px;
-  border: 1px solid var(--ligne);
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 500;
-}
-.ancres a:hover { border-color: var(--accent); color: var(--accent); }
-.ancres a[aria-current='true'] { background: var(--accent); border-color: var(--accent); color: var(--sur-accent); }
-.ancres a[aria-current='true'] .ancres-compte { color: var(--sur-accent); opacity: 0.85; }
-
-
-/* ── Page de fiche : corps et bande latérale ─────────────────────────
-   Deux colonnes au-delà de 1120px, la bande collée en haut pendant le défilement. */
-
-.page-fiche { --rail-largeur: 300px; --rail-ecart: 56px; }
-.fiche-corps { display: grid; grid-template-columns: minmax(0, 1fr) var(--rail-largeur); gap: var(--rail-ecart); align-items: start; }
-.fiche-colonne { min-width: 0; }
-/* Le titre et le chapo s'arrêtent au bord de la colonne, pas au bord de la page : un H1 qui
-   court au-dessus de la bande latérale lit comme un bandeau, et son retour à la ligne ne
-   tombe plus sur le même bord que les sections qu'il annonce. Même largeur, mêmes variables. */
-@media (min-width: 1120px) {
-  .page-fiche .page-titre,
-  .page-fiche .page-chapo,
-  .page-fiche .fiche-intro { max-width: calc(100% - var(--rail-largeur) - var(--rail-ecart)); }
-}
-/* L'introduction sous le titre : deux paragraphes de prose, même mesure que le texte courant. */
-.fiche-intro { margin: 8px 0 8px; }
-.fiche-intro p { max-width: 760px; margin: 0 0 12px; font-size: 16px; line-height: 1.65; }
-.fiche-rail {
-  position: sticky;
-  /* En-tête collant (~74px) plus une respiration : la bande s'arrête juste dessous. */
-  top: 96px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.rail-bloc { border: 1px solid var(--ligne); border-radius: var(--rayon-carte); padding: 20px; }
-.rail-surtitre {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--texte-4);
-  margin-bottom: 12px;
-}
-/* ⚠️ LA CARTE D'ACTION EST EN ACCENT, PAS EN ENCRE. Un aplat noir dans une bande latérale
-   pèse plus lourd que tout le reste de la page et se lit comme un bandeau publicitaire.
-   L'accent est déjà le traitement des appels à l'action du site (le bandeau de bas de page
-   d'accueil), donc la bande n'introduit aucune couleur nouvelle.
-   ⛔ Pas de vert foncé « pour assombrir » : la charte n'a qu'un vert, sans variante. */
-.rail-bloc-action { background: var(--accent); border-color: var(--accent); }
-.rail-bloc-action .rail-surtitre { color: var(--sur-accent); opacity: 0.7; }
-.rail-accroche { font-size: 14px; line-height: 1.5; color: var(--sur-accent); margin-bottom: 16px; }
-.rail-pilule { width: 100%; padding: 12px 16px; font-size: 14px; }
-.rail-pilule + .rail-pilule { margin-top: 8px; }
-/* Le second bouton est en contour : deux pleins côte à côte ne disent plus lequel prime. */
-.rail-pilule-contour {
-  background: none;
-  color: var(--sur-accent);
-  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.55);
-}
-.rail-pilule-contour:hover { background: rgba(255, 255, 255, 0.12); opacity: 1; }
-
-.rail-sommaire { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
-.rail-sommaire a {
-  display: flex;
-  gap: 10px;
-  padding: 7px 0;
-  font-size: 13px;
-  line-height: 1.4;
-  color: var(--texte-2);
-}
-.rail-sommaire a:hover { color: var(--accent); }
-.rail-numero { font-variant-numeric: tabular-nums; color: var(--texte-4); flex: none; }
-.rail-sommaire a:hover .rail-numero { color: var(--accent); }
-
-/* Le numéro relie la section à sa ligne du sommaire. */
-.page-section-numero { color: var(--texte-4); font-variant-numeric: tabular-nums; margin-right: 12px; }
-
-/* La première section suit le chapô : elle n'a pas besoin de la marge qui sépare les autres. */
-.page-fiche .page-section:first-child { margin-top: 32px; }
-
-/* La provenance des chiffres, et ce que la page ne prétend pas être. */
-.rail-bloc-sources { background: var(--survol); }
-.rail-organismes { font-size: 12px; line-height: 1.6; color: var(--texte-2); margin-bottom: 8px; }
-.rail-organismes a { text-decoration: underline; text-decoration-color: var(--ligne); text-underline-offset: 2px; }
-.rail-organismes a:hover { color: var(--accent); text-decoration-color: var(--accent); }
-.rail-maj { font-size: 12px; line-height: 1.5; color: var(--texte-3); margin-bottom: 8px; }
-.rail-avertissement { font-size: 12px; line-height: 1.5; color: var(--texte-3); }
-
-/* Reprise en pied de colonne, quand la bande est masquée. Un filet plutôt qu'un cadre :
-   en fin de page, la mention accompagne, elle n'interpelle pas. */
-.sources-pied {
-  display: none;
-  max-width: 760px;
-  margin-top: 56px;
-  padding-top: 20px;
-  border-top: 1px solid var(--ligne);
-}
-
-/* ── Liste des fiches d'un hub ───────────────────────────────────────
-   Vingt-cinq codes sous une même famille : des cartes pleine taille feraient une page qu'on
-   parcourt au défilement plutôt qu'à l'œil. Entrées compactes, en colonnes. */
-.fiches-liste {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 2px 20px;
-}
-.fiche-entree {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 10px 12px;
-  margin-left: -12px;
-  border-radius: var(--rayon-champ);
-}
-a.fiche-entree:hover { background: var(--survol); }
-a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
-.fiche-entree-code { font-size: 14px; font-weight: 700; letter-spacing: 0.01em; }
-.fiche-entree-titre { font-size: 13px; line-height: 1.45; color: var(--texte-2); }
-/* Sans page publiée, l'entrée reste lisible mais ne se donne pas l'air cliquable. */
-.fiche-entree-inerte .fiche-entree-code { color: var(--texte-2); font-weight: 500; }
-
-.ancres-compte {
-  margin-left: 6px;
-  font-variant-numeric: tabular-nums;
-  color: var(--texte-4);
-}
-.ancres a:hover .ancres-compte { color: var(--accent); }
-
-/* ── Page de fiche CEE ───────────────────────────────────────────────
-   Le gabarit rend de six à douze sections selon la matière disponible ; les styles ci-dessous
-   n'en supposent aucune. */
-
-.bandeau-abrogation {
-  margin-bottom: 24px;
-  padding: 14px 18px;
-  border: 1px solid var(--alerte);
-  border-left: 4px solid var(--alerte);
-  border-radius: var(--rayon-champ);
-  background: var(--alerte-fond);
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--encre);
-}
-
-/* L'encadré de synthèse : ce qu'on vient chercher en premier, en lignes plutôt qu'en cases.
-   Les lignes sont de longueurs très inégales (« 30 ans » contre « 1 700 kWh cumac/m² en zone
-   H1 ») : en cases de largeur égale, la moitié respirait dans le vide et l'autre passait à la
-   ligne. */
-.synthese {
-  margin: 0;
-  padding: 4px 26px 22px;
-  border: 1px solid var(--ligne);
-  border-radius: var(--rayon-carte);
-  background: var(--survol);
-  max-width: 760px;
-}
-.synthese-liste { margin: 0; }
-.synthese-ligne {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 16px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--ligne);
-}
-.synthese-ligne dt { font-size: 13px; font-weight: 500; color: var(--texte-3); padding-top: 2px; }
-.synthese-ligne dd { margin: 0; font-size: 16px; line-height: 1.45; }
-.synthese-ligne dd strong { font-weight: 700; }
-.synthese-precision { color: var(--texte-2); font-weight: 400; }
-.synthese-ligne dt .lien-terme { color: inherit; text-decoration-color: var(--ligne); }
-
-/* Grilles officielles */
-.grilles { display: flex; flex-direction: column; gap: 20px; }
-.grille-variante { display: flex; flex-direction: column; gap: 14px; }
-.grille-titre { font-size: 15px; font-weight: 700; margin: 0; }
-.grille-condition { color: var(--texte-3); font-weight: 500; }
-.grille-sous-titre { font-size: 14px; font-weight: 700; margin: 0 0 10px; }
-.grille-formule { font-size: 16px; line-height: 1.6; color: var(--texte); }
-.grille-formule strong { color: var(--accent); }
-.grille-unite { color: var(--texte-3); }
-.grille-notes {
-  margin: 0;
-  max-width: 760px;
-  padding-left: 18px;
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--texte-3);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+/* ── Tableaux (glossaire) ──────────────────────────────────────────── */
 
 /* ⚠️ LE TABLEAU DÉFILE DANS SON PROPRE CADRE, jamais en poussant la page. Une grille à cinq
    colonnes sur un téléphone de 390px déborde forcément ; sans ce cadre, c'est le corps du
@@ -901,53 +826,29 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
 .tableau tbody td { font-variant-numeric: tabular-nums; }
 .tableau tbody tr + tr th, .tableau tbody tr + tr td { border-top: 1px solid var(--ligne); }
 .tableau-legende { padding: 10px 14px; font-size: 12px; color: var(--texte-3); text-align: left; }
-/* Les tableaux copiés du PDF ont des libellés longs : on les laisse aller à la ligne, et on
-   les espace quand une fiche en publie plusieurs. */
-.tableau-publie { margin-bottom: 16px; }
-.tableau-publie .tableau th, .tableau-publie .tableau td { white-space: normal; min-width: 90px; }
-
-.mention { max-width: 760px; font-size: 13px; color: var(--texte-3); }
+.mention { max-width: 760px; font-size: 13px; color: var(--texte-2); }
 .page-section .pilule { margin-top: 4px; }
 
 /* ── Pages argumentaires (« Pour qui », « Partenaires ») ─────────────── */
 
 .page-surtitre { margin-bottom: 14px; }
 /* L'intro en deux colonnes : la prose à gauche, le schéma à droite, comme le héros. */
-.argu-intro { display: flex; flex-wrap: wrap; gap: 48px 64px; align-items: center; margin-top: 8px; }
-.argu-prose { flex: 1 1 440px; min-width: 300px; }
+.argu-prose { margin-top: 8px; max-width: 760px; }
 .argu-prose .page-texte { font-size: 16px; }
-.argu-schema { flex: 1 1 360px; min-width: 280px; max-width: 460px; }
-.schema { display: block; width: 100%; height: auto; color: var(--encre); }
-.schema-accent { stroke: var(--accent); }
-.schema-accent[fill='currentColor'] { fill: var(--accent); }
-.schema-texte { font-family: inherit; font-size: 12px; font-weight: 500; fill: var(--texte-2); stroke: none; }
-.schema-texte-accent { fill: var(--accent); font-weight: 700; }
-
-.schema-doux { stroke: var(--texte-3); opacity: 0.6; }
-.schema-plein { fill: var(--accent); }
-.schema-pointe { fill: var(--accent); stroke: none; }
-.schema-texte-petit { font-size: 11px; }
-.schema .schema-texte-sur-accent { fill: var(--sur-accent); }
 
 /* ── Gabarit « Pour qui » ─────────────────────────────────────────── */
 
-/* Le financement : le schéma des parts à gauche, la légende numérotée à droite. */
-.financement { display: flex; flex-wrap: wrap; gap: 32px 56px; align-items: center; }
-.financement-schema { flex: 1 1 380px; min-width: 280px; max-width: 520px; }
-.schema-financement text { fill: var(--texte); }
-.schema-financement .schema-texte-petit { fill: var(--texte-3); }
+/* Le financement : la légende seule, en liste à témoins (le schéma SVG est parti le 15/10/2026). */
 .financement-legende { flex: 1 1 300px; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
 .financement-legende li { display: flex; gap: 14px; align-items: flex-start; font-size: 15px; line-height: 1.6; color: var(--texte-2); }
 /* Les témoins reprennent les trois boîtes du schéma : cadre encre, vert, gris. */
-.financement-temoin { flex: none; width: 26px; height: 14px; margin-top: 5px; border-radius: 4px; border: 1.6px solid var(--encre); }
-.financement-temoin-1 { background: var(--accent); border-color: var(--accent); }
-.financement-temoin-2 { border-color: var(--texte-3); opacity: 0.6; }
+.financement-legende .ico-coche { flex: none; width: 20px; height: 20px; color: var(--accent); margin-top: 2px; }
 
 /* Les avantages en rangées, icône à gauche, sur deux colonnes. */
 .avantages { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 28px 48px; }
-.avantage { display: flex; gap: 18px; align-items: flex-start; }
+.avantage { padding-top: 16px; border-top: 1px solid var(--ligne); }
 .ico-argument { display: block; flex: none; width: 32px; height: 32px; color: var(--accent); margin-top: 2px; }
-.avantage-titre { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.avantage-titre { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
 .avantage-texte { font-size: 14px; line-height: 1.6; color: var(--texte-2); }
 
 /* La chronologie verticale : le moment en marge, le trait, l'étape. */
@@ -955,38 +856,31 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
 .chrono-etape { display: grid; grid-template-columns: 140px 56px 1fr; gap: 0 16px; position: relative; padding-bottom: 36px; }
 .chrono-etape:last-child { padding-bottom: 0; }
 .chrono-marge { text-align: right; padding-top: 10px; }
-.chrono-delai { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+.chrono-delai { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-texte); }
 .chrono-point { position: relative; display: flex; justify-content: center; }
-.chrono-point .ico-etape { width: 44px; height: 44px; margin: 0; padding: 8px; background: var(--blanc); border: 1px solid var(--ligne); border-radius: 50%; position: relative; z-index: 1; }
+.chrono-pastille { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--foret); color: var(--blanc); font-size: 15px; font-weight: 700; position: relative; z-index: 1; }
 .chrono-etape:not(:last-child) .chrono-point::after {
   content: ''; position: absolute; top: 44px; bottom: -36px; left: 50%; width: 1px; background: var(--ligne);
 }
 .chrono-corps { padding-top: 8px; }
 .chrono-titre { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
-.chrono-numero { color: var(--texte-3); font-weight: 500; }
 .chrono-desc { font-size: 14px; line-height: 1.6; color: var(--texte-2); max-width: 560px; }
 
 /* ── Gabarit « Partenaires » ─────────────────────────────────────── */
 
 /* Les profils : des étiquettes sur fond doux, avec un « Pour » en tête, pas des filtres. */
-.pastilles { margin: 0 0 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pastilles { margin: 20px 0 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .pastilles-liste { list-style: none; margin: 0; padding: 0; display: contents; }
 .pastilles-label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texte-3); margin-right: 4px; }
-.pastille { padding: 6px 12px; background: var(--survol); border-radius: 999px; font-size: 13px; font-weight: 500; color: var(--texte-2); }
+.pastille { padding: 6px 12px; background: var(--survol); border-radius: var(--rayon-champ); font-size: 13px; font-weight: 500; color: var(--texte-2); }
 
 /* L'intro : un chapeau en grand à gauche, deux paragraphes à droite. Pas de multicolonne,
    qui fait descendre puis remonter le lecteur. */
 .colonnes-prose { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 8px 56px; margin-top: 28px; max-width: 1080px; }
 .colonnes-prose .page-texte { max-width: none; font-size: 16px; }
-.colonnes-prose .page-texte:first-child { grid-row: 1 / span 2; font-size: 19px; line-height: 1.5; color: var(--encre); }
+.colonnes-prose .page-texte:first-child { grid-row: 1 / span 2; font-size: 16px; color: var(--texte); }
 
 /* La bande : la phrase-clé en HTML à gauche, le dessin à droite, sur fond doux. */
-.bande-schema {
-  margin: 40px 0 0; padding: 40px 32px; background: var(--survol); border-radius: var(--rayon-carte);
-  display: grid; grid-template-columns: minmax(220px, 1fr) minmax(0, 2fr); gap: 32px 56px; align-items: center;
-}
-.bande-schema-legende { font-size: 20px; line-height: 1.35; font-weight: 700; max-width: 320px; margin: 0; }
-.bande-schema .schema { max-width: 640px; margin: 0; justify-self: end; }
 
 /* Les étapes de démarrage : alignées à gauche comme le reste de la page, numérotées. */
 .page .etapes { justify-content: flex-start; gap: 32px; }
@@ -998,7 +892,7 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
 .partage-col { border: 1px solid var(--ligne); border-radius: var(--rayon-carte); padding: 26px 28px; }
 .partage-col-nous { border-color: var(--accent); }
 .partage-titre { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texte-3); margin-bottom: 14px; }
-.partage-col-nous .partage-titre { color: var(--accent); }
+.partage-col-nous .partage-titre { color: var(--accent-texte); }
 .partage-liste { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 .partage-liste li { position: relative; padding-left: 26px; font-size: 15px; line-height: 1.6; color: var(--texte-2); }
 .partage-liste li::before {
@@ -1010,12 +904,9 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
 .raisons { list-style: none; margin: 0; padding: 0; max-width: 820px; }
 .raison { display: flex; gap: 22px; padding: 22px 0; border-top: 1px solid var(--ligne); }
 .raison:last-child { border-bottom: 1px solid var(--ligne); }
-.raison-numero { flex: none; width: 40px; font-size: 22px; font-weight: 700; color: var(--accent); line-height: 1.2; }
 .raison-titre { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
 .raison-texte { font-size: 14px; line-height: 1.6; color: var(--texte-2); max-width: 620px; }
 
-.appel-page-note { margin: 0; font-size: 14px; opacity: 0.9; }
-.appel-page-note a { text-decoration: underline; text-underline-offset: 3px; }
 
 /* La règle à ne pas manquer : un encadré à bord d'accent, pas un bandeau d'alerte. */
 .regle {
@@ -1029,12 +920,13 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
 .regle-titre { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
 .regle-texte { font-size: 15px; line-height: 1.65; color: var(--texte-2); }
 
-/* L'appel à l'action de la page, dans la couleur d'accent, texte blanc. */
+/* L'appel à l'action de la page : fond forêt et bouton dans le vert d'action, comme l'appel
+   final de l'accueil (15/10/2026). */
 .appel-page {
   margin-top: 56px;
   padding: 48px 32px;
-  background: var(--accent);
-  color: var(--sur-accent);
+  background: var(--foret);
+  color: var(--blanc);
   border-radius: var(--rayon-carte);
   text-align: center;
   display: flex;
@@ -1042,37 +934,9 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
   align-items: center;
   gap: 22px;
 }
-.appel-page h2 { font-size: clamp(22px, 3vw, 30px); line-height: 1.2; font-weight: 400; margin: 0; max-width: 640px; }
+.appel-page h2 { font-size: clamp(22px, 3vw, 30px); line-height: 1.2; font-weight: 500; letter-spacing: -0.02em; margin: 0; max-width: 640px; }
 
-/* Simulateur */
-.simulateur {
-  margin-top: 8px;
-  padding: 24px;
-  border: 1px solid var(--ligne);
-  border-radius: var(--rayon-carte);
-  background: var(--survol);
-}
-.simulateur-titre { font-size: 16px; font-weight: 700; margin: 0 0 18px; }
-.simulateur-champs { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
-.simulateur-champ { display: flex; flex-direction: column; gap: 6px; }
-.simulateur-label { font-size: 13px; font-weight: 500; color: var(--texte-2); }
-.simulateur-nombre { display: flex; align-items: center; gap: 8px; }
-.simulateur-nombre .champ { flex: 1 1 auto; min-width: 0; }
-.simulateur-unite { font-size: 13px; color: var(--texte-3); white-space: nowrap; }
-.simulateur-resultat { display: block; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--ligne); }
-.simulateur-attente { font-size: 14px; color: var(--texte-3); }
-.simulateur-kwh { font-size: 15px; color: var(--texte-2); }
-.simulateur-kwh strong { font-size: 26px; color: var(--encre); }
-.simulateur-avertissement { max-width: 760px; margin-top: 12px; font-size: 12px; line-height: 1.55; color: var(--texte-3); }
-
-/* Listes de conditions et de justificatifs */
-.conditions { margin: 0; display: flex; flex-direction: column; gap: 16px; }
-.conditions dt { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
-.conditions dd { margin: 0; max-width: 760px; font-size: 15px; line-height: 1.65; color: var(--texte-2); }
 .liste-puces { margin: 0; max-width: 760px; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.6; color: var(--texte-2); }
-
-.volumes { margin-top: 8px; }
-.page-texte-gris { color: var(--texte-3); font-size: 14px; }
 
 /* Lien contextuel vers le glossaire : souligné discrètement, il se voit dans une phrase sans
    la trouer comme le ferait un lien en couleur d'accent. */
@@ -1082,7 +946,7 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
   text-decoration-color: var(--accent);
   text-underline-offset: 3px;
 }
-.lien-terme:hover { color: var(--accent); }
+.lien-terme:hover { color: var(--accent-texte); }
 
 /* ── Mode lecture ─────────────────────────────────────────────────── */
 
@@ -1116,6 +980,18 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
 
 /* La carte des zones : trois valeurs d'une même couleur. H1 plein, H2 atténué par l'opacité
    (pas une seconde teinte), H3 en blanc cerné d'encre. Contours blancs entre zones. */
+/* Les schémas SVG du glossaire (SchemasGlossaire.tsx) : les seuls qui restent. */
+.schema { display: block; width: 100%; height: auto; color: var(--encre); }
+.schema-accent { stroke: var(--accent); }
+.schema-accent[fill='currentColor'] { fill: var(--accent); }
+.schema-texte { font-family: inherit; font-size: 12px; font-weight: 500; fill: var(--texte-2); stroke: none; }
+.schema-texte-accent { fill: var(--accent); font-weight: 700; }
+
+.schema-doux { stroke: var(--texte-3); opacity: 0.6; }
+.schema-plein { fill: var(--accent); }
+.schema-pointe { fill: var(--accent); stroke: none; }
+.schema-texte-petit { font-size: 11px; }
+.schema .schema-texte-sur-accent { fill: var(--sur-accent); }
 .schema-carte { max-width: 420px; }
 .schema-plein-attenue { opacity: 0.42; }
 .schema-carte-h3 { fill: var(--blanc); }
@@ -1136,14 +1012,19 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
    redéfinis sur `:root` : tous les conteneurs les lisent, donc TOUT se réaligne sur le même
    bord gauche d'un coup, y compris les cartes de profil et les étapes, qui perdent ici leur
    centrage et leur largeur maximale. */
-@media (max-width: 1119px) {
-  .fiche-corps { grid-template-columns: 1fr; }
-  .fiche-rail { display: none; }
-  .sources-pied { display: block; }
-}
-
 @media (min-width: 900px) and (max-width: 1120px) {
   .liste-liens-trois { grid-template-columns: repeat(2, 1fr); }
+  .deroule { grid-template-columns: repeat(2, 1fr); }
+  .operations { grid-template-columns: repeat(2, 1fr); }
+  .deroule-etape:nth-child(3)::before { display: none; }
+  .secteurs { grid-template-columns: repeat(3, 1fr); }
+  /* Deux boutons à droite de l'en-tête depuis le 15/10/2026 : sans ce resserrement, le menu
+     passe sur trois lignes vers 950px. */
+  .entete-inner { gap: 16px; }
+  .nav-desktop { gap: 0; }
+  .nav-lien { padding: 10px 8px; font-size: 11.5px; }
+  .entete-droite { gap: 8px; }
+  .entete-droite .pilule { padding: 10px 14px; font-size: 11.5px; }
 }
 
 @media (max-width: 899px) {
@@ -1155,14 +1036,10 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
   .colonnes-prose { grid-template-columns: 1fr; }
   .colonnes-prose .page-texte:first-child { grid-row: auto; }
   /* La bande sort des gouttières : le dessin gagne 40px, et ses libellés 11px restent lisibles. */
-  .bande-schema { grid-template-columns: 1fr; margin-left: calc(-1 * var(--gouttiere)); margin-right: calc(-1 * var(--gouttiere)); border-radius: 0; padding: 24px 8px; }
-  .bande-schema-legende { padding: 0 12px; }
-  .bande-schema .schema { justify-self: stretch; max-width: none; }
   .page .etape { flex: 1 1 100%; }
   :root {
     --gouttiere: 20px;
     --espace-section: 64px;
-    --espace-veille: 96px;
   }
 
   html { scroll-padding-top: calc(var(--header-h) + 12px); }
@@ -1173,22 +1050,22 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
   .nav-desktop, .entete-droite { display: none; }
   .menu-mobile { display: block; }
 
-  .hero { padding: 40px var(--gouttiere) 56px; gap: 32px; }
-  /* ⛔ L'illustration ne paraît que sur PC. */
-  .hero-illustration { display: none; }
-  .hero-p { font-size: 16px; }
+  .hero-photo { min-height: 0; padding: 56px 0; }
+  /* Sur téléphone, le texte prend toute la largeur : le voile devient vertical. */
+  .hero-photo::before { background: linear-gradient(180deg, rgba(var(--foret-rgb), 0.72), rgba(var(--foret-rgb), 0.86)); }
+  .reperes-inner { grid-template-columns: 1fr; }
+  .repere { padding: 18px 0; }
+  .repere + .repere { padding-left: 0; border-left: 0; border-top: 1px solid var(--ligne); }
 
-  .section { padding: 32px var(--gouttiere) var(--espace-section); }
-  .tete-section, .tete-section-large { text-align: left; margin-left: 0; margin-right: 0; max-width: 100%; margin-bottom: 32px; }
-
-  .profils, .etapes, .comparatif, .partenaires, .articles { justify-content: flex-start; }
-  .carte-profil, .etape, .colonne-comparatif, .carte-partenaire, .article {
-    flex: 1 1 100%;
-    min-width: 0;
-    max-width: 100%;
-  }
-  .etapes { gap: 32px; }
-  .travaux { gap: 32px 24px; }
+  .section { padding: 48px var(--gouttiere); }
+  .tete-section { margin-bottom: 28px; }
+  .secteurs, .solutions { grid-template-columns: repeat(2, 1fr); }
+  .solutions-intro { grid-column: 1 / -1; padding-right: 0; }
+  .bande { padding: 48px 0; }
+  .bande-tuiles, .metier { grid-template-columns: 1fr; }
+  .metier { gap: 20px; }
+  .articles { justify-content: flex-start; }
+  .article, .etape { flex: 1 1 100%; min-width: 0; max-width: 100%; }
 
   .veille { flex-direction: column; align-items: stretch; padding: 24px; }
   /* Le champ et le bouton tiennent sur une seule ligne : le champ prend la place restante,
@@ -1198,12 +1075,18 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
   .veille-champ { flex: 1 1 auto; min-width: 0; }
   .veille-bouton { flex: 0 0 auto; }
 
-  .appel-final { padding: 56px var(--gouttiere); text-align: left; }
-  .appel-final h2 { margin-left: 0; }
-  .appel-final-actions { justify-content: flex-start; }
+  .contact-bande { padding: 48px 0; }
+  .page-bande { min-height: 260px; }
+  .page-bande-inner { padding: 48px var(--gouttiere) 32px; }
+  .page-section.est-colonnes { grid-template-columns: 1fr; gap: 16px; }
+  .operations { grid-template-columns: 1fr; }
+  .deroule { grid-template-columns: 1fr; }
+  .deroule-etape + .deroule-etape::before { display: none; }
 
   .pied-inner { grid-template-columns: 1fr; gap: 32px; padding-top: 48px; }
   .pied-cee { justify-self: start; width: 130px; }
+  .publications, .champs-deux { grid-template-columns: 1fr; }
+  .etape-numero, .etape-delai { display: inline; margin-right: 10px; }
 
   .modale { padding: 28px 24px; }
 
@@ -1213,10 +1096,6 @@ a.fiche-entree:hover .fiche-entree-code { color: var(--accent); }
   .liste-liens-auto, .liste-liens-trois { grid-template-columns: 1fr; }
   .pied-titre-suivant { margin-top: 24px; }
 
-  .synthese { padding: 2px 18px 18px; }
-  .synthese-ligne { grid-template-columns: 1fr; gap: 2px; padding: 12px 0; }
-  .simulateur { padding: 18px; }
-  .simulateur-champs { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,0 +1,325 @@
+{
+ "code": "AGRI-SE-101",
+ "intitule": "Contrôle et préconisations de réglage du moteur d'un tracteur",
+ "annexe": "Annexe 1",
+ "genereLe": "2026-10-15",
+ "versions": [
+  {
+   "version": null,
+   "nor": "DEVR1529503A",
+   "republiePar": [],
+   "integreeLe": "2016-01-04",
+   "origines": [
+    "création : texte qui a produit la version d’annexe où la fiche apparaît"
+   ],
+   "debut": "2016-01-04",
+   "genreDate": "lendemain",
+   "sourceDate": "aucune date dans l’arrêté : lendemain de la publication au JO du 2016-01-03",
+   "candidats": null,
+   "arrete": {
+    "nor": "DEVR1529503A",
+    "cid": "JORFTEXT000031742205",
+    "titre": "Arrêté du 22 décembre 2015 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie",
+    "publication": "2016-01-03"
+   },
+   "texteAuJo": false,
+   "annexeEnImage": true,
+   "fin": "2022-03-31",
+   "niveau": 1,
+   "pdf": null,
+   "manques": []
+  },
+  {
+   "version": null,
+   "nor": "TRER2137033A",
+   "republiePar": [],
+   "integreeLe": "2022-01-01",
+   "origines": [
+    "note consolidée (art. 2 de l'arrêté du 2021-12-17)"
+   ],
+   "debut": "2022-04-01",
+   "genreDate": "article",
+   "sourceDate": "art. 2 (vise l’annexe 1 de l’arrêté de 2014) : « La fiche d'opération standardisée figurant en annexe A remplace, à compter du 1er avril 2022, la fiche portant la même référence figurant en annexe 1 de l'arrêté du 22 décembre 2014 susvisé. »",
+   "candidats": null,
+   "arrete": {
+    "nor": "TRER2137033A",
+    "cid": "JORFTEXT000044571326",
+    "titre": "Arrêté du 17 décembre 2021 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie",
+    "publication": "2021-12-28"
+   },
+   "texteAuJo": false,
+   "annexeEnImage": true,
+   "fin": null,
+   "versionProposee": "A40-2",
+   "versionProposeeSource": "PDF déposé, 2e version",
+   "niveau": 3,
+   "pdf": "AGRI-SE-101_FS&AH+annexe2 v40.pdf",
+   "manques": [
+    "numéro de version à confirmer : A40-2 (PDF déposé, 2e version)",
+    "neuf informations",
+    "visa d’Alek"
+   ]
+  }
+ ],
+ "versionsSansDate": [],
+ "textesDuJo": [
+  {
+   "publication": "2016-03-12",
+   "nor": "DEVR1603528A",
+   "cid": "JORFTEXT000032187958",
+   "titre": "Arrêté du 8 février 2016 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie",
+   "nature": "publie peut-être la fiche, en image",
+   "versionCitee": null,
+   "annexeEnImage": true
+  },
+  {
+   "publication": "2023-03-16",
+   "nor": "ENER2303227A",
+   "cid": "JORFTEXT000047310913",
+   "titre": "Arrêté du 18 février 2023 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie",
+   "nature": "annexe de dépôt",
+   "versionCitee": null,
+   "annexeEnImage": false
+  }
+ ],
+ "notesConsolidees": [
+  {
+   "article": "4",
+   "arrete": "2016-02-08",
+   "nor": "DEVR1603528A",
+   "effet": "annexe de dépôt remplacée",
+   "lettre": null,
+   "aCompterDu": null,
+   "texte": "Conformément à l'article 4 de l'arrêté du 8 février 2016 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie (NOR : DEVR1603528A), l'annexe 2 de la fiche d'opération standardisée portant la référence AGRI-SE-101 figurant à l'annexe 1 de l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie est remplacée par la version figurant à l'annexe 4 du présent arrêté portant la même référence. Liens",
+   "vuDansLaPeriode": "2016-03-13",
+   "morteNee": false
+  },
+  {
+   "article": "2",
+   "arrete": "2021-12-17",
+   "nor": "TRER2137033A",
+   "effet": "fiche remplacée",
+   "lettre": null,
+   "aCompterDu": "2022-04-01",
+   "texte": "Conformément à l'article 2 de l'arrêté du 17 décembre 2021 (NOR : TRER2137033A), la fiche d'opération n° AGRI-SE-101 remplace, à compter du 1er avril 2022, la fiche portant la même référence figurant en annexe 1 de l'arrêté du 22 décembre 2014 susvisé. Liens",
+   "vuDansLaPeriode": "2022-01-01",
+   "morteNee": false
+  },
+  {
+   "article": "1",
+   "arrete": "2023-02-18",
+   "nor": "ENER2303227A",
+   "effet": "annexe de dépôt remplacée (la note consolidée dit « fiche »)",
+   "lettre": null,
+   "aCompterDu": "2023-04-01",
+   "texte": "Conformément à l'article 1 de l'arrêté du 18 février 2023 (NOR : ENER2303227A), la fiche d'opération n° AGRI-SE-101 remplace, à compter du 1 er avril 2023, la fiche portant la même référence.",
+   "vuDansLaPeriode": "2023-04-01",
+   "morteNee": false
+  },
+  {
+   "article": "2",
+   "arrete": "2025-12-21",
+   "nor": "ECOR2534164A",
+   "effet": "ajout",
+   "lettre": null,
+   "aCompterDu": null,
+   "texte": "Conformément à l'article 2 de l'arrêté du 21 décembre 2025 (NOR : ECOR2534164A) : \" * Le coût de l'opération lié à la présente partie A s'élève à : € HT et € TTC. Nota.-Le coût de l'opération s'entend, selon la nature de l'opération, comme le coût de l'investissement ou du service lié à la mise en œuvre de l'opération, incluant, le cas échéant, les coûts d'installation. Lorsqu'il s'agit d'un service, il est indiqué, selon le cas, le coût annuel du service ou le coût ponctuel du service. Toutefois, lorsque l'opération consiste en la location d'un équipement ou d'un véhicule, il convient d'indiq",
+   "vuDansLaPeriode": "2026-07-01",
+   "morteNee": false
+  }
+ ],
+ "periodesConsolidees": [
+  {
+   "debut": "2015-01-01",
+   "fin": "2016-01-04",
+   "morteNee": false,
+   "presente": false,
+   "entree": null,
+   "versionsAnnexe": [
+    "LEGIARTI000030077404",
+    "LEGIARTI000030418963",
+    "LEGIARTI000030966545",
+    "LEGIARTI000031043950"
+   ]
+  },
+  {
+   "debut": "2016-01-04",
+   "fin": "2016-03-13",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Contrôle et préconisations de réglage du moteur d'un tracteur",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000031877000"
+   ]
+  },
+  {
+   "debut": "2016-03-13",
+   "fin": "2016-06-11",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Contrôle et préconisations de réglage du moteur d'un tracteur",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 4 de l'arrêté du 8 février 2016 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie (NOR : DEVR1603528A), l'annexe 2 de la fiche d'opération standardisée portant la référence AGRI-SE-101 figurant à l'annexe 1 de l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie est remplacée par la version figurant à l'annexe 4 du présent arrêté portant la même référence. Liens"
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000032192119"
+   ]
+  },
+  {
+   "debut": "2016-06-11",
+   "fin": "2022-01-01",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Contrôle et préconisations de réglage du moteur d'un tracteur",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 4 de l'arrêté du 8 février 2016 (NOR : DEVR1603528A), l'annexe 2 de la fiche d'opération standardisée portant la référence AGRI-SE-101 figurant à l'annexe 1 de l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie est remplacée par la version figurant à l'annexe 4 du présent arrêté portant la même référence. Liens"
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000033061883",
+    "LEGIARTI000033361055",
+    "LEGIARTI000033677887",
+    "LEGIARTI000036501690",
+    "LEGIARTI000037845368",
+    "LEGIARTI000046205210",
+    "LEGIARTI000042205154",
+    "LEGIARTI000043874876"
+   ]
+  },
+  {
+   "debut": "2022-01-01",
+   "fin": "2023-04-01",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Contrôle et préconisations de réglage du moteur d'un tracteur",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 4 de l'arrêté du 8 février 2016 (NOR : DEVR1603528A), l'annexe 2 de la fiche d'opération standardisée portant la référence AGRI-SE-101 figurant à l'annexe 1 de l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie est remplacée par la version figurant à l'annexe 4 du présent arrêté portant la même référence.",
+     "Conformément à l'article 2 de l'arrêté du 17 décembre 2021 (NOR : TRER2137033A), la fiche d'opération n° AGRI-SE-101 remplace, à compter du 1er avril 2022, la fiche portant la même référence figurant en annexe 1 de l'arrêté du 22 décembre 2014 susvisé. Liens"
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000045012821"
+   ]
+  },
+  {
+   "debut": "2023-04-01",
+   "fin": "2024-08-31",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Contrôle et préconisations de réglage du moteur d'un tracteur",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 4 de l'arrêté du 8 février 2016 (NOR : DEVR1603528A), l'annexe 2 de la fiche d'opération standardisée portant la référence AGRI-SE-101 figurant à l'annexe 1 de l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie est remplacée par la version figurant à l'annexe 4 du présent arrêté portant la même référence.",
+     "Conformément à l'article 2 de l'arrêté du 17 décembre 2021 (NOR : TRER2137033A), la fiche d'opération n° AGRI-SE-101 remplace, à compter du 1er avril 2022, la fiche portant la même référence figurant en annexe 1 de l'arrêté du 22 décembre 2014 susvisé.",
+     "Conformément à l'article 1 de l'arrêté du 18 février 2023 (NOR : ENER2303227A), la fiche d'opération n° AGRI-SE-101 remplace, à compter du 1 er avril 2023, la fiche portant la même référence."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000047313645",
+    "LEGIARTI000048923981"
+   ]
+  },
+  {
+   "debut": "2024-01-01",
+   "fin": "2023-12-29",
+   "morteNee": true,
+   "presente": true,
+   "entree": {
+    "intitule": "Contrôle et préconisations de réglage du moteur d'un tracteur",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 4 de l'arrêté du 8 février 2016 (NOR : DEVR1603528A), l'annexe 2 de la fiche d'opération standardisée portant la référence AGRI-SE-101 figurant à l'annexe 1 de l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie est remplacée par la version figurant à l'annexe 4 du présent arrêté portant la même référence.",
+     "Conformément à l'article 2 de l'arrêté du 17 décembre 2021 (NOR : TRER2137033A), la fiche d'opération n° AGRI-SE-101 remplace, à compter du 1er avril 2022, la fiche portant la même référence figurant en annexe 1 de l'arrêté du 22 décembre 2014 susvisé.",
+     "Conformément à l'article 1 de l'arrêté du 18 février 2023 (NOR : ENER2303227A), la fiche d'opération n° AGRI-SE-101 remplace, à compter du 1 er avril 2023, la fiche portant la même référence."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000048137933"
+   ]
+  },
+  {
+   "debut": "2024-08-31",
+   "fin": "2026-07-01",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Contrôle et préconisations de réglage du moteur d'un tracteur",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 4 de l'arrêté du 8 février 2016 (NOR : DEVR1603528A), l'annexe 2 de la fiche d'opération standardisée portant la référence AGRI-SE-101 figurant à l'annexe 1 de l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie est remplacée par la version figurant à l'annexe 4 du présent arrêté portant la même référence.",
+     "Conformément à l'article 2 de l'arrêté du 17 décembre 2021 (NOR : TRER2137033A), la fiche d'opération n° AGRI-SE-101 remplace, à compter du 1er avril 2022, la fiche portant la même référence figurant en annexe 1 de l'arrêté du 22 décembre 2014 susvisé.",
+     "Conformément à l'article 1 de l'arrêté du 18 février 2023 (NOR : ENER2303227A), la fiche d'opération n° AGRI-SE-101 remplace, à compter du 1 er avril 2023, la fiche portant la même référence."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000050149126",
+    "LEGIARTI000050940571",
+    "LEGIARTI000052131584",
+    "LEGIARTI000054173646",
+    "LEGIARTI000054299333"
+   ]
+  },
+  {
+   "debut": "2026-07-01",
+   "fin": null,
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Contrôle et préconisations de réglage du moteur d'un tracteur",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 4 de l'arrêté du 8 février 2016 (NOR : DEVR1603528A), l'annexe 2 de la fiche d'opération standardisée portant la référence AGRI-SE-101 figurant à l'annexe 1 de l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie est remplacée par la version figurant à l'annexe 4 du présent arrêté portant la même référence.",
+     "Conformément à l'article 2 de l'arrêté du 17 décembre 2021 (NOR : TRER2137033A), la fiche d'opération n° AGRI-SE-101 remplace, à compter du 1er avril 2022, la fiche portant la même référence figurant en annexe 1 de l'arrêté du 22 décembre 2014 susvisé.",
+     "Conformément à l'article 1 de l'arrêté du 18 février 2023 (NOR : ENER2303227A), la fiche d'opération n° AGRI-SE-101 remplace, à compter du 1 er avril 2023, la fiche portant la même référence.",
+     "Conformément à l'article 2 de l'arrêté du 21 décembre 2025 (NOR : ECOR2534164A) : \" * Le coût de l'opération lié à la présente partie A s'élève à : € HT et € TTC. Nota.-Le coût de l'opération s'entend, selon la nature de l'opération, comme le coût de l'investissement ou du service lié à la mise en œuvre de l'opération, incluant, le cas échéant, les coûts d'installation. Lorsqu'il s'agit d'un service, il est indiqué, selon le cas, le coût annuel du service ou le coût ponctuel du service. Toutefois, lorsque l'opération consiste en la location d'un équipement ou d'un véhicule, il convient d'indiquer le coût mensuel de la location. Seuls les coûts éligibles au dispositif des certificats d'économies d'énergie sont comptabilisés quand ils sont disponibles ou, à défaut, le coût total facturé. * L'ensemble des aides financières, hors incitation financière du dispositif des certificats d'économies d'énergie, octroyées par des organismes publics au titre de l'opération liée à la présente partie A, est, à la date de la présente attestation sur l'honneur, d'un montant prévisionnel total de : €. ; 2° Pour les fiches d'opérations standardisées disposant d'une annexe 2, les colonnes suivantes sont ajoutées aux modèles de tableaux récapitulatifs de l'annexe 2 : Coût de l'opération (€ HT) Coût de l'opération (€ TTC) Montant des aides financières hors CEE (€) Location d'équipement ou de véhicule (oui/ non) .\""
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000053310974",
+    "LEGIARTI000054885008"
+   ]
+  },
+  {
+   "debut": "2999-01-01",
+   "fin": null,
+   "morteNee": false,
+   "presente": false,
+   "entree": null,
+   "versionsAnnexe": [
+    "JORFARTI000029953760"
+   ]
+  }
+ ],
+ "confrontationPdf": [
+  {
+   "pdf": "AGRI-SE-101_FS&AH+annexe2 v40.pdf",
+   "versionPdf": "A40-2",
+   "duPdf": null,
+   "versionJo": null,
+   "debutJo": null,
+   "ecarts": [
+    "aucune version du JO ne correspond"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,451 @@
+{
+ "code": "BAR-TH-171",
+ "intitule": "Pompe à chaleur de type air/eau",
+ "annexe": "Annexe 2",
+ "genereLe": "2026-10-15",
+ "versions": [
+  {
+   "version": "A55-1",
+   "nor": "ENER2325697A",
+   "republiePar": [],
+   "integreeLe": null,
+   "origines": [
+    "arrêté du JO qui publie la fiche"
+   ],
+   "debut": "2024-01-01",
+   "genreDate": "article",
+   "sourceDate": "art. 1 (cite la fiche) : « Les fiches d'opérations standardisées BAR-TH-171 « Pompe à chaleur de type air/ eau » et BAR-TH-172 « Pompe à chaleur de type eau/ eau ou sol/ eau » figurant en annexe A au présent arrêté sont ajoutée »",
+   "candidats": null,
+   "arrete": {
+    "nor": "ENER2325697A",
+    "cid": "JORFTEXT000048158900",
+    "titre": "Arrêté du 4 octobre 2023 modifiant et créant des fiches d'opérations standardisées d'économies d'énergie dans le cadre du dispositif des certificats d'économies d'énergie",
+    "publication": "2023-10-06"
+   },
+   "texteAuJo": true,
+   "annexeEnImage": true,
+   "fin": "2024-12-31",
+   "versionSource": "numéro de sa republication",
+   "republications": [
+    {
+     "nor": "ENER2333440A",
+     "appliqueeLe": "2024-04-01",
+     "source": "art. 1 (vise l’annexe 2 de l’arrêté de 2014) : « Les fiches d'opérations standardisées figurant en annexe B au présent arrêté remplacent, à compter du 1er avril 2024, les fiches portant les mêmes réfé"
+    }
+   ],
+   "manquesAVerifier": "republiée sous le même numéro : même texte, ou version corrigée ?",
+   "niveau": 2,
+   "pdf": null,
+   "manques": [
+    "à vérifier : republiée sous le même numéro : même texte, ou version corrigée ?"
+   ]
+  },
+  {
+   "version": "A62-2",
+   "nor": "ECOR2422700A",
+   "republiePar": [
+    "TECR2428116A"
+   ],
+   "integreeLe": "2024-11-21",
+   "origines": [
+    "texte intégral consolidé",
+    "arrêté du JO qui publie la fiche",
+    "arrêté du JO qui publie la fiche"
+   ],
+   "debut": "2025-01-01",
+   "genreDate": "article",
+   "sourceDate": "art. 2 (vise l’annexe 2 de l’arrêté de 2014) : « Les fiches d'opérations standardisées figurant en annexe B au présent arrêté remplacent, à compter du 1er janvier 2025, les fiches portant les mêmes références figurant en annexe 2 à l' arrêté du 22 d »",
+   "candidats": null,
+   "arrete": {
+    "nor": "ECOR2422700A",
+    "cid": "JORFTEXT000050147822",
+    "titre": "Arrêté du 22 août 2024 modifiant l'arrêté du 4 septembre 2014 modifié fixant la liste des éléments d'une demande de certificats d'économies d'énergie et les documents à archiver par le demandeur, l'arrêté du 22 décembre 2014 modifié définissant les opérations standardisées d'économies d'énergie et l'arrêté du 28 septembre 2021 modifié relatif aux contrôles dans le cadre du dispositif des certificats d'économies d'énergie",
+    "publication": "2024-08-30"
+   },
+   "texteAuJo": true,
+   "annexeEnImage": true,
+   "fin": "2025-09-30",
+   "versionSource": "texte du JO",
+   "niveau": 2,
+   "pdf": null,
+   "manques": []
+  },
+  {
+   "version": "A74-3",
+   "nor": "ECOR2524047A",
+   "republiePar": [],
+   "integreeLe": "2025-10-01",
+   "origines": [
+    "texte intégral consolidé",
+    "arrêté du JO qui publie la fiche"
+   ],
+   "debut": "2025-10-01",
+   "genreDate": "article",
+   "sourceDate": "art. 4 : « Les dispositions du présent arrêté entrent en vigueur le 1 er octobre 2025 et s'appliquent aux opérations engagées à compter de cette date. »",
+   "candidats": null,
+   "arrete": {
+    "nor": "ECOR2524047A",
+    "cid": "JORFTEXT000052212320",
+    "titre": "Arrêté du 6 septembre 2025 portant modification de fiches d'opérations standardisées du dispositif des certificats d'économies d'énergie, modifiant l'arrêté du 29 décembre 2014 relatif aux modalités d'application du dispositif des certificats d'économies d'énergie et modifiant l'arrêté du 28 septembre 2021 relatif aux contrôles dans le cadre du dispositif des certificats d'économies d'énergie",
+    "publication": "2025-09-09"
+   },
+   "texteAuJo": true,
+   "annexeEnImage": false,
+   "fin": "2025-12-31",
+   "versionSource": "texte du JO",
+   "niveau": 2,
+   "pdf": null,
+   "manques": []
+  },
+  {
+   "version": "A78-4",
+   "nor": "ECOR2532411A",
+   "republiePar": [],
+   "integreeLe": "2026-01-01",
+   "origines": [
+    "texte intégral consolidé",
+    "arrêté du JO qui publie la fiche"
+   ],
+   "debut": "2026-01-01",
+   "genreDate": "article",
+   "sourceDate": "art. 5 : « Les dispositions de l'article 1 er , de l'article 2, du I de l'article 3 et du I et du II de l'article 4 entrent en vigueur le 1 er janvier 2026 et s'appliquent aux opérations engagées à compter de ce »",
+   "candidats": null,
+   "arrete": {
+    "nor": "ECOR2532411A",
+    "cid": "JORFTEXT000053043176",
+    "titre": "Arrêté du 15 décembre 2025 modifiant des dispositions relatives aux fiches d'opérations standardisées BAR-TH-171 « Pompe à chaleur de type air/eau » et BAR-TH-172 « Pompe à chaleur de type eau/eau ou eau glycolée/eau » dans le cadre du dispositif des certificats d'économie d'énergie",
+    "publication": "2025-12-18"
+   },
+   "texteAuJo": true,
+   "annexeEnImage": false,
+   "fin": "2026-08-31",
+   "versionSource": "texte du JO",
+   "niveau": 2,
+   "pdf": null,
+   "manques": []
+  },
+  {
+   "version": "A82-5",
+   "nor": "ECOR2612353A",
+   "republiePar": [],
+   "integreeLe": "2026-09-01",
+   "origines": [
+    "texte intégral consolidé",
+    "arrêté du JO qui publie la fiche"
+   ],
+   "debut": "2026-09-01",
+   "genreDate": "article",
+   "sourceDate": "art. 4 : « L'ensemble des dispositions entrent en vigueur le 1 er septembre 2026 et s'appliquent aux opérations engagées à compter de cette date. »",
+   "candidats": null,
+   "arrete": {
+    "nor": "ECOR2612353A",
+    "cid": "JORFTEXT000054152008",
+    "titre": "Arrêté du 29 mai 2026 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie, l'arrêté du 29 décembre 2014 relatif aux modalités d'application du dispositif des certificats d'économies d'énergie et l'arrêté du 28 septembre 2021 relatif aux contrôles dans le cadre du dispositif des certificats d'économies d'énergie",
+    "publication": "2026-05-30"
+   },
+   "texteAuJo": true,
+   "annexeEnImage": false,
+   "fin": null,
+   "versionSource": "texte du JO",
+   "niveau": 3,
+   "pdf": "BAR-TH-171 vA82-5 à compter du 01-09-2026 avec annexes_0.pdf",
+   "manques": [
+    "neuf informations",
+    "visa d’Alek"
+   ]
+  }
+ ],
+ "versionsSansDate": [],
+ "textesDuJo": [
+  {
+   "publication": "2023-10-06",
+   "nor": "ENER2325697A",
+   "cid": "JORFTEXT000048158900",
+   "titre": "Arrêté du 4 octobre 2023 modifiant et créant des fiches d'opérations standardisées d'économies d'énergie dans le cadre du dispositif des certificats d'économies d'énergie",
+   "nature": "publie la fiche",
+   "versionCitee": null,
+   "annexeEnImage": true
+  },
+  {
+   "publication": "2023-12-28",
+   "nor": "ENER2333440A",
+   "cid": "JORFTEXT000048680244",
+   "titre": "Arrêté du 20 décembre 2023 portant création et révision de fiches opérations standardisées d'économies d'énergie dans le cadre du dispositif des certificats d'économies d'énergie",
+   "nature": "publie la fiche",
+   "versionCitee": "A55-1",
+   "annexeEnImage": true
+  },
+  {
+   "publication": "2024-08-30",
+   "nor": "ECOR2422700A",
+   "cid": "JORFTEXT000050147822",
+   "titre": "Arrêté du 22 août 2024 modifiant l'arrêté du 4 septembre 2014 modifié fixant la liste des éléments d'une demande de certificats d'économies d'énergie et les documents à archiver par le demandeur, l'arrêté du 22 décembre 2014 modifié définissant les opérations standardisées d'économies d'énergie et l'arrêté du 28 septembre 2021 modifié relatif aux contrôles dans le cadre du dispositif des certificats d'économies d'énergie",
+   "nature": "publie la fiche",
+   "versionCitee": "A62-2",
+   "annexeEnImage": true
+  },
+  {
+   "publication": "2024-11-20",
+   "nor": "TECR2428116A",
+   "cid": "JORFTEXT000050613057",
+   "titre": "Arrêté du 18 novembre 2024 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie, l'arrêté du 4 septembre 2014 fixant la liste des éléments d'une demande de certificats d'économies d'énergie et les documents à archiver par le demandeur et l'arrêté du 29 décembre 2014 relatif aux modalités d'application du dispositif des certificats d'économies d'énergie et modifiant les arrêtés modificatifs du 22 août 2024 et du 6 septembre 2024",
+   "nature": "publie la fiche",
+   "versionCitee": "A62-2",
+   "annexeEnImage": true
+  },
+  {
+   "publication": "2025-09-09",
+   "nor": "ECOR2524047A",
+   "cid": "JORFTEXT000052212320",
+   "titre": "Arrêté du 6 septembre 2025 portant modification de fiches d'opérations standardisées du dispositif des certificats d'économies d'énergie, modifiant l'arrêté du 29 décembre 2014 relatif aux modalités d'application du dispositif des certificats d'économies d'énergie et modifiant l'arrêté du 28 septembre 2021 relatif aux contrôles dans le cadre du dispositif des certificats d'économies d'énergie",
+   "nature": "publie la fiche",
+   "versionCitee": "A74-3",
+   "annexeEnImage": false
+  },
+  {
+   "publication": "2025-12-18",
+   "nor": "ECOR2532411A",
+   "cid": "JORFTEXT000053043176",
+   "titre": "Arrêté du 15 décembre 2025 modifiant des dispositions relatives aux fiches d'opérations standardisées BAR-TH-171 « Pompe à chaleur de type air/eau » et BAR-TH-172 « Pompe à chaleur de type eau/eau ou eau glycolée/eau » dans le cadre du dispositif des certificats d'économie d'énergie",
+   "nature": "publie la fiche",
+   "versionCitee": "A78-4",
+   "annexeEnImage": false
+  },
+  {
+   "publication": "2025-12-30",
+   "nor": "ECOR2535186A",
+   "cid": "JORFTEXT000053202091",
+   "titre": "Arrêté du 27 décembre 2025 modifiant les fiches d'opérations standardisées BAR-TH-143, BAR-TH-137 et BAT-TH-127 et les bonifications associées",
+   "nature": "publie peut-être la fiche, en image",
+   "versionCitee": null,
+   "annexeEnImage": true
+  },
+  {
+   "publication": "2026-05-30",
+   "nor": "ECOR2612353A",
+   "cid": "JORFTEXT000054152008",
+   "titre": "Arrêté du 29 mai 2026 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie, l'arrêté du 29 décembre 2014 relatif aux modalités d'application du dispositif des certificats d'économies d'énergie et l'arrêté du 28 septembre 2021 relatif aux contrôles dans le cadre du dispositif des certificats d'économies d'énergie",
+   "nature": "publie la fiche",
+   "versionCitee": "A82-5",
+   "annexeEnImage": false
+  },
+  {
+   "publication": "2026-07-29",
+   "nor": "ECOR2620284A",
+   "cid": "JORFTEXT000054541363",
+   "titre": "Arrêté du 27 juillet 2026 relatif aux modalités de contrôle dans le cadre du dispositif des certificats d'économies d'énergie",
+   "nature": "contrôles",
+   "versionCitee": null,
+   "annexeEnImage": false
+  },
+  {
+   "publication": "2026-08-23",
+   "nor": "ECOR2620461A",
+   "cid": "JORFTEXT000054734629",
+   "titre": "Arrêté du 17 août 2026 créant de nouvelles bonifications CEE pour les fiches BAR-TH-101, BAR-TH-148, BAR-TH-162 et BAR-TH-168 et modifiant la bonification relative à la fiche BAR-TH-143",
+   "nature": "bonification",
+   "versionCitee": null,
+   "annexeEnImage": false
+  }
+ ],
+ "notesConsolidees": [],
+ "periodesConsolidees": [
+  {
+   "debut": "2015-01-01",
+   "fin": "2024-01-01",
+   "morteNee": false,
+   "presente": false,
+   "entree": null,
+   "versionsAnnexe": [
+    "LEGIARTI000030109051",
+    "LEGIARTI000030418961",
+    "LEGIARTI000030966541",
+    "LEGIARTI000031043947",
+    "LEGIARTI000031269972",
+    "LEGIARTI000031876997",
+    "LEGIARTI000032192086",
+    "LEGIARTI000032239787",
+    "LEGIARTI000033361058",
+    "LEGIARTI000033677892",
+    "LEGIARTI000034264511",
+    "LEGIARTI000035390114",
+    "LEGIARTI000036501692",
+    "LEGIARTI000037845366",
+    "LEGIARTI000038049867",
+    "LEGIARTI000038659703",
+    "LEGIARTI000039024016",
+    "LEGIARTI000046170555",
+    "LEGIARTI000041893007",
+    "LEGIARTI000042205127",
+    "LEGIARTI000041776170",
+    "LEGIARTI000042416505",
+    "LEGIARTI000043034077",
+    "LEGIARTI000043874862",
+    "LEGIARTI000045012818",
+    "LEGIARTI000045349241",
+    "LEGIARTI000044199999",
+    "LEGIARTI000044532014",
+    "LEGIARTI000046159947",
+    "LEGIARTI000046197482",
+    "LEGIARTI000046198207",
+    "LEGIARTI000046414784",
+    "LEGIARTI000046828576",
+    "LEGIARTI000046980641",
+    "LEGIARTI000047779841",
+    "LEGIARTI000048137966",
+    "LEGIARTI000048964991",
+    "LEGIARTI000048908296"
+   ]
+  },
+  {
+   "debut": "2024-01-01",
+   "fin": "2023-11-30",
+   "morteNee": true,
+   "presente": false,
+   "entree": null,
+   "versionsAnnexe": [
+    "LEGIARTI000048138516"
+   ]
+  },
+  {
+   "debut": "2024-01-01",
+   "fin": "2024-11-21",
+   "morteNee": false,
+   "presente": false,
+   "entree": null,
+   "versionsAnnexe": [
+    "LEGIARTI000048923983",
+    "LEGIARTI000049341588",
+    "LEGIARTI000050149130",
+    "LEGIARTI000050225855"
+   ]
+  },
+  {
+   "debut": "2024-11-21",
+   "fin": "2025-10-01",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Pompe à chaleur de type air/ eau",
+    "texteIntegral": true,
+    "version": "A62-2",
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000050625742",
+    "LEGIARTI000050940544",
+    "LEGIARTI000050944384",
+    "LEGIARTI000051518532",
+    "LEGIARTI000051739490",
+    "LEGIARTI000051722024",
+    "LEGIARTI000051870868",
+    "LEGIARTI000052131556"
+   ]
+  },
+  {
+   "debut": "2025-10-01",
+   "fin": "2026-01-01",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Pompe à chaleur de type air/ eau",
+    "texteIntegral": true,
+    "version": "A74-3",
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000052325004",
+    "LEGIARTI000052131702"
+   ]
+  },
+  {
+   "debut": "2026-01-01",
+   "fin": "2025-12-19",
+   "morteNee": true,
+   "presente": true,
+   "entree": {
+    "intitule": "Pompe à chaleur de type air/ eau",
+    "texteIntegral": true,
+    "version": "A74-3",
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000052240206"
+   ]
+  },
+  {
+   "debut": "2026-01-01",
+   "fin": "2025-12-31",
+   "morteNee": true,
+   "presente": true,
+   "entree": {
+    "intitule": "Pompe à chaleur de type air/eau",
+    "texteIntegral": true,
+    "version": "A78-4",
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000053049165"
+   ]
+  },
+  {
+   "debut": "2026-01-01",
+   "fin": "2026-09-01",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Pompe à chaleur de type air/eau",
+    "texteIntegral": true,
+    "version": "A78-4",
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000053329934",
+    "LEGIARTI000053376585",
+    "LEGIARTI000053451152",
+    "LEGIARTI000053561786",
+    "LEGIARTI000053980531"
+   ]
+  },
+  {
+   "debut": "2026-09-01",
+   "fin": "2026-08-24",
+   "morteNee": true,
+   "presente": true,
+   "entree": {
+    "intitule": "Pompe à chaleur de type air/eau",
+    "texteIntegral": true,
+    "version": "A82-5",
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000054168997"
+   ]
+  },
+  {
+   "debut": "2026-09-01",
+   "fin": null,
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Pompe à chaleur de type air/eau",
+    "texteIntegral": true,
+    "version": "A82-5",
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000054741053"
+   ]
+  }
+ ],
+ "confrontationPdf": [
+  {
+   "pdf": "BAR-TH-171 vA82-5 à compter du 01-09-2026 avec annexes_0.pdf",
+   "versionPdf": "A82-5",
+   "duPdf": "2026-09-01",
+   "versionJo": "A82-5",
+   "debutJo": "2026-09-01",
+   "ecarts": []
+  }
+ ]
+}

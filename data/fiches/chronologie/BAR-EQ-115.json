@@ -1,0 +1,273 @@
+{
+ "code": "BAR-EQ-115",
+ "intitule": "Dispositif d'affichage et d'interprétation des consommations d'énergie",
+ "annexe": "Annexe 2",
+ "genereLe": "2026-10-15",
+ "versions": [
+  {
+   "version": "A28-1",
+   "nor": "TRER1834001A",
+   "republiePar": [],
+   "integreeLe": "2018-12-19",
+   "origines": [
+    "création : texte qui a produit la version d’annexe où la fiche apparaît"
+   ],
+   "debut": "2019-01-01",
+   "genreDate": "article",
+   "sourceDate": "art. 7 : « Les fiches d'opérations standardisées d'économies d'énergie figurant aux annexes mentionnées aux articles 2 et 5 du présent arrêté sont applicables aux opérations standardisées d'économies d'énergie e »",
+   "candidats": null,
+   "arrete": {
+    "nor": "TRER1834001A",
+    "cid": "JORFTEXT000037823303",
+    "titre": "Arrêté du 6 décembre 2018 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie",
+    "publication": "2018-12-18"
+   },
+   "texteAuJo": false,
+   "annexeEnImage": true,
+   "fin": null,
+   "versionSource": "nom du PDF déposé",
+   "niveau": 3,
+   "pdf": "bar-eq-115_-_a_compter_du_01-01-2019_0_0.pdf",
+   "manques": [
+    "neuf informations",
+    "visa d’Alek"
+   ]
+  }
+ ],
+ "versionsSansDate": [],
+ "textesDuJo": [
+  {
+   "publication": "2018-12-18",
+   "nor": "TRER1834001A",
+   "cid": "JORFTEXT000037823303",
+   "titre": "Arrêté du 6 décembre 2018 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie",
+   "nature": "publie peut-être la fiche, en image",
+   "versionCitee": null,
+   "annexeEnImage": true
+  }
+ ],
+ "notesConsolidees": [],
+ "periodesConsolidees": [
+  {
+   "debut": "2015-01-01",
+   "fin": "2018-12-19",
+   "morteNee": false,
+   "presente": false,
+   "entree": null,
+   "versionsAnnexe": [
+    "LEGIARTI000030109051",
+    "LEGIARTI000030418961",
+    "LEGIARTI000030966541",
+    "LEGIARTI000031043947",
+    "LEGIARTI000031269972",
+    "LEGIARTI000031876997",
+    "LEGIARTI000032192086",
+    "LEGIARTI000032239787",
+    "LEGIARTI000033361058",
+    "LEGIARTI000033677892",
+    "LEGIARTI000034264511",
+    "LEGIARTI000035390114",
+    "LEGIARTI000036501692"
+   ]
+  },
+  {
+   "debut": "2018-12-19",
+   "fin": "2020-05-20",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Dispositif d'affichage et d'interprétation des consommations d'énergie",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000037845366",
+    "LEGIARTI000038049867",
+    "LEGIARTI000038659703",
+    "LEGIARTI000039024016",
+    "LEGIARTI000046170555",
+    "LEGIARTI000041893007"
+   ]
+  },
+  {
+   "debut": "2020-05-20",
+   "fin": "2021-12-29",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": null,
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000042205127",
+    "LEGIARTI000041776170",
+    "LEGIARTI000042416505",
+    "LEGIARTI000043034077",
+    "LEGIARTI000043874862",
+    "LEGIARTI000045012818",
+    "LEGIARTI000045349241"
+   ]
+  },
+  {
+   "debut": "2021-12-29",
+   "fin": "2024-01-01",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Dispositif d'affichage et d'interprétation des consommations d'énergie",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000044199999",
+    "LEGIARTI000044532014",
+    "LEGIARTI000046159947",
+    "LEGIARTI000046197482",
+    "LEGIARTI000046198207",
+    "LEGIARTI000046414784",
+    "LEGIARTI000046828576",
+    "LEGIARTI000046980641",
+    "LEGIARTI000047779841",
+    "LEGIARTI000048137966",
+    "LEGIARTI000048964991",
+    "LEGIARTI000048908296"
+   ]
+  },
+  {
+   "debut": "2024-01-01",
+   "fin": "2023-11-30",
+   "morteNee": true,
+   "presente": true,
+   "entree": {
+    "intitule": "Dispositif d'affichage et d'interprétation des consommations d'énergie",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000048138516"
+   ]
+  },
+  {
+   "debut": "2024-01-01",
+   "fin": "2026-01-01",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Dispositif d'affichage et d'interprétation des consommations d'énergie",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000048923983",
+    "LEGIARTI000049341588",
+    "LEGIARTI000050149130",
+    "LEGIARTI000050225855",
+    "LEGIARTI000050625742",
+    "LEGIARTI000050940544",
+    "LEGIARTI000050944384",
+    "LEGIARTI000051518532",
+    "LEGIARTI000051739490",
+    "LEGIARTI000051722024",
+    "LEGIARTI000051870868",
+    "LEGIARTI000052131556",
+    "LEGIARTI000052325004",
+    "LEGIARTI000052131702"
+   ]
+  },
+  {
+   "debut": "2026-01-01",
+   "fin": "2025-12-19",
+   "morteNee": true,
+   "presente": true,
+   "entree": {
+    "intitule": "Dispositif d'affichage et d'interprétation des consommations d'énergie",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000052240206"
+   ]
+  },
+  {
+   "debut": "2026-01-01",
+   "fin": "2025-12-31",
+   "morteNee": true,
+   "presente": true,
+   "entree": {
+    "intitule": "Dispositif d'affichage et d'interprétation des consommations d'énergie",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000053049165"
+   ]
+  },
+  {
+   "debut": "2026-01-01",
+   "fin": "2026-09-01",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Dispositif d'affichage et d'interprétation des consommations d'énergie",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000053329934",
+    "LEGIARTI000053376585",
+    "LEGIARTI000053451152",
+    "LEGIARTI000053561786",
+    "LEGIARTI000053980531"
+   ]
+  },
+  {
+   "debut": "2026-09-01",
+   "fin": "2026-08-24",
+   "morteNee": true,
+   "presente": true,
+   "entree": {
+    "intitule": "Dispositif d'affichage et d'interprétation des consommations d'énergie",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000054168997"
+   ]
+  },
+  {
+   "debut": "2026-09-01",
+   "fin": null,
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Dispositif d'affichage et d'interprétation des consommations d'énergie",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000054741053"
+   ]
+  }
+ ],
+ "confrontationPdf": [
+  {
+   "pdf": "bar-eq-115_-_a_compter_du_01-01-2019_0_0.pdf",
+   "versionPdf": "A28-1",
+   "duPdf": "2019-01-01",
+   "versionJo": "A28-1",
+   "debutJo": "2019-01-01",
+   "ecarts": []
+  }
+ ]
+}

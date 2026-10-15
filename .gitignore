@@ -8,8 +8,6 @@
 
 # misc
 .DS_Store
-# Verrou créé par Excel quand le classeur est ouvert
-data/~$*
 *.pem
 
 # Claude Code (système local, non versionné)
@@ -30,5 +28,13 @@ next-env.d.ts
 # État local de wrangler
 .wrangler/
 
-# PDF officiels des fiches, téléchargés par scripts/importe-details.py
+# Téléchargements mis en cache par les scripts (PDF officiels, GeoJSON)
 .cache/
+
+
+# Python
+__pycache__/
+
+
+# Photos non retenues, gardées sous la main (27 Mo) : pas dans le dépôt
+images/reserve/

@@ -1,0 +1,536 @@
+{
+ "code": "BAT-TH-116",
+ "intitule": "Système de gestion technique du bâtiment pour le chauffage et l'eau chaude sanitaire",
+ "annexe": "Annexe 3",
+ "genereLe": "2026-10-15",
+ "versions": [
+  {
+   "version": null,
+   "nor": "DEVR1507213A",
+   "republiePar": [],
+   "integreeLe": "2015-03-30",
+   "origines": [
+    "création : texte qui a produit la version d’annexe où la fiche apparaît"
+   ],
+   "debut": "2015-03-30",
+   "genreDate": "lendemain",
+   "sourceDate": "aucune date dans l’arrêté : lendemain de la publication au JO du 2015-03-29",
+   "candidats": null,
+   "arrete": {
+    "nor": "DEVR1507213A",
+    "cid": "JORFTEXT000030406025",
+    "titre": "Arrêté du 20 mars 2015 définissant les opérations standardisées d'économies d'énergie",
+    "publication": "2015-03-29"
+   },
+   "texteAuJo": false,
+   "annexeEnImage": true,
+   "fin": "2018-12-18",
+   "niveau": 1,
+   "pdf": null,
+   "manques": []
+  },
+  {
+   "version": null,
+   "nor": "TRER1834001A",
+   "republiePar": [],
+   "integreeLe": "2018-12-19",
+   "origines": [
+    "note consolidée (art. 3 de l'arrêté du 2018-12-06)"
+   ],
+   "debut": "2018-12-19",
+   "genreDate": "lendemain",
+   "sourceDate": "aucune date dans l’arrêté : lendemain de la publication au JO du 2018-12-18",
+   "candidats": null,
+   "arrete": {
+    "nor": "TRER1834001A",
+    "cid": "JORFTEXT000037823303",
+    "titre": "Arrêté du 6 décembre 2018 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie",
+    "publication": "2018-12-18"
+   },
+   "texteAuJo": false,
+   "annexeEnImage": true,
+   "fin": "2021-10-31",
+   "versionProposee": "A28-2",
+   "versionProposeeSource": "rang de l’arrêté × position dans la chronologie",
+   "niveau": 1,
+   "pdf": null,
+   "manques": []
+  },
+  {
+   "version": null,
+   "nor": "TRER2121430A",
+   "republiePar": [],
+   "integreeLe": "2021-07-31",
+   "origines": [
+    "note consolidée (art. 1 de l'arrêté du 2021-07-19)",
+    "note consolidée (art. 2 de l'arrêté du 2022-07-25)"
+   ],
+   "debut": "2021-11-01",
+   "genreDate": "article",
+   "sourceDate": "art. 1 (vise l’annexe B) : « Les fiches d'opérations standardisées figurant en annexe B remplacent, à compter du 1er novembre 2021, les fiches portant les mêmes références figurant en annexe 3 de l'arrêté du 22 décembre 2014 susv »",
+   "candidats": null,
+   "arrete": {
+    "nor": "TRER2121430A",
+    "cid": "JORFTEXT000043871820",
+    "titre": "Arrêté du 19 juillet 2021 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie",
+    "publication": "2021-07-30"
+   },
+   "texteAuJo": false,
+   "annexeEnImage": true,
+   "fin": "2022-09-30",
+   "niveau": 1,
+   "pdf": null,
+   "manques": []
+  },
+  {
+   "version": null,
+   "nor": "ENER2221632A",
+   "republiePar": [],
+   "integreeLe": "2022-10-01",
+   "origines": [
+    "note consolidée (art. 1 de l'arrêté du 2021-07-19)"
+   ],
+   "debut": "2022-10-01",
+   "genreDate": "article",
+   "sourceDate": "art. 2 (vise l’annexe C) : « La fiche d'opération standardisée figurant en annexe C remplace, à compter du 1er octobre 2022, la fiche portant la même référence figurant en annexe 3 de l'arrêté du 22 décembre 2014 susvisé. »",
+   "candidats": null,
+   "arrete": {
+    "nor": "ENER2221632A",
+    "cid": "JORFTEXT000046138826",
+    "titre": "Arrêté du 25 juillet 2022 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie et l'arrêté du 29 décembre 2014 relatif aux modalités d'application du dispositif des certificats d'économies d'énergie",
+    "publication": "2022-08-04"
+   },
+   "texteAuJo": false,
+   "annexeEnImage": true,
+   "fin": "2023-12-31",
+   "niveau": 1,
+   "pdf": null,
+   "manques": []
+  },
+  {
+   "version": "A59-5",
+   "nor": "ENER2333436A",
+   "republiePar": [],
+   "integreeLe": "2023-12-30",
+   "origines": [
+    "note consolidée (art. 1 de l'arrêté du 2023-12-22)",
+    "arrêté du JO qui publie la fiche"
+   ],
+   "debut": "2024-01-01",
+   "genreDate": "article",
+   "sourceDate": "art. 1 (vise l’annexe 3 de l’arrêté de 2014) : « La fiche d'opération standardisée figurant en annexe au présent arrêté remplace, à compter du 1er janvier 2024, la fiche portant la même référence figurant à l'annexe 3 de l'arrêté du 22 décembre 2014 »",
+   "candidats": null,
+   "arrete": {
+    "nor": "ENER2333436A",
+    "cid": "JORFTEXT000048708397",
+    "titre": "Arrêté du 22 décembre 2023 modifiant la fiche d'opération standardisée BAT-TH-116 et la bonification associée du dispositif des certificats d'économies d'énergie",
+    "publication": "2023-12-29"
+   },
+   "texteAuJo": true,
+   "annexeEnImage": false,
+   "fin": "2024-12-31",
+   "versionSource": "texte du JO",
+   "niveau": 2,
+   "pdf": null,
+   "manques": []
+  },
+  {
+   "version": "A62-6",
+   "nor": "TECR2428117A",
+   "republiePar": [
+    "ECOR2422700A",
+    "ECOR2422700A"
+   ],
+   "integreeLe": "2024-11-17",
+   "origines": [
+    "note consolidée (art. 1 de l'arrêté du 2024-10-24)",
+    "note consolidée (art. 2 de l'arrêté du 2024-08-22)",
+    "arrêté du JO qui publie la fiche",
+    "arrêté du JO qui publie la fiche"
+   ],
+   "debut": "2025-01-01",
+   "genreDate": "chaîne",
+   "sourceDate": "art. 1 remplace la fiche de l’arrêté du 2024-08-22 (ECOR2422700A), qui s’applique : art. 2 (vise l’annexe C) : « Les fiches d'opérations standardisées figurant en annexe C au présent arrêté remplacent, à compter du 1er janvier 2025, les fiches ",
+   "candidats": null,
+   "arrete": {
+    "nor": "TECR2428117A",
+    "cid": "JORFTEXT000050500689",
+    "titre": "Arrêté du 24 octobre 2024 modifiant les fiches d'opérations standardisées portant les références BAT-TH-116 et IND-UT-139 et créant les référentiels de contrôle des fiches d'opérations standardisées portant les références IND-UT-137, IND-UT-138 et IND-UT-139, dans le cadre du dispositif des certificats d'économies d'énergie",
+    "publication": "2024-11-16"
+   },
+   "texteAuJo": true,
+   "annexeEnImage": true,
+   "fin": null,
+   "versionSource": "texte du JO",
+   "niveau": 3,
+   "pdf": "BAT-TH-116 vA62-6 à compter du 01-01-2025_0.pdf",
+   "manques": [
+    "neuf informations",
+    "visa d’Alek"
+   ]
+  }
+ ],
+ "versionsSansDate": [],
+ "textesDuJo": [
+  {
+   "publication": "2022-10-28",
+   "nor": "ENER2228398A",
+   "cid": "JORFTEXT000046496980",
+   "titre": "Arrêté du 22 octobre 2022 modifiant l'arrêté du 29 décembre 2014 relatif aux modalités d'application du dispositif des certificats d'économies d'énergie",
+   "nature": "bonification",
+   "versionCitee": null,
+   "annexeEnImage": false
+  },
+  {
+   "publication": "2023-09-30",
+   "nor": "ENER2325207A",
+   "cid": "JORFTEXT000048124066",
+   "titre": "Arrêté du 15 septembre 2023 modifiant et créant des fiches d'opérations standardisées d'économies d'énergie dans le cadre du dispositif des certificats d'économies d'énergie",
+   "nature": "publie peut-être la fiche, en image",
+   "versionCitee": null,
+   "annexeEnImage": true
+  },
+  {
+   "publication": "2023-12-29",
+   "nor": "ENER2333436A",
+   "cid": "JORFTEXT000048708397",
+   "titre": "Arrêté du 22 décembre 2023 modifiant la fiche d'opération standardisée BAT-TH-116 et la bonification associée du dispositif des certificats d'économies d'énergie",
+   "nature": "publie la fiche",
+   "versionCitee": "A59-5",
+   "annexeEnImage": false
+  },
+  {
+   "publication": "2024-02-28",
+   "nor": "ECOR2405028A",
+   "cid": "JORFTEXT000049205050",
+   "titre": "Arrêté du 22 février 2024 mettant en place des contrôles dans le cadre du dispositif des certificats d'économies d'énergie",
+   "nature": "publie peut-être la fiche, en image",
+   "versionCitee": null,
+   "annexeEnImage": true
+  },
+  {
+   "publication": "2024-08-30",
+   "nor": "ECOR2422700A",
+   "cid": "JORFTEXT000050147822",
+   "titre": "Arrêté du 22 août 2024 modifiant l'arrêté du 4 septembre 2014 modifié fixant la liste des éléments d'une demande de certificats d'économies d'énergie et les documents à archiver par le demandeur, l'arrêté du 22 décembre 2014 modifié définissant les opérations standardisées d'économies d'énergie et l'arrêté du 28 septembre 2021 modifié relatif aux contrôles dans le cadre du dispositif des certificats d'économies d'énergie",
+   "nature": "publie la fiche",
+   "versionCitee": "A62-6",
+   "annexeEnImage": true
+  },
+  {
+   "publication": "2024-11-16",
+   "nor": "TECR2428117A",
+   "cid": "JORFTEXT000050500689",
+   "titre": "Arrêté du 24 octobre 2024 modifiant les fiches d'opérations standardisées portant les références BAT-TH-116 et IND-UT-139 et créant les référentiels de contrôle des fiches d'opérations standardisées portant les références IND-UT-137, IND-UT-138 et IND-UT-139, dans le cadre du dispositif des certificats d'économies d'énergie",
+   "nature": "publie la fiche",
+   "versionCitee": "A62-6",
+   "annexeEnImage": true
+  },
+  {
+   "publication": "2026-07-29",
+   "nor": "ECOR2620284A",
+   "cid": "JORFTEXT000054541363",
+   "titre": "Arrêté du 27 juillet 2026 relatif aux modalités de contrôle dans le cadre du dispositif des certificats d'économies d'énergie",
+   "nature": "contrôles",
+   "versionCitee": null,
+   "annexeEnImage": false
+  }
+ ],
+ "notesConsolidees": [
+  {
+   "article": "3",
+   "arrete": "2018-12-06",
+   "nor": "TRER1834001A",
+   "effet": "fiche remplacée",
+   "lettre": null,
+   "aCompterDu": null,
+   "texte": "Conformément à l'article 3 de de l'arrêté du 6 décembre 2018 (NOR : TRER1834001A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe 5 dudit arrêté. Isolation d'un réseau hydraulique d'eau chaude sanitaire /",
+   "vuDansLaPeriode": "2018-12-19",
+   "morteNee": false
+  },
+  {
+   "article": "1",
+   "arrete": "2021-07-19",
+   "nor": "TRER2121430A",
+   "effet": "fiche remplacée",
+   "lettre": "B",
+   "aCompterDu": "2021-11-01",
+   "texte": "Conformément à l'article 1 er de l'arrêté du 19 juillet 2021 (NOR : TRER2121430A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe B dudit arrêté, à compter du 1er novembre 2021.",
+   "vuDansLaPeriode": "2021-07-31",
+   "morteNee": false
+  },
+  {
+   "article": "1",
+   "arrete": "2021-07-19",
+   "nor": "ENER2221632A",
+   "effet": "fiche remplacée",
+   "lettre": "C",
+   "aCompterDu": "2021-11-01",
+   "texte": "Conformément à l'article 1 er de l'arrêté du 19 juillet 2021 (NOR : ENER2221632A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe C dudit arrêté, à compter du 1er novembre 2021.",
+   "vuDansLaPeriode": "2022-10-01",
+   "morteNee": false
+  },
+  {
+   "article": "2",
+   "arrete": "2022-07-25",
+   "nor": "TRER2121430A",
+   "effet": "fiche remplacée",
+   "lettre": "C",
+   "aCompterDu": "2022-10-01",
+   "texte": "Conformément à l'article 2 de l'arrêté du 25 juillet 2022 (NOR : TRER2121430A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe C dudit arrêté, à compter du 1er octobre 2022.",
+   "vuDansLaPeriode": "2022-10-01",
+   "morteNee": false
+  },
+  {
+   "article": "1",
+   "arrete": "2023-12-22",
+   "nor": "ENER2333436A",
+   "effet": "fiche remplacée",
+   "lettre": null,
+   "aCompterDu": "2024-01-01",
+   "texte": "Conformément à l'article 1 de l'arrêté du 22 décembre 2023 (NOR : ENER2333436A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe dudit arrêté, à compter du 1er janvier 2024.",
+   "vuDansLaPeriode": "2023-12-30",
+   "morteNee": false
+  },
+  {
+   "article": "1",
+   "arrete": "2024-10-24",
+   "nor": "TECR2428117A",
+   "effet": "fiche remplacée",
+   "lettre": "I",
+   "aCompterDu": null,
+   "texte": "Conformément à l'article 1er de l'arrêté du 24 octobre 2024 (NOR : TECR2428117A), la fiche d'opération standardisée portant la référence BAT-TH-116 et figurant en annexe I de l'arrêté précité remplace la fiche portant la même référence figurant dans l'annexe C de l'arrêté du 22 août 2024 (NOR : ECOR2422700A).",
+   "vuDansLaPeriode": "2024-11-17",
+   "morteNee": false
+  },
+  {
+   "article": "2",
+   "arrete": "2024-08-22",
+   "nor": "ECOR2422700A",
+   "effet": "fiche remplacée",
+   "lettre": null,
+   "aCompterDu": "2025-01-01",
+   "texte": "Conformément à l'article 2 de l'arrêté du 22 août 2024 (NOR : ECOR2422700A), la fiche d'opération n° BAT-TH-116 remplace, à compter du 1 er janvier 2025, la fiche portant la même référence.",
+   "vuDansLaPeriode": "2024-08-31",
+   "morteNee": false
+  }
+ ],
+ "periodesConsolidees": [
+  {
+   "debut": "2015-01-01",
+   "fin": "2015-03-30",
+   "morteNee": false,
+   "presente": false,
+   "entree": null,
+   "versionsAnnexe": [
+    "LEGIARTI000030109052"
+   ]
+  },
+  {
+   "debut": "2015-03-30",
+   "fin": "2018-12-19",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": null,
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000030418959",
+    "LEGIARTI000030966538",
+    "LEGIARTI000031043944",
+    "LEGIARTI000031876994",
+    "LEGIARTI000032192101",
+    "LEGIARTI000033061919",
+    "LEGIARTI000033361060",
+    "LEGIARTI000033677896",
+    "LEGIARTI000034264508",
+    "LEGIARTI000035390120",
+    "LEGIARTI000036501695"
+   ]
+  },
+  {
+   "debut": "2018-12-19",
+   "fin": "2019-09-01",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": null,
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 3 de de l'arrêté du 6 décembre 2018 (NOR : TRER1834001A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe 5 dudit arrêté. Isolation d'un réseau hydraulique d'eau chaude sanitaire /"
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000037845364"
+   ]
+  },
+  {
+   "debut": "2019-09-01",
+   "fin": "2021-07-31",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Système de gestion technique du bâtiment pour le chauffage et l'eau chaude sanitaire",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 3 de de l'arrêté du 6 décembre 2018 (NOR : TRER1834001A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe 5 dudit arrêté."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000039024013",
+    "LEGIARTI000046186585",
+    "LEGIARTI000041893011",
+    "LEGIARTI000042205149",
+    "LEGIARTI000041776168"
+   ]
+  },
+  {
+   "debut": "2021-07-31",
+   "fin": "2022-10-01",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Système de gestion technique du bâtiment pour le chauffage et l'eau chaude sanitaire",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 3 de de l'arrêté du 6 décembre 2018 (NOR : TRER1834001A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe 5 dudit arrêté.",
+     "Conformément à l'article 1 er de l'arrêté du 19 juillet 2021 (NOR : TRER2121430A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe B dudit arrêté, à compter du 1er novembre 2021."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000043874866",
+    "LEGIARTI000045012813",
+    "LEGIARTI000045088406",
+    "LEGIARTI000046159951"
+   ]
+  },
+  {
+   "debut": "2022-10-01",
+   "fin": "2023-12-30",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Système de gestion technique du bâtiment pour le chauffage et l'eau chaude sanitaire",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 3 de de l'arrêté du 6 décembre 2018 (NOR : TRER1834001A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe 5 dudit arrêté.",
+     "Conformément à l'article 1 er de l'arrêté du 19 juillet 2021 (NOR : ENER2221632A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe C dudit arrêté, à compter du 1er novembre 2021.",
+     "Conformément à l'article 2 de l'arrêté du 25 juillet 2022 (NOR : TRER2121430A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe C dudit arrêté, à compter du 1er octobre 2022."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000046198211",
+    "LEGIARTI000046828588",
+    "LEGIARTI000048137979",
+    "LEGIARTI000048923998"
+   ]
+  },
+  {
+   "debut": "2023-12-30",
+   "fin": "2024-08-31",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Système de gestion technique du bâtiment pour le chauffage et l'eau chaude sanitaire",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 3 de de l'arrêté du 6 décembre 2018 (NOR : TRER1834001A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe 5 dudit arrêté.",
+     "Conformément à l'article 1 er de l'arrêté du 19 juillet 2021 (NOR : ENER2221632A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe C dudit arrêté, à compter du 1er novembre 2021.",
+     "Conformément à l'article 2 de l'arrêté du 25 juillet 2022 (NOR : TRER2121430A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe C dudit arrêté, à compter du 1er octobre 2022.",
+     "Conformément à l'article 1 de l'arrêté du 22 décembre 2023 (NOR : ENER2333436A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe dudit arrêté, à compter du 1er janvier 2024."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000048924186"
+   ]
+  },
+  {
+   "debut": "2024-01-01",
+   "fin": "2023-12-29",
+   "morteNee": true,
+   "presente": true,
+   "entree": {
+    "intitule": "Système de gestion technique du bâtiment pour le chauffage et l'eau chaude sanitaire",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 3 de de l'arrêté du 6 décembre 2018 (NOR : TRER1834001A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe 5 dudit arrêté.",
+     "Conformément à l'article 1 er de l'arrêté du 19 juillet 2021 (NOR : ENER2221632A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe C dudit arrêté, à compter du 1er novembre 2021.",
+     "Conformément à l'article 2 de l'arrêté du 25 juillet 2022 (NOR : TRER2121430A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe C dudit arrêté, à compter du 1er octobre 2022."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000048138546"
+   ]
+  },
+  {
+   "debut": "2024-08-31",
+   "fin": "2024-11-17",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Système de gestion technique du bâtiment pour le chauffage et l'eau chaude sanitaire",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 3 de de l'arrêté du 6 décembre 2018 (NOR : TRER1834001A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe 5 dudit arrêté.",
+     "Conformément à l'article 1 er de l'arrêté du 19 juillet 2021 (NOR : ENER2221632A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe C dudit arrêté, à compter du 1er novembre 2021.",
+     "Conformément à l'article 2 de l'arrêté du 25 juillet 2022 (NOR : TRER2121430A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe C dudit arrêté, à compter du 1er octobre 2022.",
+     "Conformément à l'article 1 de l'arrêté du 22 décembre 2023 (NOR : ENER2333436A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe dudit arrêté, à compter du 1er janvier 2024.",
+     "Conformément à l'article 2 de l'arrêté du 22 août 2024 (NOR : ECOR2422700A), la fiche d'opération n° BAT-TH-116 remplace, à compter du 1 er janvier 2025, la fiche portant la même référence."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000050149111"
+   ]
+  },
+  {
+   "debut": "2024-11-17",
+   "fin": null,
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Système de gestion technique du bâtiment pour le chauffage et l'eau chaude sanitaire",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 3 de de l'arrêté du 6 décembre 2018 (NOR : TRER1834001A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe 5 dudit arrêté.",
+     "Conformément à l'article 1 er de l'arrêté du 19 juillet 2021 (NOR : ENER2221632A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe C dudit arrêté, à compter du 1er novembre 2021.",
+     "Conformément à l'article 2 de l'arrêté du 25 juillet 2022 (NOR : TRER2121430A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe C dudit arrêté, à compter du 1er octobre 2022.",
+     "Conformément à l'article 1 de l'arrêté du 22 décembre 2023 (NOR : ENER2333436A), la fiche d'opération standardisée est remplacée par la version figurant à l'annexe dudit arrêté, à compter du 1er janvier 2024.",
+     "Conformément à l'article 2 de l'arrêté du 22 août 2024 (NOR : ECOR2422700A), la fiche d'opération n° BAT-TH-116 en annexe C remplace, à compter du 1 er janvier 2025, la fiche portant la même référence dans la présente annexe.",
+     "Conformément à l'article 1er de l'arrêté du 24 octobre 2024 (NOR : TECR2428117A), la fiche d'opération standardisée portant la référence BAT-TH-116 et figurant en annexe I de l'arrêté précité remplace la fiche portant la même référence figurant dans l'annexe C de l'arrêté du 22 août 2024 (NOR : ECOR2422700A)."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000050590889",
+    "LEGIARTI000050625796",
+    "LEGIARTI000050940536",
+    "LEGIARTI000051870865",
+    "LEGIARTI000052131554",
+    "LEGIARTI000052236634",
+    "LEGIARTI000053329938",
+    "LEGIARTI000053561792",
+    "LEGIARTI000053980534"
+   ]
+  }
+ ],
+ "confrontationPdf": [
+  {
+   "pdf": "BAT-TH-116 vA62-6 à compter du 01-01-2025_0.pdf",
+   "versionPdf": "A62-6",
+   "duPdf": "2025-01-01",
+   "versionJo": "A62-6",
+   "debutJo": "2025-01-01",
+   "ecarts": []
+  }
+ ]
+}

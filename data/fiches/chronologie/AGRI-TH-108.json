@@ -1,0 +1,199 @@
+{
+ "code": "AGRI-TH-108",
+ "intitule": null,
+ "annexe": "Annexe 1",
+ "genereLe": "2026-10-15",
+ "versions": [
+  {
+   "version": null,
+   "nor": "DEVR1507213A",
+   "republiePar": [],
+   "integreeLe": "2015-03-30",
+   "origines": [
+    "création : texte qui a produit la version d’annexe où la fiche apparaît"
+   ],
+   "debut": "2015-03-30",
+   "genreDate": "lendemain",
+   "sourceDate": "aucune date dans l’arrêté : lendemain de la publication au JO du 2015-03-29",
+   "candidats": null,
+   "arrete": {
+    "nor": "DEVR1507213A",
+    "cid": "JORFTEXT000030406025",
+    "titre": "Arrêté du 20 mars 2015 définissant les opérations standardisées d'économies d'énergie",
+    "publication": "2015-03-29"
+   },
+   "texteAuJo": false,
+   "annexeEnImage": true,
+   "fin": "2020-09-30",
+   "niveau": 1,
+   "pdf": null,
+   "manques": []
+  },
+  {
+   "version": null,
+   "nor": "TRER2020386A",
+   "republiePar": [],
+   "integreeLe": "2020-08-03",
+   "origines": [
+    "note consolidée (art. 2 de l'arrêté du 2020-07-24)"
+   ],
+   "debut": "2020-10-01",
+   "genreDate": "article",
+   "sourceDate": "art. 6 : « II. - Les fiches d'opérations standardisées d'économies d'énergie figurant aux annexes 1, 2, 3, 4 et 5 du présent arrêté sont applicables aux opérations standardisées d'économies d'énergie engagées à  »",
+   "candidats": null,
+   "arrete": {
+    "nor": "TRER2020386A",
+    "cid": "JORFTEXT000042184900",
+    "titre": "Arrêté du 24 juillet 2020 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie",
+    "publication": "2020-08-02"
+   },
+   "texteAuJo": false,
+   "annexeEnImage": true,
+   "fin": null,
+   "versionProposee": "A35",
+   "versionProposeeSource": "PDF déposé, seul candidat (son nom ne donne pas la position)",
+   "niveau": 3,
+   "pdf": "AGRI-TH-108_FS_Pompe à chaleur de type air eau ou eau eau v35.pdf",
+   "manques": [
+    "numéro de version à confirmer : A35 (PDF déposé, seul candidat (son nom ne donne pas la position))",
+    "neuf informations",
+    "visa d’Alek"
+   ]
+  }
+ ],
+ "versionsSansDate": [],
+ "textesDuJo": [],
+ "notesConsolidees": [
+  {
+   "article": "2",
+   "arrete": "2020-07-24",
+   "nor": "TRER2020386A",
+   "effet": "fiche remplacée",
+   "lettre": null,
+   "aCompterDu": null,
+   "texte": "Conformément à l'article 2 de l'arrêté du 24 juillet 2020 (NOR : TRER2020386A), les fiches d'opération n° AGRI-TH-104, AGRI-TH-108, AGRI-TH-110, figurant en annexe 1 du présent arrêté remplacent les fiches d'opérations standardisées portant les mêmes références figurant à l'annexe 1 de l'arrêté du 22 décembre 2014 susvisé.",
+   "vuDansLaPeriode": "2020-08-03",
+   "morteNee": false
+  }
+ ],
+ "periodesConsolidees": [
+  {
+   "debut": "2015-01-01",
+   "fin": "2015-03-30",
+   "morteNee": false,
+   "presente": false,
+   "entree": null,
+   "versionsAnnexe": [
+    "LEGIARTI000030077404"
+   ]
+  },
+  {
+   "debut": "2015-03-30",
+   "fin": "2020-08-03",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": null,
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000030418963",
+    "LEGIARTI000030966545",
+    "LEGIARTI000031043950",
+    "LEGIARTI000031877000",
+    "LEGIARTI000032192119",
+    "LEGIARTI000033061883",
+    "LEGIARTI000033361055",
+    "LEGIARTI000033677887",
+    "LEGIARTI000036501690",
+    "LEGIARTI000037845368",
+    "LEGIARTI000046205210"
+   ]
+  },
+  {
+   "debut": "2020-08-03",
+   "fin": "2024-08-31",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": null,
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 2 de l'arrêté du 24 juillet 2020 (NOR : TRER2020386A), les fiches d'opération n° AGRI-TH-104, AGRI-TH-108, AGRI-TH-110, figurant en annexe 1 du présent arrêté remplacent les fiches d'opérations standardisées portant les mêmes références figurant à l'annexe 1 de l'arrêté du 22 décembre 2014 susvisé."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000042205154",
+    "LEGIARTI000043874876",
+    "LEGIARTI000045012821",
+    "LEGIARTI000047313645",
+    "LEGIARTI000048923981"
+   ]
+  },
+  {
+   "debut": "2024-01-01",
+   "fin": "2023-12-29",
+   "morteNee": true,
+   "presente": true,
+   "entree": {
+    "intitule": null,
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 2 de l'arrêté du 24 juillet 2020 (NOR : TRER2020386A), les fiches d'opération n° AGRI-TH-104, AGRI-TH-108, AGRI-TH-110, figurant en annexe 1 du présent arrêté remplacent les fiches d'opérations standardisées portant les mêmes références figurant à l'annexe 1 de l'arrêté du 22 décembre 2014 susvisé."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000048137933"
+   ]
+  },
+  {
+   "debut": "2024-08-31",
+   "fin": null,
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": null,
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 2 de l'arrêté du 24 juillet 2020 (NOR : TRER2020386A), les fiches d'opération n° AGRI-TH-104, AGRI-TH-108, AGRI-TH-110, figurant en annexe 1 du présent arrêté remplacent les fiches d'opérations standardisées portant les mêmes références figurant à l'annexe 1 de l'arrêté du 22 décembre 2014 susvisé."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000050149126",
+    "LEGIARTI000050940571",
+    "LEGIARTI000052131584",
+    "LEGIARTI000054173646",
+    "LEGIARTI000054299333",
+    "LEGIARTI000053310974",
+    "LEGIARTI000054885008"
+   ]
+  },
+  {
+   "debut": "2999-01-01",
+   "fin": null,
+   "morteNee": false,
+   "presente": false,
+   "entree": null,
+   "versionsAnnexe": [
+    "JORFARTI000029953760"
+   ]
+  }
+ ],
+ "confrontationPdf": [
+  {
+   "pdf": "AGRI-TH-108_FS_Pompe à chaleur de type air eau ou eau eau v35.pdf",
+   "versionPdf": "A35",
+   "duPdf": null,
+   "versionJo": null,
+   "debutJo": null,
+   "ecarts": [
+    "aucune version du JO ne correspond"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+# Les 22 fiches du POC, validées par Alek le 14/10/2026 : au moins une par secteur et
+# sous-secteur, plus trois pour les installateurs. Une ligne par code.
+AGRI-EQ-102
+AGRI-SE-101
+AGRI-TH-108
+AGRI-UT-102
+BAR-EN-101
+BAR-EQ-115
+BAR-SE-108
+BAR-TH-129
+BAR-TH-148
+BAR-TH-171
+BAT-EN-101
+BAT-EQ-134
+BAT-SE-103
+BAT-TH-116
+IND-BA-110
+IND-EN-102
+IND-UT-102
+IND-UT-131
+RES-CH-103
+RES-EC-104
+TRA-EQ-114
+TRA-SE-101

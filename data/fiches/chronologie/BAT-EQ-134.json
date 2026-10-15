@@ -1,0 +1,179 @@
+{
+ "code": "BAT-EQ-134",
+ "intitule": "Meuble frigorifique de vente performant avec groupe de production de froid intégré",
+ "annexe": "Annexe 3",
+ "genereLe": "2026-10-15",
+ "versions": [
+  {
+   "version": null,
+   "nor": "TRER2137033A",
+   "republiePar": [],
+   "integreeLe": "2021-12-29",
+   "origines": [
+    "création : texte qui a produit la version d’annexe où la fiche apparaît"
+   ],
+   "debut": "2021-12-29",
+   "genreDate": "lendemain",
+   "sourceDate": "aucune date dans l’arrêté : lendemain de la publication au JO du 2021-12-28",
+   "candidats": null,
+   "arrete": {
+    "nor": "TRER2137033A",
+    "cid": "JORFTEXT000044571326",
+    "titre": "Arrêté du 17 décembre 2021 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie",
+    "publication": "2021-12-28"
+   },
+   "texteAuJo": false,
+   "annexeEnImage": true,
+   "fin": "2024-03-31",
+   "niveau": 2,
+   "pdf": null,
+   "manques": [
+    "numéro de version inconnu",
+    "texte de la fiche (PDF du ministère)"
+   ]
+  },
+  {
+   "version": "A58-2",
+   "nor": "ENER2333440A",
+   "republiePar": [],
+   "integreeLe": null,
+   "origines": [
+    "arrêté du JO qui publie la fiche"
+   ],
+   "debut": "2024-04-01",
+   "genreDate": "article",
+   "sourceDate": "art. 1 (vise l’annexe 3 de l’arrêté de 2014) : « La fiche d'opération standardisée figurant en annexe C au présent arrêté remplace, à compter du 1er avril 2024, la fiche portant la même référence figurant en annexe 3 à l'arrêté du 22 décembre 2014 s »",
+   "candidats": null,
+   "arrete": {
+    "nor": "ENER2333440A",
+    "cid": "JORFTEXT000048680244",
+    "titre": "Arrêté du 20 décembre 2023 portant création et révision de fiches opérations standardisées d'économies d'énergie dans le cadre du dispositif des certificats d'économies d'énergie",
+    "publication": "2023-12-28"
+   },
+   "texteAuJo": true,
+   "annexeEnImage": true,
+   "fin": null,
+   "versionSource": "texte du JO",
+   "niveau": 3,
+   "pdf": "BAT-EQ-134 vA58-2 à compter du 01-04-2024.pdf",
+   "manques": [
+    "neuf informations",
+    "visa d’Alek"
+   ]
+  }
+ ],
+ "versionsSansDate": [],
+ "textesDuJo": [
+  {
+   "publication": "2023-12-28",
+   "nor": "ENER2333440A",
+   "cid": "JORFTEXT000048680244",
+   "titre": "Arrêté du 20 décembre 2023 portant création et révision de fiches opérations standardisées d'économies d'énergie dans le cadre du dispositif des certificats d'économies d'énergie",
+   "nature": "publie la fiche",
+   "versionCitee": "A58-2",
+   "annexeEnImage": true
+  }
+ ],
+ "notesConsolidees": [],
+ "periodesConsolidees": [
+  {
+   "debut": "2015-01-01",
+   "fin": "2021-12-29",
+   "morteNee": false,
+   "presente": false,
+   "entree": null,
+   "versionsAnnexe": [
+    "LEGIARTI000030109052",
+    "LEGIARTI000030418959",
+    "LEGIARTI000030966538",
+    "LEGIARTI000031043944",
+    "LEGIARTI000031876994",
+    "LEGIARTI000032192101",
+    "LEGIARTI000033061919",
+    "LEGIARTI000033361060",
+    "LEGIARTI000033677896",
+    "LEGIARTI000034264508",
+    "LEGIARTI000035390120",
+    "LEGIARTI000036501695",
+    "LEGIARTI000037845364",
+    "LEGIARTI000039024013",
+    "LEGIARTI000046186585",
+    "LEGIARTI000041893011",
+    "LEGIARTI000042205149",
+    "LEGIARTI000041776168",
+    "LEGIARTI000043874866"
+   ]
+  },
+  {
+   "debut": "2021-12-29",
+   "fin": "2024-08-31",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Meuble frigorifique de vente performant avec groupe de production de froid intégré",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000045012813",
+    "LEGIARTI000045088406",
+    "LEGIARTI000046159951",
+    "LEGIARTI000046198211",
+    "LEGIARTI000046828588",
+    "LEGIARTI000048137979",
+    "LEGIARTI000048923998",
+    "LEGIARTI000048924186"
+   ]
+  },
+  {
+   "debut": "2024-01-01",
+   "fin": "2023-12-29",
+   "morteNee": true,
+   "presente": true,
+   "entree": {
+    "intitule": "Meuble frigorifique de vente performant avec groupe de production de froid intégré",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000048138546"
+   ]
+  },
+  {
+   "debut": "2024-08-31",
+   "fin": null,
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Meuble frigorifique de vente performant avec groupe de production de froid intégré",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000050149111",
+    "LEGIARTI000050590889",
+    "LEGIARTI000050625796",
+    "LEGIARTI000050940536",
+    "LEGIARTI000051870865",
+    "LEGIARTI000052131554",
+    "LEGIARTI000052236634",
+    "LEGIARTI000053329938",
+    "LEGIARTI000053561792",
+    "LEGIARTI000053980534"
+   ]
+  }
+ ],
+ "confrontationPdf": [
+  {
+   "pdf": "BAT-EQ-134 vA58-2 à compter du 01-04-2024.pdf",
+   "versionPdf": "A58-2",
+   "duPdf": "2024-04-01",
+   "versionJo": "A58-2",
+   "debutJo": "2024-04-01",
+   "ecarts": []
+  }
+ ]
+}

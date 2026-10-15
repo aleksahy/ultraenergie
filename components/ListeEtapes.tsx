@@ -16,9 +16,16 @@ export default function ListeEtapes({ etapes, numerote = false }: { etapes: read
     <div className="etapes">
       {etapes.map((e, i) => (
         <div key={e.titre} className="etape">
+          {/* Le rang au-dessus de l'icône sur l'accueil (charte « Bureau », 15/10/2026) ; les
+              pages partenaires gardent leur grand numéro à la place de l'icône. */}
           {numerote
             ? <span className="etape-numero" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-            : <IconeEtape nom={e.icone} />}
+            : (
+              <>
+                <span className="etape-rang" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                <IconeEtape nom={e.icone} />
+              </>
+            )}
           <div className="etape-delai">{e.delai}</div>
           <div className="etape-titre">{e.titre}</div>
           <p className="etape-desc">{e.desc}</p>

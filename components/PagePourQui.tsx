@@ -1,144 +1,84 @@
-import Link from 'next/link';
 import Page, { Section } from './Page';
-import ListeLiens from './ListeLiens';
 import ListeFaq from './ListeFaq';
-import Schema, { SchemaFinancement } from './Schemas';
-import { IconeArgument, IconeEtape } from './Icones';
-import { BoutonModale } from './Modales';
+import ContactBande from './ContactBande';
+import { PHOTOS_PAGES } from './PhotosPages';
 import type { Argumentaire } from '@/lib/argumentaires';
-import { aUnePage, ancreFiche, entreeParCode, intituleDe } from '@/lib/fiches';
-import { url } from '@/lib/routes';
 
 /**
- * Le gabarit des pages « Pour qui » : une page pour qui DÉCIDE des travaux.
+ * Le gabarit des pages « Pour qui », sur le modèle des pages intérieures d'EBS Énergie
+ * (Alek, 15/10/2026) : un haut propre au profil, un bas identique partout.
  *
- * Le lecteur est un maître d'ouvrage : il veut savoir ce que ça change à son plan de
- * financement, dans quel ordre les choses se passent, et ce qu'il risque de rater. D'où
- * l'ordre : ce que c'est (intro et schéma du bâti), comment ça se finance (parts, pas de
- * montants), ce qu'on y gagne (avantages en rangées), la chronologie (verticale, avec les
- * moments clés en marge), la règle, les fiches concernées, la FAQ, l'appel à l'action.
+ *   1. le bandeau photo et le titre (⛔ pas de chapô dessous, retiré par Alek ; le `chapo`
+ *      reste la description de la page pour les moteurs) ;
+ *   2. « Le contexte » : deux ou trois paragraphes propres au profil (`intro`) ;
+ *   3. « Les opérations éligibles » : les familles de travaux, avec les fiches en exemple ;
+ *   4. « L'accompagnement Ultra Énergie » : les quatre étapes à l'horizontale, reliées ;
+ *   5. les questions fréquentes, centrées, propres au thème, aussi en données structurées ;
+ *   6. la bande de contact, hors du conteneur (prop `pied`). ⛔ Pas de « Voir aussi » sur ces
+ *      pages (Alek, 15/10/2026) : le menu et le pied font le maillage.
  *
- * ⚠️ CE GABARIT N'EST PAS CELUI DES PARTENAIRES (`PagePartenaire.tsx`). Les deux pages
- * s'adressent à des lecteurs différents et ne se ressemblent pas, c'est voulu.
+ * ⛔ Pas de repères chiffrés en haut de page « pour le moment » (Alek). ⛔ Plus de « Ce que
+ * vous y gagnez », de « Où se place la prime », de chronologie verticale ni d'encadré.
+ *
+ * ⚠️ CE GABARIT N'EST PAS CELUI DES PARTENAIRES (`PagePartenaire.tsx`).
  */
-export default function PagePourQui({ argumentaire: a, chemin, autres }: {
+export default function PagePourQui({ argumentaire: a, chemin }: {
   argumentaire: Argumentaire;
   chemin: string;
-  autres: { href: string; label: string }[];
 }) {
-  for (const code of a.fichesCles?.codes ?? []) {
-    if (!entreeParCode(code)) throw new Error(`Page ${a.slug} : fiche clé absente du catalogue « ${code} »`);
-  }
-
+  /* Les questions en données structurées (schema.org FAQPage), pour les moteurs. */
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: a.faq.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.r },
+    })),
+  };
   return (
-    <Page chemin={chemin} titre={a.titre} chapo={a.chapo} surtitre={a.surtitre}>
-      <div className="argu-intro">
-        <div className="argu-prose">
-          {a.intro.map((p) => <p key={p} className="page-texte">{p}</p>)}
-        </div>
-        <div className="argu-schema">
-          <Schema nom={a.schema} />
-        </div>
-      </div>
+    <Page
+      chemin={chemin}
+      titre={a.titre}
+      surtitre={a.surtitre}
+      photo={PHOTOS_PAGES[a.photo].src}
+      photoPosition={PHOTOS_PAGES[a.photo].position}
+      pied={<ContactBande titre={a.appel.titre} bouton={a.appel.bouton} modale={a.appel.modale} contexte={a.titre} />}
+    >
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
-      {a.financement && (
-        <Section titre="Où se place la prime">
-          <div className="financement">
-            <div className="financement-schema">
-              <SchemaFinancement />
-            </div>
-            <ul className="financement-legende">
-              {a.financement.map((l, i) => (
-                <li key={l}>
-                  <span className={`financement-temoin financement-temoin-${i}`} aria-hidden="true" />
-                  <span>{l}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Section>
-      )}
-
-      <Section titre="Ce que vous y gagnez">
-        <div className="avantages">
-          {a.arguments.map((arg) => (
-            <div key={arg.titre} className="avantage">
-              <IconeArgument nom={arg.icone} />
-              <div>
-                <div className="avantage-titre">{arg.titre}</div>
-                <p className="avantage-texte">{arg.texte}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+      <Section titre="Le contexte" surtitre="Contexte" colonnes>
+        {a.intro.map((p) => <p key={p} className="page-texte">{p}</p>)}
       </Section>
 
-      <Section titre="Dans quel ordre">
-        <ol className="chrono" role="list">
+      <Section titre="Les opérations éligibles à la prime CEE" surtitre="Opérations">
+        <ul className="operations" role="list">
+          {a.operations.map((o) => (
+            <li key={o.titre} className="operation">
+              <h3 className="operation-titre">{o.titre}</h3>
+              <p className="operation-texte">{o.texte}</p>
+            </li>
+          ))}
+        </ul>
+        <p className="mention">Les fiches citées sont des exemples : chaque opération est qualifiée au regard de la fiche en vigueur à la date de l’engagement.</p>
+      </Section>
+
+      <Section titre="Le déroulé, étape par étape" surtitre="L’accompagnement Ultra Énergie">
+        <ol className="deroule" role="list">
           {a.etapes.map((e, i) => (
-            <li key={e.titre} className="chrono-etape">
-              <div className="chrono-marge">
-                <span className="chrono-delai">{e.delai}</span>
-              </div>
-              <div className="chrono-point" aria-hidden="true">
-                <IconeEtape nom={e.icone} />
-              </div>
-              <div className="chrono-corps">
-                <div className="chrono-titre"><span className="chrono-numero" aria-hidden="true">{i + 1}.</span> {e.titre}</div>
-                <p className="chrono-desc">{e.desc}</p>
-              </div>
+            <li key={e.titre} className="deroule-etape">
+              <span className="deroule-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <span className="deroule-delai">{e.delai}</span>
+              <span className="deroule-titre">{e.titre}</span>
+              <span className="deroule-desc">{e.desc}</span>
             </li>
           ))}
         </ol>
       </Section>
 
-      <aside className="regle" aria-label={a.regle.titre}>
-        <div className="regle-titre">{a.regle.titre}</div>
-        <p className="regle-texte">{a.regle.texte}</p>
-      </aside>
-
-      {a.fichesCles && (
-        <Section titre={a.fichesCles.titre}>
-          <ListeLiens
-            liens={a.fichesCles.codes.filter(aUnePage).map((code) => ({
-              href: url.fiche(entreeParCode(code)!.secteur, code),
-              label: ancreFiche(code),
-            }))}
-          />
-          {a.fichesCles.codes.some((c) => !aUnePage(c)) && (
-            <p className="mention">
-              Également concernées, sans page pour l’instant :{' '}
-              {a.fichesCles.codes.filter((c) => !aUnePage(c)).map((c) => `${c}${intituleDe(c) ? ` (${intituleDe(c)})` : ''}`).join(', ')}.
-            </p>
-          )}
-          <p className="page-texte">
-            <Link className="lien-appuye" href={url.fichesCee}>Toutes les fiches, par secteur →</Link>
-          </p>
-        </Section>
-      )}
-
-      <Section titre="Questions fréquentes">
+      <Section titre="Questions fréquentes" surtitre="On nous demande souvent" centree>
         <ListeFaq items={a.faq} />
       </Section>
-
-      <Section titre="Voir aussi">
-        <ListeLiens
-          liens={[
-            ...autres,
-            { href: url.comprendreLesCee, label: 'Comprendre le dispositif CEE' },
-            { href: url.contact, label: 'Nous contacter' },
-          ]}
-        />
-      </Section>
-
-      {/* L'appel à l'action ferme la page : la dernière chose vue est le bouton, pas une
-          liste de liens vers ailleurs. */}
-      <div className="appel-page">
-        <h2>{a.appel.titre}</h2>
-        <BoutonModale modale={a.appel.modale} contexte={a.titre} className="pilule pilule-blanc">
-          {a.appel.bouton}
-        </BoutonModale>
-      </div>
     </Page>
   );
 }

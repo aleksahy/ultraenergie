@@ -15,7 +15,7 @@
  *
  * Lancé par `npm run build` (script `postbuild`).
  */
-import { readdir, readFile, writeFile, unlink } from 'node:fs/promises';
+import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { join, relative, extname, posix } from 'node:path';
 
 const OUT = 'out';
@@ -40,8 +40,6 @@ async function fichiers(dossier) {
   }
   return trouves;
 }
-
-const REDIRECTIONS_FICHES = join(OUT, 'redirections-fiches.txt');
 
 const tous = await fichiers(OUT);
 const html = tous.filter((f) => f.endsWith('.html'));
@@ -128,18 +126,6 @@ const regles = [...declarees]
   .sort()
   .map((r) => `${r.replace(/\/$/, '')}  ${r}  301`);
 
-/* Les fiches abrogées, calculées par le build (cf. app/redirections-fiches.txt/route.ts).
-   Le fichier est lu, fusionné, puis SUPPRIMÉ : il n'a rien à faire dans le site publié. */
-let abrogees = [];
-try {
-  const brut = await readFile(REDIRECTIONS_FICHES, 'utf8');
-  abrogees = brut.split('\n').map((l) => l.trim()).filter(Boolean);
-  await unlink(REDIRECTIONS_FICHES);
-} catch (e) {
-  if (e.code !== 'ENOENT') throw e;
-  erreurs.push("out/redirections-fiches.txt est absent : la bascule des fiches abrogées ne s'est pas faite.");
-}
-
 await writeFile(
   join(OUT, '_redirects'),
   [
@@ -152,9 +138,6 @@ await writeFile(
     '# formes acceptées soit lisible dans le dépôt plutôt que déduite du comportement du CDN.',
     '',
     ...regles,
-    ...(abrogees.length
-      ? ['', '# Fiches abrogées : leur page a été retirée du site à la date d’abrogation.', ...abrogees]
-      : []),
     '',
   ].join('\n'),
   'utf8',
@@ -172,5 +155,5 @@ if (erreurs.length) {
 console.log(
   `✓ ${generees.size} pages, sitemap et out/ concordants, ` +
   `aucun lien interne mort, aucune page orpheline, ` +
-  `${regles.length} redirections + ${abrogees.length} fiche(s) abrogée(s) dans out/_redirects.`,
+  `${regles.length} redirections dans out/_redirects.`,
 );

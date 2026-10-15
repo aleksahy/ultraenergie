@@ -2,12 +2,13 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PUBLICS, PARTENAIRES } from '@/lib/publics';
 import { argumentaireDe } from '@/lib/argumentaires';
+import { url } from '@/lib/routes';
 import PagePublic from '@/components/PagePublic';
 import PagePartenaire from '@/components/PagePartenaire';
 
 /**
- * ⚠️ UN SEUL SEGMENT DYNAMIQUE AU PREMIER NIVEAU, ET IL LES PORTE TOUS LES SEPT : les quatre
- * « Pour qui », les trois « Partenaires ». Ce n'est pas un fourre-tout, c'est la traduction
+ * ⚠️ UN SEUL SEGMENT DYNAMIQUE AU PREMIER NIVEAU, ET IL LES PORTE TOUS LES SEPT : les cinq
+ * « Pour qui » (installateurs compris, depuis le 15/10/2026), les deux « Partenaires ». Ce n'est pas un fourre-tout, c'est la traduction
  * en code d'une contrainte de l'architecture — `/obliges`, `/contact` et `/blog` partagent un
  * espace de noms. (Les six pages secteur commerciales passaient aussi par ici ; retirées le
  * 19/09/2026, leurs slugs restent réservés dans `PREMIER_NIVEAU`.) Trois segments dynamiques frères sont
@@ -42,9 +43,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   // Le <title> et la description viennent de l'argumentaire, pas du libellé de menu :
   // « La prime CEE pour les travaux de copropriété » dit plus que « Syndics & copropriétés ».
   const a = argumentaireDe(slug);
+  const titre = `${a?.titre ?? cible.label} | Ultra Énergie`;
+  const chemin = cible.type === 'public' ? url.public(slug) : url.partenaire(slug);
   return {
-    title: `${a?.titre ?? cible.label} | Ultra Énergie`,
+    title: titre,
     description: a?.chapo,
+    alternates: { canonical: chemin },
+    openGraph: { title: titre, description: a?.chapo },
   };
 }
 

@@ -1,0 +1,230 @@
+{
+ "code": "AGRI-UT-102",
+ "intitule": "Système de variation électronique de vitesse sur un moteur asynchrone",
+ "annexe": "Annexe 1",
+ "genereLe": "2026-10-15",
+ "versions": [
+  {
+   "version": null,
+   "nor": "DEVR1428341A",
+   "republiePar": [],
+   "integreeLe": "2015-01-01",
+   "origines": [
+    "création : arrêté du 22 décembre 2014"
+   ],
+   "debut": "2015-01-01",
+   "genreDate": "article",
+   "sourceDate": "arrêté du 22 décembre 2014, en vigueur au 1er janvier 2015",
+   "candidats": null,
+   "arrete": {
+    "nor": "DEVR1428341A",
+    "cid": "JORFTEXT000029953752",
+    "titre": "Arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie",
+    "publication": "2014-12-24"
+   },
+   "texteAuJo": false,
+   "annexeEnImage": true,
+   "fin": "2016-06-30",
+   "niveau": 1,
+   "pdf": null,
+   "manques": []
+  },
+  {
+   "version": null,
+   "nor": "DEVR1611811A",
+   "republiePar": [],
+   "integreeLe": "2016-06-11",
+   "origines": [
+    "note consolidée (art. 2 de l'arrêté du 2016-06-02)"
+   ],
+   "debut": "2016-07-01",
+   "genreDate": "article",
+   "sourceDate": "art. 5 : « Les fiches d'opérations standardisées d'économies d'énergie figurant en annexes 1 et 2 sont applicables aux opérations standardisées d'économies d'énergie engagées à partir du 1er juillet 2016. »",
+   "candidats": null,
+   "arrete": {
+    "nor": "DEVR1611811A",
+    "cid": "JORFTEXT000032672876",
+    "titre": "Arrêté du 2 juin 2016 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie",
+    "publication": "2016-06-10"
+   },
+   "texteAuJo": false,
+   "annexeEnImage": true,
+   "fin": null,
+   "versionProposee": "A22-2",
+   "versionProposeeSource": "PDF déposé, 2e version",
+   "niveau": 3,
+   "pdf": "AGRI-UT-102 mod A22-2.pdf",
+   "manques": [
+    "numéro de version à confirmer : A22-2 (PDF déposé, 2e version)",
+    "neuf informations",
+    "visa d’Alek"
+   ]
+  }
+ ],
+ "versionsSansDate": [],
+ "textesDuJo": [
+  {
+   "publication": "2016-06-10",
+   "nor": "DEVR1611811A",
+   "cid": "JORFTEXT000032672876",
+   "titre": "Arrêté du 2 juin 2016 modifiant l'arrêté du 22 décembre 2014 définissant les opérations standardisées d'économies d'énergie",
+   "nature": "autre",
+   "versionCitee": null,
+   "annexeEnImage": true
+  }
+ ],
+ "notesConsolidees": [
+  {
+   "article": "2",
+   "arrete": "2016-06-02",
+   "nor": "DEVR1611811A",
+   "effet": "fiche remplacée",
+   "lettre": null,
+   "aCompterDu": null,
+   "texte": "Conformément à l'article 2 de l'arrêté du 2 juin 2016 (NOR : DEVR1611811A), la fiche d'opération n° AGRI-UT-102 figurant en annexe 1 du présent arrêté remplace la fiche d'opération standardisée portant la même référence figurant à l'annexe 1 de l'arrêté du 22 décembre 2014 susvisé.",
+   "vuDansLaPeriode": "2016-06-11",
+   "morteNee": false
+  }
+ ],
+ "periodesConsolidees": [
+  {
+   "debut": "2015-01-01",
+   "fin": "2016-06-11",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Système de variation électronique de vitesse sur un moteur asynchrone",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000030077404",
+    "LEGIARTI000030418963",
+    "LEGIARTI000030966545",
+    "LEGIARTI000031043950",
+    "LEGIARTI000031877000",
+    "LEGIARTI000032192119"
+   ]
+  },
+  {
+   "debut": "2016-06-11",
+   "fin": "2020-08-03",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Système de variation électronique de vitesse sur un moteur asynchrone",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 2 de l'arrêté du 2 juin 2016 (NOR : DEVR1611811A), la fiche d'opération n° AGRI-UT-102 figurant en annexe 1 du présent arrêté remplace la fiche d'opération standardisée portant la même référence figurant à l'annexe 1 de l'arrêté du 22 décembre 2014 susvisé."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000033061883",
+    "LEGIARTI000033361055",
+    "LEGIARTI000033677887",
+    "LEGIARTI000036501690",
+    "LEGIARTI000037845368",
+    "LEGIARTI000046205210"
+   ]
+  },
+  {
+   "debut": "2020-08-03",
+   "fin": "2021-07-31",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Système de variation électronique de vitesse sur un moteur asynchrone",
+    "texteIntegral": false,
+    "version": null,
+    "notes": []
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000042205154"
+   ]
+  },
+  {
+   "debut": "2021-07-31",
+   "fin": "2024-08-31",
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Système de variation électronique de vitesse sur un moteur asynchrone",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 2 de l'arrêté du 2 juin 2016 (NOR : DEVR1611811A), la fiche d'opération n° AGRI-UT-102 figurant en annexe 1 du présent arrêté remplace la fiche d'opération standardisée portant la même référence figurant à l'annexe 1 de l'arrêté du 22 décembre 2014 susvisé."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000043874876",
+    "LEGIARTI000045012821",
+    "LEGIARTI000047313645",
+    "LEGIARTI000048923981"
+   ]
+  },
+  {
+   "debut": "2024-01-01",
+   "fin": "2023-12-29",
+   "morteNee": true,
+   "presente": true,
+   "entree": {
+    "intitule": "Système de variation électronique de vitesse sur un moteur asynchrone",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 2 de l'arrêté du 2 juin 2016 (NOR : DEVR1611811A), la fiche d'opération n° AGRI-UT-102 figurant en annexe 1 du présent arrêté remplace la fiche d'opération standardisée portant la même référence figurant à l'annexe 1 de l'arrêté du 22 décembre 2014 susvisé."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000048137933"
+   ]
+  },
+  {
+   "debut": "2024-08-31",
+   "fin": null,
+   "morteNee": false,
+   "presente": true,
+   "entree": {
+    "intitule": "Système de variation électronique de vitesse sur un moteur asynchrone",
+    "texteIntegral": false,
+    "version": null,
+    "notes": [
+     "Conformément à l'article 2 de l'arrêté du 2 juin 2016 (NOR : DEVR1611811A), la fiche d'opération n° AGRI-UT-102 figurant en annexe 1 du présent arrêté remplace la fiche d'opération standardisée portant la même référence figurant à l'annexe 1 de l'arrêté du 22 décembre 2014 susvisé."
+    ]
+   },
+   "versionsAnnexe": [
+    "LEGIARTI000050149126",
+    "LEGIARTI000050940571",
+    "LEGIARTI000052131584",
+    "LEGIARTI000054173646",
+    "LEGIARTI000054299333",
+    "LEGIARTI000053310974",
+    "LEGIARTI000054885008"
+   ]
+  },
+  {
+   "debut": "2999-01-01",
+   "fin": null,
+   "morteNee": false,
+   "presente": false,
+   "entree": null,
+   "versionsAnnexe": [
+    "JORFARTI000029953760"
+   ]
+  }
+ ],
+ "confrontationPdf": [
+  {
+   "pdf": "AGRI-UT-102 mod A22-2.pdf",
+   "versionPdf": "A22-2",
+   "duPdf": null,
+   "versionJo": null,
+   "debutJo": null,
+   "ecarts": [
+    "aucune version du JO ne correspond"
+   ]
+  }
+ ]
+}
