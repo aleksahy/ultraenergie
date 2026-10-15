@@ -9,10 +9,10 @@
  * deux variables.
  *
  * ⛔ LA CLÉ BREVO NE VA JAMAIS DANS LE NAVIGATEUR. Elle vit dans les variables du projet
- * Cloudflare Pages : `BREVO_API_KEY` (secret) et `BREVO_LIST_ID` (l'identifiant numérique de
- * la liste, choix d'Alek du 14/10/2026 : en variable plutôt qu'en dur, pour changer de liste
- * sans redéployer). Sans l'une ou l'autre, la fonction répond 503 et le formulaire affiche
- * l'erreur.
+ * Cloudflare Pages : `BREVO_API_KEY` (secret). Sans elle, la fonction répond 503 et le
+ * formulaire affiche l'erreur. L'identifiant de la liste est EN DUR (`LISTE_VEILLE`) : il a
+ * d'abord été une variable d'environnement, jamais lue par le déploiement le 15/10/2026 ;
+ * Alek : « rajoute-le en dur dans le code, ce n'est pas si important ».
  *
  * Pas de double opt-in ni de mail de confirmation : décision du 14/10/2026, on collecte.
  * Le champ `site` est un piège à robots : un humain ne le voit pas et le laisse vide.
@@ -21,17 +21,17 @@ import { json, adresseValide, MESSAGE_ADRESSE_INVALIDE } from './_formulaire';
 
 interface Env {
   BREVO_API_KEY?: string;
-  BREVO_LIST_ID?: string;
 }
+
+/** La liste Brevo « veille-cee » (id 2, compte d'Alek). */
+const LISTE_VEILLE = 2;
 
 /* La réponse JSON et la validation d'adresse sont celles de `_formulaire.ts`, partagées avec
    `/api/contact` : une règle recopiée finit par diverger (leçon de Salons en France). */
 const reponse = (status: number, corps: Record<string, unknown>) => json(corps, status);
 
 export const onRequestPost = async ({ request, env }: { request: Request; env: Env }): Promise<Response> => {
-  if (!env.BREVO_API_KEY || !/^\d+$/.test(env.BREVO_LIST_ID ?? '')) {
-    return reponse(503, { erreur: 'Lettre non configurée.' });
-  }
+  if (!env.BREVO_API_KEY) return reponse(503, { erreur: 'Lettre non configurée.' });
 
   let email = '';
   let piege = '';
@@ -59,7 +59,7 @@ export const onRequestPost = async ({ request, env }: { request: Request; env: E
   const brevo = await fetch('https://api.brevo.com/v3/contacts', {
     method: 'POST',
     headers: { 'api-key': env.BREVO_API_KEY, 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify({ email, listIds: [Number(env.BREVO_LIST_ID)], updateEnabled: true }),
+    body: JSON.stringify({ email, listIds: [LISTE_VEILLE], updateEnabled: true }),
   });
 
   // 201 : contact créé. 204 : il existait, et `updateEnabled` l'a ajouté à la liste.

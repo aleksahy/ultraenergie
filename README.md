@@ -310,7 +310,6 @@ secrets), pour Production et Preview :
 | Variable | Nature |
 | --- | --- |
 | `BREVO_API_KEY` | secret, clé API v3 de Brevo |
-| `BREVO_LIST_ID` | identifiant numérique de la liste, en clair |
 
 Les mails partent du sous-domaine `infos.ultraenergie.fr`, authentifié dans Brevo (choix du
 14/10/2026 : un sous-domaine dédié au marketing, générique, qui n'engage pas la réputation du
