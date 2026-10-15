@@ -8,10 +8,11 @@ import { url } from '@/lib/routes';
 /**
  * Le menu mobile (< 900px) : le burger ouvre un panneau qui se déploie SOUS l'en-tête.
  *
- * ⚠️ L'EN-TÊTE RESTE VISIBLE ET N'EST PAS REDOUBLÉ DANS LE PANNEAU. Le panneau est
- * `position: fixed` ancré à `top: var(--header-h)`, exactement la hauteur de l'en-tête
- * collant : les deux sont jointifs quelle que soit la position de défilement, et aucun
- * morceau de page ne peut apparaître entre eux.
+ * ⚠️ L'EN-TÊTE RESTE VISIBLE ET N'EST PAS REDOUBLÉ DANS LE PANNEAU. Le panneau est en
+ * `position: absolute; top: 100%` DANS `.entete` (collant, donc bloc conteneur) : il colle au
+ * bas réel de l'en-tête quelle que soit la position de défilement, sans la fente d'un pixel
+ * qu'un `fixed` à `top: var(--header-h)` laissait voir (15/10/2026). Il laisse une bande de
+ * page nue à gauche (`--bande-menu`), sans voile : le bouton `.menu-scrim` reste transparent.
  *
  * ⚠️ Les groupes sans URL sont des `<button>` d'accordéon, jamais des liens : même règle
  * qu'en desktop (cf. lib/nav.ts).

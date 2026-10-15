@@ -62,6 +62,7 @@
   --header-h: 69px;
   /* La bande de page laissée à gauche du panneau mobile. Étroite exprès : elle signale un
      panneau posé sur la page, sans laisser lire un mot de ce qu'il y a dessous. */
+  --bande-menu: 32px;
 
   --espace-section: 96px;
 
@@ -216,7 +217,7 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
   font-size: 14px;
   white-space: nowrap;
 }
-/* L'entrée survolée : un fond pâle, le texte reste à l'encre. ⛔ Pas de filet vert à gauche
+/* L'entrée survolée : un fond pâle, le texte reste à l'encre. ⛔ Pas de filet vert à gauche
    (retiré le 15/10/2026, Alek). */
 .nav-menu-item:hover,
 .nav-menu-item:focus-visible { background: var(--survol); }
@@ -250,11 +251,15 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
    (sticky, donc bloc conteneur) : `top: 100%` colle le panneau au bas de l'en-tête quelle que
    soit sa hauteur rendue, et `height: calc(100dvh - 100%)` descend jusqu'au bas de la fenêtre.
    En `fixed` à `top: var(--header-h)`, un écart d'un pixel entre la constante et la hauteur
-   réelle laissait voir la page entre les deux (le trait rouge d'Alek, 15/10/2026). */
+   réelle laissait voir la page entre les deux (le trait rouge d'Alek, 15/10/2026).
+   ⚠️ IL LAISSE `--bande-menu` DE PAGE À GAUCHE, NUE : pas de voile dessus (Alek, 16/10/2026,
+   « c'est juste un espace comme on avait avant »). Au passage, Safari iOS ne trouve plus
+   d'aplat uniforme au bord bas de l'écran et ne teinte plus sa barre en forêt après la
+   fermeture du menu, ce que faisait le panneau pleine largeur du 15/10. */
 .menu-panneau {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: var(--bande-menu);
   right: 0;
   height: calc(100vh - 100%);
   height: calc(100dvh - 100%);
@@ -628,7 +633,7 @@ select.champ { appearance: none; -webkit-appearance: none; padding-right: 42px; 
 .operations.est-deux { grid-template-columns: repeat(2, 1fr); max-width: 1000px; }
 .page-section.est-colonnes .operations { max-width: none; }
 
-/* Une bande forêt au milieu d'une page : elle déborde des gouttières de `.page` jusqu'aux
+/* Une bande forêt au milieu d'une page : elle déborde des gouttières de `.page` jusqu'aux
    bords de la fenêtre. Le `body` rogne l'excédent de barre de défilement (overflow-x). */
 .page-pleine { width: 100vw; margin: 64px calc(50% - 50vw) 0; }
 .bande-tuiles.est-trois { grid-template-columns: repeat(3, 1fr); }
@@ -789,7 +794,7 @@ select.champ { appearance: none; -webkit-appearance: none; padding-right: 42px; 
 
 /* ── Page introuvable ────────────────────────────────────────────── */
 
-/* Centrée, bornée, avec de l'air : la page ne contient qu'un titre, une phrase et un bouton. */
+/* Centrée, bornée, avec de l'air : la page ne contient qu'un titre, une phrase et un bouton. */
 .introuvable { max-width: 640px; margin: 0 auto; padding: 128px var(--gouttiere) 168px; text-align: center; }
 .introuvable .surtitre { margin-bottom: 16px; }
 .introuvable .page-titre { margin-bottom: 16px; }
@@ -809,7 +814,7 @@ select.champ { appearance: none; -webkit-appearance: none; padding-right: 42px; 
 .glossaire-meta { display: flex; flex-wrap: wrap; gap: 4px 0; margin-top: 14px; font-size: 13px; color: var(--texte-3); }
 .glossaire-meta span + span::before { content: ''; display: inline-block; width: 3px; height: 3px; border-radius: 50%; background: var(--texte-4); margin: 0 10px; vertical-align: middle; }
 
-/* Le schéma d'une section : borné plus court que la prose, parce qu'un dessin à 440 unités
+/* Le schéma d'une section : borné plus court que la prose, parce qu'un dessin à 440 unités
    étiré sur 760px grossit ses libellés au point de concurrencer les titres. Centré dans la
    colonne, légende centrée dessous (Alek, 15/10/2026) : calé à gauche, il laissait un tiers
    de colonne vide à droite. */
@@ -888,8 +893,9 @@ select.champ { appearance: none; -webkit-appearance: none; padding-right: 42px; 
   .menu-mobile { display: block; }
   /* Le panneau ouvert est en vert forêt avec les entrées en blanc, comme les bandes du site
      (variante choisie par Alek le 15/10/2026). Le burger garde ses trois traits nus : le carré
-     vert essayé avec a été écarté (« tu peux garder la précédente »). Pleine largeur, ses
-     entrées s'alignent sur le wordmark. */
+     vert essayé avec a été écarté (« tu peux garder la précédente »). Il laisse la bande de
+     page à gauche (`--bande-menu`), comme avant le 15/10 : la pleine largeur est partie le
+     16/10/2026. */
   .menu-panneau { background: var(--foret); color: var(--blanc); }
   .menu-lien { color: var(--blanc); border-color: rgba(var(--blanc-rgb), 0.14); }
   .menu-chevron { color: rgba(var(--blanc-rgb), 0.7); }
