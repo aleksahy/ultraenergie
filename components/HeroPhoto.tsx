@@ -3,6 +3,9 @@ import Link from 'next/link';
 import { url } from '@/lib/routes';
 import photo from '@/assets/photos/conseil-metier.webp';
 
+/** Le cadrage de la photo, réglé par Alek le 15/10/2026 (sens d'`object-position`). */
+const POSITION = '63% 42%';
+
 /**
  * Le héros de l'accueil : une photo plein écran sous un voile forêt, une colonne de texte à
  * gauche, un seul bouton. Variante « Photo » retenue par Alek le 15/10/2026, d'après EBS.
@@ -18,7 +21,7 @@ import photo from '@/assets/photos/conseil-metier.webp';
 export default function HeroPhoto() {
   return (
     <section className="hero-photo">
-      <Image src={photo} alt="" fill sizes="100vw" priority />
+      <Image src={photo} alt="" fill sizes="100vw" priority style={{ objectPosition: POSITION }} />
       <div className="hero-photo-inner">
         <div className="surtitre">Mandataire CEE indépendant</div>
         <h1>La prime CEE de vos chantiers, engagée avant le devis, versée après travaux</h1>
