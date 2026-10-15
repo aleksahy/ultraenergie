@@ -238,23 +238,26 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
 /* ⚠️ TRANSPARENT, ET IL DOIT LE RESTER. Ce bouton n'a plus rien à montrer depuis que le
    voile gris est parti : il ne sert qu'à fermer le menu au clic hors du panneau. Le
    supprimer casserait ce geste, que personne ne pense à décrire mais que tout le monde
-   fait. */
+   fait. Il couvre toute la fenêtre, sous l'en-tête (z-index), le panneau par-dessus. */
 .menu-scrim {
   position: fixed;
-  top: var(--header-h);
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   z-index: 80;
   background: none;
   cursor: default;
 }
+/* ⚠️ ANCRÉ SOUS L'EN-TÊTE RÉEL, PAS À `--header-h`. Positionné en absolu dans `.entete`
+   (sticky, donc bloc conteneur) : `top: 100%` colle le panneau au bas de l'en-tête quelle que
+   soit sa hauteur rendue, et `height: calc(100dvh - 100%)` descend jusqu'au bas de la fenêtre.
+   En `fixed` à `top: var(--header-h)`, un écart d'un pixel entre la constante et la hauteur
+   réelle laissait voir la page entre les deux (le trait rouge d'Alek, 15/10/2026). */
 .menu-panneau {
-  position: fixed;
-  top: var(--header-h);
+  position: absolute;
+  top: 100%;
   left: 0;
   right: 0;
-  bottom: 0;
+  height: calc(100vh - 100%);
+  height: calc(100dvh - 100%);
   z-index: 81;
   display: flex;
   flex-direction: column;
@@ -264,6 +267,8 @@ input, select, textarea { font-family: inherit; font-size: inherit; color: inher
      (blanc à l'origine, vert forêt depuis le 15/10/2026, cf. le bloc sous 900px). */
   padding: 6px var(--gouttiere) 28px;
 }
+/* « Nous contacter » ferme la liste en bouton, comme l'appel à l'action du bureau (Alek, 15/10/2026). */
+.menu-cta { margin-top: 28px; width: 100%; padding: 15px; text-align: center; }
 .menu-lien {
   display: flex;
   align-items: center;
@@ -883,9 +888,8 @@ select.champ { appearance: none; -webkit-appearance: none; padding-right: 42px; 
   .menu-mobile { display: block; }
   /* Le panneau ouvert est en vert forêt avec les entrées en blanc, comme les bandes du site
      (variante choisie par Alek le 15/10/2026). Le burger garde ses trois traits nus : le carré
-     vert essayé avec a été écarté (« tu peux garder la précédente »). Le panneau prend toute la
-     largeur, sans la bande de page à gauche : ses entrées s'alignent sur le wordmark, et la
-     page derrière ne dépasse plus (« problème d'alignement », même jour). */
+     vert essayé avec a été écarté (« tu peux garder la précédente »). Pleine largeur, ses
+     entrées s'alignent sur le wordmark. */
   .menu-panneau { background: var(--foret); color: var(--blanc); }
   .menu-lien { color: var(--blanc); border-color: rgba(var(--blanc-rgb), 0.14); }
   .menu-chevron { color: rgba(var(--blanc-rgb), 0.7); }

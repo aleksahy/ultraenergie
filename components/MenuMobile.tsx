@@ -101,9 +101,9 @@ export default function MenuMobile() {
               );
             })}
 
-            {/* /contact est hors menu en desktop (c'est le bouton de l'en-tête) ; sur
-                téléphone il rejoint la liste, faute d'une place à droite où le poser. */}
-            <Link href={url.contact} className="menu-lien" onClick={fermer}>Nous contacter</Link>
+            {/* /contact est le bouton de l'en-tête en desktop ; sur téléphone il ferme la liste,
+                en bouton aussi, comme un appel à l'action (Alek, 15/10/2026). */}
+            <Link href={url.contact} className="pilule pilule-accent menu-cta" onClick={fermer}>Nous contacter</Link>
           </nav>
         </>
       )}
